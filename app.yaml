@@ -1,0 +1,8 @@
+application: sem-loxal
+version: a
+runtime: go
+api_version: 1
+
+handlers:
+- url: /.*
+  script: _go_app
