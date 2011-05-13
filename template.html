@@ -1,9 +1,9 @@
 <html><body>
 {.repeated section @}
 {.section Author}<b>{@|html}</b>{.or}An anonymous person{.end}
-wrote <blockquote>{Content|html}</blockquote>
+wrote <blockquote>{Content|html} =&gt; {Title} = {Body}</blockquote>
 {.end}
 <form action="/store" method="post">
-<div><textarea name="content" rows="3" cols="60">{blub}</textarea></div>
+<div><textarea name="content" rows="3" cols="60">PLACEHOLDER</textarea></div>
 <div><input type="submit" value="Sign Guestbook"></div>
 </form></body></html>

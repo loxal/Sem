@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"http"
 	"io"
+//	"io/ioutil"
 	"os"
 	"strconv"
 	"template"
@@ -23,20 +24,28 @@ type Greeting struct {
 	Author  string
 	Content string
 	Date    datastore.Time
+	Title	string
+//	Body	[]byte
+	Body	string
 }
 
-//var mainPage = template.MustParse(`<html><body>
-//{.repeated section @}
-//{.section Author}<b>{@|html}</b>{.or}An anonymous person{.end}
-//wrote <blockquote>{Content|html}</blockquote>
-//{.end}
-//<form action="/store" method="post">
-//<div><textarea name="content" rows="3" cols="60">{blub}</textarea></div>
-//<div><input type="submit" value="Sign Guestbook"></div>
-//</form></body></html>`,
-//	nil)
+type Page struct {
+	Title	string
+//	Body	[]byte
+	Body	string
+}
 
 var mainPage = template.MustParseFile("template.html", nil)
+//const lenPath = len("/view/")
+
+//func loadPage(title string) (*Page, os.Error) {
+//	filename := title + ".txt"
+//	body, err := ioutil.ReadFile(filename)
+//	if err != nil {
+//		return nil, err
+//	}
+//	return &Page{Title: title, Body: body}, nil
+//}
 
 func hello(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
@@ -100,7 +109,23 @@ func handlePost(w http.ResponseWriter, r *http.Request) {
 		serveError(c, w, err)
 		return
 	}
+	////////////////
+//	title := "my"
+//	p, err := loadPage(title)
+//	if err != nil {
+//		p = &Page{Title: title}
+//	}
+//	t, _ := template.ParseFile("template.html", nil)
+//	mainPage.Execute(w, p)
+
+//    return &Page{Title: title, Body: body}, nil
+	////////////////
+//	p := &Page{Title: "ddd", Body: "oops"}
+ for i := 0; i < len(gg); i++ {
+//     gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY"}
+ }
 	w.Header().Set("Content-Type", "text/html")
+//	mainPage.Execute(w, p)
 	if err := mainPage.Execute(w, gg); err != nil {
 		c.Logf("%v", err)
 	}
@@ -131,7 +156,7 @@ func handleStore(w http.ResponseWriter, r *http.Request) {
 }
 
 var postHandler = "/post"
-var storeHandler string = "/store"
+var storeHandler = "/store"
 var blub = "blubber"
 
 func init() {
