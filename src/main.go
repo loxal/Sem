@@ -136,14 +136,17 @@ func cmd(w http.ResponseWriter, r *http.Request) {
 //    http.Redirect(w, r, m[r.URL.RawQuery], http.StatusFound)
 }
 
-func WebCmd(cmd string) string {
+func WebCmd(cmd string) (restCall string) {
      m := map[string]string {
         "c":"https://mail.google.com/mail/?shva=1#compose",
         "t":"http://twitter.com",
         "sem":"https://github.com/loxal/Sem",
+        // shortcut for making notes/tasks/todos
      }
 
-    return m[cmd]
+     restCall = m[cmd]
+//    return m[cmd]
+    return
 }
 
 var postHandler = "/post"
