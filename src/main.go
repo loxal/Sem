@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"http"
 	"io"
-//	"io/ioutil"
 	"os"
 	"strconv"
 	"template"
@@ -28,8 +27,6 @@ type Greeting struct {
 	Title	string
 	Body	string
 }
-
-var mainPage = template.MustParseFile("template.html", nil)
 
 func hello(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
@@ -135,16 +132,21 @@ func cmd(w http.ResponseWriter, r *http.Request) {
     c.Logf(r.FormValue("bar"))
     c.Logf("r.URL.RawQuery: " + r.URL.RawQuery)
 
-     m := map[string]string{"c":"https://mail.google.com/mail/?shva=1#compose", "sem":"https://github.com/loxal/Sem"}
-
+     m := map[string]string {
+        "c":"https://mail.google.com/mail/?shva=1#compose",
+        "t":"http://twitter.com",
+        "sem":"https://github.com/loxal/Sem"}
      c.Logf("m[r.URL.RawQuery]" + m[r.URL.RawQuery])
-
-//    http.Redirect(w, r, "http://www.google.com", http.StatusFound)
 //    http.Redirect(w, r, m[r.URL.RawQuery], http.StatusFound)
 }
 
 var postHandler = "/post"
 var storeHandler = "/store"
+var mainPage = template.MustParseFile("template.html", nil)
+
+func Double(i int) int {
+	return i * 2
+}
 
 func init() {
 	http.HandleFunc("/", hello)
@@ -154,3 +156,4 @@ func init() {
 	http.HandleFunc("/count", count)
 	http.HandleFunc("/cmd", cmd)
 }
+
