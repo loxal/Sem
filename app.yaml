@@ -4,14 +4,12 @@ runtime: go
 api_version: 1
 
 handlers:
-#- url: /post
-#  script: _go_app
-#  login: required
-#
-#- url: /store
-#  script: _go_app
-#  login: required
+- url: /post
+  script: _go_app
+  login: required
+
+- url: /store
+  script: _go_app
 
 - url: /.*
   script: _go_app
-  login: required

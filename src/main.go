@@ -24,28 +24,12 @@ type Greeting struct {
 	Author  string
 	Content string
 	Date    datastore.Time
-	Title	string
-//	Body	[]byte
-	Body	string
-}
 
-type Page struct {
 	Title	string
-//	Body	[]byte
 	Body	string
 }
 
 var mainPage = template.MustParseFile("template.html", nil)
-//const lenPath = len("/view/")
-
-//func loadPage(title string) (*Page, os.Error) {
-//	filename := title + ".txt"
-//	body, err := ioutil.ReadFile(filename)
-//	if err != nil {
-//		return nil, err
-//	}
-//	return &Page{Title: title, Body: body}, nil
-//}
 
 func hello(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
@@ -109,23 +93,12 @@ func handlePost(w http.ResponseWriter, r *http.Request) {
 		serveError(c, w, err)
 		return
 	}
-	////////////////
-//	title := "my"
-//	p, err := loadPage(title)
-//	if err != nil {
-//		p = &Page{Title: title}
-//	}
-//	t, _ := template.ParseFile("template.html", nil)
-//	mainPage.Execute(w, p)
 
-//    return &Page{Title: title, Body: body}, nil
-	////////////////
-//	p := &Page{Title: "ddd", Body: "oops"}
- for i := 0; i < len(gg); i++ {
-//     gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY"}
- }
+    for i := 0; i < len(gg); i++ {
+    //     gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY"}
+    }
+
 	w.Header().Set("Content-Type", "text/html")
-//	mainPage.Execute(w, p)
 	if err := mainPage.Execute(w, gg); err != nil {
 		c.Logf("%v", err)
 	}
@@ -155,9 +128,23 @@ func handleStore(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, postHandler, http.StatusFound)
 }
 
+func cmd(w http.ResponseWriter, r *http.Request) {
+    c := appengine.NewContext(r)
+    c.Logf("r.URL.Path: " + r.URL.Path)
+    c.Logf("r.FormValue(\"foo\"): " + r.FormValue("foo"))
+    c.Logf(r.FormValue("bar"))
+    c.Logf("r.URL.RawQuery: " + r.URL.RawQuery)
+
+     m := map[string]string{"c":"https://mail.google.com/mail/?shva=1#compose", "sem":"https://github.com/loxal/Sem"}
+
+     c.Logf("m[r.URL.RawQuery]" + m[r.URL.RawQuery])
+
+//    http.Redirect(w, r, "http://www.google.com", http.StatusFound)
+//    http.Redirect(w, r, m[r.URL.RawQuery], http.StatusFound)
+}
+
 var postHandler = "/post"
 var storeHandler = "/store"
-var blub = "blubber"
 
 func init() {
 	http.HandleFunc("/", hello)
@@ -165,4 +152,5 @@ func init() {
 	http.HandleFunc(storeHandler, handleStore)
 	http.HandleFunc("/hello", hello)
 	http.HandleFunc("/count", count)
+	http.HandleFunc("/cmd", cmd)
 }
