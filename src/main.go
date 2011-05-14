@@ -126,18 +126,24 @@ func handleStore(w http.ResponseWriter, r *http.Request) {
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {
-    c := appengine.NewContext(r)
-    c.Logf("r.URL.Path: " + r.URL.Path)
-    c.Logf("r.FormValue(\"foo\"): " + r.FormValue("foo"))
-    c.Logf(r.FormValue("bar"))
-    c.Logf("r.URL.RawQuery: " + r.URL.RawQuery)
+//    c := appengine.NewContext(r)
+//    c.Logf("r.URL.Path: " + r.URL.Path)
+//    c.Logf("r.FormValue(\"foo\"): " + r.FormValue("foo"))
+//    c.Logf(r.FormValue("bar"))
+//    c.Logf("r.URL.RawQuery: " + r.URL.RawQuery)
+//
+//     c.Logf("m[r.URL.RawQuery]" + m[r.URL.RawQuery])
+//    http.Redirect(w, r, m[r.URL.RawQuery], http.StatusFound)
+}
 
+func WebCmd(cmd string) string {
      m := map[string]string {
         "c":"https://mail.google.com/mail/?shva=1#compose",
         "t":"http://twitter.com",
-        "sem":"https://github.com/loxal/Sem"}
-     c.Logf("m[r.URL.RawQuery]" + m[r.URL.RawQuery])
-//    http.Redirect(w, r, m[r.URL.RawQuery], http.StatusFound)
+        "sem":"https://github.com/loxal/Sem",
+     }
+
+    return m[cmd]
 }
 
 var postHandler = "/post"
