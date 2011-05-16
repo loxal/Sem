@@ -26,6 +26,8 @@ var webCmdTests = []webCmdTest{
 	webCmdTest{"c", "https://mail.google.com/mail/?shva=1#compose"},
 	webCmdTest{"t", "http://twitter.com"},
 	webCmdTest{"sem", "https://github.com/loxal/Sem"},
+	webCmdTest{"verp", "https://github.com/loxal/Verp"},
+	webCmdTest{"lox", "https://github.com/loxal/Lox"},
 }
 
 func TestDouble(t *testing.T) {

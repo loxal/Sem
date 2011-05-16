@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+// The entry package for the GAE environment
 package main
 
 import (
@@ -24,8 +25,8 @@ type Greeting struct {
 	Content string
 	Date    datastore.Time
 
-	Title	string
-	Body	string
+	Title string
+	Body  string
 }
 
 func hello(w http.ResponseWriter, r *http.Request) {
@@ -78,7 +79,7 @@ func count(w http.ResponseWriter, r *http.Request) {
 }
 
 func handlePost(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "GET" || r.URL.Path != postHandler {
+	if r.Method != "GET" || r.URL.Path != cmdCreateHandler {
 		serve404(w)
 		return
 	}
@@ -91,12 +92,15 @@ func handlePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-    for i := 0; i < len(gg); i++ {
-    //     gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY"}
-    }
-
 	w.Header().Set("Content-Type", "text/html")
 	if err := mainPage.Execute(w, gg); err != nil {
+		c.Logf("%v", err)
+	}
+
+	for i := 0; i < len(gg); i++ {
+        gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY"}
+	}
+	if err := createCmdPresenter.Execute(w, gg); err != nil {
 		c.Logf("%v", err)
 	}
 }
@@ -122,35 +126,40 @@ func handleStore(w http.ResponseWriter, r *http.Request) {
 		serveError(c, w, err)
 		return
 	}
-	http.Redirect(w, r, postHandler, http.StatusFound)
+	http.Redirect(w, r, cmdCreateHandler, http.StatusFound)
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {
-//    c := appengine.NewContext(r)
-//    c.Logf("r.URL.Path: " + r.URL.Path)
-//    c.Logf("r.FormValue(\"foo\"): " + r.FormValue("foo"))
-//    c.Logf(r.FormValue("bar"))
-//    c.Logf("r.URL.RawQuery: " + r.URL.RawQuery)
-//
-//     c.Logf("m[r.URL.RawQuery]" + m[r.URL.RawQuery])
-//    http.Redirect(w, r, m[r.URL.RawQuery], http.StatusFound)
+	//    c := appengine.NewContext(r)
+	//    c.Logf("r.URL.Path: " + r.URL.Path)
+	//    c.Logf("r.FormValue(\"foo\"): " + r.FormValue("foo"))
+	//    c.Logf(r.FormValue("bar"))
+	//    c.Logf("r.URL.RawQuery: " + r.URL.RawQuery)
+	//
+	//     c.Logf("m[r.URL.RawQuery]" + m[r.URL.RawQuery])
+	//    http.Redirect(w, r, m[r.URL.RawQuery], http.StatusFound)
 }
 
+// Returns the RESTful associated with a certain command
 func WebCmd(cmd string) (restCall string) {
-     m := map[string]string {
-        "c":"https://mail.google.com/mail/?shva=1#compose",
-        "t":"http://twitter.com",
-        "sem":"https://github.com/loxal/Sem",
-        // shortcut for making notes/tasks/todos
-     }
+	m := map[string]string {
+		"c":   "https://mail.google.com/mail/?shva=1#compose",
+		"t":   "http://twitter.com",
+		"sem": "https://github.com/loxal/Sem",
+		"verp": "https://github.com/loxal/Verp",
+		"lox": "https://github.com/loxal/Lox",
+		// shortcut for adding an English Word or another unknow word to the TO_LEARN_LIST (merge with the Delingo functionality)
+		// shortcut for making notes/tasks/todos
+	}
 
-     restCall = m[cmd]
-//    return m[cmd]
-    return
+	restCall = m[cmd]
+	return
 }
 
-var postHandler = "/post"
+var cmdCreateHandler = "/cmdCreate"
+//var postHandler = "/post"
 var storeHandler = "/store"
+var createCmdPresenter = template.MustParseFile("cmdCreate.html", nil)
 var mainPage = template.MustParseFile("template.html", nil)
 
 func Double(i int) int {
@@ -159,10 +168,10 @@ func Double(i int) int {
 
 func init() {
 	http.HandleFunc("/", hello)
-	http.HandleFunc(postHandler, handlePost)
+	http.HandleFunc(cmdCreateHandler, handlePost)
+//	http.HandleFunc(postHandler, handlePost)
 	http.HandleFunc(storeHandler, handleStore)
 	http.HandleFunc("/hello", hello)
 	http.HandleFunc("/count", count)
 	http.HandleFunc("/cmd", cmd)
 }
-
