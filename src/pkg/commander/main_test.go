@@ -6,6 +6,12 @@ package main
 
 import (
 	"testing"
+	"http"
+
+	"appengine"
+	"appengine/datastore"
+//	"appengine/memcache"
+//	"appengine/user"
 )
 
 type doubleTest struct {
@@ -28,6 +34,56 @@ var webCmdTests = []webCmdTest{
 	webCmdTest{"sem", "https://github.com/loxal/Sem"},
 	webCmdTest{"verp", "https://github.com/loxal/Verp"},
 	webCmdTest{"lox", "https://github.com/loxal/Lox"},
+}
+
+type cmdTest struct {
+    name, restCall, desc string
+}
+
+var cmdTests = []cmdTest {
+	cmdTest{"c", "https://mail.google.com/mail/?shva=1#compose", "Compose Gmail"},
+	cmdTest{"t", "http://twitter.com", "Twitter"},
+	cmdTest{"sem", "https://github.com/loxal/Sem", "GitHub: Sem Project"},
+	cmdTest{"verp", "https://github.com/loxal/Verp", "GitHub: Verp Project"},
+	cmdTest{"lox", "https://github.com/loxal/Lox", "GitHub: Lox Project"},
+}
+
+var cmdTests1 = []Cmd{
+	Cmd{"c", "https://mail.google.com/mail/?shva=1#compose", "Compose Gmail"},
+	Cmd{"t", "http://twitter.com", "Twitter"},
+	Cmd{"sem", "https://github.com/loxal/Sem", "GitHub: Sem Project"},
+	Cmd{"verp", "https://github.com/loxal/Verp", "GitHub: Verp Project"},
+	Cmd{"lox", "https://github.com/loxal/Lox", "GitHub: Lox Project"},
+}
+
+func TestCmdCreation(t *testing.T) {
+
+    cmd := &Cmd {
+        Name: "blub",
+        RestCall: "blab",
+        Desc: "....",
+    }
+//    cmd := &cmdTest {
+//        name: "blub",
+//        restCall: "blab",
+//        desc: "....",
+//    }
+
+//    c := &appengine.NewContext(r)
+//    headers := make(http.Header)
+//    headers.Set("X-Appengine-Inbound-Appid", "my-app-id")
+//    c := appengine.NewContext(&http.Request{Header: headers})
+    c := appengine.NewContext(&http.Request{Header: make(http.Header)})
+    c.Logf("%#v", c)
+    c.Logf("%#v", cmd)
+    datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd)
+
+//    for _, &ct:=range cmdTests {
+////        v:=cmdCreation(ct.)
+////        var r http.Request
+//    r := &http.Request
+//        cmdCreate(r, ct)
+//    }
 }
 
 func TestDouble(t *testing.T) {

@@ -1,9 +1,25 @@
-<html><body>
+<html>
+<body>
+
 {.repeated section @}
 {.section Author}<b>{@|html}</b>{.or}An anonymous person{.end}
-wrote <blockquote>{Content|html} =&gt; {Title} = {Body}</blockquote>
+wrote
+<blockquote>{Content|html} =&gt; {Title} = {Body} => </blockquote>
 {.end}
+
+
 <form action="/store" method="post">
-<div><textarea name="content" rows="3" cols="60">PLACEHOLDER</textarea></div>
-<div><input type="submit" value="Sign Guestbook"></div>
-</form></body></html>
+
+    <fieldset>
+        <legend>Command</legend>
+        <label for="cmd">Shortcut</label><input id="cmd" type="text"/>
+        <label for="cmdName">Name</label><input id="cmdName" type="text"/>
+        <label for="cmdDescription">Description</label><input id="cmdDescription" type="text"/>
+        <div><textarea name="content" rows="3" cols="60">PLACEHOLDER</textarea></div>
+        <div><input type="submit" value="Sign Guestbook"></div>
+    </fieldset>
+</form>
+
+
+</body>
+</html>

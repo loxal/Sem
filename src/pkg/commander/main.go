@@ -20,13 +20,37 @@ import (
 	"appengine/user"
 )
 
+type Cmd struct {
+    Name, RestCall, Desc string
+}
+
 type Greeting struct {
 	Author  string
 	Content string
 	Date    datastore.Time
-
 	Title string
 	Body  string
+//	Pg  *page
+}
+
+type page struct {
+	Title1 string
+	Body1  string
+}
+
+// TODO make it a small letter pAGE
+type Page1 struct {
+	Title11 string
+	Body11  string
+}
+
+func loadPage(title string) (*page, os.Error) {
+//	filename := title + ".txt"
+//	body, err := ioutil.ReadFile(filename)
+//	if err != nil {
+//		return nil, err
+//	}
+	return &page{Title1: title, Body1: "test"}, nil
 }
 
 func hello(w http.ResponseWriter, r *http.Request) {
@@ -84,7 +108,8 @@ func handlePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	c := appengine.NewContext(r)
-	q := datastore.NewQuery("Greeting").Order("-Date").Limit(10)
+	q := datastore.NewQuery("Greeting")
+//	q := datastore.NewQuery("Greeting").Order("-Date").Limit(10)
 	var gg []*Greeting
 	_, err := q.GetAll(c, &gg)
 	if err != nil {
@@ -93,17 +118,23 @@ func handlePost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "text/html")
-	if err := mainPage.Execute(w, gg); err != nil {
-		c.Logf("%v", err)
-	}
+//	if err := mainPage.Execute(w, gg); err != nil {
+//		c.Logf("%v", err)
+//	}
 
-	for i := 0; i < len(gg); i++ {
-        gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY"}
-	}
+//	for i := 0; i < len(gg); i++ {
+//        gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY", Pg: &page{Title1: "fest1111", Body1: "test"}}
+//        gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY"}
+//	}
+
+//    pg1 := &Page1{Title11: "my1111", Body11: "yours"}
 	if err := createCmdPresenter.Execute(w, gg); err != nil {
 		c.Logf("%v", err)
 	}
+
 }
+
+
 
 func handleStore(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
@@ -156,8 +187,62 @@ func WebCmd(cmd string) (restCall string) {
 	return
 }
 
+
+
+// , cmdName, restCall, description string
+func cmdCreation(w http.ResponseWriter, r *http.Request) {
+    cmd := &Cmd {
+        Name: r.FormValue("name"),
+        RestCall: r.FormValue("restCall"),
+        Desc: r.FormValue("desc"),
+    }
+
+    c := appengine.NewContext(r)
+    c.Logf("%#v", r)
+    datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd)
+//    cmdCreate(c, cmd)
+}
+
+//func cmdCreate(r *http.Request, cmd *Cmd) {
+//func cmdCreate(c Context, cmd *Cmd) {
+////    c := appengine.NewContext(r)
+//    c.Logf("%#v", r)
+//    datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd)
+//}
+
+//return jsonResponse string                         // []Cmd
+func cmdListing(w http.ResponseWriter, r *http.Request)  {
+//    c := appengine.NewContext(r)
+//	q := datastore.NewQuery("Cmd")
+//	var cc []*Cmd
+//	q.GetAll(c, &cc)
+
+	c := appengine.NewContext(r)
+	cc := cmdList(r)
+
+    c.Logf("%s", "##############")
+    c.Logf("%v", len(cc))
+	for i := 0; i < len(cc); i++ {
+        c.Logf(cc[i].Name)
+        c.Logf(cc[i].RestCall)
+        c.Logf(cc[i].Desc)
+	}
+	c.Logf("%s", "##############")
+}
+
+func cmdList(r *http.Request) (cc []*Cmd) {
+    c := appengine.NewContext(r)
+    q := datastore.NewQuery("Cmd")
+    q.GetAll(c, &cc)
+
+    return
+}
+
+func cmdUpdate(cmdName, restCall, description string)
+func cmdDelete(cmdName string)
+
 var cmdCreateHandler = "/cmdCreate"
-//var postHandler = "/post"
+var postHandler = "/post"
 var storeHandler = "/store"
 var createCmdPresenter = template.MustParseFile("cmdCreate.html", nil)
 var mainPage = template.MustParseFile("template.html", nil)
@@ -169,9 +254,11 @@ func Double(i int) int {
 func init() {
 	http.HandleFunc("/", hello)
 	http.HandleFunc(cmdCreateHandler, handlePost)
-//	http.HandleFunc(postHandler, handlePost)
+	http.HandleFunc(postHandler, handlePost)
 	http.HandleFunc(storeHandler, handleStore)
 	http.HandleFunc("/hello", hello)
+	http.HandleFunc(cmdCreateHandler, cmdCreation)
+	http.HandleFunc("/cmdList", cmdListing)
 	http.HandleFunc("/count", count)
 	http.HandleFunc("/cmd", cmd)
 }
