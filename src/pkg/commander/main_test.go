@@ -48,13 +48,13 @@ var cmdTests = []cmdTest {
 	cmdTest{"lox", "https://github.com/loxal/Lox", "GitHub: Lox Project"},
 }
 
-var cmdTests1 = []Cmd{
-	Cmd{"c", "https://mail.google.com/mail/?shva=1#compose", "Compose Gmail"},
-	Cmd{"t", "http://twitter.com", "Twitter"},
-	Cmd{"sem", "https://github.com/loxal/Sem", "GitHub: Sem Project"},
-	Cmd{"verp", "https://github.com/loxal/Verp", "GitHub: Verp Project"},
-	Cmd{"lox", "https://github.com/loxal/Lox", "GitHub: Lox Project"},
-}
+//var cmdTests1 = []Cmd{
+//	Cmd{"c", "https://mail.google.com/mail/?shva=1#compose", "Compose Gmail"},
+//	Cmd{"t", "http://twitter.com", "Twitter"},
+//	Cmd{"sem", "https://github.com/loxal/Sem", "GitHub: Sem Project"},
+//	Cmd{"verp", "https://github.com/loxal/Verp", "GitHub: Verp Project"},
+//	Cmd{"lox", "https://github.com/loxal/Lox", "GitHub: Lox Project"},
+//}
 
 func TestCmdCreation(t *testing.T) {
 

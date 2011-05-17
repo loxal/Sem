@@ -22,6 +22,7 @@ import (
 
 type Cmd struct {
     Name, RestCall, Desc string
+    Created datastore.Time
 }
 
 type Greeting struct {
@@ -187,55 +188,56 @@ func WebCmd(cmd string) (restCall string) {
 	return
 }
 
-
-
-// , cmdName, restCall, description string
 func cmdCreation(w http.ResponseWriter, r *http.Request) {
+    c := appengine.NewContext(r)
     cmd := &Cmd {
         Name: r.FormValue("name"),
         RestCall: r.FormValue("restCall"),
         Desc: r.FormValue("desc"),
     }
-
-    c := appengine.NewContext(r)
-    c.Logf("%#v", r)
-    datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd)
-//    cmdCreate(c, cmd)
-}
-
-//func cmdCreate(r *http.Request, cmd *Cmd) {
-//func cmdCreate(c Context, cmd *Cmd) {
-////    c := appengine.NewContext(r)
 //    c.Logf("%#v", r)
-//    datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd)
-//}
-
-//return jsonResponse string                         // []Cmd
-func cmdListing(w http.ResponseWriter, r *http.Request)  {
-//    c := appengine.NewContext(r)
-//	q := datastore.NewQuery("Cmd")
-//	var cc []*Cmd
-//	q.GetAll(c, &cc)
-
-	c := appengine.NewContext(r)
-	cc := cmdList(r)
-
-    c.Logf("%s", "##############")
-    c.Logf("%v", len(cc))
-	for i := 0; i < len(cc); i++ {
-        c.Logf(cc[i].Name)
-        c.Logf(cc[i].RestCall)
-        c.Logf(cc[i].Desc)
-	}
-	c.Logf("%s", "##############")
+    datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd)
 }
 
-func cmdList(r *http.Request) (cc []*Cmd) {
-    c := appengine.NewContext(r)
-    q := datastore.NewQuery("Cmd")
-    q.GetAll(c, &cc)
+func cmdListing(w http.ResponseWriter, r *http.Request)  {
+    w.Header().Set("Content-Type", "application/json; charset=utf-8")
+//	cc := cmdList(r)
 
-    return
+//	var cmds []*Cmd
+
+    q := datastore.NewQuery("Cmd")
+//    q := datastore.NewQuery("Cmd").KeysOnly()
+
+//    if keys,err:=q.GetAll(c, &cmds); err == nil {
+//        fmt.Fprintln(w, len(keys))
+//        for i:=range keys{
+//            fmt.Fprintf(w, "%#v\n", keys[i].String())
+//            fmt.Fprintf(w, "%#v\n", cmds[i])
+//        }
+//    }
+
+    c := appengine.NewContext(r)
+//	var keys []*datastore.Key
+//    q1 :=q.KeysOnly()
+//    count,e := q1.Filter("Name=", "my2").Count(c)
+
+    q2 := q.KeysOnly()
+    q3 := q.Filter("Name=", "my22")
+    q4 := q3.KeysOnly()
+    q5,_ := q3.Count(c)
+    q6,_ := q3.GetAll(c, nil)
+
+        fmt.Fprintln(w, q2)
+        fmt.Fprintln(w, q3)
+        fmt.Fprintln(w, q4)
+        fmt.Fprintln(w, q5)
+        fmt.Fprintln(w, q6)
+        fmt.Fprintln(w, q6[1].IntID())
+        fmt.Fprintln(w, q6[0].IntID())
+        fmt.Fprintln(w, q6[0].AppID())
+        e := datastore.Delete(c, q6[0])
+        fmt.Fprintln(w, "deleted", e)
+
 }
 
 func cmdUpdate(cmdName, restCall, description string)
