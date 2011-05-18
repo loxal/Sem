@@ -26,8 +26,8 @@ import (
 
 type Cmd struct {
 	Name, RESTcall, Desc string
-	User                 string
-	Created              datastore.Time
+	Creator, User        string
+	Created, Updated     datastore.Time
 }
 
 type Greeting struct {
@@ -189,7 +189,7 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 		Name:     r.FormValue("name"),
 		RESTcall: r.FormValue("restCall"),
 		Desc:     r.FormValue("desc"),
-		User:     user.Current(c).String(),
+		Creator:  user.Current(c).String(),
 		Created:  datastore.SecondsToTime(time.Seconds()),
 	}
 	datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd)
@@ -243,10 +243,10 @@ func cmd(w http.ResponseWriter, r *http.Request) {
 func cmdDelete(cmdName string, c appengine.Context) (deleted bool) {
 	q := datastore.NewQuery("Cmd").Filter("Name =", cmdName).KeysOnly()
 	keys, _ := q.GetAll(c, nil)
-    if err := datastore.Delete(c, keys[0]); err != nil {
-        return
-    }
-    return true
+	if err := datastore.Delete(c, keys[0]); err != nil {
+		return
+	}
+	return true
 }
 
 func cmdDeletion(w http.ResponseWriter, r *http.Request) {
@@ -254,7 +254,28 @@ func cmdDeletion(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(cmdDelete(r.FormValue("name"), c))
 }
 
-func cmdUpdate(current *datastore.Key, new Cmd)
+func cmdUpdation(w http.ResponseWriter, r *http.Request) {
+	c := appengine.NewContext(r)
+	cmd := &Cmd{
+		Name:     r.FormValue("name"),
+		RESTcall: r.FormValue("restCall"),
+		Desc:     r.FormValue("desc"),
+		// Creator TODO
+		// Created TODO
+		Updated:  datastore.SecondsToTime(time.Seconds()),
+		User:  user.Current(c).String(),
+	}
+	fmt.Println(cmdUpdate(cmd, c))
+}
+
+func cmdUpdate(cmd *Cmd, c appengine.Context) (updated bool) {
+    q := datastore.NewQuery("Cmd").KeysOnly().Filter("Name =", cmd.Name)
+    keys, _ := q.GetAll(c, nil)
+	if _, err := datastore.Put(c, keys[0], cmd); err != nil {
+		return
+	}
+	return true
+}
 
 var cmdCreateHandler = "/cmdCreate"
 var postHandler = "/post"
@@ -272,6 +293,7 @@ func init() {
 	//fmt.Println(flag.Args(), ",,,,,,,,,,,,<<<")
 	http.HandleFunc("/", cmd)
 	http.HandleFunc("/cmdDelete", cmdDeletion)
+	http.HandleFunc("/cmdUpdate", cmdUpdation)
 	http.HandleFunc(cmdCreateHandler, handlePost)
 	http.HandleFunc(postHandler, handlePost)
 	http.HandleFunc(storeHandler, handleStore)
