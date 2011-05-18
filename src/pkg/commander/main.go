@@ -165,24 +165,6 @@ func handleStore(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, cmdCreateHandler, http.StatusFound)
 }
 
-
-// Returns the RESTful associated with a certain command
-func WebCmd(cmd string) (restCall string) {
-	m := map[string]string{
-		"c":    "https://mail.google.com/mail/?shva=1#compose",
-		"d":    "https://mail.google.com/tasks/canvas",
-		"t":    "http://twitter.com",
-		"sem":  "https://github.com/loxal/Sem",
-		"verp": "https://github.com/loxal/Verp",
-		"lox":  "https://github.com/loxal/Lox",
-		// shortcut for adding an English Word or another unknow word to the TO_LEARN_LIST (merge with the Delingo functionality)
-		// shortcut for making notes/tasks/todos
-	}
-
-	restCall = m[cmd]
-	return
-}
-
 func cmdCreation(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	cmd := &Cmd{
@@ -218,15 +200,25 @@ func cmdListing(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func exec(url *http.URL) {
-	//	io.WriteString(os.Stdout, url.Raw + "\n")
+//func exec(url *http.URL) {
+//
+//}
+
+// Returns the RESTful associated with a certain command
+func exec(cmd string) (restCall string) {
+
+
+		//	io.WriteString(os.Stdout, url.Raw + "\n")
 	//	os.Stdout.WriteString(url.Raw + "\n")
 
-	//	    http.Redirect(w, r, "http://sol.loxal.net", http.StatusFound)
+
+
+//	restCall = m[cmd]
+	return
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {
-	//    c := appengine.NewContext(r)
+	    c := appengine.NewContext(r)
 	//    c.Logf("r.URL.Path: " + r.URL.Path)
 	//    c.Logf("r.URL.RawQuery: " + r.URL.RawQuery)
 	//     c.Logf("m[r.URL.RawQuery]" + m[r.URL.RawQuery])
@@ -237,7 +229,29 @@ func cmd(w http.ResponseWriter, r *http.Request) {
 	//    io.WriteString(w, r.URL.RawQuery + "\n")
 	//    io.WriteString(w, r.URL.Raw + "\n")
 
-	exec(r.URL)
+//	exec(r.URL)
+//	restCall := exec(r.FormValue("name"))
+
+    var cmds []*Cmd
+    cmdName := r.FormValue("name")
+    _, err := datastore.NewQuery("Cmd").Filter("Name =", cmdName).GetAll(c, &cmds)
+    fmt.Println(err)
+    // retrieve this from the datastore TODO
+//	m := map[string]string{
+//		"c":    "https://mail.google.com/mail/?shva=1#compose",
+//		"d":    "https://mail.google.com/tasks/canvas",
+//		"t":    "http://twitter.com",
+//		"sem":  "https://github.com/loxal/Sem",
+//		"verp": "https://github.com/loxal/Verp",
+//		"lox":  "https://github.com/loxal/Lox",
+//		// shortcut for adding an English Word or another unknow word to the TO_LEARN_LIST (merge with the Delingo functionality)
+//		// shortcut for making notes/tasks/todos
+//	}
+
+//    io.WriteString(w, cmds[0].RESTcall)
+//    io.WriteString(w, m["c"])
+    http.Redirect(w, r, cmds[0].RESTcall, http.StatusFound)
+
 }
 
 func cmdDelete(cmdName string, c appengine.Context) (deleted bool) {
@@ -301,6 +315,6 @@ func init() {
 	http.HandleFunc(cmdCreateHandler, cmdCreation)
 	http.HandleFunc("/cmdList", cmdListing)
 	http.HandleFunc("/count", count)
-	http.HandleFunc("/cmd.*", cmd)
+	http.HandleFunc("/cmd", cmd)
 	//		http.HandleFunc("/exec", exec)
 }
