@@ -236,7 +236,7 @@ func cmd(w http.ResponseWriter, r *http.Request) {
     cmdName := r.FormValue("name")
     _, err := datastore.NewQuery("Cmd").Filter("Name =", cmdName).GetAll(c, &cmds)
     fmt.Println(err)
-    // retrieve this from the datastore TODO
+    // retrieve this from the datastore; put this as an init dataset into the datastore via *_test.go TODO
 //	m := map[string]string{
 //		"c":    "https://mail.google.com/mail/?shva=1#compose",
 //		"d":    "https://mail.google.com/tasks/canvas",
@@ -248,8 +248,7 @@ func cmd(w http.ResponseWriter, r *http.Request) {
 //		// shortcut for making notes/tasks/todos
 //	}
 
-//    io.WriteString(w, cmds[0].RESTcall)
-//    io.WriteString(w, m["c"])
+    io.WriteString(w, cmds[0].RESTcall)
     http.Redirect(w, r, cmds[0].RESTcall, http.StatusFound)
 
 }
@@ -291,9 +290,9 @@ func cmdUpdate(cmd *Cmd, c appengine.Context) (updated bool) {
 	return true
 }
 
-var cmdCreateHandler = "/cmdCreate"
-var postHandler = "/post"
-var storeHandler = "/store"
+const cmdCreateHandler = "/cmdCreate"
+const postHandler = "/post"
+const storeHandler = "/store"
 var createCmdPresenter = template.MustParseFile("cmdCreate.html", nil)
 var mainPage = template.MustParseFile("template.html", nil)
 
