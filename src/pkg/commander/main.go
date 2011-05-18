@@ -14,7 +14,9 @@ import (
 	"template"
 	"time"
 	"json"
-		"flag" // to parse r.URL.Raw
+	//		"flag" // to parse r.URL.Raw
+	//    "./flag_osArgs-less"
+	//    "../flag1/flag1"
 
 	"appengine"
 	"appengine/datastore"
@@ -205,37 +207,20 @@ func cmdListing(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-//	fmt.Fprintln(w, os.Args, ",,,,,,,,,,,,")
-	fmt.Fprintln(w, flag.Args(), ",,,,,,,,,,,,")
+	fmt.Fprintln(w, os.Args, ",,,,,,,,,,,,")
 
+	//	fmt.Fprintln(w, flag.Args(), ",,,,,,,,,,,,")
 
 	//	var keys []*datastore.Key
 	//    q1 :=q.KeysOnly()
 	//    count,e := q1.Filter("Name=", "my2").Count(c)
 
-	/////////////////////
-	//    q2 := q.KeysOnly()
-	//    q3 := q.Filter("Name=", "my22")
-	//    q4 := q3.KeysOnly()
-	//    q5,_ := q3.Count(c)
-	//    q6,_ := q3.GetAll(c, nil)
-	//
-	//        fmt.Fprintln(w, q2)
-	//        fmt.Fprintln(w, q3)
-	//        fmt.Fprintln(w, q4)
-	//        fmt.Fprintln(w, q5)
-	//        fmt.Fprintln(w, q6)
-	//        fmt.Fprintln(w, q6[1].IntID())
-	//        fmt.Fprintln(w, q6[0].IntID())
-	//        fmt.Fprintln(w, q6[0].AppID())
-	//        e := datastore.Delete(c, q6[0])
-	//        fmt.Fprintln(w, "deleted", e)
-	/////////////////////
+
 }
 
 func exec(url *http.URL) {
-//	io.WriteString(os.Stdout, url.Raw + "\n")
-//	os.Stdout.WriteString(url.Raw + "\n")
+	//	io.WriteString(os.Stdout, url.Raw + "\n")
+	//	os.Stdout.WriteString(url.Raw + "\n")
 
 	//	    http.Redirect(w, r, "http://sol.loxal.net", http.StatusFound)
 }
@@ -243,10 +228,7 @@ func exec(url *http.URL) {
 func cmd(w http.ResponseWriter, r *http.Request) {
 	//    c := appengine.NewContext(r)
 	//    c.Logf("r.URL.Path: " + r.URL.Path)
-	//    c.Logf("r.FormValue(\"foo\"): " + r.FormValue("foo"))
-	//    c.Logf(r.FormValue("bar"))
 	//    c.Logf("r.URL.RawQuery: " + r.URL.RawQuery)
-	//
 	//     c.Logf("m[r.URL.RawQuery]" + m[r.URL.RawQuery])
 	//	    http.Redirect(w, r, m[r.URL.RawQuery], http.StatusFound)
 
@@ -258,10 +240,21 @@ func cmd(w http.ResponseWriter, r *http.Request) {
 	exec(r.URL)
 }
 
+func cmdDelete(cmdName string, c appengine.Context) (deleted bool) {
+	q := datastore.NewQuery("Cmd").Filter("Name =", cmdName).KeysOnly()
+	keys, _ := q.GetAll(c, nil)
+    if err := datastore.Delete(c, keys[0]); err != nil {
+        return
+    }
+    return true
+}
+
+func cmdDeletion(w http.ResponseWriter, r *http.Request) {
+	c := appengine.NewContext(r)
+	fmt.Println(cmdDelete(r.FormValue("name"), c))
+}
 
 func cmdUpdate(current *datastore.Key, new Cmd)
-func cmdDelete(cmd Cmd)
-func cmdDelete1(cmd *datastore.Key)
 
 var cmdCreateHandler = "/cmdCreate"
 var postHandler = "/post"
@@ -274,8 +267,11 @@ func Double(i int) int {
 }
 
 func init() {
-fmt.Println(flag.Args(), ",,,,,,,,,,,,<<<")
+	//flag.args = os.Args
+	fmt.Println(os.Args, ",,,,,,,,,,,,<<OS<")
+	//fmt.Println(flag.Args(), ",,,,,,,,,,,,<<<")
 	http.HandleFunc("/", cmd)
+	http.HandleFunc("/cmdDelete", cmdDeletion)
 	http.HandleFunc(cmdCreateHandler, handlePost)
 	http.HandleFunc(postHandler, handlePost)
 	http.HandleFunc(storeHandler, handleStore)
@@ -284,5 +280,5 @@ fmt.Println(flag.Args(), ",,,,,,,,,,,,<<<")
 	http.HandleFunc("/cmdList", cmdListing)
 	http.HandleFunc("/count", count)
 	http.HandleFunc("/cmd.*", cmd)
-//		http.HandleFunc("/exec", exec)
+	//		http.HandleFunc("/exec", exec)
 }
