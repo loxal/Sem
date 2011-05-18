@@ -60,7 +60,7 @@ func TestCmdCreation(t *testing.T) {
 
     cmd := &Cmd {
         Name: "blub",
-        RestCall: "blab",
+        RESTcall: "blab",
         Desc: "....",
     }
 //    cmd := &cmdTest {

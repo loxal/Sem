@@ -4,12 +4,16 @@ runtime: go
 api_version: 1
 
 handlers:
+# should precede ".*" (main URL handler)
+- url: /favicon.ico
+  static_files: static/favicon.ico
+  upload: static/favicon.ico
 #- url: /post
 #  script: _go_app
 #  login: required
-#- url: /cmdCreate
-#  script: _go_app
-#  login: required
+- url: /cmdCreate
+  script: _go_app
+  login: required
 - url: /store
   script: _go_app
 - url: /.*

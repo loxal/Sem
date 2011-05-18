@@ -13,6 +13,8 @@ import (
 	"strconv"
 	"template"
 	"time"
+	"json"
+		"flag" // to parse r.URL.Raw
 
 	"appengine"
 	"appengine/datastore"
@@ -21,17 +23,18 @@ import (
 )
 
 type Cmd struct {
-    Name, RestCall, Desc string
-    Created datastore.Time
+	Name, RESTcall, Desc string
+	User                 string
+	Created              datastore.Time
 }
 
 type Greeting struct {
 	Author  string
 	Content string
 	Date    datastore.Time
-	Title string
-	Body  string
-//	Pg  *page
+	Title   string
+	Body    string
+	//	Pg  *page
 }
 
 type page struct {
@@ -46,11 +49,11 @@ type Page1 struct {
 }
 
 func loadPage(title string) (*page, os.Error) {
-//	filename := title + ".txt"
-//	body, err := ioutil.ReadFile(filename)
-//	if err != nil {
-//		return nil, err
-//	}
+	//	filename := title + ".txt"
+	//	body, err := ioutil.ReadFile(filename)
+	//	if err != nil {
+	//		return nil, err
+	//	}
 	return &page{Title1: title, Body1: "test"}, nil
 }
 
@@ -110,7 +113,7 @@ func handlePost(w http.ResponseWriter, r *http.Request) {
 	}
 	c := appengine.NewContext(r)
 	q := datastore.NewQuery("Greeting")
-//	q := datastore.NewQuery("Greeting").Order("-Date").Limit(10)
+	//	q := datastore.NewQuery("Greeting").Order("-Date").Limit(10)
 	var gg []*Greeting
 	_, err := q.GetAll(c, &gg)
 	if err != nil {
@@ -119,22 +122,21 @@ func handlePost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "text/html")
-//	if err := mainPage.Execute(w, gg); err != nil {
-//		c.Logf("%v", err)
-//	}
+	//	if err := mainPage.Execute(w, gg); err != nil {
+	//		c.Logf("%v", err)
+	//	}
 
-//	for i := 0; i < len(gg); i++ {
-//        gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY", Pg: &page{Title1: "fest1111", Body1: "test"}}
-//        gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY"}
-//	}
+	//	for i := 0; i < len(gg); i++ {
+	//        gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY", Pg: &page{Title1: "fest1111", Body1: "test"}}
+	//        gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY"}
+	//	}
 
-//    pg1 := &Page1{Title11: "my1111", Body11: "yours"}
+	//    pg1 := &Page1{Title11: "my1111", Body11: "yours"}
 	if err := createCmdPresenter.Execute(w, gg); err != nil {
 		c.Logf("%v", err)
 	}
 
 }
-
 
 
 func handleStore(w http.ResponseWriter, r *http.Request) {
@@ -161,25 +163,16 @@ func handleStore(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, cmdCreateHandler, http.StatusFound)
 }
 
-func cmd(w http.ResponseWriter, r *http.Request) {
-	//    c := appengine.NewContext(r)
-	//    c.Logf("r.URL.Path: " + r.URL.Path)
-	//    c.Logf("r.FormValue(\"foo\"): " + r.FormValue("foo"))
-	//    c.Logf(r.FormValue("bar"))
-	//    c.Logf("r.URL.RawQuery: " + r.URL.RawQuery)
-	//
-	//     c.Logf("m[r.URL.RawQuery]" + m[r.URL.RawQuery])
-	//    http.Redirect(w, r, m[r.URL.RawQuery], http.StatusFound)
-}
 
 // Returns the RESTful associated with a certain command
 func WebCmd(cmd string) (restCall string) {
-	m := map[string]string {
-		"c":   "https://mail.google.com/mail/?shva=1#compose",
-		"t":   "http://twitter.com",
-		"sem": "https://github.com/loxal/Sem",
+	m := map[string]string{
+		"c":    "https://mail.google.com/mail/?shva=1#compose",
+		"d":    "https://mail.google.com/tasks/canvas",
+		"t":    "http://twitter.com",
+		"sem":  "https://github.com/loxal/Sem",
 		"verp": "https://github.com/loxal/Verp",
-		"lox": "https://github.com/loxal/Lox",
+		"lox":  "https://github.com/loxal/Lox",
 		// shortcut for adding an English Word or another unknow word to the TO_LEARN_LIST (merge with the Delingo functionality)
 		// shortcut for making notes/tasks/todos
 	}
@@ -189,59 +182,86 @@ func WebCmd(cmd string) (restCall string) {
 }
 
 func cmdCreation(w http.ResponseWriter, r *http.Request) {
-    c := appengine.NewContext(r)
-    cmd := &Cmd {
-        Name: r.FormValue("name"),
-        RestCall: r.FormValue("restCall"),
-        Desc: r.FormValue("desc"),
-    }
-//    c.Logf("%#v", r)
-    datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd)
+	c := appengine.NewContext(r)
+	cmd := &Cmd{
+		Name:     r.FormValue("name"),
+		RESTcall: r.FormValue("restCall"),
+		Desc:     r.FormValue("desc"),
+		User:     user.Current(c).String(),
+		Created:  datastore.SecondsToTime(time.Seconds()),
+	}
+	datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd)
 }
 
-func cmdListing(w http.ResponseWriter, r *http.Request)  {
-    w.Header().Set("Content-Type", "application/json; charset=utf-8")
-//	cc := cmdList(r)
+func cmdListing(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	var cmds []*Cmd
+	q := datastore.NewQuery("Cmd")
 
-//	var cmds []*Cmd
+	if keys, err := q.GetAll(appengine.NewContext(r), &cmds); err == nil {
+		for i := range keys {
+			cmdJSONed, _ := json.Marshal(cmds[i])
+			fmt.Fprintln(w, i, string(cmdJSONed))
+		}
+	}
 
-    q := datastore.NewQuery("Cmd")
-//    q := datastore.NewQuery("Cmd").KeysOnly()
+//	fmt.Fprintln(w, os.Args, ",,,,,,,,,,,,")
+	fmt.Fprintln(w, flag.Args(), ",,,,,,,,,,,,")
 
-//    if keys,err:=q.GetAll(c, &cmds); err == nil {
-//        fmt.Fprintln(w, len(keys))
-//        for i:=range keys{
-//            fmt.Fprintf(w, "%#v\n", keys[i].String())
-//            fmt.Fprintf(w, "%#v\n", cmds[i])
-//        }
-//    }
 
-    c := appengine.NewContext(r)
-//	var keys []*datastore.Key
-//    q1 :=q.KeysOnly()
-//    count,e := q1.Filter("Name=", "my2").Count(c)
+	//	var keys []*datastore.Key
+	//    q1 :=q.KeysOnly()
+	//    count,e := q1.Filter("Name=", "my2").Count(c)
 
-    q2 := q.KeysOnly()
-    q3 := q.Filter("Name=", "my22")
-    q4 := q3.KeysOnly()
-    q5,_ := q3.Count(c)
-    q6,_ := q3.GetAll(c, nil)
-
-        fmt.Fprintln(w, q2)
-        fmt.Fprintln(w, q3)
-        fmt.Fprintln(w, q4)
-        fmt.Fprintln(w, q5)
-        fmt.Fprintln(w, q6)
-        fmt.Fprintln(w, q6[1].IntID())
-        fmt.Fprintln(w, q6[0].IntID())
-        fmt.Fprintln(w, q6[0].AppID())
-        e := datastore.Delete(c, q6[0])
-        fmt.Fprintln(w, "deleted", e)
-
+	/////////////////////
+	//    q2 := q.KeysOnly()
+	//    q3 := q.Filter("Name=", "my22")
+	//    q4 := q3.KeysOnly()
+	//    q5,_ := q3.Count(c)
+	//    q6,_ := q3.GetAll(c, nil)
+	//
+	//        fmt.Fprintln(w, q2)
+	//        fmt.Fprintln(w, q3)
+	//        fmt.Fprintln(w, q4)
+	//        fmt.Fprintln(w, q5)
+	//        fmt.Fprintln(w, q6)
+	//        fmt.Fprintln(w, q6[1].IntID())
+	//        fmt.Fprintln(w, q6[0].IntID())
+	//        fmt.Fprintln(w, q6[0].AppID())
+	//        e := datastore.Delete(c, q6[0])
+	//        fmt.Fprintln(w, "deleted", e)
+	/////////////////////
 }
 
-func cmdUpdate(cmdName, restCall, description string)
-func cmdDelete(cmdName string)
+func exec(url *http.URL) {
+//	io.WriteString(os.Stdout, url.Raw + "\n")
+//	os.Stdout.WriteString(url.Raw + "\n")
+
+	//	    http.Redirect(w, r, "http://sol.loxal.net", http.StatusFound)
+}
+
+func cmd(w http.ResponseWriter, r *http.Request) {
+	//    c := appengine.NewContext(r)
+	//    c.Logf("r.URL.Path: " + r.URL.Path)
+	//    c.Logf("r.FormValue(\"foo\"): " + r.FormValue("foo"))
+	//    c.Logf(r.FormValue("bar"))
+	//    c.Logf("r.URL.RawQuery: " + r.URL.RawQuery)
+	//
+	//     c.Logf("m[r.URL.RawQuery]" + m[r.URL.RawQuery])
+	//	    http.Redirect(w, r, m[r.URL.RawQuery], http.StatusFound)
+
+	//    w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	//    io.WriteString(w, r.URL.Path + "\n")
+	//    io.WriteString(w, r.URL.RawQuery + "\n")
+	//    io.WriteString(w, r.URL.Raw + "\n")
+
+	exec(r.URL)
+}
+
+
+func cmdUpdate(current *datastore.Key, new Cmd)
+func cmdDelete(cmd Cmd)
+func cmdDelete1(cmd *datastore.Key)
 
 var cmdCreateHandler = "/cmdCreate"
 var postHandler = "/post"
@@ -254,7 +274,8 @@ func Double(i int) int {
 }
 
 func init() {
-	http.HandleFunc("/", hello)
+fmt.Println(flag.Args(), ",,,,,,,,,,,,<<<")
+	http.HandleFunc("/", cmd)
 	http.HandleFunc(cmdCreateHandler, handlePost)
 	http.HandleFunc(postHandler, handlePost)
 	http.HandleFunc(storeHandler, handleStore)
@@ -262,5 +283,6 @@ func init() {
 	http.HandleFunc(cmdCreateHandler, cmdCreation)
 	http.HandleFunc("/cmdList", cmdListing)
 	http.HandleFunc("/count", count)
-	http.HandleFunc("/cmd", cmd)
+	http.HandleFunc("/cmd.*", cmd)
+//		http.HandleFunc("/exec", exec)
 }
