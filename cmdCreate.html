@@ -1,25 +1,37 @@
-<html>
-<body>
-
-{.repeated section @}
-{.section Author}<b>{@|html}</b>{.or}An anonymous person{.end}
-wrote
-<blockquote>{Content|html} =&gt; {Title} = {Body} => </blockquote>
-{.end}
-
+<!DOCTYPE html>
 
 <form action="/store" method="post">
-
     <fieldset>
         <legend>Command</legend>
-        <label for="cmd">Shortcut</label><input id="cmd" type="text"/>
-        <label for="cmdName">Name</label><input id="cmdName" type="text"/>
-        <label for="cmdDescription">Description</label><input id="cmdDescription" type="text"/>
-        <div><textarea name="content" rows="3" cols="60">PLACEHOLDER</textarea></div>
-        <div><input type="submit" value="Sign Guestbook"></div>
+        <label for="restCall">Shortcut<input id="restCall" type="text"/></label>
+        <label for="name">Name</label><input id="name" type="text"/>
+        <label for="desc">Description</label><input id="desc" type="text"/>
+        <label>Guest Book Facet
+            <textarea name="content" rows="3" cols="60">PLACEHOLDER</textarea>
+        </label>
+        <input type="submit" value="Sign Guestbook">
     </fieldset>
 </form>
 
-
-</body>
-</html>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>RESTcall</th>
+        <th>Description</th>
+        <th>Creator</th>
+        <th>User</th>
+        <th>Created</th>
+        <th>Updated</th>
+    </tr>
+    {.repeated section @}
+    <tr>
+        <td>{.section Name}{@|html}{.or}no name available{.end}</td>
+        <td>{.section RESTcall}{@|html}{.or}no RESTcall available{.end}</td>
+        <td>{.section Desc}{@|html}{.or}no description availabile{.end}</td>
+        <td>{Creator}</td>
+        <td>{User}</td>
+        <td>{Created}</td>
+        <td>{Updated}</td>
+    </tr>
+    {.end}
+</table>

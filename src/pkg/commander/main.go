@@ -14,9 +14,8 @@ import (
 	"template"
 	"time"
 	"json"
-	//		"flag" // to parse r.URL.Raw
-	//    "./flag_osArgs-less"
-	//    "../flag1/flag1"
+
+	"flag1" // to parse r.URL.Raw
 
 	"appengine"
 	"appengine/datastore"
@@ -36,7 +35,7 @@ type Greeting struct {
 	Date    datastore.Time
 	Title   string
 	Body    string
-	//	Pg  *page
+		Pg  *page
 }
 
 type page struct {
@@ -123,18 +122,26 @@ func handlePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Set("Content-Type", "text/html")
-	//	if err := mainPage.Execute(w, gg); err != nil {
-	//		c.Logf("%v", err)
-	//	}
+	cmdQuery := datastore.NewQuery("Cmd")
+	var cmds []*Cmd
+	_, err1 := cmdQuery.GetAll(c, &cmds)
+	if err1 != nil {
+	    serveError(c, w, err1)
+	    return
+	}
 
-	//	for i := 0; i < len(gg); i++ {
-	//        gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY", Pg: &page{Title1: "fest1111", Body1: "test"}}
-	//        gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY"}
-	//	}
+	w.Header().Set("Content-Type", "text/html")
+
+    for i := 0; i < len(gg); i++ {
+        gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY", Pg: &page{Title1: "fest1111", Body1: "test"}}
+        gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY"}
+    }
+//    for i := 0; i < len(cmds); i++ {
+//        fmt.Fprint(cmds[i].RestCall)
+//    }
 
 	//    pg1 := &Page1{Title11: "my1111", Body11: "yours"}
-	if err := createCmdPresenter.Execute(w, gg); err != nil {
+	if err := createCmdPresenter.Execute(w, cmds); err != nil {
 		c.Logf("%v", err)
 	}
 
@@ -189,8 +196,6 @@ func cmdListing(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	fmt.Fprintln(w, os.Args, ",,,,,,,,,,,,")
-
 	//	fmt.Fprintln(w, flag.Args(), ",,,,,,,,,,,,")
 
 	//	var keys []*datastore.Key
@@ -207,18 +212,15 @@ func cmdListing(w http.ResponseWriter, r *http.Request) {
 // Returns the RESTful associated with a certain command
 func exec(cmd string) (restCall string) {
 
-
-		//	io.WriteString(os.Stdout, url.Raw + "\n")
+	//	io.WriteString(os.Stdout, url.Raw + "\n")
 	//	os.Stdout.WriteString(url.Raw + "\n")
 
-
-
-//	restCall = m[cmd]
+	//	restCall = m[cmd]
 	return
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {
-	    c := appengine.NewContext(r)
+	c := appengine.NewContext(r)
 	//    c.Logf("r.URL.Path: " + r.URL.Path)
 	//    c.Logf("r.URL.RawQuery: " + r.URL.RawQuery)
 	//     c.Logf("m[r.URL.RawQuery]" + m[r.URL.RawQuery])
@@ -229,27 +231,61 @@ func cmd(w http.ResponseWriter, r *http.Request) {
 	//    io.WriteString(w, r.URL.RawQuery + "\n")
 	//    io.WriteString(w, r.URL.Raw + "\n")
 
-//	exec(r.URL)
-//	restCall := exec(r.FormValue("name"))
+	//	exec(r.URL)
+	//	restCall := exec(r.FormValue("name"))
 
-    var cmds []*Cmd
-    cmdName := r.FormValue("name")
-    _, err := datastore.NewQuery("Cmd").Filter("Name =", cmdName).GetAll(c, &cmds)
-    fmt.Println(err)
-    // retrieve this from the datastore; put this as an init dataset into the datastore via *_test.go TODO
-//	m := map[string]string{
-//		"c":    "https://mail.google.com/mail/?shva=1#compose",
-//		"d":    "https://mail.google.com/tasks/canvas",
-//		"t":    "http://twitter.com",
-//		"sem":  "https://github.com/loxal/Sem",
-//		"verp": "https://github.com/loxal/Verp",
-//		"lox":  "https://github.com/loxal/Lox",
-//		// shortcut for adding an English Word or another unknow word to the TO_LEARN_LIST (merge with the Delingo functionality)
-//		// shortcut for making notes/tasks/todos
-//	}
+	var cmds []*Cmd
+	cmdName := r.FormValue("name")
+	_, err := datastore.NewQuery("Cmd").Filter("Name =", cmdName).GetAll(c, &cmds)
+	fmt.Fprintln(w, err)
+	// retrieve this from the datastore; put this as an init dataset into the datastore via *_test.go TODO
+	//	m := map[string]string{
+	//		"c":    "https://mail.google.com/mail/?shva=1#compose",
+	//		"d":    "https://mail.google.com/tasks/canvas",
+	//		"t":    "http://twitter.com",
+	//		"sem":  "https://github.com/loxal/Sem",
+	//		"verp": "https://github.com/loxal/Verp",
+	//		"lox":  "https://github.com/loxal/Lox",
+	//		// shortcut for adding an English Word or another unknow word to the TO_LEARN_LIST (merge with the Delingo functionality)
+	//		// shortcut for making notes/tasks/todos
+	//	}
 
-    io.WriteString(w, cmds[0].RESTcall)
-    http.Redirect(w, r, cmds[0].RESTcall, http.StatusFound)
+	//    flag1.Parse1([]string{"app", "-areacode", "333", "-param1", "areacode"})
+	//    flag1.Parse1([]string{"-areacode", "333", "-param1", "areacode"})
+	//    var *int p
+	//    flag1.IntVar(&p, "param", 3, "usage")
+
+	//args := []string{"/tmp/dev_appserver_alex_8080_go_app_work_dir/_go_app", "-addr_http", "unix:/tmp/dev_appserver_alex_8080_socket_http", "-addr_api", "unix:/tmp/dev_appserver_alex_8080_socket_api"}
+	//os.Args = args
+//	args := []string{"app", "-name", "9999999999999", "-desc", "VAL"}
+	//args1 := []string{"app", "-name", "999", "-desc", "VAL"}
+	//fmt.Print(args1)
+//	name := flag1.String("name", "33333", "name")
+//	var name *string
+//	flag1.StringVar(name, "name", "33333", "name")
+//	desc := flag1.String("desc", "myValue", "desc")
+//    var desc *string
+//	flag1.StringVar(desc, "desc", "myValue", "desc")
+//	flag1.Parse()
+//	var _ = fmt.Printf // delete before submitting
+	var _ = flag1.PrintDefaults // delete before submitting
+
+//	fmt.Fprintln(w, "name ", *name)
+//	fmt.Fprintln(w, "desc", *desc)
+	//  fmt.Fprintln(w, os.Args[1:]);
+	//  fmt.Fprintln(w, "\n");
+	//  fmt.Fprintln(w, args);
+
+	//	fmt.Fprintln(w, &p)
+	//	fmt.Fprintln(w, flag1.Args())
+	//	fmt.Fprintln(w, flag1.Arg(0))
+	//	fmt.Fprintln(w, flag1.Arg(1))
+	//	fmt.Fprintln(w, flag1.Arg(2))
+	//	fmt.Fprintln(w, os.Args)
+	//	fmt.Fprintln(w, )
+
+	//    io.WriteString(w, cmds[0].RESTcall)
+//	http.Redirect(w, r, cmds[0].RESTcall, http.StatusFound)
 
 }
 
@@ -275,15 +311,15 @@ func cmdUpdation(w http.ResponseWriter, r *http.Request) {
 		Desc:     r.FormValue("desc"),
 		// Creator TODO
 		// Created TODO
-		Updated:  datastore.SecondsToTime(time.Seconds()),
-		User:  user.Current(c).String(),
+		Updated: datastore.SecondsToTime(time.Seconds()),
+		User:    user.Current(c).String(),
 	}
 	fmt.Println(cmdUpdate(cmd, c))
 }
 
 func cmdUpdate(cmd *Cmd, c appengine.Context) (updated bool) {
-    q := datastore.NewQuery("Cmd").KeysOnly().Filter("Name =", cmd.Name)
-    keys, _ := q.GetAll(c, nil)
+	q := datastore.NewQuery("Cmd").KeysOnly().Filter("Name =", cmd.Name)
+	keys, _ := q.GetAll(c, nil)
 	if _, err := datastore.Put(c, keys[0], cmd); err != nil {
 		return
 	}
@@ -293,25 +329,22 @@ func cmdUpdate(cmd *Cmd, c appengine.Context) (updated bool) {
 const cmdCreateHandler = "/cmdCreate"
 const postHandler = "/post"
 const storeHandler = "/store"
+
 var createCmdPresenter = template.MustParseFile("cmdCreate.html", nil)
-var mainPage = template.MustParseFile("template.html", nil)
 
 func Double(i int) int {
 	return i * 2
 }
 
 func init() {
-	//flag.args = os.Args
-	fmt.Println(os.Args, ",,,,,,,,,,,,<<OS<")
-	//fmt.Println(flag.Args(), ",,,,,,,,,,,,<<<")
 	http.HandleFunc("/", cmd)
 	http.HandleFunc("/cmdDelete", cmdDeletion)
 	http.HandleFunc("/cmdUpdate", cmdUpdation)
-	http.HandleFunc(cmdCreateHandler, handlePost)
 	http.HandleFunc(postHandler, handlePost)
 	http.HandleFunc(storeHandler, handleStore)
 	http.HandleFunc("/hello", hello)
-	http.HandleFunc(cmdCreateHandler, cmdCreation)
+//	http.HandleFunc(cmdCreateHandler, cmdCreation)
+	http.HandleFunc(cmdCreateHandler, handlePost)
 	http.HandleFunc("/cmdList", cmdListing)
 	http.HandleFunc("/count", count)
 	http.HandleFunc("/cmd", cmd)
