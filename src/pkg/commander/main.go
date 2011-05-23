@@ -276,24 +276,31 @@ func cmdDeletion(w http.ResponseWriter, r *http.Request) {
 func cmdUpdation(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	cmd := &Cmd{
-		Name:     r.FormValue("name"),
-		RESTcall: r.FormValue("restCall"),
-		Desc:     r.FormValue("desc"),
+		Name:     r.FormValue("edit-name"),
+		RESTcall: r.FormValue("edit-restCall"),
+		Desc:     r.FormValue("edit-desc"),
 		// Creator TODO
 		// Created TODO
 		Updated: datastore.SecondsToTime(time.Seconds()),
 		User:    user.Current(c).String(),
 	}
-	fmt.Println(cmdUpdate(cmd, c))
+	if ok, err := cmdUpdate(cmd, c); err != nil {
+	    fmt.Fprintln(w, err, ok)
+	}
+
+	http.Redirect(w, r, cmdListHandler, http.StatusFound)
 }
 
-func cmdUpdate(cmd *Cmd, c appengine.Context) (updated bool) {
-	q := datastore.NewQuery("Cmd").KeysOnly().Filter("Name =", cmd.Name)
-	keys, _ := q.GetAll(c, nil)
-	if _, err := datastore.Put(c, keys[0], cmd); err != nil {
-		return
-	}
-	return true
+func cmdUpdate(cmd *Cmd, c appengine.Context) (ok bool, err os.Error) {
+//    if (!cmdExists(c, cmd.Name)){
+        q := datastore.NewQuery("Cmd").KeysOnly().Filter("Name =", cmd.Name)
+        keys, _ := q.GetAll(c, nil)
+        if _, err := datastore.Put(c, keys[0], cmd); err != nil {
+            return false, err
+        }
+        return true, nil
+//	}
+    return false, os.NewError("exists")
 }
 
 const cmdCreateHandler = "/create"
@@ -313,7 +320,7 @@ if err := createCmdPresenter.ParseFile("cmdCreate.html"); err != nil {
 }
 	http.HandleFunc("/", cmd)
 	http.HandleFunc("/cmdDelete", cmdDeletion)
-	http.HandleFunc("/cmdUpdate", cmdUpdation)
+	http.HandleFunc("/update", cmdUpdation)
 	http.HandleFunc("/hello", hello)
 	http.HandleFunc(cmdCreateHandler, cmdCreation)
 	http.HandleFunc(cmdListHandler, cmdListing)
