@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 
-<form action="/store" method="post">
+<form action="/create" method="post">
     <fieldset>
         <legend>Command</legend>
-        <label for="restCall">Shortcut<input id="restCall" type="text"/></label>
-        <label for="name">Name</label><input id="name" type="text"/>
-        <label for="desc">Description</label><input id="desc" type="text"/>
+        <label for="name">Name</label><input name="name" id="name" type="text" value="name"/>
+        <label for="restCall">Shortcut<input name="restCall" id="restCall" type="text" value="rc"/></label>
+        <label for="desc">Description</label><input name="desc" id="desc" type="text" value="desc"/>
         <label>Guest Book Facet
             <textarea name="content" rows="3" cols="60">PLACEHOLDER</textarea>
         </label>
-        <input type="submit" value="Sign Guestbook">
+        <input type="submit" value="Create Command">
     </fieldset>
 </form>
 
@@ -32,6 +32,7 @@
         <td>{Creator}</td>
         <td>{User}</td>
         <td>{Created}</td>
+        <td>{Updated}</td>
         <td><a href="http://localhost:8080/cmdDelete?name={Name}">X</a></td>
     </tr>
     {.end}

@@ -107,7 +107,7 @@ func count(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "%q has been visited %d times", r.URL.Path, n)
 }
 
-func handleStore(w http.ResponseWriter, r *http.Request) {
+func cmdCreation(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		serve404(w)
 		return
@@ -117,30 +117,21 @@ func handleStore(w http.ResponseWriter, r *http.Request) {
 		serveError(c, w, err)
 		return
 	}
-	g := &Greeting{
-		Content: r.FormValue("content"),
-		Date:    datastore.SecondsToTime(time.Seconds()),
-	}
-	if u := user.Current(c); u != nil {
-		g.Author = u.String()
-	}
-	if _, err := datastore.Put(c, datastore.NewIncompleteKey("Greeting"), g); err != nil {
-		serveError(c, w, err)
-		return
-	}
-	http.Redirect(w, r, cmdCreateHandler, http.StatusFound)
-}
-
-func cmdCreation(w http.ResponseWriter, r *http.Request) {
-	c := appengine.NewContext(r)
 	cmd := &Cmd{
 		Name:     r.FormValue("name"),
 		RESTcall: r.FormValue("restCall"),
 		Desc:     r.FormValue("desc"),
-		Creator:  user.Current(c).String(),
+//		Creator:  user.Current(c).String(),
 		Created:  datastore.SecondsToTime(time.Seconds()),
 	}
-	datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd)
+	if u := user.Current(c); u != nil {
+		cmd.Creator = u.String()
+	}
+	if _, err := datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd); err != nil {
+		serveError(c, w, err)
+		return
+	}
+	http.Redirect(w, r, cmdListHandler, http.StatusFound)
 }
 
 func cmdListing(w http.ResponseWriter, r *http.Request) {
@@ -293,8 +284,7 @@ func cmdUpdate(cmd *Cmd, c appengine.Context) (updated bool) {
 	return true
 }
 
-const cmdCreateHandler = "/cmdCreate"
-const storeHandler = "/store"
+const cmdCreateHandler = "/create"
 const cmdListHandler = "/cmdList"
 
 var createCmdPresenter = template.MustParseFile("cmdCreate.html", nil)
@@ -307,7 +297,6 @@ func init() {
 	http.HandleFunc("/", cmd)
 	http.HandleFunc("/cmdDelete", cmdDeletion)
 	http.HandleFunc("/cmdUpdate", cmdUpdation)
-	http.HandleFunc(storeHandler, handleStore)
 	http.HandleFunc("/hello", hello)
 	http.HandleFunc(cmdCreateHandler, cmdCreation)
 	http.HandleFunc(cmdListHandler, cmdListing)
