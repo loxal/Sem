@@ -107,47 +107,6 @@ func count(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "%q has been visited %d times", r.URL.Path, n)
 }
 
-func handlePost(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "GET" || r.URL.Path != cmdCreateHandler {
-		serve404(w)
-		return
-	}
-	c := appengine.NewContext(r)
-	q := datastore.NewQuery("Greeting")
-	//	q := datastore.NewQuery("Greeting").Order("-Date").Limit(10)
-	var gg []*Greeting
-	_, err := q.GetAll(c, &gg)
-	if err != nil {
-		serveError(c, w, err)
-		return
-	}
-
-	cmdQuery := datastore.NewQuery("Cmd")
-	var cmds []*Cmd
-	_, err1 := cmdQuery.GetAll(c, &cmds)
-	if err1 != nil {
-	    serveError(c, w, err1)
-	    return
-	}
-
-	w.Header().Set("Content-Type", "text/html")
-
-    for i := 0; i < len(gg); i++ {
-        gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY", Pg: &page{Title1: "fest1111", Body1: "test"}}
-        gg[i]= &Greeting{Title: "my TITLE", Body: "my BODY"}
-    }
-//    for i := 0; i < len(cmds); i++ {
-//        fmt.Fprint(cmds[i].RestCall)
-//    }
-
-	//    pg1 := &Page1{Title11: "my1111", Body11: "yours"}
-	if err := createCmdPresenter.Execute(w, cmds); err != nil {
-		c.Logf("%v", err)
-	}
-
-}
-
-
 func handleStore(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		serve404(w)
@@ -185,23 +144,30 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 }
 
 func cmdListing(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	var cmds []*Cmd
-	q := datastore.NewQuery("Cmd")
-
-	if keys, err := q.GetAll(appengine.NewContext(r), &cmds); err == nil {
-		for i := range keys {
-			cmdJSONed, _ := json.Marshal(cmds[i])
-			fmt.Fprintln(w, i, string(cmdJSONed))
-		}
+	if r.Method != "GET" || r.URL.Path != cmdListHandler {
+		serve404(w)
+		return
 	}
 
-	//	fmt.Fprintln(w, flag.Args(), ",,,,,,,,,,,,")
+    c := appengine.NewContext(r)
+	var cmds []*Cmd
+	if _, err := datastore.NewQuery("Cmd").GetAll(c, &cmds); err != nil {
+        serveError(c, w, err)
+        return
+	}
 
-	//	var keys []*datastore.Key
-	//    q1 :=q.KeysOnly()
-	//    count,e := q1.Filter("Name=", "my2").Count(c)
-
+    if (r.FormValue("json") == "true") {
+        w.Header().Set("Content-Type", "application/json; charset=utf-8")
+        for i := range cmds {
+            cmdJSONed, _ := json.Marshal(cmds[i])
+            fmt.Fprintln(w, i, string(cmdJSONed))
+        }
+    } else {
+        w.Header().Set("Content-Type", "text/html")
+        if err := createCmdPresenter.Execute(w, cmds); err != nil {
+            c.Logf("%v", err)
+        }
+    }
 
 }
 
@@ -289,7 +255,7 @@ func cmd(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func cmdDelete(cmdName string, c appengine.Context) (deleted bool) {
+func cmdDelete(cmdName string, c appengine.Context) (ok bool) {
 	q := datastore.NewQuery("Cmd").Filter("Name =", cmdName).KeysOnly()
 	keys, _ := q.GetAll(c, nil)
 	if err := datastore.Delete(c, keys[0]); err != nil {
@@ -301,6 +267,7 @@ func cmdDelete(cmdName string, c appengine.Context) (deleted bool) {
 func cmdDeletion(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	fmt.Println(cmdDelete(r.FormValue("name"), c))
+	http.Redirect(w, r, cmdListHandler, http.StatusFound)
 }
 
 func cmdUpdation(w http.ResponseWriter, r *http.Request) {
@@ -327,8 +294,8 @@ func cmdUpdate(cmd *Cmd, c appengine.Context) (updated bool) {
 }
 
 const cmdCreateHandler = "/cmdCreate"
-const postHandler = "/post"
 const storeHandler = "/store"
+const cmdListHandler = "/cmdList"
 
 var createCmdPresenter = template.MustParseFile("cmdCreate.html", nil)
 
@@ -340,12 +307,10 @@ func init() {
 	http.HandleFunc("/", cmd)
 	http.HandleFunc("/cmdDelete", cmdDeletion)
 	http.HandleFunc("/cmdUpdate", cmdUpdation)
-	http.HandleFunc(postHandler, handlePost)
 	http.HandleFunc(storeHandler, handleStore)
 	http.HandleFunc("/hello", hello)
-//	http.HandleFunc(cmdCreateHandler, cmdCreation)
-	http.HandleFunc(cmdCreateHandler, handlePost)
-	http.HandleFunc("/cmdList", cmdListing)
+	http.HandleFunc(cmdCreateHandler, cmdCreation)
+	http.HandleFunc(cmdListHandler, cmdListing)
 	http.HandleFunc("/count", count)
 	http.HandleFunc("/cmd", cmd)
 	//		http.HandleFunc("/exec", exec)
