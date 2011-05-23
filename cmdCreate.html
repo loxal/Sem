@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 
+<style>
+    label, input {
+        display: block;
+    }
+
+</style>
+
 <form action="/create" method="post">
     <fieldset>
         <legend>Command</legend>
         <label for="name">Name</label><input name="name" id="name" type="text" value="name"/>
         <label for="restCall">Shortcut<input name="restCall" id="restCall" type="text" value="rc"/></label>
         <label for="desc">Description</label><input name="desc" id="desc" type="text" value="desc"/>
-        <label>Guest Book Facet
-            <textarea name="content" rows="3" cols="60">PLACEHOLDER</textarea>
-        </label>
         <input type="submit" value="Create Command">
     </fieldset>
 </form>
@@ -24,16 +28,16 @@
         <th>Updated</th>
         <th>Delete</th>
     </tr>
-    {.repeated section @}
+    {%.repeated section @ %}
     <tr>
-        <td>{.section Name}{@|html}{.or}no name available{.end}</td>
-        <td>{.section RESTcall}{@|html}{.or}no RESTcall available{.end}</td>
-        <td>{.section Desc}{@|html}{.or}no description availabile{.end}</td>
-        <td>{Creator}</td>
-        <td>{User}</td>
-        <td>{Created}</td>
-        <td>{Updated}</td>
-        <td><a href="http://localhost:8080/cmdDelete?name={Name}">X</a></td>
+        <td>{%.section Name%}{%@|html%}{%.or%}no name available{%.end%}</td>
+        <td>{%.section RESTcall%}{%@|html%}{%.or%}no RESTcall available{%.end%}</td>
+        <td>{%.section Desc%}{%@|html%}{%.or%}no description availabile{%.end%}</td>
+        <td>{%Creator%}</td>
+        <td>{%User%}</td>
+        <td>{%Created%}</td>
+        <td>{%Updated%}</td>
+        <td><a href="http://localhost:8080/cmdDelete?name={%Name%}">X</a></td>
     </tr>
-    {.end}
+    {%.end%}
 </table>

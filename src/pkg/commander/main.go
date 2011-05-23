@@ -117,21 +117,33 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 		serveError(c, w, err)
 		return
 	}
-	cmd := &Cmd{
-		Name:     r.FormValue("name"),
-		RESTcall: r.FormValue("restCall"),
-		Desc:     r.FormValue("desc"),
-//		Creator:  user.Current(c).String(),
-		Created:  datastore.SecondsToTime(time.Seconds()),
-	}
-	if u := user.Current(c); u != nil {
-		cmd.Creator = u.String()
-	}
-	if _, err := datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd); err != nil {
-		serveError(c, w, err)
-		return
+
+	if (!cmdExists(c, r.FormValue("name"))) {
+        cmd := &Cmd{
+            Name:     r.FormValue("name"),
+            RESTcall: r.FormValue("restCall"),
+            Desc:     r.FormValue("desc"),
+            Creator:  user.Current(c).String(),
+            Created:  datastore.SecondsToTime(time.Seconds()),
+        }
+    //	if u := user.Current(c); u != nil {
+    //		cmd.Creator = u.String()
+    //	}
+        if _, err := datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd); err != nil {
+            serveError(c, w, err)
+            return
+        }
 	}
 	http.Redirect(w, r, cmdListHandler, http.StatusFound)
+}
+
+// Constraint Check
+func cmdExists(c appengine.Context, name string) (exists bool) {
+    if count, err := datastore.NewQuery("Cmd").Filter("Name =", name).Count(c); err == nil && count > 0 {
+        return true
+    }
+
+    return
 }
 
 func cmdListing(w http.ResponseWriter, r *http.Request) {
@@ -287,13 +299,18 @@ func cmdUpdate(cmd *Cmd, c appengine.Context) (updated bool) {
 const cmdCreateHandler = "/create"
 const cmdListHandler = "/cmdList"
 
-var createCmdPresenter = template.MustParseFile("cmdCreate.html", nil)
+var createCmdPresenter *template.Template
 
 func Double(i int) int {
 	return i * 2
 }
 
 func init() {
+createCmdPresenter = template.New(nil)
+createCmdPresenter.SetDelims("{%", "%}")
+if err := createCmdPresenter.ParseFile("cmdCreate.html"); err != nil {
+    panic("can't parse: " + err.String())
+}
 	http.HandleFunc("/", cmd)
 	http.HandleFunc("/cmdDelete", cmdDeletion)
 	http.HandleFunc("/cmdUpdate", cmdUpdation)
