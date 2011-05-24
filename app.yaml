@@ -11,10 +11,5 @@ handlers:
 #- url: /post
 #  script: _go_app
 #  login: required
-- url: /cmdCreate
-  script: _go_app
-  login: required
-- url: /store
-  script: _go_app
 - url: /.*
   script: _go_app

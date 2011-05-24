@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="keywords" content="{{ properties.title }}, {{ properties.author }}">
+<meta name="description"
+      content="{{ properties.title }} {{ properties.title_desc }}">
+<meta name="author" content="{{ properties.author }}">
+<meta name="generator" content="sol GAE Service Framework: http://dev.loxal.net">
+<link rel="stylesheet" href="{{ properties.res_dir }}/winter.css" type="text/css">
+<title>{! block title %}{! blocktrans %}Home{! endblocktrans %}{! endblock %} | {{ properties.title }}</title>
+
+<!--&lt;!&ndash;[if IE]>-->
+<!--<meta http-equiv="X-UA-Compatible" content="chrome=1">-->
+<!--<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>-->
+<!--<div id="CFInstall" style="border: 9px #111 dashed;">This site is using web application technology standards like HTML5-->
+    <!--which <strong>Internet Explorer does not support</strong>. To use these technologies within Internet Explorer please accept-->
+    <!--the pop-up window above to get Google Chrome Frame installed!</div>-->
+<!--<script>-->
+    <!--CFInstall.check({-->
+        <!--node: "CFInstall",-->
+        <!--mode: "popup"-->
+    <!--});-->
+<!--</script>-->
+<!--<![endif]&ndash;&gt;-->
+
+{{ properties.analytics }}
+
+    <div id="header">
+        <div id="sponsor">{{ properties.sponsor }}</div>
+        <div id="header-title">
+            <img id="logo" src="{{ properties.res_dir }}/logo.png" alt="Site Logo"
+                 title="{{ properties.title }} Logo"/>
+            <a href="/" id="title" title="{! blocktrans %}Home{! endblocktrans %}">{{ properties.title }}</a>
+
+            <div id="header-description">
+                {{ properties.title_desc }}
+            </div>
+        </div>
+        <div id="meta-ctrl">
+            {! ifequal users.get_current_user user %}
+            <a class="linkBox" href="{{ req_url|create_url_auth|escape }}"
+               title="{! blocktrans %}Google account required{! endblocktrans %}">{! blocktrans %}Login{! endblocktrans %}</a>
+            {! else %}
+            <a class="linkBox" href="{{ req_url|create_url_auth|escape }}"
+               title="{! blocktrans %}Authentication powered by Google{! endblocktrans %}">{! blocktrans %}Logout:{! endblocktrans %}</a>
+            {{ user }}
+            {! endifequal %}
+        </div>
+    </div>
+
+    <div id="sidebar">
+        {{ properties.search }}
+        <div id="index">
+            <ul class="nav">
+                <li><a href="/" title="{! blocktrans %}Start and website entry point{! endblocktrans %}">
+                    {! blocktrans %}Home{! endblocktrans %}</a>
+                <li><a href="/imprint.html" title="{! blocktrans %}...with contact formular{! endblocktrans %}">
+                    {! blocktrans %}Imprint{! endblocktrans %}</a>
+            </ul>
+
+            <h1>{! blocktrans %}Services{! endblocktrans %}</h1>
+            <ul class="nav">
+                <li>
+                    <a href="/service/my-browser.html"
+                       title="{! blocktrans %}...properties and environment settings of your browser.{! endblocktrans %}">My
+                        Browser</a>
+                <li>
+                    <a href="/service/symbol-lister.html" title="Lists certain symbols and their entity codes.">Symbol
+                        Lister</a>
+                <li>
+                    <a href="/service/transliterator.html"
+                       title="{! blocktrans %}Transcribes latin into Russian (cyrillic alphabet) letters on the fly as you type them{! endblocktrans %}">Transliteration</a>
+                <li>
+                    <a href="/service/web-commander"
+                       title="{! blocktrans %}Map key combinations (shortcuts) to web requests{! endblocktrans %}">Web Commander</a>
+            </ul>
+        </div>
+        <script src="{{ properties.res_dir }}/mashup-module/sol-network-links.js"></script>
+    </div>
+
+    <div id="main">
+        {! block content %}
+        {# main page content #}
+        {! endblock %}
+    </div>
+
+<div id="footer">
+    <p>
+                    <span>
+                        {! blocktrans %}Powered by{! endblocktrans %} <a href="http://dev.loxal.net"
+                                                    title="{! blocktrans %}sol - Google App Engine Content Management System{! endblocktrans %}">
+                        sol <abbr title="Google App Engine">GAE</abbr> Service Framework</a>
+                    </span>
+                    <span style="float: right;">
+                        &copy; {! now "Y" %} {{ properties.author }}
+                    </span>
+    </p>
+</div>
+
