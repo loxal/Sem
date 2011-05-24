@@ -10,12 +10,6 @@
 <script>
     function edit(cmdName) {
         document.getElementById("edit-form-" + cmdName).style.display = "block";
-//        document.getElementById(cmdName + "-name").value = cmdName;
-//        document.getElementById(cmdName + "-restCall").value = "myREST!!!!!";
-//        document.getElementById(cmdName + "-desc").value = "myDESC";
-    }
-    function hide(cmdName) {
-        document.getElementById("edit-" + cmdName).style.display = "none";
     }
 </script>
 
@@ -47,7 +41,6 @@
     <tr>
         <td>
             {%.section Name%}<a href="javascript:edit('{% @ %}');">{% @ %}</a>
-            <!--<div id="edit-form-{% @ %}">-->
                 <form action="/update" method="post" style="display: none;" id="edit-form-{% @ %}">
                     <fieldset>
                         <legend>Command</legend>
@@ -60,7 +53,6 @@
                         <input type="submit" onclick="hide('{% @ %}')" value="Update">
                     </fieldset>
                 </form>
-            <!--</div>-->
             {%.or%}no name available{%.end%}
         </td>
         <td>{%.section RESTcall%}{%@|html%}{%.or%}no RESTcall available{%.end%}</td>

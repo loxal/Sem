@@ -123,12 +123,11 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
             Name:     r.FormValue("name"),
             RESTcall: r.FormValue("restCall"),
             Desc:     r.FormValue("desc"),
-            Creator:  user.Current(c).String(),
             Created:  datastore.SecondsToTime(time.Seconds()),
         }
-    //	if u := user.Current(c); u != nil {
-    //		cmd.Creator = u.String()
-    //	}
+    	if u := user.Current(c); u != nil {
+    		cmd.Creator = u.String()
+    	}
         if _, err := datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd); err != nil {
             serveError(c, w, err)
             return
@@ -292,14 +291,12 @@ func cmdUpdation(w http.ResponseWriter, r *http.Request) {
 }
 
 func cmdUpdate(cmd *Cmd, c appengine.Context) (ok bool, err os.Error) {
-//    if (!cmdExists(c, cmd.Name)){
         q := datastore.NewQuery("Cmd").KeysOnly().Filter("Name =", cmd.Name)
         keys, _ := q.GetAll(c, nil)
         if _, err := datastore.Put(c, keys[0], cmd); err != nil {
             return false, err
         }
         return true, nil
-//	}
     return false, os.NewError("exists")
 }
 
