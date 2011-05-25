@@ -14,21 +14,20 @@
  * limitations under the License.
  */
 
-package loxal.lox.service.meta.client.meta.authentication;
+package loxal.sem.service.meta.client.meta.layout;
 
-import com.google.gwt.user.client.rpc.RemoteService;
-import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Widget;
 
-/**
- * Authentication capability
- */
-@RemoteServiceRelativePath("AuthInfo")
-public interface AuthInfoSvc extends RemoteService {
-    /**
-     * Google Authentication Service
-     *
-     * @param requestUri Request originator
-     * @return Properties of the authenticated user
-     */
-    AuthInfo getAuthInfo(String requestUri);
+public class Footer extends Composite {
+    interface Binder extends UiBinder<Widget, Footer> {
+    }
+
+    private Footer() {
+        Binder binder = GWT.create(Binder.class);
+        initWidget(binder.createAndBindUi(this));
+    }
+
 }

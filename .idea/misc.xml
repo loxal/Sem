@@ -13,10 +13,28 @@
   </component>
   <component name="FacetAutodetectingManager">
     <autodetection-disabled>
+      <facet-type id="google-app-engine">
+        <modules>
+          <module name="client">
+            <files>
+              <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/appengine-web.xml" />
+            </files>
+          </module>
+        </modules>
+      </facet-type>
       <facet-type id="gwt">
         <modules>
           <module name="app" />
           <module name="client" />
+        </modules>
+      </facet-type>
+      <facet-type id="Python">
+        <modules>
+          <module name="client">
+            <files>
+              <file url="file://$PROJECT_DIR$/site_properties.py" />
+            </files>
+          </module>
         </modules>
       </facet-type>
       <facet-type id="Scala">

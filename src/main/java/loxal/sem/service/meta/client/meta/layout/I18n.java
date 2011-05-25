@@ -1,8 +1,8 @@
-package loxal.lox.service.meta.client.meta.layout;
+package loxal.sem.service.meta.client.meta.layout;
 
 /**
  * Interface to represent the constants contained in resource bundle:
- * '/Users/alex/my/dev/prj/loxal/Lox/src/main/java/loxal/lox/service/meta/client/meta/layout/I18n.properties'.
+ * '/Users/alex/my/dev/prj/loxal/Lox/src/main/java/loxal/sem/service/meta/client/meta/layout/I18n.properties'.
  */
 public interface I18n extends com.google.gwt.i18n.client.Constants {
 

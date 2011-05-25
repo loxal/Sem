@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package loxal.lox.service.contact.client;
+package loxal.sem.service.contact.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -49,8 +49,6 @@ public class Mail implements EntryPoint {
     interface MailUiBinder extends UiBinder<Widget, Mail> {
     }
 
-    private MailSvcAsync mailSvcAsync = GWT.create(MailSvc.class);
-
     private Mail() {
         MailUiBinder binder = GWT.create(MailUiBinder.class);
         Widget app = binder.createAndBindUi(this);
@@ -71,30 +69,6 @@ public class Mail implements EntryPoint {
     }
 
     private void sendMail() {
-        MailMsg mailMsg = new MailMsg();
-        mailMsg.setSenderName();
-        mailMsg.setSenderAddress(sender.getText());
-        mailMsg.setSubject(subject.getText());
-        mailMsg.setMessage(message.getText());
-
-        mailSvcAsync.sendMail(mailMsg, new AsyncCallback<Void>() {
-            @Override
-            public void onFailure(Throwable caught) {
-                GWT.log("Mail: " + caught);
-                displayActionResult("Message Sent Failure", false);
-            }
-
-            @Override
-            public void onSuccess(Void result) {
-                GWT.log("Mail: " + result);
-                displayActionResult("Message Sent Successfully", true);
-                sender.setReadOnly(true);
-                subject.setReadOnly(true);
-                message.setReadOnly(true);
-                send.setVisible(false);
-                sendNewMessage.setVisible(true);
-            }
-        });
     }
 
     @UiHandler("sendNewMessage")

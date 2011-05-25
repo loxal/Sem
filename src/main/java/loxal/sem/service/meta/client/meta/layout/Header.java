@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package loxal.lox.service.meta.client.meta.layout;
+package loxal.sem.service.meta.client.meta.layout;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -25,17 +25,10 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
-import loxal.lox.service.meta.client.meta.authentication.AuthInfo;
 
 public class Header extends Composite {
     interface Binder extends UiBinder<Widget, Header> {
     }
-
-    public void setAuthenticationInfo(AuthInfo authInfo) {
-        this.authInfo = authInfo;
-    }
-
-    private AuthInfo authInfo;
 
     protected Header() {
         Binder binder = GWT.create(Binder.class);
@@ -91,20 +84,5 @@ public class Header extends Composite {
         UrlBuilder builder = Window.Location.createUrlBuilder().setParameter("locale",
                 localeName);
         Window.Location.replace(builder.buildString());
-    }
-
-    void authentication() {
-        authenticationLink.setAccessKey('A');
-        authenticationLink.setTitle("[Access Key: A]");
-        authenticationLink.setTabIndex(1);
-        if (authInfo.isLoggedIn()) {
-            authenticationLink.setText(i18n.signOut() + ": " + authInfo.getEmail());
-            authenticationLink.setHref(authInfo.getLogoutURL());
-            authenticationLink.setTitle("Nickname: " + authInfo.getNickname() + (authInfo.isAdmin() ? " (Admin)" : "") + " [Access Key: A]");
-        } else {
-            authenticationLink.setHref(authInfo.getLoginURL());
-            authenticationLink.setText(i18n.signIn());
-            authenticationLink.setFocus(true);
-        }
     }
 }

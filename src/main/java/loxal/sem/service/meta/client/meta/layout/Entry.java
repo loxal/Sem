@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package loxal.lox.service.meta.client.meta.layout;
+package loxal.sem.service.meta.client.meta.layout;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -22,14 +22,10 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
-import loxal.lox.service.meta.client.meta.authentication.AuthInfo;
-import loxal.lox.service.meta.client.meta.authentication.AuthInfoSvc;
-import loxal.lox.service.meta.client.meta.authentication.AuthInfoSvcAsync;
-import loxal.lox.service.meta.client.tasksolver.TaskMgmt;
+import loxal.sem.service.meta.client.tasksolver.TaskMgmt;
 
 public class Entry implements EntryPoint {
     interface Binder extends UiBinder<Widget, Entry> {
@@ -37,7 +33,6 @@ public class Entry implements EntryPoint {
 
     private Binder binder = GWT.create(Binder.class);
     private I18n i18n = GWT.create(I18n.class);
-    private AuthInfoSvcAsync authInfoSvcAsync = GWT.create(AuthInfoSvc.class);
 
     @UiField
     TaskMgmt taskMgmt;
@@ -54,18 +49,5 @@ public class Entry implements EntryPoint {
         RootLayoutPanel.get().add(app);
         Window.setTitle(i18n.appTitle());
 
-        authInfoSvcAsync.getAuthInfo(GWT.getHostPageBaseURL(),
-                new AsyncCallback<AuthInfo>() {
-                    @Override
-                    public void onFailure(Throwable caught) {
-                    }
-
-                    @Override
-                    public void onSuccess(AuthInfo authInfo) {
-                        header.setAuthenticationInfo(authInfo);
-                        header.authentication();
-                        taskTab.selectTab(0);
-                    }
-                });
     }
 }
