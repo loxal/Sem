@@ -15,4 +15,5 @@ _test
 _testmain.go
 *.out
 
+/src/main/webapp/resource
 /target

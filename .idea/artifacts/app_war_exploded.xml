@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="app:war exploded">
+    <output-path>$PROJECT_DIR$/target/Lox</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="app/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="client" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.google.appengine:appengine-api-1.0-sdk:1.5.0.1" />
+          <element id="library" level="project" name="Maven: com.google.appengine:appengine-java-sdk:1.5.0.1" />
+          <element id="library" level="project" name="Maven: com.google.gwt:gwt-servlet:2.3.0" />
+        </element>
+      </element>
+      <element id="gwt-compiler-output" facet="client/gwt/GWT" />
+    </root>
+  </artifact>
+</component>
