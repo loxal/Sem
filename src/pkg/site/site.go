@@ -50,7 +50,7 @@ func handleMain(w http.ResponseWriter, r *http.Request) {
 	var site Site
 	json.Unmarshal([]byte(content), &site)
     w.Header().Set("Content-Type", "text/html")
-    mainPresenter.ParseFile("main.html")
+//    mainPresenter.ParseFile("main.html") // Auto-reload / refresh in dev mode
     if err := mainPresenter.Execute(w, &site); err != nil {
     }
 }

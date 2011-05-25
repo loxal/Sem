@@ -5,7 +5,7 @@
       content="{{ Title }} {{ TitleDesc }}">
 <meta name="author" content="{{ Author }}">
 <meta name="generator" content="Sem GAE Service Framework: http://dev.loxal.net">
-<link rel="stylesheet" href="{? properties.res_dir }}/winter.css" type="text/css">
+<link rel="stylesheet" href="/static/winter.css" type="text/css">
 <title>Home | {{ Title }}</title>
 
 <!--&lt;!&ndash;[if IE]>-->
@@ -70,8 +70,9 @@
                 <a href="/service/transliterator.html"
                    title="Transcribes latin into Russian (cyrillic alphabet) letters on the fly as you type them">Transliteration</a>
             <li>
-                <a href="/service/web-commander"
-                   title="Map key combinations (shortcuts) to web requests">Web Commander</a>
+                <!--<a href="/service/web-commander"-->
+                <a href="/cmdList"
+                   title="Map key combinations (shortcuts) to web requests">Shell</a>
         </ul>
     </div>
     <script src="{? properties.res_dir }}/mashup-module/sol-network-links.js"></script>
