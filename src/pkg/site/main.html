@@ -6,7 +6,7 @@
 <meta name="author" content="{{ Author }}">
 <meta name="generator" content="Sem GAE Service Framework: http://dev.loxal.net">
 <link rel="stylesheet" href="{? properties.res_dir }}/winter.css" type="text/css">
-<title>{! block title %}Home{! endblock %} | {? properties.title }}</title>
+<title>Home | {{ Title }}</title>
 
 <!--&lt;!&ndash;[if IE]>-->
 <!--<meta http-equiv="X-UA-Compatible" content="chrome=1">-->
@@ -22,33 +22,33 @@
 <!--</script>-->
 <!--<![endif]&ndash;&gt;-->
 
-{? properties.analytics }}
+<!--{? properties.analytics }}-->
 
 <div id="header">
-    <div id="sponsor">{? properties.sponsor }}</div>
+    <!--<div id="sponsor">{? properties.sponsor }}</div>-->
     <div id="header-title">
-        <img id="logo" src="{? properties.res_dir }}/logo.png" alt="Site Logo"
-             title="{{ Title }} Logo"/>
-        <a href="/" id="title" title="Home">{? properties.title }}</a>
+        <!--<img id="logo" src="{? properties.res_dir }}/logo.png" alt="Site Logo"-->
+             <!--title="{{ Title }} Logo"/>-->
+        <a href="/" id="title" title="Home">{{ Title }}</a>
 
         <div id="header-description">
-            {? properties.title_desc }}
+            {{ TitleDesc }}
         </div>
     </div>
     <div id="meta-ctrl">
-        {! ifequal users.get_current_user user %}
-        <a class="linkBox" href="{? req_url|create_url_auth|escape }}"
-           title="Google account required">Login</a>
-        {! else %}
-        <a class="linkBox" href="{? req_url|create_url_auth|escape }}"
-           title="Authentication powered by Google">Logout:</a>
-        {? user }}
-        {! endifequal %}
+        <!--{! ifequal users.get_current_user user %}-->
+        <!--<a class="linkBox" href="{? req_url|create_url_auth|escape }}"-->
+           <!--title="Google account required">Login</a>-->
+        <!--{! else %}-->
+        <!--<a class="linkBox" href="{? req_url|create_url_auth|escape }}"-->
+           <!--title="Authentication powered by Google">Logout:</a>-->
+        <!--{? user }}-->
+        <!--{! endifequal %}-->
     </div>
 </div>
 
 <div id="sidebar">
-    {? properties.search }}
+    <!--{? properties.search }}-->
     <div id="index">
         <ul class="nav">
             <li><a href="/" title="Start and website entry point">
@@ -78,7 +78,7 @@
 </div>
 
 <div id="main">
-    {# main page content #}
+    {{# main page content #}}
 </div>
 
 <div id="footer">
