@@ -85,28 +85,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <gae.app.name>sem-loxal</gae.app.name>
-        <gae.version>1.5.0.1</gae.version>
-        <gae.runtime>1.5.0.1</gae.runtime>
-        <gae.maven>0.8.4</gae.maven>
-        <gae.home>
-            <!--${user.home}/.m2/repository/com/google/appengine/appengine-java-sdk/${gae.version}/appengine-java-sdk-${gae.version}-->
-            ${user.home}/my/sdk/gae.java
-        </gae.home>
         <gwt.ver>2.3.0</gwt.ver>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-api-1.0-sdk</artifactId>
-            <version>${gae.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-java-sdk</artifactId>
-            <version>${gae.version}</version>
-        </dependency>
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-servlet</artifactId>
@@ -132,37 +114,12 @@
             <classifier>sources</classifier>
             <scope>provided</scope>
         </dependency>
-
     </dependencies>
 
     <build>
         <finalName>${project.name}</finalName>
         <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
         <plugins>
-            <plugin>
-                <groupId>net.kindleit</groupId>
-                <artifactId>maven-gae-plugin</artifactId>
-                <version>${gae.maven}</version>
-                <configuration>
-                    <unpackVersion>${gae.version}</unpackVersion>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>net.kindleit</groupId>
-                        <artifactId>gae-runtime</artifactId>
-                        <version>${gae.runtime}</version>
-                        <type>pom</type>
-                    </dependency>
-                </dependencies>
-                <!--<executions>-->
-                <!--<execution>-->
-                <!--<phase>validate</phase>-->
-                <!--<goals>-->
-                <!--<goal>unpack</goal>-->
-                <!--</goals>-->
-                <!--</execution>-->
-                <!--</executions>-->
-            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>gwt-maven-plugin</artifactId>
@@ -175,19 +132,7 @@
                         <module>${project.groupId}.service.contact.Contact</module>
                         <module>${project.groupId}.service.meta.Meta</module>
                     </modules>
-                    <!--<server>com.google.appengine.tools.development.gwt.AppEngineLauncher</server>-->
-                    <!--<extraJvmArgs>-javaagent:${gae.home}/lib/agent/appengine-agent.jar -Xmx1024m</extraJvmArgs>-->
-                    <!--<copyWebapp>true</copyWebapp>-->
                 </configuration>
-                <!--<executions>-->
-                <!--<execution>-->
-                <!--<id>gwtcompile</id>-->
-                <!--<phase>prepare-package</phase>-->
-                <!--<goals>-->
-                <!--<goal>compile</goal>-->
-                <!--</goals>-->
-                <!--</execution>-->
-                <!--</executions>-->
                 <dependencies>
                     <dependency>
                         <groupId>com.google.gwt</groupId>
