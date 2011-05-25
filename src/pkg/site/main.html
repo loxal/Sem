@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="keywords" content="{{ Title }}, {{ Author }}">
+<meta name="description"
+      content="{{ Title }} {{ TitleDesc }}">
+<meta name="author" content="{{ Author }}">
+<meta name="generator" content="Sem GAE Service Framework: http://dev.loxal.net">
+<link rel="stylesheet" href="/static/winter.css" type="text/css">
+<title>Home | {{ Title }}</title>
+
+<!--&lt;!&ndash;[if IE]>-->
+<!--<meta http-equiv="X-UA-Compatible" content="chrome=1">-->
+<!--<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>-->
+<!--<div id="CFInstall" style="border: 9px #111 dashed;">This site is using web application technology standards like HTML5-->
+<!--which <strong>Internet Explorer does not support</strong>. To use these technologies within Internet Explorer please accept-->
+<!--the pop-up window above to get Google Chrome Frame installed!</div>-->
+<!--<script>-->
+<!--CFInstall.check({-->
+<!--node: "CFInstall",-->
+<!--mode: "popup"-->
+<!--});-->
+<!--</script>-->
+<!--<![endif]&ndash;&gt;-->
+
+<!--{? properties.analytics }}-->
+
+<div id="header">
+    <!--<div id="sponsor">{? properties.sponsor }}</div>-->
+    <div id="header-title">
+        <!--<img id="logo" src="{? properties.res_dir }}/logo.png" alt="Site Logo"-->
+             <!--title="{{ Title }} Logo"/>-->
+        <a href="/" id="title" title="Home">{{ Title }}</a>
+
+        <div id="header-description">
+            {{ TitleDesc }}
+        </div>
+    </div>
+    <div id="meta-ctrl">
+        <!--{! ifequal users.get_current_user user %}-->
+        <!--<a class="linkBox" href="{? req_url|create_url_auth|escape }}"-->
+           <!--title="Google account required">Login</a>-->
+        <!--{! else %}-->
+        <!--<a class="linkBox" href="{? req_url|create_url_auth|escape }}"-->
+           <!--title="Authentication powered by Google">Logout:</a>-->
+        <!--{? user }}-->
+        <!--{! endifequal %}-->
+    </div>
+</div>
+
+<div id="sidebar">
+    <!--{? properties.search }}-->
+    <div id="index">
+        <ul class="nav">
+            <li><a href="/" title="Start and website entry point">
+                Home</a>
+            <li><a href="/imprint.html" title="...with contact formular">
+                Imprint</a>
+        </ul>
+
+        <h1>Services</h1>
+        <ul class="nav">
+            <li>
+                <a href="/service/my-browser.html"
+                   title="...properties and environment settings of your browser.">My
+                    Browser</a>
+            <li>
+                <a href="/service/symbol-lister.html" title="Lists certain symbols and their entity codes.">Symbol
+                    Lister</a>
+            <li>
+                <a href="/service/transliterator.html"
+                   title="Transcribes latin into Russian (cyrillic alphabet) letters on the fly as you type them">Transliteration</a>
+            <li>
+                <!--<a href="/service/web-commander"-->
+                <a href="/cmdList"
+                   title="Map key combinations (shortcuts) to web requests">Shell</a>
+        </ul>
+    </div>
+    <script src="{? properties.res_dir }}/mashup-module/sol-network-links.js"></script>
+</div>
+
+<div id="main">
+    {{# main page content #}}
+</div>
+
+<div id="footer">
+    <p>
+        <span>
+            Powered by <a href="http://dev.loxal.net"
+                          title="Sem - Google App Engine Content Management System">
+            Sem <abbr title="Google App Engine">GAE</abbr> Service Framework</a>
+        </span>
+        <span style="float: right;">
+            &copy; {{ Year }} {{ Copyright }}
+        </span>
+    </p>
+</div>
+

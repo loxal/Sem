@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BuildJarProjectSettings">
+    <option name="BUILD_JARS_ON_MAKE" value="false" />
+  </component>
+  <component name="CppTools.Loader" reportImplicitCastToBool="false" reportNameReferencedOnce="false" version="3" compilerSelect="AUTO" />
+  <component name="DependencyValidationManager">
+    <scope name="Linguistics" pattern="file[Lox]:src/main/java/loxal/lox/service/linguistics//*||file[Lox]:src/main/webapp/WEB-INF/appengine-web.xml||file[Lox]:src/main/webapp/WEB-INF/queue.xml||file[Lox]:src/main/webapp/WEB-INF/mapreduce.xml||file[Lox]:src/main/webapp/WEB-INF/web.xml||file[Lox]:src/main/webapp/WEB-INF/datastore-indexes.xml||file[Lox]:src/main/webapp/WEB-INF/cron.xml" />
+    <option name="SKIP_IMPORT_STATEMENTS" value="false" />
+  </component>
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="FacetAutodetectingManager">
+    <autodetection-disabled>
+      <facet-type id="google-app-engine">
+        <modules>
+          <module name="client">
+            <files>
+              <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/appengine-web.xml" />
+            </files>
+          </module>
+        </modules>
+      </facet-type>
+      <facet-type id="gwt">
+        <modules>
+          <module name="app" />
+          <module name="client" />
+        </modules>
+      </facet-type>
+      <facet-type id="Python">
+        <modules>
+          <module name="client">
+            <files>
+              <file url="file://$PROJECT_DIR$/site_properties.py" />
+            </files>
+          </module>
+        </modules>
+      </facet-type>
+      <facet-type id="Scala">
+        <modules>
+          <module name="Lox">
+            <files>
+              <file url="file://$PROJECT_DIR$/src/loxal/lox/service/linguistics/DomainLangExtractor.scala" />
+              <file url="file://$PROJECT_DIR$/test/loxal/lox/meta/server/AuthInfoSvcImplTest.scala" />
+              <file url="file://$PROJECT_DIR$/test/loxal/lox/service/meta/server/TaskSvcImplTest.scala" />
+            </files>
+          </module>
+        </modules>
+      </facet-type>
+      <facet-type id="web">
+        <modules>
+          <module name="app" />
+          <module name="client" />
+        </modules>
+      </facet-type>
+    </autodetection-disabled>
+  </component>
+  <component name="HudsonMonitorComponent">
+    <option name="timeOutTextField" value="30" />
+  </component>
+  <component name="IdProvider" IDEtalkID="68B1710BED4F78DCBC0356B6B190FA52" />
+  <component name="JavadocGenerationManager">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/doc" />
+    <option name="OPTION_SCOPE" value="protected" />
+    <option name="OPTION_HIERARCHY" value="true" />
+    <option name="OPTION_NAVIGATOR" value="true" />
+    <option name="OPTION_INDEX" value="true" />
+    <option name="OPTION_SEPARATE_INDEX" value="true" />
+    <option name="OPTION_DOCUMENT_TAG_USE" value="false" />
+    <option name="OPTION_DOCUMENT_TAG_AUTHOR" value="false" />
+    <option name="OPTION_DOCUMENT_TAG_VERSION" value="false" />
+    <option name="OPTION_DOCUMENT_TAG_DEPRECATED" value="true" />
+    <option name="OPTION_DEPRECATED_LIST" value="true" />
+    <option name="OTHER_OPTIONS" />
+    <option name="HEAP_SIZE" />
+    <option name="LOCALE" />
+    <option name="OPEN_IN_BROWSER" value="true" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="NullableNotNullManager">
+    <option name="myDefaultNullable" value="org.jetbrains.annotations.Nullable" />
+    <option name="myDefaultNotNull" value="org.jetbrains.annotations.NotNull" />
+    <option name="myNullables">
+      <value>
+        <list size="3">
+          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
+          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
+          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.Nullable" />
+        </list>
+      </value>
+    </option>
+    <option name="myNotNulls">
+      <value>
+        <list size="3">
+          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
+          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
+          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
+        </list>
+      </value>
+    </option>
+  </component>
+  <component name="ProjectDetails">
+    <option name="projectName" value="Wlox" />
+  </component>
+  <component name="ProjectFacetManager">
+    <default-configurations>
+      <entry facet-type="gwt">
+        <default-facet-configuration>
+          <configuration>
+            <setting name="compilerMaxHeapSize" value="64" />
+            <setting name="gwtScriptOutputStyle" value="PRETTY" />
+            <setting name="gwtSdkUrl" value="file://$MAVEN_REPOSITORY$/com/google/gwt/gwt-dev/2.2.0/" />
+          </configuration>
+        </default-facet-configuration>
+      </entry>
+    </default-configurations>
+  </component>
+  <component name="ProjectKey">
+    <option name="state" value="project://default" />
+  </component>
+  <component name="ProjectResources">
+    <default-html-doctype>http://www.w3.org/1999/xhtml</default-html-doctype>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/target" />
+  </component>
+  <component name="ResourceManagerContainer">
+    <option name="myResourceBundles">
+      <value>
+        <list size="0" />
+      </value>
+    </option>
+  </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
+  <component name="WebServicesPlugin" addRequiredLibraries="true" />
+</project>
+

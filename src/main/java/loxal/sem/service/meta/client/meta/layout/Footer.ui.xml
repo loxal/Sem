@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2011 Alexander Orlov <alexander.orlov@loxal.net>
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="default">
+
+    <ui:style>
+        .footer {
+            padding-right: 1em;
+            width: 100%;
+        }
+
+        .brand {
+            float: right;
+        }
+    </ui:style>
+
+    <g:DockLayoutPanel>
+        <g:north size="19">
+            <g:HorizontalPanel stylePrimaryName="{style.footer}">
+                <g:Anchor href="http://dev.loxal.net" title="Get the source and collaborate!">
+                    <ui:attribute name="title" description="Get the source and collaborate!"/>
+                    <ui:msg description="Powered by">Powered by</ui:msg>
+                    Lox
+                    <abbr title="Web Workspace Environment">
+                        <ui:attribute name="title" description="Web Workspace Environment"/>
+                        <ui:msg description="W2E">W2E</ui:msg>
+                    </abbr>
+                </g:Anchor>
+                <g:HTML stylePrimaryName="{style.brand}">
+                    &copy; 2011
+                    <span style="font-family: Verdana;">
+                        <span style="color: orange;">L</span>
+                        <span style="color: blue;">o</span>
+                        <span style="color: red;">x</span>
+                        <span style="color: green;">a</span>
+                        <span style="color: orange;">l</span>
+                    </span>
+                </g:HTML>
+            </g:HorizontalPanel>
+        </g:north>
+    </g:DockLayoutPanel>
+
+</ui:UiBinder>

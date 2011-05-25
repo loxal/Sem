@@ -1,0 +1,316 @@
+/*
+ * Copyright 2011 Alexander Orlov <alexander.orlov@loxal.net>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@import url("layout.css");
+
+body {
+    background: #eef;
+    background: -moz-repeating-linear-gradient(top left -45deg, hsla(222, 99%, 88%, .4), hsla(222, 99%, 88%, .1) 5px, hsla(222, 99%, 88%, .4) 5px, hsla(222, 99%, 88%, .1) 11px);
+    background: -webkit-repeating-linear-gradient(top left -45deg, hsla(222, 99%, 88%, .4), hsla(222, 99%, 88%, .1) 5px, hsla(222, 99%, 88%, .4) 5px, hsla(222, 99%, 88%, .1) 11px);
+    background: -opera-repeating-linear-gradient(top left -45deg, hsla(222, 99%, 88%, .4), hsla(222, 99%, 88%, .1) 5px, hsla(222, 99%, 88%, .4) 5px, hsla(222, 99%, 88%, .1) 11px);
+}
+
+#header {
+    background: hsla(222, 99%, 88%, .4);
+    background: -moz-linear-gradient(top, hsla(222, 99%, 88%, .9), hsla(222, 99%, 88%, .2));
+    background: -webkit-linear-gradient(top, hsla(222, 99%, 88%, .9), hsla(222, 99%, 88%, .2));
+    background: -opera-linear-gradient(top, hsla(222, 99%, 88%, .9), hsla(222, 99%, 88%, .2));
+    border-radius: 1em 1em 0 1em;
+    -webkit-border-radius: 1em 1em 0 1em;
+    -moz-border-radius: 1em 1em 0 1em;
+    box-shadow: 1em 2em 1em #ccc;
+    -webkit-box-shadow: 1em 2em 1em #ccc;
+    -moz-box-shadow: 1em 2em 1em #ccc;
+    text-indent: 1em;
+}
+
+#header-description {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+#title, #header-title {
+    text-decoration: none;
+    color: hsla(222, 88%, 33%, .9);
+    text-shadow: 0px 2pt 3pt #555;
+}
+
+#title {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+#main {
+    border-radius: 0 0 1em 0;
+    -webkit-border-radius: 0 0 1em 0;
+    -moz-border-radius: 0 0 1em 0;
+    box-shadow: 1em 2em 1em #ccc;
+    -webkit-box-shadow: 1em 2em 1em #ccc;
+    -moz-box-shadow: 1em 2em 1em #ccc;
+}
+
+#info_error {
+    color: #911;
+    margin: 1em;
+    border-radius: 1em 1em 1em 1em;
+    -webkit-border-radius: 1em 1em 1em 1em;
+    -moz-border-radius: 1em 1em 1em 1em;
+}
+
+.info-success {
+    color: hsla(99, 99%, 33%, .9);
+}
+
+.info-warning {
+    color: hsla(0, 99%, 33%, .9);
+}
+
+.info {
+    position: fixed;
+    top: 11em;
+    left: auto;
+    background: hsla(222, 55%, 88%, .9);
+    width: 300px;
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid hsla(222, 99%, 55%, .9);
+    border-radius: 1em 1em 1em 1em;
+    -webkit-border-radius: 1em 1em 1em 1em;
+    -moz-border-radius: 1em 1em 1em 1em;
+}
+
+#dialog {
+    position: fixed;
+    top: 11em;
+    left: auto;
+    color: hsla(222, 99%, 55%, .9);
+    background: hsla(222, 55%, 88%, .9);
+    width: 300px;
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid hsla(222, 99%, 55%, .9);
+    border-radius: 1em 1em 1em 1em;
+    -webkit-border-radius: 1em 1em 1em 1em;
+    -moz-border-radius: 1em 1em 1em 1em;
+}
+
+#dialog-warning {
+    width: 300px;
+    color: #911;
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 1em 1em 1em 1em;
+    -webkit-border-radius: 1em 1em 1em 1em;
+    -moz-border-radius: 1em 1em 1em 1em;
+}
+
+.missing-value {
+    color: #911;
+    float: right;
+}
+
+.post {
+    margin-bottom: 3em;
+}
+
+small {
+    font-size: .8em;
+}
+
+h1, h2, h3, dt, legend {
+    font-weight: bold;
+    text-shadow: 0px 1pt 1pt #555;
+    /*content: '\25BA';*/
+    /*text-transform: capitalize;*/
+}
+
+dt, dd {
+    margin-bottom: 1em;
+}
+
+h1 {
+    font-size: 1.3em;
+}
+
+h2 {
+    font-size: 1.1em;
+}
+
+h3 {
+    font-size: 1.0em;
+}
+
+address, code, pre {
+    background-color: #ddd;
+    font-family: sans-serif;
+    font-size: .6em;
+    border: 1px dotted #ddd;
+    padding: 1em;
+}
+
+.nav a {
+    display: block;
+    text-shadow: 0px 1pt 1pt #555;
+}
+
+ul.nav li {
+    width: 12em;
+    list-style-type: none;
+}
+
+ul.nav li, #authentication {
+    background: hsla(222, 66%, 66%, .2);
+    border: .1em solid hsla(222, 99%, 55%, .1);
+    border-radius: 0 1em 1em 0;
+    -webkit-border-radius: 0 1em 1em 0;
+    -moz-border-radius: 0 1em 1em 0;
+    padding: .3em;
+}
+
+ul.nav li:hover, #authentication:hover {
+    background: hsla(222, 66%, 66%, .4);
+    border: .1em solid hsla(222, 99%, 55%, .9);
+}
+
+a {
+    color: hsla(222, 99%, 44%, .9);
+    text-decoration: none;
+}
+
+a:active {
+    color: #000;
+}
+
+a:hover {
+    color: hsla(222, 99%, 66%, .9);
+}
+
+a:visited {
+    color: hsla(222, 99%, 22%, .9);
+}
+
+input {
+    margin: .3em .3em .3em 2em;
+    border-radius: 1em 1em 1em 1em;
+    -webkit-border-radius: 1em 1em 1em 1em;
+    -moz-border-radius: 1em 1em 1em 1em;
+}
+
+input[readonly] {
+    background: #999;
+}
+
+.input-long {
+    width: 333px;
+}
+
+textarea {
+    width: 90%;
+    height: 222px;
+    margin: .3em .3em .3em 2em;
+    padding: 1em;
+    border-radius: 1em 1em 1em 1em;
+    -webkit-border-radius: 1em 1em 1em 1em;
+    -moz-border-radius: 1em 1em 1em 1em;
+}
+
+table {
+    border-collapse: collapse;
+    border: .1em solid hsla(222, 55%, 88%, .9);
+    border-radius: 1em 1em 1em 1em;
+    -webkit-border-radius: 1em 1em 1em 1em;
+    -moz-border-radius: 1em 1em 1em 1em;
+}
+
+tr:hover .odd {
+    background: hsla(222, 99%, 55%, .2);
+}
+
+th {
+    padding: .5em;
+    background: hsla(222, 99%, 55%, .2);
+    border-radius: 1em 1em 0em 0em;
+    -webkit-border-radius: 1em 1em 0em 0em;
+    -moz-border-radius: 1em 1em 0em 0em;
+}
+
+.odd {
+    background: hsla(222, 99%, 55%, .1);
+}
+
+td {
+    padding: .3em;
+}
+
+fieldset {
+    padding: 1em;
+    margin: 1em;
+    border: 1px solid #ddd;
+    border-radius: 0 1em 0 1em;
+    -webkit-border-radius: 0 1em 0 1em;
+    -moz-border-radius: 0 1em 0 1em;
+}
+
+legend {
+    padding: .5em;
+}
+
+li {
+    padding: .2em;
+}
+
+acronym, abbr, span.caps {
+    border-bottom: 1px dashed #999;
+    cursor: help;
+}
+
+blockquote {
+    margin: 1.5em 3em 0 1em;
+    padding-left: 2em;
+    border-left: .5em solid #ddd;
+}
+
+blockquote cite {
+    margin: .5em 0 0 0;
+    display: block;
+}
+
+img {
+    border: none;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-right: 1em;
+}
+
+p, dl {
+    margin: 1em;
+    text-align: justify;
+    text-indent: 1em;
+}
+
+p:first-letter {
+    font-size: 133%;
+}
+
+.long-text {
+    column-count: 2;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+}
