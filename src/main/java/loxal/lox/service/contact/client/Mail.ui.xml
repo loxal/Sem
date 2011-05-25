@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright 2011 Alexander Orlov <alexander.orlov@loxal.net>
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="default">
+
+    <g:LayoutPanel>
+        <g:layer>
+            <g:VerticalPanel>
+                <g:Label>
+                    <ui:msg>Email</ui:msg>
+                </g:Label>
+                <g:TextBox ui:field="sender" visibleLength="44"/>
+                <g:Label>
+                    <ui:msg>Subject</ui:msg>
+                </g:Label>
+                <g:TextBox ui:field="subject" visibleLength="44"/>
+                <g:Label>
+                    <ui:msg>Message</ui:msg>
+                </g:Label>
+                <g:TextArea ui:field="message" characterWidth="40"
+                            visibleLines="5"/>
+                <g:Button ui:field="send" title="[Access Key: S]">
+                    <ui:attribute name="title" description="Access Key"/>
+                    <ui:msg>Send</ui:msg>
+                </g:Button>
+                <g:Button ui:field="sendNewMessage" title="[Access Key: B]"
+                          visible="false">
+                    <ui:attribute name="title" description="Access Key"/>
+                    <ui:msg>Write Another Message</ui:msg>
+                </g:Button>
+                <!--TODO FIX although the SEND button isn't visible and only the WRITE
+                        ANOTHER MESSAGE button is visible, the SEND button can be triggered via its
+                        shortcut == miss-behavior -->
+                <g:DecoratedPopupPanel ui:field="actionResult"
+                                       autoHideEnabled="true" glassEnabled="true" animationEnabled="true"
+                                       title="Action Result" modal="true" visible="false"/>
+            </g:VerticalPanel>
+        </g:layer>
+    </g:LayoutPanel>
+
+</ui:UiBinder>

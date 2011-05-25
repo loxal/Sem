@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messagebundle>
+    <msg name="gadget_title">Contact</msg>
+    <msg name="gadget_description">A mail form to send messages.</msg>
+    <msg name="gadget_thumbnail">http://res.loxal.net/meta/img/logo.png</msg>
+    <msg name="gadget_screenshot">http://res.loxal.net/meta/img/logo.png</msg>
+
+    <msg name="books">Книги о технологиях, используемых в Loxal проектах</msg>
+    <msg name="try">Попробуйте</msg>
+</messagebundle>
