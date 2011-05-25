@@ -12,6 +12,7 @@ import (
 	"json"
 	"os"
 	"template"
+	"time"
 
 	"appengine"
 )
@@ -34,46 +35,24 @@ func serve404(w http.ResponseWriter) {
 	io.WriteString(w, "Not Found")
 }
 
-func test() {
-	type Test struct {
-		Blub uint8
-	}
-	type Site struct {
-		Copyright, Title, TitleDesc string
-		Mail string
-		Test *Test
-	}
-	var j string = `{
-"Copyright": "Alexander Orlov. All rights reserved.", 
-"Title": "Sem — Sem Entity Manager | Loxal", 
-"TitleDesc": "Sem Entity Manager"
-}`
-	var s Site
-	fmt.Println(s.Title)
-	//fmt.Println(s.Copyright)
-result, _ := ioutil.ReadFile("./site_properties.json")
-err := json.Unmarshal([]byte(j), &s)
-err2 := json.Unmarshal([]byte(result), &s)
-fmt.Println(err)
-fmt.Println(err2)
-fmt.Println(string(result), "<<<<")
-fmt.Println(s.Title)
-fmt.Println(s.TitleDesc)
-fmt.Println(s.Copyright)
-fmt.Println(s.Mail)
-
-}
-
 func handleMain(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" || r.URL.Path != indexHandler {
 		serve404(w)
 		return
 	}
-//	test()
-fmt.Println(w.Header(), "<<<<<")
-        w.Header().Set("Content-Type", "text/html")
-        if err := mainPresenter.Execute(w, nil); err != nil {
-        }
+
+    type Site struct {
+		Author, Copyright, Title, TitleDesc, Mail, Year string
+	}
+	Year := time.LocalTime().Year
+	fmt.Println(Year)
+	content, _ := ioutil.ReadFile("./site_properties.json")
+	var site Site
+	json.Unmarshal([]byte(content), &site)
+    w.Header().Set("Content-Type", "text/html")
+    mainPresenter.ParseFile("main.html")
+    if err := mainPresenter.Execute(w, &site); err != nil {
+    }
 }
 
 const indexHandler = "/index"
@@ -83,7 +62,7 @@ var mainPresenter *template.Template
 
 func init() {
 mainPresenter = template.New(nil)
-mainPresenter.SetDelims("{%", "%}")
+mainPresenter.SetDelims("{{", "}}")
 if err := mainPresenter.ParseFile("main.html"); err != nil {
     panic("can't parse: " + err.String())
 }
