@@ -99,7 +99,7 @@
                 <g:Frame ui:field="sponsor" url="/meta/extern/Google-AdSense.html"
                          stylePrimaryName="{style.sponsor}"/>
                 <g:Label stylePrimaryName="{style.logo}"/>
-                <g:Anchor href="/" title="Home" stylePrimaryName="{style.title}" text="Lox"/>
+                <g:Anchor href="/" title="Home" stylePrimaryName="{style.title}" text="Sem"/>
                 <g:Label stylePrimaryName="{style.header-description}" title="W2E/WDE &amp; WIDE"
                          text="...my Web Workspace Environment">
                     <ui:attribute name="text" description="...my Web Workspace Environment"/>

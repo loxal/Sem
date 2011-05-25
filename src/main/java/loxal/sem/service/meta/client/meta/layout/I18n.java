@@ -20,7 +20,7 @@ public interface I18n extends com.google.gwt.i18n.client.Constants {
      *
      * @return translated "Lox - Web Workspace Environment (W2E)"
      */
-    @DefaultStringValue("Lox - Web Workspace Environment (W2E)")
+    @DefaultStringValue("Sem - Web Workspace Environment (W2E)")
     @Key("appTitle")
     String appTitle();
 
