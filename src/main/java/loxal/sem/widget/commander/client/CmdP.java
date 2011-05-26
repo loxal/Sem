@@ -14,11 +14,16 @@
  * limitations under the License.
  */
 
-package loxal.sem.service.meta.client.tasksolver;
+package loxal.sem.widget.commander.client;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.http.client.*;
+import com.google.gwt.json.client.JSONArray;
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONParser;
+import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTable;
@@ -26,11 +31,12 @@ import com.google.gwt.user.cellview.client.PageSizePager;
 import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.*;
+import com.google.gwt.xhr.client.XMLHttpRequest;
 
 /**
  * Task UI logic
  */
-public class TaskMgmt extends Composite {
+public class CmdP extends Composite {
     @UiField
     TextBox name;
     @UiField
@@ -78,10 +84,10 @@ public class TaskMgmt extends Composite {
     @UiField
     SimplePager taskSimplePager;
 
-    interface Binder extends UiBinder<Widget, TaskMgmt> {
+    interface Binder extends UiBinder<Widget, CmdP> {
     }
 
-    public TaskMgmt() {
+    public CmdP() {
         Binder binder = GWT.create(Binder.class);
         initWidget(binder.createAndBindUi(this));
 
@@ -102,5 +108,46 @@ public class TaskMgmt extends Composite {
                     SelectionEvent<Integer> integerSelectionEvent) {
             }
         });
+    }
+
+    public static final String jsonUrl = "http://localhost:8080/cmdList?name=";
+
+    public void cmdCreate() {
+        {
+            String url = URL.encode(jsonUrl);
+
+            XMLHttpRequest xmlHttpRequest;
+            // parse the response text into JSON
+            JSONValue jsonValue = JSONParser.parseStrict("{\"blu\": \"blab\"}");
+            JSONValue jsonValue1 = JSONParser.parseStrict("{\"blu\": \"blab\"}");
+            JSONArray jsonArray = jsonValue.isArray();
+            JSONObject jsonObject = new JSONObject();
+
+
+            RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET, "url");
+            try {
+                Request request = requestBuilder.sendRequest(null, new RequestCallback() {
+                    @Override
+                    public void onResponseReceived(Request request, Response response) {
+                    }
+
+                    @Override
+                    public void onError(Request request, Throwable exception) {
+                    }
+                });
+            } catch (RequestException e) {
+                e.printStackTrace();
+            }
+
+
+            jsonObject.put("myKey", jsonValue);
+
+            GWT.log(jsonObject.toString());
+            GWT.log(jsonObject.get("myKey").toString());
+//        GWT.log(jsonValue1.isString().toString());
+//        GWT.log(jsonValue1.isArray().toString());
+            GWT.log(jsonValue1.isObject().toString());
+
+        }
     }
 }

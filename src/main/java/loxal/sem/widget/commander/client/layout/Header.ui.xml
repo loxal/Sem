@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2011 Alexander Orlov <alexander.orlov@loxal.net>
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="default">
+
+    <ui:image field="logo" src="../../../public/img/logo-96.png"/>
+
+    <ui:style>
+        @sprite .logo {
+            gwt-image: "logo";
+            float: left;
+        }
+
+        .title {
+            font-size: 3em;
+            font-weight: bold;
+        }
+
+        .authInfo {
+            background: hsla(222, 66%, 66%, .2);
+            border: .1em solid hsla(222, 99%, 55%, .1);
+            border-radius: 0 1em 1em 0;
+            padding: .3em;
+            margin: .5em;
+            font-weight: bold;
+        }
+
+        .authInfo:hover {
+            background: hsla(222, 66%, 66%, .4);
+            border: .1em solid hsla(222, 99%, 55%, .9);
+        }
+
+        h1, h2, h3, dt, legend {
+            text-shadow: 0 1pt 2pt #555;
+        }
+
+        p {
+            text-align: justify;
+            text-indent: 1em;
+        }
+
+        .script {
+            display: none;
+        }
+
+        .sponsor {
+            border: 0;
+            width: 18.8em;
+            height: 5.9em;
+            float: right;
+            margin-top: -.4em;
+        }
+
+        .header {
+            background: hsla(222, 99%, 88%, .4);
+        }
+
+        .header-description {
+            color: hsla(222, 88%, 33%, .9);
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .title {
+            color: hsla(222, 88%, 33%, .9);
+            text-shadow: 3pt 3pt 3pt #555;
+        }
+
+        .meta-ctrl {
+            float: right;
+            margin-top: .1em;
+        }
+    </ui:style>
+
+    <g:DockLayoutPanel unit="EM">
+        <g:north size="9">
+            <g:AbsolutePanel ui:field="test" stylePrimaryName="{style.header}">
+                <g:Frame ui:field="script" url="/meta/extern/Google-Analytics.html"
+                         stylePrimaryName="{style.script}"/>
+                <g:Frame ui:field="sponsor" url="/meta/extern/Google-AdSense.html"
+                         stylePrimaryName="{style.sponsor}"/>
+                <g:Label stylePrimaryName="{style.logo}"/>
+                <g:Anchor href="/" title="Home" stylePrimaryName="{style.title}" text="Sem"/>
+                <g:Label stylePrimaryName="{style.header-description}" title="W2E/WDE &amp; WIDE"
+                         text="...my Web Workspace Environment">
+                    <ui:attribute name="text" description="...my Web Workspace Environment"/>
+                </g:Label>
+                <g:HorizontalPanel stylePrimaryName="{style.meta-ctrl}">
+                    <g:ListBox ui:field="localeSwitch"/>
+                    <g:Anchor ui:field="authenticationLink" stylePrimaryName="{style.authInfo}"/>
+                </g:HorizontalPanel>
+                <g:DecoratedPopupPanel ui:field="actionResult" autoHideEnabled="true" glassEnabled="true"
+                                       animationEnabled="true" title="Action Result" modal="true" visible="false"/>
+            </g:AbsolutePanel>
+        </g:north>
+    </g:DockLayoutPanel>
+
+</ui:UiBinder>
