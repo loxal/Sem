@@ -17,8 +17,8 @@
 package loxal.sem.widget.commander.client;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.logical.shared.SelectionEvent;
-import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.http.client.*;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
@@ -26,88 +26,86 @@ import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.cellview.client.CellTable;
-import com.google.gwt.user.cellview.client.PageSizePager;
-import com.google.gwt.user.cellview.client.SimplePager;
-import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.xhr.client.XMLHttpRequest;
 
 /**
- * Task UI logic
+ * Commander UI Logic
  */
-public class CmdP extends Composite {
+public class Commander extends Composite {
     @UiField
     TextBox name;
+    //    @UiField
+//    TextArea desc;
     @UiField
-    TextArea description;
-    @UiField
-    Button createTask;
-    @UiField
-    TextBox category;
-    @UiField
-    TextBox priority;
+    SubmitButton create;
     @UiField
     TabLayoutPanel tabPanel;
     @UiField
-    CellTable<Object> taskPager;
+    FormPanel cmdCreator;
     @UiField
-    VerticalPanel control;
+    VerticalPanel formContainer;
     @UiField
-    MenuBar menu;
-    @UiField
-    MenuItem taskItem;
-    @UiField
-    MenuItem deleteTask;
-    @UiField
-    VerticalPanel processTaskPanel;
-    @UiField
-    MenuItem closeTask;
-    @UiField
-    TextBox nameUpdate;
-    @UiField
-    TextBox categoryUpdate;
-    @UiField
-    TextBox priorityUpdate;
-    @UiField
-    TextArea descriptionUpdate;
-    @UiField
-    Button updateTask;
-    @UiField
-    Label taskId;
-    @UiField
-    Button showAllTasks;
-    @UiField
-    MenuItem placeholder;
-    @UiField
-    PageSizePager taskPageSizePager;
-    @UiField
-    SimplePager taskSimplePager;
+    VerticalPanel container;
 
-    interface Binder extends UiBinder<Widget, CmdP> {
+    interface Binder extends UiBinder<Widget, Commander> {
     }
 
-    public CmdP() {
+    public Commander() {
         Binder binder = GWT.create(Binder.class);
         initWidget(binder.createAndBindUi(this));
 
-        createTask.setAccessKey('C');
-        updateTask.setAccessKey('U');
-        tabPanel.selectTab(0);
+        XMLHttpRequest xmlHttpRequest;
+//        FormPanel cmdCreator = new FormPanel();
+        cmdCreator.setAction("http://localhost:8080/create");
+        cmdCreator.setMethod(FormPanel.METHOD_POST);
+        cmdCreator.setEncoding(FormPanel.ENCODING_URLENCODED);
+        SubmitButton submitButton = new SubmitButton("CLICK");
+        formContainer.add(submitButton);
+//        submitButton.addClickHandler(new ClickHandler() {
+//            @Override
+//            public void onClick(ClickEvent event) {
+//                cmdCreator.submit();
+//            }
+//        });
 
-        closeTask.setCommand(new Command() {
+        create.addClickHandler(new ClickHandler() {
             @Override
-            public void execute() {
-                tabPanel.selectTab(1);
+            public void onClick(ClickEvent event) {
+                cmdCreator.submit();
             }
         });
 
-        tabPanel.addSelectionHandler(new SelectionHandler<Integer>() {
-            @Override
-            public void onSelection(
-                    SelectionEvent<Integer> integerSelectionEvent) {
-            }
-        });
+//        xmlHttpRequest.open("PUT", "http://localhost:8080/create?name=gwtMUMMMM&desc=gwturl&restCall=gwtrest");
+//        xmlHttpRequest.open("GET", "http://localhost:8080/cmdList");
+//        GWT.log(xmlHttpRequest.getStatusText());
+//        GWT.log(xmlHttpRequest.getAllResponseHeaders());
+
+        create.setAccessKey('C');
+
+        final FormPanel formm = new FormPanel();
+        formm.setAction("http://localhost:8080/create");
+        formm.setEncoding(FormPanel.ENCODING_URLENCODED);
+        formm.setMethod(FormPanel.METHOD_POST);
+        VerticalPanel form = new VerticalPanel();
+        final TextBox textBox = new TextBox();
+        textBox.setName("name");
+        textBox.setValue("gwt");
+        form.add(textBox);
+        TextBox textBox1 = new TextBox();
+        textBox1.setName("restCall");
+        textBox1.setValue("call");
+        form.add(textBox1);
+        TextBox textBox2 = new TextBox();
+        textBox2.setName("desc");
+        textBox2.setValue("java");
+        form.add(textBox2);
+        SubmitButton s = new SubmitButton("CREATE");
+
+        form.add(s);
+        formm.add(form);
+
+        container.add(formm);
     }
 
     public static final String jsonUrl = "http://localhost:8080/cmdList?name=";
@@ -116,7 +114,6 @@ public class CmdP extends Composite {
         {
             String url = URL.encode(jsonUrl);
 
-            XMLHttpRequest xmlHttpRequest;
             // parse the response text into JSON
             JSONValue jsonValue = JSONParser.parseStrict("{\"blu\": \"blab\"}");
             JSONValue jsonValue1 = JSONParser.parseStrict("{\"blu\": \"blab\"}");

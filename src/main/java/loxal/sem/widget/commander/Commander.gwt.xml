@@ -18,21 +18,13 @@
 <!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.3//EN"
         "http://google-web-toolkit.googlecode.com/svn/releases/2.3/distro-source/core/src/gwt-module.dtd">
 
-<module rename-to="meta">
+<module rename-to="commander">
     <inherits name="com.google.gwt.user.User"/>
     <inherits name="com.google.gwt.uibinder.UiBinder"/>
     <inherits name="com.google.gwt.json.JSON"/>
 
-    <inherits name="com.google.gwt.i18n.I18N"/>
-    <extend-property name="locale" values="de"/>
-    <extend-property name="locale" values="ru"/>
-    <extend-property name="locale" values="zh"/>
+    <!--<inherits name="com.google.gwt.user.theme.standard.Standard"/>-->
 
-    <inherits name="com.google.gwt.user.theme.standard.Standard"/>
-
-    <stylesheet src="layout.css"/>
-    <stylesheet src="winter.css"/>
-
-    <entry-point class="loxal.sem.widget.commander.client.layout.Entry"/>
+    <entry-point class="loxal.sem.widget.commander.client.Entry"/>
     <set-configuration-property name="UiBinder.useSafeHtmlTemplates" value="true"/>
 </module>

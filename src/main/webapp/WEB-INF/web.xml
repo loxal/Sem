@@ -22,7 +22,7 @@
 
     <description>A Google App Engine Go / GWT Application</description>
     <display-name>loxal: Sem - Web Workspace Environment (W2E)</display-name>
-    <welcome-file-list>
-        <welcome-file>meta/index.html</welcome-file>
-    </welcome-file-list>
+    <!--<welcome-file-list>-->
+    <!--<welcome-file>meta/index.html</welcome-file>-->
+    <!--</welcome-file-list>-->
 </web-app>

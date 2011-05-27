@@ -19,28 +19,11 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
              xmlns:t="urn:import:loxal.sem.widget.commander.client"
-             xmlns:meta.layout="urn:import:loxal.sem.widget.commander.client.layout"
-             ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
-             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
-             ui:generateLocales="default">
+        >
 
     <g:DockLayoutPanel unit="EM">
-        <g:north size="7.9">
-            <meta.layout:Header ui:field="header"/>
-        </g:north>
         <g:center>
-            <g:TabLayoutPanel barHeight="25" ui:field="taskTab">
-                <g:tab>
-                    <g:header>
-                        <ui:msg>Task Management</ui:msg>
-                    </g:header>
-                    <t:CmdP ui:field="cmdP"/>
-                </g:tab>
-            </g:TabLayoutPanel>
+            <t:Commander ui:field="commander"></t:Commander>
         </g:center>
-
-        <g:south size="2">
-            <meta.layout:Footer ui:field="footer"/>
-        </g:south>
     </g:DockLayoutPanel>
 </ui:UiBinder>

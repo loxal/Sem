@@ -14,20 +14,26 @@
  * limitations under the License.
  */
 
-package loxal.sem.widget.commander.client.layout;
+package loxal.sem.widget.commander.client;
 
+import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class Footer extends Composite {
-    interface Binder extends UiBinder<Widget, Footer> {
+public class Entry implements EntryPoint {
+    interface Binder extends UiBinder<Widget, Entry> {
     }
 
-    private Footer() {
-        Binder binder = GWT.create(Binder.class);
-        initWidget(binder.createAndBindUi(this));
-    }
+    private Binder binder = GWT.create(Binder.class);
+    @UiField
+    Commander commander;
 
+    @Override
+    public void onModuleLoad() {
+        Widget app = binder.createAndBindUi(this);
+        RootLayoutPanel.get().add(app);
+    }
 }

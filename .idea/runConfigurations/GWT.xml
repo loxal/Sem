@@ -3,8 +3,8 @@
     <module name="client" />
     <option name="VM_PARAMETERS" value="-ea" />
     <option name="SHELL_PARAMETERS" value="-logLevel INFO " />
-    <option name="RUN_PAGE" value="/contact/index.html" />
-    <option name="GWT_MODULE" value="loxal.sem.service.contact.Contact" />
+    <option name="RUN_PAGE" value="/commander/index.html" />
+    <option name="GWT_MODULE" value="loxal.sem.widget.commander.Commander" />
     <option name="BROWSER" value="Safari" />
     <option name="UPDATE_RESOURCES_ON_FRAME_DEACTIVATION" value="true" />
     <RunnerSettings RunnerId="Debug">
