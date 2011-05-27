@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2011 Alexander Orlov <alexander.orlov@loxal.net>
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:c="urn:import:com.google.gwt.user.cellview.client"
+        >
+
+    <g:TabLayoutPanel barHeight="32" ui:field="tabPanel">
+        <g:tab>
+            <g:header>
+                <ui:msg>Create</ui:msg>
+            </g:header>
+            <g:VerticalPanel ui:field="container">
+
+
+                <g:FormPanel ui:field="cmdCreator" action="http://localhost:8080/create">
+                    <g:VerticalPanel ui:field="formContainer">
+                        <g:Label>
+                            <ui:msg>Name</ui:msg>
+                        </g:Label>
+                        <g:TextBox ui:field="name" text="MUST"/>
+                        <!--<g:Label>-->
+                            <!--<ui:msg>Description</ui:msg>-->
+                        <!--</g:Label>-->
+                        <!--<g:TextArea ui:field="desc" text="DESC"/>-->
+                        <g:SubmitButton ui:field="create" title="[Access Key: C]">
+                            <ui:attribute name="title" description="Access Key"/>
+                            <ui:msg>Create</ui:msg>
+                        </g:SubmitButton>
+                    </g:VerticalPanel>
+                </g:FormPanel>
+            </g:VerticalPanel>
+        </g:tab>
+    </g:TabLayoutPanel>
+</ui:UiBinder>

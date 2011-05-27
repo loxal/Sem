@@ -61,11 +61,11 @@ const mainHandler = "/main"
 var mainPresenter *template.Template
 
 func init() {
-mainPresenter = template.New(nil)
-mainPresenter.SetDelims("{{", "}}")
-if err := mainPresenter.ParseFile("main.html"); err != nil {
-    panic("can't parse: " + err.String())
-}
+	mainPresenter = template.New(nil)
+	mainPresenter.SetDelims("{{", "}}")
+	if err := mainPresenter.ParseFile("main.html"); err != nil {
+    		panic("can't parse: " + err.String())
+	}
 	http.HandleFunc(indexHandler, handleMain)
 	http.HandleFunc(mainHandler, handleMain)
 }

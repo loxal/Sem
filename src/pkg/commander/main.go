@@ -59,8 +59,8 @@ func loadPage(title string) (*page, os.Error) {
 }
 
 func hello(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
-	fmt.Fprint(w, "Hello, ...!\n")
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	fmt.Fprint(w, "<img src='http://golang.org/doc/logo-153x55.png' title='Gopher powered' alt='Gopher'/>")
 }
 
 func serveError(c appengine.Context, w http.ResponseWriter, err os.Error) {
@@ -315,7 +315,7 @@ createCmdPresenter.SetDelims("{%", "%}")
 if err := createCmdPresenter.ParseFile("cmdCreate.html"); err != nil {
     panic("can't parse: " + err.String())
 }
-	http.HandleFunc("/", cmd)
+	http.HandleFunc("/", hello)
 	http.HandleFunc("/cmdDelete", cmdDeletion)
 	http.HandleFunc("/update", cmdUpdation)
 	http.HandleFunc("/hello", hello)
