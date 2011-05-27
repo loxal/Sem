@@ -47,6 +47,10 @@ public class Commander extends Composite {
     VerticalPanel formContainer;
     @UiField
     VerticalPanel container;
+    @UiField
+    TextArea desc;
+    @UiField
+    TextBox restCall;
 
     interface Binder extends UiBinder<Widget, Commander> {
     }
@@ -56,26 +60,6 @@ public class Commander extends Composite {
         initWidget(binder.createAndBindUi(this));
 
         XMLHttpRequest xmlHttpRequest;
-//        FormPanel cmdCreator = new FormPanel();
-        cmdCreator.setAction("http://localhost:8080/create");
-        cmdCreator.setMethod(FormPanel.METHOD_POST);
-        cmdCreator.setEncoding(FormPanel.ENCODING_URLENCODED);
-        SubmitButton submitButton = new SubmitButton("CLICK");
-        formContainer.add(submitButton);
-//        submitButton.addClickHandler(new ClickHandler() {
-//            @Override
-//            public void onClick(ClickEvent event) {
-//                cmdCreator.submit();
-//            }
-//        });
-
-        create.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                cmdCreator.submit();
-            }
-        });
-
 //        xmlHttpRequest.open("PUT", "http://localhost:8080/create?name=gwtMUMMMM&desc=gwturl&restCall=gwtrest");
 //        xmlHttpRequest.open("GET", "http://localhost:8080/cmdList");
 //        GWT.log(xmlHttpRequest.getStatusText());
@@ -83,29 +67,10 @@ public class Commander extends Composite {
 
         create.setAccessKey('C');
 
-        final FormPanel formm = new FormPanel();
-        formm.setAction("http://localhost:8080/create");
-        formm.setEncoding(FormPanel.ENCODING_URLENCODED);
-        formm.setMethod(FormPanel.METHOD_POST);
-        VerticalPanel form = new VerticalPanel();
-        final TextBox textBox = new TextBox();
-        textBox.setName("name");
-        textBox.setValue("gwt");
-        form.add(textBox);
-        TextBox textBox1 = new TextBox();
-        textBox1.setName("restCall");
-        textBox1.setValue("call");
-        form.add(textBox1);
-        TextBox textBox2 = new TextBox();
-        textBox2.setName("desc");
-        textBox2.setValue("java");
-        form.add(textBox2);
-        SubmitButton s = new SubmitButton("CREATE");
+//        http://code.google.com/p/google-web-toolkit-doc-1-5/wiki/GettingStartedJSON
 
-        form.add(s);
-        formm.add(form);
-
-        container.add(formm);
+//
+//        container.add(formm);
     }
 
     public static final String jsonUrl = "http://localhost:8080/cmdList?name=";
