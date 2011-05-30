@@ -59,10 +59,10 @@ func loadPage(title string) (*page, os.Error) {
 	return &page{Title1: title, Body1: "test"}, nil
 }
 
-func hello(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	http.Redirect(w, r, "/index", http.StatusFound)
-}
+//func hello(w http.ResponseWriter, r *http.Request) {
+//	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+//	http.Redirect(w, r, "/index", http.StatusFound)
+//}
 
 func serveError(c appengine.Context, w http.ResponseWriter, err os.Error) {
 	w.WriteHeader(http.StatusInternalServerError)
@@ -329,10 +329,10 @@ func init() {
 	if err := createCmdPresenter.ParseFile("cmdCreate.html"); err != nil {
 		panic("can't parse: " + err.String())
 	}
-	http.HandleFunc("/", hello)
+//	http.HandleFunc("/", hello)
 	http.HandleFunc("/cmdDelete", cmdDeletion)
 	http.HandleFunc("/update", cmdUpdation)
-	http.HandleFunc("/hello", hello)
+//	http.HandleFunc("/hello", hello)
 	http.HandleFunc(cmdCreateHandler, cmdCreation)
 	http.HandleFunc(cmdListHandler, cmdListingHtml)
 	http.HandleFunc(cmdListHandler + ".json", cmdListingJson)

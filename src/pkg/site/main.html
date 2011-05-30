@@ -85,18 +85,19 @@
             //            xmlhttp.open("GET", "http://localhost:8080/cmdList?json=true", true);
             //            xmlhttp.send();
 
-            var req = new XMLHttpRequest();
-            req.open('GET', 'http://localhost:8080/cmdList?json=true', false);
-            //req.open('GET', 'http://www.google.com', false);
-            req.onreadystatechange = function (aEvt) {
-//  if (req.readyState == 4) {
-//     if(req.status == 200)
-                alert(req.responseText);
+            var xhr = new XMLHttpRequest();
+            //            xhr.open('GET', 'http://localhost:8080/cmdList?json=true', false);
+            xhr.open('GET', 'http://localhost:8080/cmdList.json', false);
+            //xhr.open('GET', 'http://www.google.com', false);
+            xhr.onreadystatechange = function (aEvt) {
+//  if (xhr.readyState == 4) {
+//     if(xhr.status == 200)
+                document.writeln(xhr.responseText);
 //     else
 //      alert("Error loading page\n");
 //  }
             };
-            req.send(null);
+            xhr.send(null);
         </script>
 </div>
 

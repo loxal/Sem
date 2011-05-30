@@ -5,7 +5,7 @@
 package site
 
 import (
-	"fmt"
+//	"fmt"
 	"http"
 	"io"
 	"io/ioutil"
@@ -16,9 +16,15 @@ import (
 	"appengine"
 )
 
+//func hello(w http.ResponseWriter, r *http.Request) {
+//	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+//	fmt.Fprint(w, "Hello, ...!\n")
+//}
+
 func hello(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
-	fmt.Fprint(w, "Hello, ...!\n")
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+//	fmt.Print(w, "Hello, ...!\n")
+	http.Redirect(w, r, "/index", http.StatusFound)
 }
 
 func serveError(c appengine.Context, w http.ResponseWriter, err os.Error) {
@@ -47,7 +53,9 @@ func handleMain(w http.ResponseWriter, r *http.Request) {
 	var site Site
 	json.Unmarshal([]byte(content), &site)
     w.Header().Set("Content-Type", "text/html")
-//    mainPresenter.ParseFile("main.html") // Auto-reload / refresh in dev mode
+    mainPresenter = template.New(nil)
+	mainPresenter.SetDelims("{{", "}}")
+    mainPresenter.ParseFile("main.html") // Auto-reload / refresh in dev mode
     if err := mainPresenter.Execute(w, &site); err != nil {
     }
 }
@@ -65,4 +73,5 @@ func init() {
 	}
 	http.HandleFunc(indexHandler, handleMain)
 	http.HandleFunc(mainHandler, handleMain)
+	http.HandleFunc("/", handleMain)
 }
