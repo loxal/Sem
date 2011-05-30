@@ -153,32 +153,37 @@ func cmdHasInvalidCharacters(name string) (ok bool) {
     return
 }
 
-func cmdListing(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "GET" || r.URL.Path != cmdListHandler {
+func cmdListing(w http.ResponseWriter, r *http.Request) (cmds []*Cmd) {
+	if r.Method != "GET" {
 		serve404(w)
 		return
 	}
-
 	c := appengine.NewContext(r)
-	var cmds []*Cmd
 	if _, err := datastore.NewQuery("Cmd").GetAll(c, &cmds); err != nil {
 		serveError(c, w, err)
 		return
 	}
 
-	if r.FormValue("json") == "true" {
+	return cmds
+}
+
+func cmdListingHtml(w http.ResponseWriter, r *http.Request) {
+        cmds := cmdListing(w, r)
+
+		w.Header().Set("Content-Type", "text/html")
+		if err := createCmdPresenter.Execute(w, cmds); err != nil {
+			fmt.Println("%v", err)
+		}
+}
+
+func cmdListingJson(w http.ResponseWriter, r *http.Request) {
+        cmds := cmdListing(w, r)
+
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		for i := range cmds {
 			cmdJSONed, _ := json.Marshal(cmds[i])
 			fmt.Fprintln(w, string(cmdJSONed))
 		}
-	} else {
-		w.Header().Set("Content-Type", "text/html")
-		if err := createCmdPresenter.Execute(w, cmds); err != nil {
-			c.Logf("%v", err)
-		}
-	}
-
 }
 
 //func exec(url *http.URL) {
@@ -329,7 +334,8 @@ func init() {
 	http.HandleFunc("/update", cmdUpdation)
 	http.HandleFunc("/hello", hello)
 	http.HandleFunc(cmdCreateHandler, cmdCreation)
-	http.HandleFunc(cmdListHandler, cmdListing)
+	http.HandleFunc(cmdListHandler, cmdListingHtml)
+	http.HandleFunc(cmdListHandler + ".json", cmdListingJson)
 	http.HandleFunc("/count", count)
 	http.HandleFunc("/cmd", cmd)
 	//		http.HandleFunc("/exec", exec)
