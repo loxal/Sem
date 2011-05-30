@@ -5,47 +5,35 @@
 package site
 
 import (
-//	"fmt"
+    "fmt"
 	"http"
 	"io"
 	"io/ioutil"
 	"json"
 	"os"
 	"template"
-
-	"appengine"
 )
 
-//func hello(w http.ResponseWriter, r *http.Request) {
-//	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
-//	fmt.Fprint(w, "Hello, ...!\n")
-//}
+const plainTxtEnc = "text/plain; charset=utf-8"
 
-func hello(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-//	fmt.Print(w, "Hello, ...!\n")
-	http.Redirect(w, r, "/index", http.StatusFound)
-}
-
-func serveError(c appengine.Context, w http.ResponseWriter, err os.Error) {
+func serveError(w http.ResponseWriter, err os.Error) {
 	w.WriteHeader(http.StatusInternalServerError)
-	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+	w.Header().Set("Content-Type", plainTxtEnc)
 	io.WriteString(w, "Internal Server Error")
-	c.Logf("%v", err)
+	fmt.Fprintln(w, "%v", err)
 }
 
 func serve404(w http.ResponseWriter) {
 	w.WriteHeader(http.StatusNotFound)
-	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+	w.Header().Set("Content-Type", plainTxtEnc)
 	io.WriteString(w, "Not Found")
 }
 
 func handleMain(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "GET" || r.URL.Path != indexHandler {
+	if r.Method != "GET" {
 		serve404(w)
 		return
 	}
-
     type Site struct {
 		Author, Copyright, Title, TitleDesc, Mail, Year string
 	}
@@ -55,23 +43,20 @@ func handleMain(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "text/html")
     mainPresenter = template.New(nil)
 	mainPresenter.SetDelims("{{", "}}")
-    mainPresenter.ParseFile("main.html") // Auto-reload / refresh in dev mode
+    mainPresenter.ParseFile(mainPresenterSite) // Auto-reload / refresh in dev mode
     if err := mainPresenter.Execute(w, &site); err != nil {
     }
 }
 
-const indexHandler = "/index"
-const mainHandler = "/main"
-
+const indexHandler = "/"
+const mainPresenterSite = "main.html"
 var mainPresenter *template.Template
 
 func init() {
 	mainPresenter = template.New(nil)
 	mainPresenter.SetDelims("{{", "}}")
-	if err := mainPresenter.ParseFile("main.html"); err != nil {
+	if err := mainPresenter.ParseFile(mainPresenterSite); err != nil {
     		panic("can't parse: " + err.String())
 	}
 	http.HandleFunc(indexHandler, handleMain)
-	http.HandleFunc(mainHandler, handleMain)
-	http.HandleFunc("/", handleMain)
 }
