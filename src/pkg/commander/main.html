@@ -43,32 +43,32 @@
         <th>Updated</th>
         <th>Delete</th>
     </tr>
-    {%.repeated section @ %}
+    {{.repeated section @ }}
     <tr>
         <td>
-            {%.section Name%}<a href="javascript:edit('{% @ %}');">{% @ %}</a>
+            {{.section Name}}<a href="javascript:edit('{{ @ }}');">{{ @ }}</a>
 
-            <form action="/update" method="post" style="display: none;" id="edit-form-{% @ %}">
+            <form action="/update" method="post" style="display: none;" id="edit-form-{{ @ }}">
                 <fieldset>
                     <legend>Command</legend>
                     <label for="edit-name">Name</label>
-                    <input name="edit-name" id="edit-name" type="text" value="{% Name %}" readonly/>
+                    <input name="edit-name" id="edit-name" type="text" value="{{ Name }}" readonly/>
                     <label for="edit-restCall">Shortcut</label>
-                    <input name="edit-restCall" id="edit-restCall" type="text" value="{% RESTcall %}"/>
+                    <input name="edit-restCall" id="edit-restCall" type="text" value="{{ RESTcall }}"/>
                     <label for="edit-desc">Description</label>
-                    <input name="edit-desc" id="edit-desc" type="text" value="{% Desc %}"/>
-                    <input type="submit" onclick="hide('{% @ %}')" value="Update">
+                    <input name="edit-desc" id="edit-desc" type="text" value="{{ Desc }}"/>
+                    <input type="submit" onclick="hide('{{ @ }}')" value="Update">
                 </fieldset>
             </form>
-            {%.or%}no name available{%.end%}
+            {{.or}}no name available{{.end}}
         </td>
-        <td>{%.section RESTcall%}{%@|html%}{%.or%}no RESTcall available{%.end%}</td>
-        <td>{%.section Desc%}{%@|html%}{%.or%}no description availabile{%.end%}</td>
-        <td>{%Creator%}</td>
-        <td>{%User%}</td>
-        <td>{%Created%}</td>
-        <td>{%Updated%}</td>
-        <td><a href="http://localhost:8080/cmdDelete?name={% Name %}">X</a></td>
+        <td>{{.section RESTcall}}{{@|html}}{{.or}}no RESTcall available{{.end}}</td>
+        <td>{{.section Desc}}{{@|html}}{{.or}}no description availabile{{.end}}</td>
+        <td>{{Creator}}</td>
+        <td>{{User}}</td>
+        <td>{{Created}}</td>
+        <td>{{Updated}}</td>
+        <td><a href="http://localhost:8080/cmdDelete?name={{ Name }}">X</a></td>
     </tr>
-    {%.end%}
+    {{.end}}
 </table>

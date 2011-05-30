@@ -69,20 +69,11 @@
     <p>This is a proof-of-concept app to show how to write RESTful GWT frontends for RESTful Go@GAE backends.
         <script>
             //            XMLHttpRequest.op // TODO make an XHR to retrieve the Command List and save it as JSON
-            //            xmlhttp.open("GET", "http://localhost:8080/cmdList?json=true", true);
-            //            xmlhttp.send();
 
             var xhr = new XMLHttpRequest();
-            //            xhr.open('GET', 'http://localhost:8080/cmdList?json=true', false);
-            xhr.open('GET', 'http://localhost:8080/cmdList.json', false);
-            //xhr.open('GET', 'http://www.google.com', false);
-            xhr.onreadystatechange = function (aEvt) {
-//  if (xhr.readyState == 4) {
-//     if(xhr.status == 200)
+            xhr.open('GET', location.href + 'cmdList.json', false);
+            xhr.onreadystatechange = function (evt) {
                 document.writeln(xhr.responseText);
-//     else
-//      alert("Error loading page\n");
-//  }
             };
             xhr.send(null);
         </script>
