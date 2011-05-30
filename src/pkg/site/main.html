@@ -1,3 +1,19 @@
+<!--
+  ~ Copyright 2011 Alexander Orlov <alexander.orlov@loxal.net>
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="keywords" content="{{ Title }}, {{ Author }}">
@@ -8,27 +24,27 @@
 <link rel="stylesheet" href="/static/winter.css" type="text/css">
 <title>Home | {{ Title }}</title>
 
-<!--&lt;!&ndash;[if IE]>-->
-<!--<meta http-equiv="X-UA-Compatible" content="chrome=1">-->
-<!--<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>-->
-<!--<div id="CFInstall" style="border: 9px #111 dashed;">This site is using web application technology standards like HTML5-->
-<!--which <strong>Internet Explorer does not support</strong>. To use these technologies within Internet Explorer please accept-->
-<!--the pop-up window above to get Google Chrome Frame installed!</div>-->
-<!--<script>-->
-<!--CFInstall.check({-->
-<!--node: "CFInstall",-->
-<!--mode: "popup"-->
-<!--});-->
-<!--</script>-->
-<!--<![endif]&ndash;&gt;-->
+<script>
+    // Google Analytics
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-7363751-1']);
+    _gaq.push(['_setDomainName', '.loxal.net']);
+    _gaq.push(['_setAllowHash', 'false']);
+    _gaq.push(['_trackPageview']);
 
-<!--{? properties.analytics }}-->
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
 
 <div id="header">
-    <!--<div id="sponsor">{? properties.sponsor }}</div>-->
     <div id="header-title">
-        <!--<img id="logo" src="{? properties.res_dir }}/logo.png" alt="Site Logo"-->
-             <!--title="{{ Title }} Logo"/>-->
+        <img id="logo" src="/static/logo.png" alt="Logo" title="{{ Title }} Logo"/>
         <a href="/" id="title" title="Home">{{ Title }}</a>
 
         <div id="header-description">
@@ -36,19 +52,10 @@
         </div>
     </div>
     <div id="meta-ctrl">
-        <!--{! ifequal users.get_current_user user %}-->
-        <!--<a class="linkBox" href="{? req_url|create_url_auth|escape }}"-->
-           <!--title="Google account required">Login</a>-->
-        <!--{! else %}-->
-        <!--<a class="linkBox" href="{? req_url|create_url_auth|escape }}"-->
-           <!--title="Authentication powered by Google">Logout:</a>-->
-        <!--{? user }}-->
-        <!--{! endifequal %}-->
     </div>
 </div>
 
 <div id="sidebar">
-    <!--{? properties.search }}-->
     <div id="index">
         <ul class="nav">
             <li><a href="/" title="Start and website entry point">
@@ -60,34 +67,27 @@
         <h1>Services</h1>
         <ul class="nav">
             <li>
-                <a href="/service/my-browser.html"
-                   title="...properties and environment settings of your browser.">My
-                    Browser</a>
+                <a href="/static/client/commander.html"
+                   title="Map key combinations (shortcuts) to web requests">Shell (GWT frontend)</a>
             <li>
-                <a href="/service/symbol-lister.html" title="Lists certain symbols and their entity codes.">Symbol
-                    Lister</a>
-            <li>
-                <a href="/service/transliterator.html"
-                   title="Transcribes latin into Russian (cyrillic alphabet) letters on the fly as you type them">Transliteration</a>
-            <li>
-                <!--<a href="/service/web-commander"-->
                 <a href="/cmdList"
                    title="Map key combinations (shortcuts) to web requests">Shell</a>
         </ul>
     </div>
-    <script src="{? properties.res_dir }}/mashup-module/sol-network-links.js"></script>
 </div>
 
 <div id="main">
-    {{# main page content #}}
+    <h1>Prototype App</h1>
+
+    <p>This is a proof-of-concept app to show how to write RESTful GWT frontends for RESTful Go@GAE backends.
 </div>
 
 <div id="footer">
     <p>
         <span>
-            Powered by <a href="http://dev.loxal.net"
+            Powered by <a href="http://github.com/loxal"
                           title="Sem - Google App Engine Content Management System">
-            Sem <abbr title="Google App Engine">GAE</abbr> Service Framework</a>
+            Sem <a href="http://golang.org">Go</a>@<abbr title="Google App Engine">GAE</abbr> Service Framework</a>
         </span>
         <span style="float: right;">
             &copy; {{ Year }} {{ Copyright }}

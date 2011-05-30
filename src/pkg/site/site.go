@@ -12,7 +12,6 @@ import (
 	"json"
 	"os"
 	"template"
-	"time"
 
 	"appengine"
 )
@@ -44,8 +43,6 @@ func handleMain(w http.ResponseWriter, r *http.Request) {
     type Site struct {
 		Author, Copyright, Title, TitleDesc, Mail, Year string
 	}
-	Year := time.LocalTime().Year
-	fmt.Println(Year)
 	content, _ := ioutil.ReadFile("./site_properties.json")
 	var site Site
 	json.Unmarshal([]byte(content), &site)

@@ -2,7 +2,7 @@
   <configuration default="false" name="GWT" type="GWT.ConfigurationType" factoryName="GWT Configuration">
     <module name="client" />
     <option name="VM_PARAMETERS" value="-ea" />
-    <option name="SHELL_PARAMETERS" value="-logLevel INFO " />
+    <option name="SHELL_PARAMETERS" value="-logLevel INFO -port 8889 -codeServerPort 9998" />
     <option name="RUN_PAGE" value="/commander/index.html" />
     <option name="GWT_MODULE" value="loxal.sem.widget.commander.Commander" />
     <option name="BROWSER" value="Safari" />

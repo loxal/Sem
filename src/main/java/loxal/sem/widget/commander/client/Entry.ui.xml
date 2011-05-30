@@ -23,7 +23,7 @@
 
     <g:DockLayoutPanel unit="EM">
         <g:center>
-            <t:Commander ui:field="commander"></t:Commander>
+            <t:Commander ui:field="commander"/>
         </g:center>
     </g:DockLayoutPanel>
 </ui:UiBinder>

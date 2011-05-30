@@ -61,7 +61,7 @@ func loadPage(title string) (*page, os.Error) {
 
 func hello(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	fmt.Fprint(w, "<img src='http://golang.org/doc/logo-153x55.png' title='Gopher powered' alt='Gopher'/>")
+	http.Redirect(w, r, "/index", http.StatusFound)
 }
 
 func serveError(c appengine.Context, w http.ResponseWriter, err os.Error) {
@@ -170,7 +170,7 @@ func cmdListing(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		for i := range cmds {
 			cmdJSONed, _ := json.Marshal(cmds[i])
-			fmt.Fprintln(w, i, string(cmdJSONed))
+			fmt.Fprintln(w, string(cmdJSONed))
 		}
 	} else {
 		w.Header().Set("Content-Type", "text/html")
@@ -196,7 +196,8 @@ func exec(cmd string) (restCall string) {
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {
-	c := appengine.NewContext(r)
+     var _ = flag1.PrintDefaults // delete before submitting
+	    c := appengine.NewContext(r)
 	//    c.Logf("r.URL.Path: " + r.URL.Path)
 	//    c.Logf("r.URL.RawQuery: " + r.URL.RawQuery)
 	//     c.Logf("m[r.URL.RawQuery]" + m[r.URL.RawQuery])
@@ -244,7 +245,7 @@ func cmd(w http.ResponseWriter, r *http.Request) {
 	//	flag1.StringVar(desc, "desc", "myValue", "desc")
 	//	flag1.Parse()
 	//	var _ = fmt.Printf // delete before submitting
-	var _ = flag1.PrintDefaults // delete before submitting
+
 
 	//	fmt.Fprintln(w, "name ", *name)
 	//	fmt.Fprintln(w, "desc", *desc)
