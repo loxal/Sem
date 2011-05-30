@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 // The entry package for the GAE environment
-package main
+package commander
 
 import (
 	"fmt"
@@ -326,7 +326,7 @@ func Double(i int) int {
 func init() {
 	createCmdPresenter = template.New(nil)
 	createCmdPresenter.SetDelims("{%", "%}")
-	if err := createCmdPresenter.ParseFile("cmdCreate.html"); err != nil {
+	if err := createCmdPresenter.ParseFile("src/pkg/commander/main.html"); err != nil {
 		panic("can't parse: " + err.String())
 	}
 //	http.HandleFunc("/", hello)

@@ -1,3 +1,9 @@
+<!--
+  ~ Copyright 2011 Alexander Orlov <alexander.orlov@loxal.net>. All rights reserved.
+  ~ Use of this source code is governed by a BSD-style
+  ~ license that can be found in the LICENSE file.
+  -->
+
 <!DOCTYPE html>
 
 <style>
@@ -41,18 +47,19 @@
     <tr>
         <td>
             {%.section Name%}<a href="javascript:edit('{% @ %}');">{% @ %}</a>
-                <form action="/update" method="post" style="display: none;" id="edit-form-{% @ %}">
-                    <fieldset>
-                        <legend>Command</legend>
-                        <label for="edit-name">Name</label>
-                        <input name="edit-name" id="edit-name" type="text" value="{% Name %}" readonly/>
-                        <label for="edit-restCall">Shortcut</label>
-                        <input name="edit-restCall" id="edit-restCall" type="text" value="{% RESTcall %}"/>
-                        <label for="edit-desc">Description</label>
-                        <input name="edit-desc" id="edit-desc" type="text" value="{% Desc %}"/>
-                        <input type="submit" onclick="hide('{% @ %}')" value="Update">
-                    </fieldset>
-                </form>
+
+            <form action="/update" method="post" style="display: none;" id="edit-form-{% @ %}">
+                <fieldset>
+                    <legend>Command</legend>
+                    <label for="edit-name">Name</label>
+                    <input name="edit-name" id="edit-name" type="text" value="{% Name %}" readonly/>
+                    <label for="edit-restCall">Shortcut</label>
+                    <input name="edit-restCall" id="edit-restCall" type="text" value="{% RESTcall %}"/>
+                    <label for="edit-desc">Description</label>
+                    <input name="edit-desc" id="edit-desc" type="text" value="{% Desc %}"/>
+                    <input type="submit" onclick="hide('{% @ %}')" value="Update">
+                </fieldset>
+            </form>
             {%.or%}no name available{%.end%}
         </td>
         <td>{%.section RESTcall%}{%@|html%}{%.or%}no RESTcall available{%.end%}</td>

@@ -14,8 +14,6 @@ import (
 	"template"
 )
 
-const plainTxtEnc = "text/plain; charset=utf-8"
-
 func serveError(w http.ResponseWriter, err os.Error) {
 	w.WriteHeader(http.StatusInternalServerError)
 	w.Header().Set("Content-Type", plainTxtEnc)
@@ -31,6 +29,7 @@ func serve404(w http.ResponseWriter) {
 
 func handleMain(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
+	    panic("TESTING 'panic'")
 		serve404(w)
 		return
 	}
@@ -41,22 +40,25 @@ func handleMain(w http.ResponseWriter, r *http.Request) {
 	var site Site
 	json.Unmarshal([]byte(content), &site)
     w.Header().Set("Content-Type", "text/html")
-    mainPresenter = template.New(nil)
-	mainPresenter.SetDelims("{{", "}}")
-    mainPresenter.ParseFile(mainPresenterSite) // Auto-reload / refresh in dev mode
+    reloadMainPresenterTemplate(); // Auto-reload / refresh in dev mode
     if err := mainPresenter.Execute(w, &site); err != nil {
     }
 }
 
+func reloadMainPresenterTemplate() {
+    mainPresenter = template.New(nil)
+	mainPresenter.SetDelims("{{", "}}")
+    	if err := mainPresenter.ParseFile(mainPresenterSite); err != nil {
+    		panic("can't parse: " + err.String())
+	}
+}
+
 const indexHandler = "/"
-const mainPresenterSite = "main.html"
+const plainTxtEnc = "text/plain; charset=utf-8"
+const mainPresenterSite = "src/pkg/site/main.html"
 var mainPresenter *template.Template
 
 func init() {
-	mainPresenter = template.New(nil)
-	mainPresenter.SetDelims("{{", "}}")
-	if err := mainPresenter.ParseFile(mainPresenterSite); err != nil {
-    		panic("can't parse: " + err.String())
-	}
 	http.HandleFunc(indexHandler, handleMain)
+    reloadMainPresenterTemplate()
 }
