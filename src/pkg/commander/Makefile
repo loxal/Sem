@@ -1,7 +1,7 @@
 include $(GOROOT)/src/Make.inc
 
-TARG=main
+TARG=commander
 GOFILES=\
-	main.go\
+	commander.go\
 
 include $(GOROOT)/src/Make.pkg

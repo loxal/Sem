@@ -16,7 +16,7 @@ import (
 	"time"
 	"json"
 
-	"flag1" // to parse r.URL.Raw
+	"src/pkg/flag_my" // to parse r.URL.Raw
 
 	"appengine"
 	"appengine/datastore"
