@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2011 Alexander Orlov <alexander.orlov@loxal.net>
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:task.tasksolver="urn:import:loxal.sem.service.meta.client.tasksolver"
+             xmlns:meta.layout="urn:import:loxal.sem.service.meta.client.meta.layout"
+             ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="default">
+
+    <g:DockLayoutPanel unit="EM">
+        <g:north size="7.9">
+            <meta.layout:Header ui:field="header"/>
+        </g:north>
+        <g:center>
+            <g:TabLayoutPanel barHeight="25" ui:field="taskTab">
+                <g:tab>
+                    <g:header>
+                        <ui:msg>Task Management</ui:msg>
+                    </g:header>
+                    <task.tasksolver:TaskMgmt ui:field="taskMgmt"/>
+                </g:tab>
+            </g:TabLayoutPanel>
+        </g:center>
+
+        <g:south size="2">
+            <meta.layout:Footer ui:field="footer"/>
+        </g:south>
+    </g:DockLayoutPanel>
+</ui:UiBinder>

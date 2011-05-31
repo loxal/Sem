@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messagebundle>
+    <msg name="gadget_title">Lox Demo</msg>
+    <msg name="gadget_description">Lox proof-of-concept project.</msg>
+    <msg name="gadget_thumbnail">http://res.loxal.net/meta/img/logo.png</msg>
+    <msg name="gadget_screenshot">http://res.loxal.net/meta/img/logo.png</msg>
+</messagebundle>
