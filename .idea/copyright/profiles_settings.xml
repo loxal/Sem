@@ -2,6 +2,7 @@
   <settings default="Loxal - BSD">
     <module2copyright>
       <element module="Project Files" copyright="Loxal - BSD" />
+      <element module="GWT" copyright="Loxal - Apache License V2" />
     </module2copyright>
   </settings>
 </component>
