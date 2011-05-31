@@ -24,7 +24,6 @@
       </facet-type>
       <facet-type id="gwt">
         <modules>
-          <module name="app" />
           <module name="client" />
         </modules>
       </facet-type>
@@ -50,7 +49,6 @@
       </facet-type>
       <facet-type id="web">
         <modules>
-          <module name="app" />
           <module name="client" />
         </modules>
       </facet-type>
