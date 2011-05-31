@@ -15,8 +15,8 @@ handlers:
   static_files: static/robots.txt
   upload: static/robots.txt
 - url: /client/(.*)
-  static_files: static/target/Sem/\1
-  upload: static/target/Sem/.*
+  static_files: static/client/\1
+  upload: static/client/.*
 - url: /.*
   script: _go_app
 #  login: required

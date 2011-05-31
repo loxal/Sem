@@ -60,15 +60,11 @@ public class Commander extends Composite {
 //
 //        container.add(formm);
 
-
         RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET, "/cmd/list.json");
-//        RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET, "http://127.0.0.1:8889/commander/index.html?gwt.codesvr=127.0.0.1:9998");
         try {
             Request request = requestBuilder.sendRequest(null, new RequestCallback() {
                 @Override
                 public void onResponseReceived(Request request, Response response) {
-                    GWT.log(response.getStatusText());
-                    GWT.log(String.valueOf(response.getStatusCode()));
                     GWT.log(response.getText());
                 }
 
@@ -90,7 +86,7 @@ public class Commander extends Composite {
 
     }
 
-    public static final String jsonUrl = "http://localhost:8080/cmdList?json=true";
+    public static final String jsonUrl = "http://localhost:8080/cmd/list.json";
     public static final String jsonUrl1 = GWT.getModuleBaseURL() + "cmdList?name=";
     public static final String jsonUrl2 = GWT.getHostPageBaseURL() + "cmdList?name=";
 
