@@ -5,13 +5,11 @@
   -->
 
 <!DOCTYPE html>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="keywords" content="{{ Title }}, {{ Author }}">
-<meta name="description"
-      content="{{ Title }} {{ TitleDesc }}">
+<meta name="description" content="{{ Title }} {{ TitleDesc }}">
 <meta name="author" content="{{ Author }}">
-<meta name="generator" content="Sem GAE Service Framework: http://dev.loxal.net">
-<link rel="stylesheet" href="/static/winter.css" type="text/css">
+<link rel="stylesheet" href="/static/theme/winter.css" type="text/css">
 <title>Home | {{ Title }}</title>
 
 <script>
@@ -34,7 +32,7 @@
 
 <div id="header">
     <div id="header-title">
-        <img id="logo" src="/static/logo.png" alt="Logo" title="{{ Title }} Logo"/>
+        <img id="logo" src="/static/theme/logo.png" alt="Logo" title="{{ Title }} Logo"/>
         <a href="/" id="title" title="Home">{{ Title }}</a>
 
         <div id="header-description">
@@ -57,8 +55,7 @@
         <h1>Services</h1>
         <ul class="nav">
             <li>
-                <a href="/cmdList"
-                   title="Map key combinations (shortcuts) to web requests">Shell</a>
+                <a href="/cmd/list" title="Map key combinations (shortcuts) to web requests">Shell</a>
         </ul>
     </div>
 </div>
@@ -69,9 +66,8 @@
     <p>This is a proof-of-concept app to show how to write RESTful GWT frontends for RESTful Go@GAE backends.
         <script>
             //            XMLHttpRequest.op // TODO make an XHR to retrieve the Command List and save it as JSON
-
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', location.href + 'cmdList.json', false);
+            xhr.open('GET', '/cmd/list.json', false);
             xhr.onreadystatechange = function (evt) {
                 document.writeln(xhr.responseText);
             };

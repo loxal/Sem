@@ -310,7 +310,7 @@ func cmdUpdate(cmd *Cmd, c appengine.Context) (ok bool, err os.Error) {
 }
 
 const cmdCreateHandler = "/create"
-const cmdListHandler = "/cmdList"
+const cmdListHandler = "/cmd/list"
 
 var createCmdPresenter *template.Template
 

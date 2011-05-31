@@ -36,11 +36,11 @@ func handleMain(w http.ResponseWriter, r *http.Request) {
     type Site struct {
 		Author, Copyright, Title, TitleDesc, Mail, Year string
 	}
-	content, _ := ioutil.ReadFile("./site_properties.json")
+	content, _ := ioutil.ReadFile("src/pkg/site/properties.json")
 	var site Site
 	json.Unmarshal([]byte(content), &site)
     w.Header().Set("Content-Type", "text/html")
-    reloadMainPresenterTemplate(); // Auto-reload / refresh in dev mode
+    reloadMainPresenterTemplate(); // auto-reload / refresh in dev mode
     if err := mainPresenter.Execute(w, &site); err != nil {
     }
 }
@@ -59,6 +59,6 @@ const mainPresenterSite = "src/pkg/site/main.html"
 var mainPresenter *template.Template
 
 func init() {
-	http.HandleFunc(indexHandler, handleMain)
     reloadMainPresenterTemplate()
+	http.HandleFunc(indexHandler, handleMain)
 }
