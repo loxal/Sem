@@ -175,10 +175,13 @@ func cmdListingJson(w http.ResponseWriter, r *http.Request) {
         cmds := cmdListing(w, r)
 
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
+		fmt.Fprintln(w, "{\"cmds\": [")
 		for i := range cmds {
 			cmdJSONed, _ := json.Marshal(cmds[i])
-			fmt.Fprintln(w, string(cmdJSONed))
+			fmt.Fprint(w, string(cmdJSONed))
+            fmt.Fprintln(w, ",")
 		}
+		fmt.Fprintln(w, "]}")
 }
 
 //func exec(url *http.URL) {
@@ -309,7 +312,9 @@ func cmdUpdate(cmd *Cmd, c appengine.Context) (ok bool, err os.Error) {
 	return false, os.NewError("exists")
 }
 
-const cmdCreateHandler = "/create"
+const cmdUpdateHandler = "/cmd/update"
+const cmdDeleteHandler = "/cmd/delete"
+const cmdCreateHandler = "/cmd/create"
 const cmdListHandler = "/cmd/list"
 
 var createCmdPresenter *template.Template
@@ -324,8 +329,8 @@ func init() {
 	if err := createCmdPresenter.ParseFile("src/pkg/commander/main.html"); err != nil {
 		panic("can't parse: " + err.String())
 	}
-	http.HandleFunc("/cmdDelete", cmdDeletion)
-	http.HandleFunc("/update", cmdUpdation)
+	http.HandleFunc(cmdDeleteHandler, cmdDeletion)
+	http.HandleFunc(cmdUpdateHandler, cmdUpdation)
 	http.HandleFunc(cmdCreateHandler, cmdCreation)
 	http.HandleFunc(cmdListHandler, cmdListingHtml)
 	http.HandleFunc(cmdListHandler + ".json", cmdListingJson)

@@ -10,7 +10,6 @@
     label, input {
         display: block;
     }
-
 </style>
 
 <script>
@@ -19,7 +18,7 @@
     }
 </script>
 
-<form action="/create" method="post">
+<form action="/cmd/create" method="post">
     <fieldset>
         <legend>Command</legend>
         <label for="name">Name</label>
@@ -48,7 +47,7 @@
         <td>
             {{.section Name}}<a href="javascript:edit('{{ @ }}');">{{ @ }}</a>
 
-            <form action="/update" method="post" style="display: none;" id="edit-form-{{ @ }}">
+            <form action="/cmd/update" method="post" style="display: none;" id="edit-form-{{ @ }}">
                 <fieldset>
                     <legend>Command</legend>
                     <label for="edit-name">Name</label>
@@ -68,7 +67,7 @@
         <td>{{User}}</td>
         <td>{{Created}}</td>
         <td>{{Updated}}</td>
-        <td><a href="http://localhost:8080/cmdDelete?name={{ Name }}">X</a></td>
+        <td><a href="/cmd/delete?name={{ Name }}">X</a></td>
     </tr>
     {{.end}}
 </table>
