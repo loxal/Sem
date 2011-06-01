@@ -18,4 +18,4 @@ _testmain.go
 *.out
 
 /target
-/static/client/
+#/static/client/

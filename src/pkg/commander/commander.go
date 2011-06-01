@@ -16,7 +16,7 @@ import (
 	"time"
 	"json"
 
-	"src/pkg/flag_my" // to parse r.URL.Raw
+	"pkg/flag_my" // to parse r.URL.Raw
 
 	"appengine"
 	"appengine/datastore"
@@ -326,7 +326,7 @@ func Double(i int) int {
 func init() {
 	createCmdPresenter = template.New(nil)
 	createCmdPresenter.SetDelims("{{", "}}")
-	if err := createCmdPresenter.ParseFile("src/pkg/commander/main.html"); err != nil {
+	if err := createCmdPresenter.ParseFile("pkg/commander/main.html"); err != nil {
 		panic("can't parse: " + err.String())
 	}
 	http.HandleFunc(cmdDeleteHandler, cmdDeletion)

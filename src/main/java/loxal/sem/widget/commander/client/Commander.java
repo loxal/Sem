@@ -86,7 +86,7 @@ public class Commander extends Composite {
 
     }
 
-    public static final String jsonUrl = "http://localhost:8080/cmd/list.json";
+    public static final String jsonUrl = "/cmd/list.json";
     public static final String jsonUrl1 = GWT.getModuleBaseURL() + "cmdList?name=";
     public static final String jsonUrl2 = GWT.getHostPageBaseURL() + "cmdList?name=";
 

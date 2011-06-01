@@ -41,7 +41,7 @@ func handleMain(w http.ResponseWriter, r *http.Request) {
     type Site struct {
 		Author, Copyright, Title, TitleDesc, Mail, Year string
 	}
-	content, _ := ioutil.ReadFile("src/pkg/site/properties.json")
+	content, _ := ioutil.ReadFile("pkg/site/properties.json")
 	var site Site
 	json.Unmarshal([]byte(content), &site)
     w.Header().Set("Content-Type", "text/html")
@@ -60,7 +60,7 @@ func reloadMainPresenterTemplate() {
 
 const indexHandler = "/"
 const plainTxtEnc = "text/plain; charset=utf-8"
-const mainPresenterSite = "src/pkg/site/main.html"
+const mainPresenterSite = "pkg/site/main.html"
 var mainPresenter *template.Template
 
 func init() {
