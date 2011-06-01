@@ -1,54 +1,48 @@
+<!--
+  ~ Copyright 2011 Alexander Orlov <alexander.orlov@loxal.net>. All rights reserved.
+  ~ Use of this source code is governed by a BSD-style
+  ~ license that can be found in the LICENSE file.
+  -->
+
 <!DOCTYPE html>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="keywords" content="{{ Title }}, {{ Author }}">
-<meta name="description"
-      content="{{ Title }} {{ TitleDesc }}">
+<meta name="description" content="{{ Title }} {{ TitleDesc }}">
 <meta name="author" content="{{ Author }}">
-<meta name="generator" content="Sem GAE Service Framework: http://dev.loxal.net">
-<link rel="stylesheet" href="/static/winter.css" type="text/css">
-<title>Home | {{ Title }}</title>
+<link rel="stylesheet" href="/static/theme/winter.css" type="text/css">
+<title>Home | Sem | Loxal</title>
 
-<!--&lt;!&ndash;[if IE]>-->
-<!--<meta http-equiv="X-UA-Compatible" content="chrome=1">-->
-<!--<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>-->
-<!--<div id="CFInstall" style="border: 9px #111 dashed;">This site is using web application technology standards like HTML5-->
-<!--which <strong>Internet Explorer does not support</strong>. To use these technologies within Internet Explorer please accept-->
-<!--the pop-up window above to get Google Chrome Frame installed!</div>-->
-<!--<script>-->
-<!--CFInstall.check({-->
-<!--node: "CFInstall",-->
-<!--mode: "popup"-->
-<!--});-->
-<!--</script>-->
-<!--<![endif]&ndash;&gt;-->
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-7363751-1']);
+    _gaq.push(['_setDomainName', '.loxal.net']);
+    _gaq.push(['_setAllowHash', 'false']);
+    _gaq.push(['_trackPageview']);
 
-<!--{? properties.analytics }}-->
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
 
 <div id="header">
-    <!--<div id="sponsor">{? properties.sponsor }}</div>-->
     <div id="header-title">
-        <!--<img id="logo" src="{? properties.res_dir }}/logo.png" alt="Site Logo"-->
-             <!--title="{{ Title }} Logo"/>-->
-        <a href="/" id="title" title="Home">{{ Title }}</a>
+        <img id="logo" src="/static/theme/logo.png" alt="Logo" title="{{ Title }} Logo"/>
+        <a href="/" id="title" title="Home">Sem</a>
 
         <div id="header-description">
             {{ TitleDesc }}
         </div>
     </div>
     <div id="meta-ctrl">
-        <!--{! ifequal users.get_current_user user %}-->
-        <!--<a class="linkBox" href="{? req_url|create_url_auth|escape }}"-->
-           <!--title="Google account required">Login</a>-->
-        <!--{! else %}-->
-        <!--<a class="linkBox" href="{? req_url|create_url_auth|escape }}"-->
-           <!--title="Authentication powered by Google">Logout:</a>-->
-        <!--{? user }}-->
-        <!--{! endifequal %}-->
     </div>
 </div>
 
 <div id="sidebar">
-    <!--{? properties.search }}-->
     <div id="index">
         <ul class="nav">
             <li><a href="/" title="Start and website entry point">
@@ -60,34 +54,62 @@
         <h1>Services</h1>
         <ul class="nav">
             <li>
-                <a href="/service/my-browser.html"
-                   title="...properties and environment settings of your browser.">My
-                    Browser</a>
+                <a href="/cmd/list" title="Map key combinations (shortcuts) to web requests">Shell</a>
             <li>
-                <a href="/service/symbol-lister.html" title="Lists certain symbols and their entity codes.">Symbol
-                    Lister</a>
-            <li>
-                <a href="/service/transliterator.html"
-                   title="Transcribes latin into Russian (cyrillic alphabet) letters on the fly as you type them">Transliteration</a>
-            <li>
-                <!--<a href="/service/web-commander"-->
-                <a href="/cmdList"
-                   title="Map key combinations (shortcuts) to web requests">Shell</a>
+                <a href="/client/commander/index.html"
+                   title="Map key combinations (shortcuts) to web requests">Shell (GWT frontend)</a>
         </ul>
     </div>
-    <script src="{? properties.res_dir }}/mashup-module/sol-network-links.js"></script>
 </div>
 
 <div id="main">
-    {{# main page content #}}
+    <h1>Prototype App</h1>
+
+    <p>This is a proof-of-concept app to show how to write RESTful GWT frontends for RESTful Go@GAE backends.
+        <script>
+            //            XMLHttpRequest.op // TODO make an XHR to retrieve the Command List and save it as JSON
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/cmd/list.json', false);
+            xhr.onreadystatechange = function (evt) {
+//                document.writeln(xhr.responseText);
+//                var r = eval(xhr.responseText);
+                var r = xhr.responseText;
+                document.writeln(r);
+//                document.writeln(r.cmds[1].Name);
+            };
+            xhr.send();
+
+            var myJSONObject = {'bindings': [
+                {'ircEvent': 'PRIVMSG', 'method': 'newURI', 'regex': '^http://.*'},
+                {'ircEvent': 'PRIVMSG', 'method': 'deleteURI', 'regex': '^delete.*'},
+                {'ircEvent': 'PRIVMSG', 'method': 'randomURI', 'regex': '^random.*'}
+            ]
+            };
+
+            var o = {"cmds": [
+                {"Name":"namee","RESTcall":"rc----","Desc":"desc","Creator":"","User":"alex@example.com","Created":0,"Updated":1306253380000000},
+                {"Name":"gom1@#$","RESTcall":"call","Desc":"java","Creator":"","User":"","Created":0,"Updated":0},
+                {"Name":"gom1@#$%^","RESTcall":"call","Desc":"java","Creator":"","User":"","Created":0,"Updated":0},
+                {"Name":"t","RESTcall":"http://twitter.com","Desc":"tweet","Creator":"","User":"","Created":1306488921000000,"Updated":0},
+                {"Name":"name@$%^","RESTcall":"rc","Desc":"desc","Creator":"","User":"","Created":1306490622000000,"Updated":0},
+                {"Name":"tOm!","RESTcall":"http://twitter.com","Desc":"tweet","Creator":"","User":"","Created":1306504399000000,"Updated":0},
+                {"Name":"tt","RESTcall":"http://twitter.com","Desc":"tweet","Creator":"","User":"","Created":1306770278000000,"Updated":0},
+                {"Name":"ttt","RESTcall":"http://twitter.com","Desc":"tweet","Creator":"","User":"","Created":1306770301000000,"Updated":0},
+                {"Name":"top","RESTcall":"http://twitter.com","Desc":"tweet","Creator":"","User":"","Created":1306772265000000,"Updated":0},
+                {"Name":"name1111","RESTcall":"rc","Desc":"desc","Creator":"","User":"","Created":1306802458000000,"Updated":0}
+            ]};
+            //            document.writeln(myJSONObject.bindings[0].method);
+            //            document.writeln(o.cmds[2].Name);
+
+        </script>
 </div>
 
 <div id="footer">
     <p>
         <span>
-            Powered by <a href="http://dev.loxal.net"
+            Powered by <a href="http://github.com/loxal"
                           title="Sem - Google App Engine Content Management System">
-            Sem <abbr title="Google App Engine">GAE</abbr> Service Framework</a>
+            Sem <a href="http://golang.org">Go</a>@<abbr title="Google App Engine">GAE</abbr> Service Framework</a>
         </span>
         <span style="float: right;">
             &copy; {{ Year }} {{ Copyright }}

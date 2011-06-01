@@ -1,5 +1,5 @@
 application: sem-loxal
-version: a
+version: b
 runtime: go
 api_version: 1
 
@@ -9,13 +9,14 @@ handlers:
   static_dir: static
 # should precede ".*" (main URL handler)
 - url: /favicon.ico
-  static_files: static/favicon.ico
-  upload: static/favicon.ico
+  static_files: static/theme/favicon.ico
+  upload: static/theme/favicon.ico
 - url: /robots.txt
   static_files: static/robots.txt
   upload: static/robots.txt
-#- url: /post
-#  script: _go_app
-#  login: required
+- url: /client/(.*)
+  static_files: static/client/\1
+  upload: static/client/.*
 - url: /.*
   script: _go_app
+#  login: required

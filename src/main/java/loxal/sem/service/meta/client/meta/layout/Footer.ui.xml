@@ -39,7 +39,7 @@
                 <g:Anchor href="http://dev.loxal.net" title="Get the source and collaborate!">
                     <ui:attribute name="title" description="Get the source and collaborate!"/>
                     <ui:msg description="Powered by">Powered by</ui:msg>
-                    Lox
+                    Sem
                     <abbr title="Web Workspace Environment">
                         <ui:attribute name="title" description="Web Workspace Environment"/>
                         <ui:msg description="W2E">W2E</ui:msg>

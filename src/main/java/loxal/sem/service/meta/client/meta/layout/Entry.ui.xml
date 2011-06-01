@@ -28,7 +28,6 @@
         <g:north size="7.9">
             <meta.layout:Header ui:field="header"/>
         </g:north>
-
         <g:center>
             <g:TabLayoutPanel barHeight="25" ui:field="taskTab">
                 <g:tab>

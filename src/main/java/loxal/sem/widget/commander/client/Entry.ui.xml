@@ -15,14 +15,15 @@
   ~ limitations under the License.
   -->
 
-<web-app xmlns="http://java.sun.com/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-         version="3.0">
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:t="urn:import:loxal.sem.widget.commander.client"
+        >
 
-    <description>A Google App Engine Go / GWT Application</description>
-    <display-name>loxal: Sem - Web Workspace Environment (W2E)</display-name>
-    <welcome-file-list>
-        <welcome-file>meta/index.html</welcome-file>
-    </welcome-file-list>
-</web-app>
+    <g:DockLayoutPanel unit="EM">
+        <g:center>
+            <t:Commander ui:field="commander"/>
+        </g:center>
+    </g:DockLayoutPanel>
+</ui:UiBinder>

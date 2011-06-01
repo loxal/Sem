@@ -17,13 +17,13 @@
 package loxal.sem.service.meta.client.tasksolver;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.*;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.cellview.client.*;
+import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.cellview.client.PageSizePager;
+import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.*;
 
@@ -31,10 +31,6 @@ import com.google.gwt.user.client.ui.*;
  * Task UI logic
  */
 public class TaskMgmt extends Composite {
-
-    interface Binder extends UiBinder<Widget, TaskMgmt> {
-    }
-
     @UiField
     TextBox name;
     @UiField
@@ -82,6 +78,9 @@ public class TaskMgmt extends Composite {
     @UiField
     SimplePager taskSimplePager;
 
+    interface Binder extends UiBinder<Widget, TaskMgmt> {
+    }
+
     public TaskMgmt() {
         Binder binder = GWT.create(Binder.class);
         initWidget(binder.createAndBindUi(this));
@@ -89,7 +88,6 @@ public class TaskMgmt extends Composite {
         createTask.setAccessKey('C');
         updateTask.setAccessKey('U');
         tabPanel.selectTab(0);
-
 
         closeTask.setCommand(new Command() {
             @Override
@@ -104,7 +102,5 @@ public class TaskMgmt extends Composite {
                     SelectionEvent<Integer> integerSelectionEvent) {
             }
         });
-
     }
-
 }

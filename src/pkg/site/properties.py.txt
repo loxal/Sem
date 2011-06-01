@@ -1,4 +1,3 @@
-
 # User related constants
 AUTHOR = _('Alexander Orlov')
 TITLE = _('synergy of loxal')
@@ -180,20 +179,20 @@ RES_DIR = '/static'
 
 # main properties of every template
 template = {
-'res_dir'                           : RES_DIR,
-'tpl_main'                          : TPL_MAIN,
-'tpl_main_service'                  : TPL_MAIN_SERVICE,
-'author'                            : AUTHOR,
-'title'                             : TITLE,
-'title_desc'                        : TITLE_DESC,
-'imprint'                           : IMPRINT,
-'gadget_opensocial'                 : GADGET_OPENSOCIAL,
-'gadget_opensocial_feedback'        : GADGET_OPENSOCIAL_FEEDBACK,
-'gadget_opensocial_interactivity'   : GADGET_OPENSOCIAL_INTERACTIVITY,
-'sponsor'                           : SPONSOR,
-'analytics'                         : ANALYTICS,
-'search'                            : SEARCH,
-'search_results'                    : SEARCH_RESULTS,
-'support_campaign'                  : SUPPORT_CAMPAIGN,
-'bookmark'                          : BOOKMARK,
-}
+    'res_dir': RES_DIR,
+    'tpl_main': TPL_MAIN,
+    'tpl_main_service': TPL_MAIN_SERVICE,
+    'author': AUTHOR,
+    'title': TITLE,
+    'title_desc': TITLE_DESC,
+    'imprint': IMPRINT,
+    'gadget_opensocial': GADGET_OPENSOCIAL,
+    'gadget_opensocial_feedback': GADGET_OPENSOCIAL_FEEDBACK,
+    'gadget_opensocial_interactivity': GADGET_OPENSOCIAL_INTERACTIVITY,
+    'sponsor': SPONSOR,
+    'analytics': ANALYTICS,
+    'search': SEARCH,
+    'search_results': SEARCH_RESULTS,
+    'support_campaign': SUPPORT_CAMPAIGN,
+    'bookmark': BOOKMARK,
+    }

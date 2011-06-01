@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 // The entry package for the GAE environment
-package main
+package commander
 
 import (
 	"fmt"
@@ -11,11 +11,12 @@ import (
 	"io"
 	"os"
 	"strconv"
+	"strings"
 	"template"
 	"time"
 	"json"
 
-	"flag1" // to parse r.URL.Raw
+	"pkg/flag_my" // to parse r.URL.Raw
 
 	"appengine"
 	"appengine/datastore"
@@ -35,7 +36,7 @@ type Greeting struct {
 	Date    datastore.Time
 	Title   string
 	Body    string
-		Pg  *page
+	Pg      *page
 }
 
 type page struct {
@@ -56,11 +57,6 @@ func loadPage(title string) (*page, os.Error) {
 	//		return nil, err
 	//	}
 	return &page{Title1: title, Body1: "test"}, nil
-}
-
-func hello(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
-	fmt.Fprint(w, "Hello, ...!\n")
 }
 
 func serveError(c appengine.Context, w http.ResponseWriter, err os.Error) {
@@ -118,59 +114,74 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if (!cmdExists(c, r.FormValue("name"))) {
-        cmd := &Cmd{
-            Name:     r.FormValue("name"),
-            RESTcall: r.FormValue("restCall"),
-            Desc:     r.FormValue("desc"),
-            Created:  datastore.SecondsToTime(time.Seconds()),
-        }
-    	if u := user.Current(c); u != nil {
-    		cmd.Creator = u.String()
-    	}
-        if _, err := datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd); err != nil {
-            serveError(c, w, err)
-            return
-        }
+	if !cmdExists(c, r.FormValue("name")) && !cmdHasInvalidCharacters(r.FormValue("name")) {
+		cmd := &Cmd{
+			Name:     r.FormValue("name"),
+			RESTcall: r.FormValue("restCall"),
+			Desc:     r.FormValue("desc"),
+			Created:  datastore.SecondsToTime(time.Seconds()),
+		}
+		if u := user.Current(c); u != nil {
+			cmd.Creator = u.String()
+		}
+		if _, err := datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd); err != nil {
+			serveError(c, w, err)
+			return
+		}
 	}
 	http.Redirect(w, r, cmdListHandler, http.StatusFound)
 }
 
 // Constraint Check
-func cmdExists(c appengine.Context, name string) (exists bool) {
-    if count, err := datastore.NewQuery("Cmd").Filter("Name =", name).Count(c); err == nil && count > 0 {
-        return true
-    }
+func cmdExists(c appengine.Context, name string) (ok bool) {
+	if count, err := datastore.NewQuery("Cmd").Filter("Name =", name).Count(c); err == nil && count > 0 {
+		return true
+	}
+	return
+}
 
+// Constraint Check
+func cmdHasInvalidCharacters(name string) (ok bool) {
+    // command name shouldn't contain "#" because it's the HTML anchor marker and
+    // might cause problems in a RESTful context (acts as a delimiter)
+    if strings.Contains(name, "#") || strings.Contains(name, "%")  { return true }
     return
 }
 
-func cmdListing(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "GET" || r.URL.Path != cmdListHandler {
+func cmdListing(w http.ResponseWriter, r *http.Request) (cmds []*Cmd) {
+	if r.Method != "GET" {
 		serve404(w)
 		return
 	}
-
-    c := appengine.NewContext(r)
-	var cmds []*Cmd
+	c := appengine.NewContext(r)
 	if _, err := datastore.NewQuery("Cmd").GetAll(c, &cmds); err != nil {
-        serveError(c, w, err)
-        return
+		serveError(c, w, err)
+		return
 	}
 
-    if (r.FormValue("json") == "true") {
-        w.Header().Set("Content-Type", "application/json; charset=utf-8")
-        for i := range cmds {
-            cmdJSONed, _ := json.Marshal(cmds[i])
-            fmt.Fprintln(w, i, string(cmdJSONed))
-        }
-    } else {
-        w.Header().Set("Content-Type", "text/html")
-        if err := createCmdPresenter.Execute(w, cmds); err != nil {
-            c.Logf("%v", err)
-        }
-    }
+	return cmds
+}
 
+func cmdListingHtml(w http.ResponseWriter, r *http.Request) {
+        cmds := cmdListing(w, r)
+
+		w.Header().Set("Content-Type", "text/html")
+		if err := createCmdPresenter.Execute(w, cmds); err != nil {
+			fmt.Println("%v", err)
+		}
+}
+
+func cmdListingJson(w http.ResponseWriter, r *http.Request) {
+        cmds := cmdListing(w, r)
+
+		w.Header().Set("Content-Type", "application/json; charset=utf-8")
+		fmt.Fprintln(w, "{\"cmds\": [")
+		for i := range cmds {
+			cmdJSONed, _ := json.Marshal(cmds[i])
+			fmt.Fprint(w, string(cmdJSONed))
+            fmt.Fprintln(w, ",")
+		}
+		fmt.Fprintln(w, "]}")
 }
 
 //func exec(url *http.URL) {
@@ -188,7 +199,8 @@ func exec(cmd string) (restCall string) {
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {
-	c := appengine.NewContext(r)
+     var _ = flag1.PrintDefaults // delete before submitting
+	    c := appengine.NewContext(r)
 	//    c.Logf("r.URL.Path: " + r.URL.Path)
 	//    c.Logf("r.URL.RawQuery: " + r.URL.RawQuery)
 	//     c.Logf("m[r.URL.RawQuery]" + m[r.URL.RawQuery])
@@ -225,21 +237,21 @@ func cmd(w http.ResponseWriter, r *http.Request) {
 
 	//args := []string{"/tmp/dev_appserver_alex_8080_go_app_work_dir/_go_app", "-addr_http", "unix:/tmp/dev_appserver_alex_8080_socket_http", "-addr_api", "unix:/tmp/dev_appserver_alex_8080_socket_api"}
 	//os.Args = args
-//	args := []string{"app", "-name", "9999999999999", "-desc", "VAL"}
+	//	args := []string{"app", "-name", "9999999999999", "-desc", "VAL"}
 	//args1 := []string{"app", "-name", "999", "-desc", "VAL"}
 	//fmt.Print(args1)
-//	name := flag1.String("name", "33333", "name")
-//	var name *string
-//	flag1.StringVar(name, "name", "33333", "name")
-//	desc := flag1.String("desc", "myValue", "desc")
-//    var desc *string
-//	flag1.StringVar(desc, "desc", "myValue", "desc")
-//	flag1.Parse()
-//	var _ = fmt.Printf // delete before submitting
-	var _ = flag1.PrintDefaults // delete before submitting
+	//	name := flag1.String("name", "33333", "name")
+	//	var name *string
+	//	flag1.StringVar(name, "name", "33333", "name")
+	//	desc := flag1.String("desc", "myValue", "desc")
+	//    var desc *string
+	//	flag1.StringVar(desc, "desc", "myValue", "desc")
+	//	flag1.Parse()
+	//	var _ = fmt.Printf // delete before submitting
 
-//	fmt.Fprintln(w, "name ", *name)
-//	fmt.Fprintln(w, "desc", *desc)
+
+	//	fmt.Fprintln(w, "name ", *name)
+	//	fmt.Fprintln(w, "desc", *desc)
 	//  fmt.Fprintln(w, os.Args[1:]);
 	//  fmt.Fprintln(w, "\n");
 	//  fmt.Fprintln(w, args);
@@ -253,7 +265,7 @@ func cmd(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Fprintln(w, )
 
 	//    io.WriteString(w, cmds[0].RESTcall)
-//	http.Redirect(w, r, cmds[0].RESTcall, http.StatusFound)
+	//	http.Redirect(w, r, cmds[0].RESTcall, http.StatusFound)
 
 }
 
@@ -268,7 +280,7 @@ func cmdDelete(cmdName string, c appengine.Context) (ok bool) {
 
 func cmdDeletion(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
-	fmt.Println(cmdDelete(r.FormValue("name"), c))
+	cmdDelete(r.FormValue("name"), c)
 	http.Redirect(w, r, cmdListHandler, http.StatusFound)
 }
 
@@ -284,24 +296,26 @@ func cmdUpdation(w http.ResponseWriter, r *http.Request) {
 		User:    user.Current(c).String(),
 	}
 	if ok, err := cmdUpdate(cmd, c); err != nil {
-	    fmt.Fprintln(w, err, ok)
+		fmt.Fprintln(w, err, ok)
 	}
 
 	http.Redirect(w, r, cmdListHandler, http.StatusFound)
 }
 
 func cmdUpdate(cmd *Cmd, c appengine.Context) (ok bool, err os.Error) {
-        q := datastore.NewQuery("Cmd").KeysOnly().Filter("Name =", cmd.Name)
-        keys, _ := q.GetAll(c, nil)
-        if _, err := datastore.Put(c, keys[0], cmd); err != nil {
-            return false, err
-        }
-        return true, nil
-    return false, os.NewError("exists")
+	q := datastore.NewQuery("Cmd").KeysOnly().Filter("Name =", cmd.Name)
+	keys, _ := q.GetAll(c, nil)
+	if _, err := datastore.Put(c, keys[0], cmd); err != nil {
+		return false, err
+	}
+	return true, nil
+	return false, os.NewError("exists")
 }
 
-const cmdCreateHandler = "/create"
-const cmdListHandler = "/cmdList"
+const cmdUpdateHandler = "/cmd/update"
+const cmdDeleteHandler = "/cmd/delete"
+const cmdCreateHandler = "/cmd/create"
+const cmdListHandler = "/cmd/list"
 
 var createCmdPresenter *template.Template
 
@@ -310,17 +324,16 @@ func Double(i int) int {
 }
 
 func init() {
-createCmdPresenter = template.New(nil)
-createCmdPresenter.SetDelims("{%", "%}")
-if err := createCmdPresenter.ParseFile("cmdCreate.html"); err != nil {
-    panic("can't parse: " + err.String())
-}
-	http.HandleFunc("/", cmd)
-	http.HandleFunc("/cmdDelete", cmdDeletion)
-	http.HandleFunc("/update", cmdUpdation)
-	http.HandleFunc("/hello", hello)
+	createCmdPresenter = template.New(nil)
+	createCmdPresenter.SetDelims("{{", "}}")
+	if err := createCmdPresenter.ParseFile("pkg/commander/main.html"); err != nil {
+		panic("can't parse: " + err.String())
+	}
+	http.HandleFunc(cmdDeleteHandler, cmdDeletion)
+	http.HandleFunc(cmdUpdateHandler, cmdUpdation)
 	http.HandleFunc(cmdCreateHandler, cmdCreation)
-	http.HandleFunc(cmdListHandler, cmdListing)
+	http.HandleFunc(cmdListHandler, cmdListingHtml)
+	http.HandleFunc(cmdListHandler + ".json", cmdListingJson)
 	http.HandleFunc("/count", count)
 	http.HandleFunc("/cmd", cmd)
 	//		http.HandleFunc("/exec", exec)
