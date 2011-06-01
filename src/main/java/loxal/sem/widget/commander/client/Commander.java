@@ -56,8 +56,6 @@ public class Commander extends Composite {
         create.setAccessKey('C');
 
 //        http://code.google.com/p/google-web-toolkit-doc-1-5/wiki/GettingStartedJSON
-
-//
 //        container.add(formm);
 
         RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET, "/cmd/list.json");

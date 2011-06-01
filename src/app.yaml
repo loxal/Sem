@@ -17,6 +17,9 @@ handlers:
 - url: /client/(.*)
   static_files: static/client/\1
   upload: static/client/.*
+- url: /resource/(.*)
+  static_files: static/resource/\1
+  upload: static/resource/.*
 - url: /.*
   script: _go_app
 #  login: required

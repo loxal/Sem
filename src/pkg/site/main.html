@@ -45,10 +45,8 @@
 <div id="sidebar">
     <div id="index">
         <ul class="nav">
-            <li><a href="/" title="Start and website entry point">
-                Home</a>
-            <li><a href="/imprint.html" title="...with contact formular">
-                Imprint</a>
+            <li><a href="/" title="Start and website entry point">Home</a>
+            <li><a href="/imprint.html" title="...with contact formular">Imprint</a>
         </ul>
 
         <h1>Services</h1>
@@ -63,45 +61,8 @@
 </div>
 
 <div id="main">
-    <h1>Prototype App</h1>
-
-    <p>This is a proof-of-concept app to show how to write RESTful GWT frontends for RESTful Go@GAE backends.
-        <script>
-            //            XMLHttpRequest.op // TODO make an XHR to retrieve the Command List and save it as JSON
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/cmd/list.json', false);
-            xhr.onreadystatechange = function (evt) {
-//                document.writeln(xhr.responseText);
-//                var r = eval(xhr.responseText);
-                var r = xhr.responseText;
-                document.writeln(r);
-//                document.writeln(r.cmds[1].Name);
-            };
-            xhr.send();
-
-            var myJSONObject = {'bindings': [
-                {'ircEvent': 'PRIVMSG', 'method': 'newURI', 'regex': '^http://.*'},
-                {'ircEvent': 'PRIVMSG', 'method': 'deleteURI', 'regex': '^delete.*'},
-                {'ircEvent': 'PRIVMSG', 'method': 'randomURI', 'regex': '^random.*'}
-            ]
-            };
-
-            var o = {"cmds": [
-                {"Name":"namee","RESTcall":"rc----","Desc":"desc","Creator":"","User":"alex@example.com","Created":0,"Updated":1306253380000000},
-                {"Name":"gom1@#$","RESTcall":"call","Desc":"java","Creator":"","User":"","Created":0,"Updated":0},
-                {"Name":"gom1@#$%^","RESTcall":"call","Desc":"java","Creator":"","User":"","Created":0,"Updated":0},
-                {"Name":"t","RESTcall":"http://twitter.com","Desc":"tweet","Creator":"","User":"","Created":1306488921000000,"Updated":0},
-                {"Name":"name@$%^","RESTcall":"rc","Desc":"desc","Creator":"","User":"","Created":1306490622000000,"Updated":0},
-                {"Name":"tOm!","RESTcall":"http://twitter.com","Desc":"tweet","Creator":"","User":"","Created":1306504399000000,"Updated":0},
-                {"Name":"tt","RESTcall":"http://twitter.com","Desc":"tweet","Creator":"","User":"","Created":1306770278000000,"Updated":0},
-                {"Name":"ttt","RESTcall":"http://twitter.com","Desc":"tweet","Creator":"","User":"","Created":1306770301000000,"Updated":0},
-                {"Name":"top","RESTcall":"http://twitter.com","Desc":"tweet","Creator":"","User":"","Created":1306772265000000,"Updated":0},
-                {"Name":"name1111","RESTcall":"rc","Desc":"desc","Creator":"","User":"","Created":1306802458000000,"Updated":0}
-            ]};
-            //            document.writeln(myJSONObject.bindings[0].method);
-            //            document.writeln(o.cmds[2].Name);
-
-        </script>
+    <h1>Commander</h1>
+    <iframe src="/client/commander/index.html?gwt.codesvr=127.0.0.1:9997" style="border: 0; height: 22em;"/>
 </div>
 
 <div id="footer">

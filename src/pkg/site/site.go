@@ -39,7 +39,9 @@ func handleMain(w http.ResponseWriter, r *http.Request) {
 		return
 	}
     type Site struct {
-		Author, Copyright, Title, TitleDesc, Mail, Year string
+		Author string "author" // this tag can be omitted and is used for demo reasons only
+		Copyright, Title, TitleDesc, Mail string
+		Year string "year"
 	}
 	content, _ := ioutil.ReadFile("pkg/site/properties.json")
 	var site Site
