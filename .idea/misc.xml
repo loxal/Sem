@@ -5,7 +5,9 @@
   </component>
   <component name="CppTools.Loader" reportImplicitCastToBool="false" reportNameReferencedOnce="false" version="3" compilerSelect="AUTO" />
   <component name="DependencyValidationManager">
-    <scope name="GWT" pattern="file:src/main//*" />
+    <scope name="GWT" pattern="file:src/main//*||file:pom.xml" />
+    <scope name="Go" pattern="file:src/pkg//*||file:src/app.yaml" />
+    <scope name="static" pattern="file:src/static//*||file:src/app.yaml" />
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="EntryPointsManager">

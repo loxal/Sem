@@ -18,6 +18,7 @@ public class Entry implements EntryPoint {
     }
 
     private Binder binder = GWT.create(Binder.class);
+
     @UiField
     Commander commander;
 

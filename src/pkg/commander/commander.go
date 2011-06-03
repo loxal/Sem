@@ -175,18 +175,16 @@ func cmdListingJson(w http.ResponseWriter, r *http.Request) {
         cmds := cmdListing(w, r)
 
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
-		fmt.Fprintln(w, "{\"cmds\": [")
+		fmt.Fprintln(w, `{"cmds": [`)
+		lenCmds := len(cmds)
 		for i := range cmds {
+//		for i := 0; i < lenCmds; i++ {
 			cmdJSONed, _ := json.Marshal(cmds[i])
 			fmt.Fprint(w, string(cmdJSONed))
-            fmt.Fprintln(w, ",")
+            if lenCmds - 1 != i { fmt.Fprintln(w, ",") }
 		}
 		fmt.Fprintln(w, "]}")
 }
-
-//func exec(url *http.URL) {
-//
-//}
 
 // Returns the RESTful associated with a certain command
 func exec(cmd string) (restCall string) {

@@ -5,7 +5,7 @@
     <option name="SHELL_PARAMETERS" value="-logLevel INFO -noserver" />
     <option name="RUN_PAGE" value="http://localhost:8080/client/commander/index.html" />
     <option name="GWT_MODULE" value="loxal.sem.widget.commander.Commander" />
-    <option name="BROWSER" value="Safari" />
+    <option name="OPEN_IN_BROWSER" value="false" />
     <option name="UPDATE_RESOURCES_ON_FRAME_DEACTIVATION" value="true" />
     <RunnerSettings RunnerId="Debug">
       <option name="DEBUG_PORT" value="52654" />
