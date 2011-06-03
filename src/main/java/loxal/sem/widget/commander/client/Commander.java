@@ -6,18 +6,20 @@
 
 package loxal.sem.widget.commander.client;
 
+import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.http.client.*;
-import com.google.gwt.json.client.JSONArray;
-import com.google.gwt.json.client.JSONObject;
-import com.google.gwt.json.client.JSONParser;
-import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.json.client.*;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.xhr.client.XMLHttpRequest;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Commander UI Logic
@@ -39,6 +41,8 @@ public class Commander extends Composite {
     TextArea desc;
     @UiField
     TextBox restCall;
+    @UiField
+    Label content;
 
     interface Binder extends UiBinder<Widget, Commander> {
     }
@@ -48,10 +52,6 @@ public class Commander extends Composite {
         initWidget(binder.createAndBindUi(this));
 
         XMLHttpRequest xmlHttpRequest;
-//        xmlHttpRequest.open("PUT", "http://localhost:8080/create?name=gwtMUMMMM&desc=gwturl&restCall=gwtrest");
-//        xmlHttpRequest.open("GET", "http://localhost:8080/cmdList?json=true");
-//        GWT.log(xmlHttpRequest.getStatusText());
-//        GWT.log(xmlHttpRequest.getAllResponseHeaders());
 
         create.setAccessKey('C');
 
@@ -63,48 +63,50 @@ public class Commander extends Composite {
             Request request = requestBuilder.sendRequest(null, new RequestCallback() {
                 @Override
                 public void onResponseReceived(Request request, Response response) {
-                    GWT.log(response.getText());
+                    List<String> DAYS = Arrays.asList(response.getText().split("},"));
+                    // Create a cell to render each value in the list.
+                    TextCell textCell = new TextCell();
+                    // Create a CellList that uses the cell.
+                    CellList<String> cellList = new CellList<String>(textCell);
+                    // Set the total row count. This isn't strictly necessary, but it affects
+                    // paging calculations, so its good habit to keep the row count up to date.
+                    cellList.setRowCount(DAYS.size(), true);
+                    // Push the data into the widget.
+                    cellList.setRowData(0, DAYS);
+                    container.add(cellList);
+
+                    {
+                        getJSONValue(response.getText(), "Name");
+                    }
                 }
 
                 @Override
                 public void onError(Request request, Throwable exception) {
-                    GWT.log("RequestBuilder: error");
+                    GWT.log("RequestBuilder: error" + exception);
                 }
             });
         } catch (RequestException e) {
             e.printStackTrace();
         }
-
-//        try {
-//            Request r = requestBuilder.send();
-////            GWT.log(String.valueOf(r.isPending()));
-//        } catch (RequestException e) {
-//            e.printStackTrace();
-//        }
-
     }
 
-    public static final String jsonUrl = "/cmd/list.json";
-    public static final String jsonUrl1 = GWT.getModuleBaseURL() + "cmdList?name=";
-    public static final String jsonUrl2 = GWT.getHostPageBaseURL() + "cmdList?name=";
+    private String getJSONValue(String jsonString, String valueName) {
+        JSONValue jsonValue = JSONParser.parseStrict(jsonString);
+        JSONObject jsonObject = jsonValue.isObject();
+        JSONValue jsonValueCmds = jsonObject.get("cmds");
+        JSONArray jsonArray = jsonValueCmds.isArray();
+        JSONValue jsonValueCmdsRow = jsonArray.get(2);
+        JSONObject jsonObjectRow = jsonValueCmdsRow.isObject();
+        JSONValue jsonValueCmdsRowValue = jsonObjectRow.get(valueName);
+        JSONString jsonValueString = jsonValueCmdsRowValue.isString();
+        content.setText(jsonValueString.stringValue());
+
+        return jsonValueString.stringValue();
+    }
 
     public void cmdCreation() {
         {
-            String url = URL.encode(jsonUrl);
-            GWT.log(jsonUrl2);
 
-            // parse the response text into JSON
-            JSONValue jsonValue = JSONParser.parseStrict("{\"blu\": \"blab\"}");
-//            JSONValue jsonValue1 = JSONParser.parseStrict("{\"blab\"}");
-            JSONArray jsonArray = jsonValue.isArray();
-            JSONObject jsonObject = new JSONObject();
-
-
-            GWT.log(jsonObject.toString());
-//            GWT.log(jsonObject.get("myKey").toString());
-//        GWT.log(jsonValue1.isString().toString());
-//        GWT.log(jsonValue1.isArray().toString());
-//            GWT.log(jsonValue1.isObject().toString());
 
         }
     }

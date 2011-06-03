@@ -121,8 +121,6 @@
                     <runTarget>http://localhost:8080/client/commander/index.html</runTarget>
                     <modules>
                         <module>${project.groupId}.widget.commander.Commander</module>
-                        <!--<module>${project.groupId}.service.contact.Contact</module>-->
-                        <!--<module>${project.groupId}.service.meta.Meta</module>-->
                     </modules>
                 </configuration>
                 <dependencies>
@@ -130,6 +128,7 @@
                         <groupId>com.google.gwt</groupId>
                         <artifactId>gwt-dev</artifactId>
                         <version>${gwt.ver}</version>
+                        <scope>runtime</scope>
                     </dependency>
                 </dependencies>
             </plugin>

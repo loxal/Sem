@@ -18,6 +18,7 @@
             <g:VerticalPanel ui:field="container">
                 <g:FormPanel ui:field="cmdCreator" action="/cmd/create" method="post">
                     <g:VerticalPanel ui:field="formContainer">
+                        <g:Label ui:field="content"/>
                         <g:Label>
                             <ui:msg>Name</ui:msg>
                         </g:Label>
