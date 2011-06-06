@@ -142,10 +142,12 @@ func cmdExists(c appengine.Context, name string) (ok bool) {
 
 // Constraint Check
 func cmdHasInvalidCharacters(name string) (ok bool) {
-    // command name shouldn't contain "#" because it's the HTML anchor marker and
-    // might cause problems in a RESTful context (acts as a delimiter)
-    if strings.Contains(name, "#") || strings.Contains(name, "%")  { return true }
-    return
+	// command name shouldn't contain "#" because it's the HTML anchor marker and
+	// might cause problems in a RESTful context (acts as a delimiter)
+	if strings.Contains(name, "#") || strings.Contains(name, "%") {
+		return true
+	}
+	return
 }
 
 func cmdListing(w http.ResponseWriter, r *http.Request) (cmds []*Cmd) {
@@ -164,27 +166,29 @@ func cmdListing(w http.ResponseWriter, r *http.Request) (cmds []*Cmd) {
 }
 
 func cmdListingHtml(w http.ResponseWriter, r *http.Request) {
-        cmds := cmdListing(w, r)
+	cmds := cmdListing(w, r)
 
-		w.Header().Set("Content-Type", "text/html")
-		if err := mainPresenter.Execute(w, cmds); err != nil {
-			fmt.Println("%v", err)
-		}
+	w.Header().Set("Content-Type", "text/html")
+	if err := mainPresenter.Execute(w, cmds); err != nil {
+		fmt.Println("%v", err)
+	}
 }
 
 func cmdListingJson(w http.ResponseWriter, r *http.Request) {
-        cmds := cmdListing(w, r)
+	cmds := cmdListing(w, r)
 
-		w.Header().Set("Content-Type", "application/json; charset=utf-8")
-		fmt.Fprintln(w, `{"cmds": [`)
-		lenCmds := len(cmds)
-		for i := range cmds {
-//		for i := 0; i < lenCmds; i++ {
-			cmdJSONed, _ := json.Marshal(cmds[i])
-			fmt.Fprint(w, string(cmdJSONed))
-            if lenCmds - 1 != i { fmt.Fprintln(w, ",") }
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	fmt.Fprintln(w, `{"cmds": [`)
+	lenCmds := len(cmds)
+	for i := range cmds {
+		//		for i := 0; i < lenCmds; i++ {
+		cmdJSONed, _ := json.Marshal(cmds[i])
+		fmt.Fprint(w, string(cmdJSONed))
+		if lenCmds-1 != i {
+			fmt.Fprintln(w, ",")
 		}
-		fmt.Fprintln(w, "]}")
+	}
+	fmt.Fprintln(w, "]}")
 }
 
 // Returns the RESTful associated with a certain command
@@ -198,8 +202,8 @@ func exec(cmd string) (restCall string) {
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {
-     var _ = flag1.PrintDefaults // delete before submitting
-	    c := appengine.NewContext(r)
+	var _ = flag1.PrintDefaults // delete before submitting
+	c := appengine.NewContext(r)
 	//    c.Logf("r.URL.Path: " + r.URL.Path)
 	//    c.Logf("r.URL.RawQuery: " + r.URL.RawQuery)
 	//     c.Logf("m[r.URL.RawQuery]" + m[r.URL.RawQuery])
@@ -248,7 +252,6 @@ func cmd(w http.ResponseWriter, r *http.Request) {
 	//	flag1.Parse()
 	//	var _ = fmt.Printf // delete before submitting
 
-
 	//	fmt.Fprintln(w, "name ", *name)
 	//	fmt.Fprintln(w, "desc", *desc)
 	//  fmt.Fprintln(w, os.Args[1:]);
@@ -289,10 +292,12 @@ func cmdUpdation(w http.ResponseWriter, r *http.Request) {
 		Name:     r.FormValue("edit-name"),
 		RESTcall: r.FormValue("edit-restCall"),
 		Desc:     r.FormValue("edit-desc"),
-		// Creator TODO
-		// Created TODO
+				// Creator TODO
+				// Created TODO
 		Updated: datastore.SecondsToTime(time.Seconds()),
-		User:    user.Current(c).String(),
+	}
+	if u := user.Current(c); u != nil {
+		cmd.User = u.String()
 	}
 	if ok, err := cmdUpdate(cmd, c); err != nil {
 		fmt.Fprintln(w, err, ok)
@@ -308,6 +313,7 @@ func cmdUpdate(cmd *Cmd, c appengine.Context) (ok bool, err os.Error) {
 		return false, err
 	}
 	return true, nil
+
 	return false, os.NewError("exists")
 }
 
@@ -321,24 +327,25 @@ func Double(i int) int {
 }
 
 const mainPresenterSite = "pkg/commander/main.html"
+
 var mainPresenter *template.Template
 
 func reloadMainPresenterTemplate() {
-    mainPresenter = template.New(nil)
+	mainPresenter = template.New(nil)
 	mainPresenter.SetDelims("{{", "}}")
-    	if err := mainPresenter.ParseFile(mainPresenterSite); err != nil {
-    		panic("can't parse: " + err.String())
+	if err := mainPresenter.ParseFile(mainPresenterSite); err != nil {
+		panic("can't parse: " + err.String())
 	}
 }
 
 func init() {
 
-    reloadMainPresenterTemplate(); // auto-reload / refresh in dev mode
+	reloadMainPresenterTemplate() // auto-reload / refresh in dev mode
 	http.HandleFunc(cmdDeleteHandler, cmdDeletion)
 	http.HandleFunc(cmdUpdateHandler, cmdUpdation)
 	http.HandleFunc(cmdCreateHandler, cmdCreation)
 	http.HandleFunc(cmdListHandler, cmdListingHtml)
-	http.HandleFunc(cmdListHandler + ".json", cmdListingJson)
+	http.HandleFunc(cmdListHandler+".json", cmdListingJson)
 	http.HandleFunc("/count", count)
 	http.HandleFunc("/cmd", cmd)
 	//		http.HandleFunc("/exec", exec)
