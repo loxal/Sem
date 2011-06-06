@@ -153,6 +153,7 @@ func cmdListing(w http.ResponseWriter, r *http.Request) (cmds []*Cmd) {
 		serve404(w)
 		return
 	}
+
 	c := appengine.NewContext(r)
 	if _, err := datastore.NewQuery("Cmd").GetAll(c, &cmds); err != nil {
 		serveError(c, w, err)
@@ -166,7 +167,7 @@ func cmdListingHtml(w http.ResponseWriter, r *http.Request) {
         cmds := cmdListing(w, r)
 
 		w.Header().Set("Content-Type", "text/html")
-		if err := createCmdPresenter.Execute(w, cmds); err != nil {
+		if err := mainPresenter.Execute(w, cmds); err != nil {
 			fmt.Println("%v", err)
 		}
 }
@@ -315,18 +316,24 @@ const cmdDeleteHandler = "/cmd/delete"
 const cmdCreateHandler = "/cmd/create"
 const cmdListHandler = "/cmd/list"
 
-var createCmdPresenter *template.Template
-
 func Double(i int) int {
 	return i * 2
 }
 
-func init() {
-	createCmdPresenter = template.New(nil)
-	createCmdPresenter.SetDelims("{{", "}}")
-	if err := createCmdPresenter.ParseFile("pkg/commander/main.html"); err != nil {
-		panic("can't parse: " + err.String())
+const mainPresenterSite = "pkg/commander/main.html"
+var mainPresenter *template.Template
+
+func reloadMainPresenterTemplate() {
+    mainPresenter = template.New(nil)
+	mainPresenter.SetDelims("{{", "}}")
+    	if err := mainPresenter.ParseFile(mainPresenterSite); err != nil {
+    		panic("can't parse: " + err.String())
 	}
+}
+
+func init() {
+
+    reloadMainPresenterTemplate(); // auto-reload / refresh in dev mode
 	http.HandleFunc(cmdDeleteHandler, cmdDeletion)
 	http.HandleFunc(cmdUpdateHandler, cmdUpdation)
 	http.HandleFunc(cmdCreateHandler, cmdCreation)

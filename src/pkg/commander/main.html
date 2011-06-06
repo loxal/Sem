@@ -5,6 +5,7 @@
   -->
 
 <!DOCTYPE html>
+<!--<script src="http://code.jquery.com/jquery-1.6.1.js"/>-->
 
 <style>
     label, input {
@@ -45,7 +46,8 @@
     {{.repeated section @ }}
     <tr>
         <td>
-            {{.section Name}}<a href="javascript:edit('{{ @ }}');">{{ @ }}</a>
+            {{.section Name}}
+            <a href="javascript:edit('{{ @ }}');">{{ @ }}</a>
 
             <form action="/cmd/update" method="post" style="display: none;" id="edit-form-{{ @ }}">
                 <fieldset>

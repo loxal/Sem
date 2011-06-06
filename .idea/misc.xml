@@ -7,6 +7,7 @@
   <component name="DependencyValidationManager">
     <scope name="Go" pattern="file:src/pkg//*||file:src/app.yaml" />
     <scope name="static" pattern="file:src/static//*||file:src/app.yaml" />
+    <scope name="Metro" pattern="file:src/static/client/Metro/app/Metro//*" />
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="EntryPointsManager">

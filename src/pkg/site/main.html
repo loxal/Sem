@@ -45,23 +45,19 @@
 <div id="sidebar">
     <div id="index">
         <ul class="nav">
-            <li><a href="/" title="Start and website entry point">Home</a>
-            <li><a href="/imprint.html" title="...with contact formular">Imprint</a>
+            <li><a href="/" title="Start and website entry point">Start</a>
         </ul>
 
         <h1>Services</h1>
         <ul class="nav">
             <li>
                 <a href="/cmd/list" title="Map key combinations (shortcuts) to web requests">Shell</a>
-            <li>
-                <a href="/client/commander/index.html"
-                   title="Map key combinations (shortcuts) to web requests">Shell (GWT frontend)</a>
         </ul>
     </div>
 </div>
 
 <div id="main">
-    <iframe src="/client/commander/index.html?gwt.codesvr=127.0.0.1:9997" style="border: 0; height: 22em;"/>
+    <iframe src="/cmd/list" style="border: 0; width: 99%; height: 55%;"></iframe>
 </div>
 
 <div id="footer">
@@ -72,7 +68,7 @@
             Sem <a href="http://golang.org">Go</a>@<abbr title="Google App Engine">GAE</abbr> Service Framework</a>
         </span>
         <span style="float: right;">
-            &copy; {{ Year }} {{ Copyright }}
+            <a href="/imprint" title="...with contact formular">Imprint</a> | &copy; {{ Year }} {{ Author }}. {{ Copyright }}
         </span>
     </p>
 </div>

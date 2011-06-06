@@ -14,11 +14,6 @@ import (
 	"template"
 )
 
-func handleGwt(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	http.Redirect(w, r, "target/Sem/commander/index.html", http.StatusFound)
-}
-
 func serveError(w http.ResponseWriter, err os.Error) {
 	w.WriteHeader(http.StatusInternalServerError)
 	w.Header().Set("Content-Type", plainTxtEnc)
@@ -68,5 +63,4 @@ var mainPresenter *template.Template
 func init() {
     reloadMainPresenterTemplate()
 	http.HandleFunc(indexHandler, handleMain)
-	http.HandleFunc("/gwt", handleGwt)
 }
