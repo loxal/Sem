@@ -28,35 +28,6 @@ type Cmd struct {
 	Created, Updated     datastore.Time
 }
 
-type Greeting struct {
-	Author  string
-	Content string
-	Date    datastore.Time
-	Title   string
-	Body    string
-	Pg      *page
-}
-
-type page struct {
-	Title1 string
-	Body1  string
-}
-
-// TODO make it a small letter pAGE
-type Page1 struct {
-	Title11 string
-	Body11  string
-}
-
-func loadPage(title string) (*page, os.Error) {
-	//	filename := title + ".txt"
-	//	body, err := ioutil.ReadFile(filename)
-	//	if err != nil {
-	//		return nil, err
-	//	}
-	return &page{Title1: title, Body1: "test"}, nil
-}
-
 func serveError(c appengine.Context, w http.ResponseWriter, err os.Error) {
 	w.WriteHeader(http.StatusInternalServerError)
 	w.Header().Set("Content-Type", "text/plain")
