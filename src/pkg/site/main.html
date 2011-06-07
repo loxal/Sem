@@ -10,7 +10,7 @@
 <meta name="description" content="{{ Title }} {{ TitleDesc }}">
 <meta name="author" content="{{ Author }}">
 <link rel="stylesheet" href="/static/theme/winter.css" type="text/css">
-<script src="http://code.jquery.com/jquery-1.6.1.js"/>
+<script src="http://code.jquery.com/jquery-1.6.1.js"></script>
 <title>Sem | Loxal</title>
 
 <script>
@@ -31,28 +31,15 @@
 </script>
 
 <script>
-    /**
-     *
-     * @param {string} dest
-     */
-    var navTo = function(dest) {
-//        console.log(dest);
-//        var main = document.getElementById('main');
-////        main.innerHTML('<p>IMPRINT</p>');
-//        var test = document.createElement('p')
-//        var txt = document.createTextNode('IMPRINT');
-//        test.appendChild(txt);
-//        main.appendChild(test);
-//        main.innerHTML = 'BLUB';
-
-        $.ajax({url: dest,
+    var navTo = function() {
+        var handlerMap = {'/': '/cmd/list', '/imprint': '/client/site/imprint.html'};
+        $.ajax({url: handlerMap[window.location.pathname],
                     success: function(data) {
                         $('#main').html(data);
-                        console.log('ok');
+                        console.log(window.location.pathname);
                     }});
     };
-
-
+    navTo();
 </script>
 
 <div id="header">
@@ -78,7 +65,7 @@
 </div>
 
 <div id="main">
-    <iframe id="content" src="/cmd/list" style="border: 0; width: 99%; height: 55%;"></iframe>
+    <!--<iframe id="content" src="/cmd/list" style="border: 0; width: 99%; height: 55%;"></iframe>-->
 </div>
 
 <div id="footer">
@@ -89,7 +76,8 @@
                 title="Ajax/HTML5 backend client">BC</abbr></a>
         </span>
         <span style="float: right;">
-            <a href="javascript:navTo('/static/client/site/imprint.html');" title="with contact formular">Imprint /
+            <!--<a href="javascript:navTo('/imprint');" title="with contact formular">Imprint /-->
+            <a href="/imprint" title="with contact formular">Imprint /
                 Contact</a> | &copy; {{ Year }} {{ Author }}. {{ Copyright }}
         </span>
     </p>
