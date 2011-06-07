@@ -10,7 +10,6 @@ import (
 	"http"
 	"io"
 	"os"
-	"strconv"
 	"strings"
 	"template"
 	"time"
@@ -20,7 +19,6 @@ import (
 
 	"appengine"
 	"appengine/datastore"
-	"appengine/memcache"
 	"appengine/user"
 )
 
@@ -173,71 +171,10 @@ func exec(cmd string) (restCall string) {
 func cmd(w http.ResponseWriter, r *http.Request) {
 	var _ = flag1.PrintDefaults // delete before submitting
 	c := appengine.NewContext(r)
-	//    c.Logf("r.URL.Path: " + r.URL.Path)
-	//    c.Logf("r.URL.RawQuery: " + r.URL.RawQuery)
-	//     c.Logf("m[r.URL.RawQuery]" + m[r.URL.RawQuery])
-	//	    http.Redirect(w, r, m[r.URL.RawQuery], http.StatusFound)
-
-	//    w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	//    io.WriteString(w, r.URL.Path + "\n")
-	//    io.WriteString(w, r.URL.RawQuery + "\n")
-	//    io.WriteString(w, r.URL.Raw + "\n")
-
-	//	exec(r.URL)
-	//	restCall := exec(r.FormValue("name"))
-
 	var cmds []*Cmd
 	cmdName := r.FormValue("name")
 	_, err := datastore.NewQuery("Cmd").Filter("Name =", cmdName).GetAll(c, &cmds)
 	fmt.Fprintln(w, err)
-	// retrieve this from the datastore; put this as an init dataset into the datastore via *_test.go TODO
-	//	m := map[string]string{
-	//		"c":    "https://mail.google.com/mail/?shva=1#compose",
-	//		"d":    "https://mail.google.com/tasks/canvas",
-	//		"t":    "http://twitter.com",
-	//		"sem":  "https://github.com/loxal/Sem",
-	//		"verp": "https://github.com/loxal/Verp",
-	//		"lox":  "https://github.com/loxal/Lox",
-	//		// shortcut for adding an English Word or another unknow word to the TO_LEARN_LIST (merge with the Delingo functionality)
-	//		// shortcut for making notes/tasks/todos
-	//	}
-
-	//    flag1.Parse1([]string{"app", "-areacode", "333", "-param1", "areacode"})
-	//    flag1.Parse1([]string{"-areacode", "333", "-param1", "areacode"})
-	//    var *int p
-	//    flag1.IntVar(&p, "param", 3, "usage")
-
-	//args := []string{"/tmp/dev_appserver_alex_8080_go_app_work_dir/_go_app", "-addr_http", "unix:/tmp/dev_appserver_alex_8080_socket_http", "-addr_api", "unix:/tmp/dev_appserver_alex_8080_socket_api"}
-	//os.Args = args
-	//	args := []string{"app", "-name", "9999999999999", "-desc", "VAL"}
-	//args1 := []string{"app", "-name", "999", "-desc", "VAL"}
-	//fmt.Print(args1)
-	//	name := flag1.String("name", "33333", "name")
-	//	var name *string
-	//	flag1.StringVar(name, "name", "33333", "name")
-	//	desc := flag1.String("desc", "myValue", "desc")
-	//    var desc *string
-	//	flag1.StringVar(desc, "desc", "myValue", "desc")
-	//	flag1.Parse()
-	//	var _ = fmt.Printf // delete before submitting
-
-	//	fmt.Fprintln(w, "name ", *name)
-	//	fmt.Fprintln(w, "desc", *desc)
-	//  fmt.Fprintln(w, os.Args[1:]);
-	//  fmt.Fprintln(w, "\n");
-	//  fmt.Fprintln(w, args);
-
-	//	fmt.Fprintln(w, &p)
-	//	fmt.Fprintln(w, flag1.Args())
-	//	fmt.Fprintln(w, flag1.Arg(0))
-	//	fmt.Fprintln(w, flag1.Arg(1))
-	//	fmt.Fprintln(w, flag1.Arg(2))
-	//	fmt.Fprintln(w, os.Args)
-	//	fmt.Fprintln(w, )
-
-	//    io.WriteString(w, cmds[0].RESTcall)
-	//	http.Redirect(w, r, cmds[0].RESTcall, http.StatusFound)
-
 }
 
 func cmdDelete(cmdName string, c appengine.Context) (ok bool) {
