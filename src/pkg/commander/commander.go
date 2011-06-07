@@ -72,37 +72,6 @@ func serve404(w http.ResponseWriter) {
 	io.WriteString(w, "Not Found")
 }
 
-func count(w http.ResponseWriter, r *http.Request) {
-	c := appengine.NewContext(r)
-
-	item, err := memcache.Get(c, r.URL.Path)
-	if err != nil && err != memcache.ErrCacheMiss {
-		serveError(c, w, err)
-		return
-	}
-	n := 0
-	if err == nil {
-		n, err = strconv.Atoi(string(item.Value))
-		if err != nil {
-			serveError(c, w, err)
-			return
-		}
-	}
-	n++
-	item = &memcache.Item{
-		Key:   r.URL.Path,
-		Value: []byte(strconv.Itoa(n)),
-	}
-	err = memcache.Set(c, item)
-	if err != nil {
-		serveError(c, w, err)
-		return
-	}
-
-	w.Header().Set("Content-Type", "text/plain")
-	fmt.Fprintf(w, "%q has been visited %d times", r.URL.Path, n)
-}
-
 func cmdCreation(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		serve404(w)
@@ -292,8 +261,6 @@ func cmdUpdation(w http.ResponseWriter, r *http.Request) {
 		Name:     r.FormValue("edit-name"),
 		RESTcall: r.FormValue("edit-restCall"),
 		Desc:     r.FormValue("edit-desc"),
-				// Creator TODO
-				// Created TODO
 		Updated: datastore.SecondsToTime(time.Seconds()),
 	}
 	if u := user.Current(c); u != nil {
@@ -346,7 +313,6 @@ func init() {
 	http.HandleFunc(cmdCreateHandler, cmdCreation)
 	http.HandleFunc(cmdListHandler, cmdListingHtml)
 	http.HandleFunc(cmdListHandler+".json", cmdListingJson)
-	http.HandleFunc("/count", count)
 	http.HandleFunc("/cmd", cmd)
 	//		http.HandleFunc("/exec", exec)
 }

@@ -10,6 +10,7 @@
 <meta name="description" content="{{ Title }} {{ TitleDesc }}">
 <meta name="author" content="{{ Author }}">
 <link rel="stylesheet" href="/static/theme/winter.css" type="text/css">
+<script src="http://code.jquery.com/jquery-1.6.1.js"/>
 <title>Sem | Loxal</title>
 
 <script>
@@ -57,15 +58,16 @@
 </div>
 
 <div id="main">
-    <iframe src="/cmd/list" style="border: 0; width: 99%; height: 55%;"></iframe>
+    <iframe id="content" src="/cmd/list" style="border: 0; width: 99%; height: 55%;"></iframe>
 </div>
 
 <div id="footer">
     <p>
         <span>
             Powered by <a href="http://github.com/loxal"
-                          title="Sem - Google App Engine Content Management System">
-            Sem <a href="http://golang.org">Go</a>@<abbr title="Google App Engine">GAE</abbr> Service Framework</a>
+                          title="Sem @ Google App Engine">
+            Sem@<abbr title="Google App Engine">GAE</abbr> (<a href="http://golang.org">Go</a>) <abbr
+                title="Ajax/HTML5 backend client">BC</abbr></a>
         </span>
         <span style="float: right;">
             <a href="/imprint" title="...with contact formular">Imprint</a> | &copy; {{ Year }} {{ Author }}. {{ Copyright }}
