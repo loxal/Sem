@@ -31,17 +31,28 @@
 </script>
 
 <script>
+    /**
+     *
+     * @param {string} dest
+     */
     var navTo = function(dest) {
-        console.log(dest);
-        var main = document.getElementById('main');
-//        main.innerHTML('<p>IMPRINT</p>');
-        var test = document.createElement('p')
-        var txt = document.createTextNode('IMPRINT');
-        test.appendChild(txt);
-        main.appendChild(test);
-        main.innerHTML = 'BLUB';
+//        console.log(dest);
+//        var main = document.getElementById('main');
+////        main.innerHTML('<p>IMPRINT</p>');
+//        var test = document.createElement('p')
+//        var txt = document.createTextNode('IMPRINT');
+//        test.appendChild(txt);
+//        main.appendChild(test);
+//        main.innerHTML = 'BLUB';
 
+        $.ajax({url: dest,
+                    success: function(data) {
+                        $('#main').html(data);
+                        console.log('ok');
+                    }});
     };
+
+
 </script>
 
 <div id="header">
@@ -73,13 +84,13 @@
 <div id="footer">
     <p>
         <span>
-            Powered by <a href="http://github.com/loxal"
-                          title="Sem @ Google App Engine">
+            Powered by <a href="http://github.com/loxal" title="Sem @ Google App Engine">
             Sem@<abbr title="Google App Engine">GAE</abbr> (<a href="http://golang.org">Go</a>) <abbr
                 title="Ajax/HTML5 backend client">BC</abbr></a>
         </span>
         <span style="float: right;">
-            <a href="javascript:navTo('imprint');" title="with contact formular">Imprint / Contact</a> | &copy; {{ Year }} {{ Author }}. {{ Copyright }}
+            <a href="javascript:navTo('/static/client/site/imprint.html');" title="with contact formular">Imprint /
+                Contact</a> | &copy; {{ Year }} {{ Author }}. {{ Copyright }}
         </span>
     </p>
 </div>
