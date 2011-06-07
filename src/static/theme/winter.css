@@ -10,14 +10,14 @@ body {
     background: #eef;
     background: -moz-repeating-linear-gradient(top left -45deg, hsla(222, 99%, 88%, .4), hsla(222, 99%, 88%, .1) 5px, hsla(222, 99%, 88%, .4) 5px, hsla(222, 99%, 88%, .1) 11px);
     background: -webkit-repeating-linear-gradient(top left -45deg, hsla(222, 99%, 88%, .4), hsla(222, 99%, 88%, .1) 5px, hsla(222, 99%, 88%, .4) 5px, hsla(222, 99%, 88%, .1) 11px);
-    background: -opera-repeating-linear-gradient(top left -45deg, hsla(222, 99%, 88%, .4), hsla(222, 99%, 88%, .1) 5px, hsla(222, 99%, 88%, .4) 5px, hsla(222, 99%, 88%, .1) 11px);
+    background: -o-repeating-linear-gradient(top left -45deg, hsla(222, 99%, 88%, .4), hsla(222, 99%, 88%, .1) 5px, hsla(222, 99%, 88%, .4) 5px, hsla(222, 99%, 88%, .1) 11px);
 }
 
 #header {
     background: hsla(222, 99%, 88%, .4);
     background: -moz-linear-gradient(top, hsla(222, 99%, 88%, .9), hsla(222, 99%, 88%, .2));
     background: -webkit-linear-gradient(top, hsla(222, 99%, 88%, .9), hsla(222, 99%, 88%, .2));
-    background: -opera-linear-gradient(top, hsla(222, 99%, 88%, .9), hsla(222, 99%, 88%, .2));
+    background: -o-linear-gradient(top, hsla(222, 99%, 88%, .9), hsla(222, 99%, 88%, .2));
     border-radius: 1em 1em 0 1em;
     -webkit-border-radius: 1em 1em 0 1em;
     -moz-border-radius: 1em 1em 0 1em;
@@ -158,16 +158,17 @@ address, code, pre {
 }
 
 ul.nav li {
-    width: 12em;
+    width: 499%;
     list-style-type: none;
 }
 
 ul.nav li, #authentication {
     background: hsla(222, 66%, 66%, .2);
     border: .1em solid hsla(222, 99%, 55%, .1);
-    border-radius: 0 1em 1em 0;
-    -webkit-border-radius: 0 1em 1em 0;
-    -moz-border-radius: 0 1em 1em 0;
+    border-radius: 1em 0 0 1em;
+    -webkit-border-radius: 1em 0 0 1em;
+    -moz-border-radius: 1em 0 0 1em;
+    -o-border-radius: 1em 0 0 1em;
     padding: .3em;
 }
 

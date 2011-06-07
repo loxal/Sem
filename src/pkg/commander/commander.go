@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// The entry package for the GAE environment
+// RESTful commander service backend
 package commander
 
 import (
@@ -15,7 +15,8 @@ import (
 	"time"
 	"json"
 
-	"pkg/flag_my" // to parse r.URL.Raw
+	"flag"
+//	"pkg/flag_my" // to parse r.URL.Raw
 
 	"appengine"
 	"appengine/datastore"
@@ -130,7 +131,8 @@ func cmdListingJson(w http.ResponseWriter, r *http.Request) {
 }
 
 // Returns the RESTful associated with a certain command
-func exec(cmd string) (restCall string) {
+//func exec(cmd string) (restCall string) {
+func exec(w http.ResponseWriter, r *http.Request) {
 
 	//	io.WriteString(os.Stdout, url.Raw + "\n")
 	//	os.Stdout.WriteString(url.Raw + "\n")
@@ -140,12 +142,14 @@ func exec(cmd string) (restCall string) {
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {
-	var _ = flag1.PrintDefaults // delete before submitting
+//	var _ = flag1.PrintDefaults // delete before submitting
+	var _ = flag.PrintDefaults // delete before submitting
 	c := appengine.NewContext(r)
 	var cmds []*Cmd
 	cmdName := r.FormValue("name")
 	_, err := datastore.NewQuery("Cmd").Filter("Name =", cmdName).GetAll(c, &cmds)
 	fmt.Fprintln(w, err)
+	fmt.Fprintln(w, r.FormValue("cmd"))
 }
 
 func cmdDelete(cmdName string, c appengine.Context) (ok bool) {
@@ -222,5 +226,5 @@ func init() {
 	http.HandleFunc(cmdListHandler, cmdListingHtml)
 	http.HandleFunc(cmdListHandler+".json", cmdListingJson)
 	http.HandleFunc("/cmd", cmd)
-	//		http.HandleFunc("/exec", exec)
+			http.HandleFunc("/exec", exec)
 }

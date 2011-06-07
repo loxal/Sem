@@ -30,6 +30,20 @@
     })();
 </script>
 
+<script>
+    var navTo = function(dest) {
+        console.log(dest);
+        var main = document.getElementById('main');
+//        main.innerHTML('<p>IMPRINT</p>');
+        var test = document.createElement('p')
+        var txt = document.createTextNode('IMPRINT');
+        test.appendChild(txt);
+        main.appendChild(test);
+        main.innerHTML = 'BLUB';
+
+    };
+</script>
+
 <div id="header">
     <div id="header-title">
         <img id="logo" src="/static/theme/logo.png" alt="Logo" title="{{ Title }} Logo"/>
@@ -45,14 +59,9 @@
 
 <div id="sidebar">
     <div id="index">
+        <h1>Service</h1>
         <ul class="nav">
-            <li><a href="/" title="Start and website entry point">Start</a>
-        </ul>
-
-        <h1>Services</h1>
-        <ul class="nav">
-            <li>
-                <a href="/cmd/list" title="Map key combinations (shortcuts) to web requests">Shell</a>
+            <li><a href="/" title="Map key combinations (shortcuts) to web requests">Shell</a></li>
         </ul>
     </div>
 </div>
@@ -70,7 +79,7 @@
                 title="Ajax/HTML5 backend client">BC</abbr></a>
         </span>
         <span style="float: right;">
-            <a href="/imprint" title="...with contact formular">Imprint</a> | &copy; {{ Year }} {{ Author }}. {{ Copyright }}
+            <a href="javascript:navTo('imprint');" title="with contact formular">Imprint / Contact</a> | &copy; {{ Year }} {{ Author }}. {{ Copyright }}
         </span>
     </p>
 </div>
