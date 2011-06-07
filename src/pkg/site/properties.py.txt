@@ -4,13 +4,6 @@ TITLE = _('synergy of loxal')
 # sub title
 TITLE_DESC = _('...more than just the sum of its parts.')
 # administrative content, also responsible for site content
-IMPRINT = '''
-    Alexander Orlov
-
-    Rablstr. 12
-    81669 Munich
-    Germany
-'''
 
 # if you want to change the favicon.ico, you have to do it manually,
 # by replacing the favicon.ico file in the static folder

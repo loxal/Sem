@@ -46,28 +46,23 @@ body {
     border-radius: 0 0 1em 0;
     -webkit-border-radius: 0 0 1em 0;
     -moz-border-radius: 0 0 1em 0;
+    -o-border-radius: 0 0 1em 0;
     box-shadow: 1em 2em 1em #ccc;
     -webkit-box-shadow: 1em 2em 1em #ccc;
     -moz-box-shadow: 1em 2em 1em #ccc;
+    -o-box-shadow: 1em 2em 1em #ccc;
 }
 
-#info_error {
-    color: #911;
-    margin: 1em;
-    border-radius: 1em 1em 1em 1em;
-    -webkit-border-radius: 1em 1em 1em 1em;
-    -moz-border-radius: 1em 1em 1em 1em;
-}
-
-.info-success {
+.success {
     color: hsla(99, 99%, 33%, .9);
 }
 
-.info-warning {
+.warn {
     color: hsla(0, 99%, 33%, .9);
 }
 
 .info {
+    text-align: center;
     position: fixed;
     top: 11em;
     left: auto;
@@ -76,9 +71,10 @@ body {
     margin: 1em;
     padding: 1em;
     border: 1px solid hsla(222, 99%, 55%, .9);
-    border-radius: 1em 1em 1em 1em;
-    -webkit-border-radius: 1em 1em 1em 1em;
-    -moz-border-radius: 1em 1em 1em 1em;
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -o-border-radius: 1em;
 }
 
 #dialog {

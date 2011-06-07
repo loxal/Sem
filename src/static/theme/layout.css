@@ -25,7 +25,6 @@
 #sidebar {
     float: left;
     padding-top: 1.5em;
-    /*width: 22%;*/
 }
 
 #main {
@@ -33,6 +32,7 @@
     float: right;
     padding: 1em;
     width: 77%;
+    min-height: 11em;
 }
 
 #footer {

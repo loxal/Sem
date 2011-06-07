@@ -47,6 +47,23 @@ func handleMain(w http.ResponseWriter, r *http.Request) {
     }
 }
 
+func handleProperties(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "GET" {
+	    panic("TESTING 'panic'")
+		serve404(w)
+		return
+	}
+    type Site struct {
+		Author string "author" // this tag can be omitted and is used for demo reasons only
+		Copyright, Title, TitleDesc, Mail string
+		Year string "year"
+	}
+	content, _ := ioutil.ReadFile("pkg/site/properties.json")
+
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	fmt.Fprintln(w, string(content))
+}
+
 func reloadMainPresenterTemplate() {
     mainPresenter = template.New(nil)
 	mainPresenter.SetDelims("{{", "}}")
@@ -56,6 +73,7 @@ func reloadMainPresenterTemplate() {
 }
 
 const indexHandler = "/"
+const propertiesHandler = "/site.json"
 const plainTxtEnc = "text/plain; charset=utf-8"
 const mainPresenterSite = "pkg/site/main.html"
 var mainPresenter *template.Template
@@ -63,4 +81,5 @@ var mainPresenter *template.Template
 func init() {
     reloadMainPresenterTemplate()
 	http.HandleFunc(indexHandler, handleMain)
+	http.HandleFunc(propertiesHandler, handleProperties)
 }
