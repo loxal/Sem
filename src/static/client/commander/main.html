@@ -28,21 +28,44 @@
 
         for (var i in cmdsJson) {
             var row = document.createElement('tr');
+
             var cellName = document.createElement('td');
             var cellRESTcall = document.createElement('td');
             var cellDesc = document.createElement('td');
+            var cellCreator = document.createElement('td');
+            var cellUser = document.createElement('td');
+            var cellCreated = document.createElement('td');
+            var cellUpdated = document.createElement('td');
+            var cellDelete = document.createElement('td');
 
-            var cellNameTxt = document.createTextNode(cmdsJson[i].Name);
+            var cellNameLink = document.createElement('span');
+            cellNameLink.innerHTML = '<a href="javascript:edit(\'' + cmdsJson[i].Name + '\');">' + cmdsJson[i].Name + '</a>';
             var cellRESTcallTxt = document.createTextNode(cmdsJson[i].RESTcall);
             var cellDescTxt = document.createTextNode(cmdsJson[i].Desc);
+            var cellCreatorTxt = document.createTextNode(cmdsJson[i].Creator);
+            var cellUserTxt = document.createTextNode(cmdsJson[i].User);
+            var cellCreatedTxt = document.createTextNode(cmdsJson[i].Created);
+            var cellUpdatedTxt = document.createTextNode(cmdsJson[i].Updated);
+            var cellDeleteLink = document.createElement('span');
+            cellDeleteLink.innerHTML = '<a href="/cmd/delete?name=' + cmdsJson[i].Name + '">X</a>';
 
-            cellName.appendChild(cellNameTxt);
+            cellName.appendChild(cellNameLink);
             cellRESTcall.appendChild(cellRESTcallTxt);
             cellDesc.appendChild(cellDescTxt);
+            cellCreator.appendChild(cellCreatorTxt);
+            cellUser.appendChild(cellUserTxt);
+            cellCreated.appendChild(cellCreatedTxt);
+            cellUpdated.appendChild(cellUpdatedTxt);
+            cellDelete.appendChild(cellDeleteLink);
 
             row.appendChild(cellName);
             row.appendChild(cellRESTcall);
             row.appendChild(cellDesc);
+            row.appendChild(cellCreator);
+            row.appendChild(cellUser);
+            row.appendChild(cellCreated);
+            row.appendChild(cellUpdated);
+            row.appendChild(cellDelete);
 
             pager.appendChild(row);
         }
