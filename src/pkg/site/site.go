@@ -61,7 +61,8 @@ const indexHandler = "/"
 const propertiesHandler = "/site.json"
 const plainTxtEnc = "text/plain; charset=utf-8"
 
-const mainPresenterSite = "static/client/site/main.html"
+//const mainPresenterSite = "static/client/site/main.html"
+const mainPresenterSite = "pkg/site/main.html"
 var mainPresenter *template.Template
 
 func init() {

@@ -199,7 +199,8 @@ func Double(i int) int {
 	return i * 2
 }
 
-const mainPresenterSite = "static/client/commander/main.html"
+//const mainPresenterSite = "static/client/commander/main.html"
+const mainPresenterSite = "pkg/commander/main.html"
 var mainPresenter *template.Template
 
 func reloadMainPresenterTemplate() {

@@ -1,0 +1,146 @@
+<!--
+  ~ Copyright 2011 Alexander Orlov <alexander.orlov@loxal.net>. All rights reserved.
+  ~ Use of this source code is governed by a BSD-style
+  ~ license that can be found in the LICENSE file.
+  -->
+
+<style>
+    label, input {
+        display: block;
+    }
+</style>
+
+<script>
+    function edit(cmdName) {
+        document.getElementById("edit-form-" + cmdName).style.display = "block";
+    }
+
+    var applyValues = function() {
+        $.ajax({url: '/cmd/list.json',
+            success: function(response) {
+                fillPager(response.cmds);
+            }});
+    };
+    applyValues();
+
+    function fillPager(cmdsJson) {
+        var pager = document.getElementById('pager');
+
+        for (var i in cmdsJson) {
+            var row = document.createElement('tr');
+
+            var cellName = document.createElement('td');
+            var cellRESTcall = document.createElement('td');
+            var cellDesc = document.createElement('td');
+            var cellCreator = document.createElement('td');
+            var cellUser = document.createElement('td');
+            var cellCreated = document.createElement('td');
+            var cellUpdated = document.createElement('td');
+            var cellDelete = document.createElement('td');
+
+            var cellNameLink = document.createElement('span');
+            cellNameLink.innerHTML = '<a href="javascript:edit(\'' + cmdsJson[i].Name + '\');">' + cmdsJson[i].Name + '</a>';
+            // TODO buildForm() or are FORMs osbolete within the Ajax environment?
+            var cellRESTcallTxt = document.createTextNode(cmdsJson[i].RESTcall);
+            var cellDescTxt = document.createTextNode(cmdsJson[i].Desc);
+            var cellCreatorTxt = document.createTextNode(cmdsJson[i].Creator);
+            var cellUserTxt = document.createTextNode(cmdsJson[i].User);
+            var cellCreatedTxt = document.createTextNode(cmdsJson[i].Created);
+            var cellUpdatedTxt = document.createTextNode(cmdsJson[i].Updated);
+            var cellDeleteLink = document.createElement('span');
+            cellDeleteLink.innerHTML = '<a href="/cmd/delete?name=' + cmdsJson[i].Name + '">X</a>';
+
+            cellName.appendChild(cellNameLink);
+            cellRESTcall.appendChild(cellRESTcallTxt);
+            cellDesc.appendChild(cellDescTxt);
+            cellCreator.appendChild(cellCreatorTxt);
+            cellUser.appendChild(cellUserTxt);
+            cellCreated.appendChild(cellCreatedTxt);
+            cellUpdated.appendChild(cellUpdatedTxt);
+            cellDelete.appendChild(cellDeleteLink);
+
+            row.appendChild(cellName);
+            row.appendChild(cellRESTcall);
+            row.appendChild(cellDesc);
+            row.appendChild(cellCreator);
+            row.appendChild(cellUser);
+            row.appendChild(cellCreated);
+            row.appendChild(cellUpdated);
+            row.appendChild(cellDelete);
+
+            pager.appendChild(row);
+        }
+    }
+
+</script>
+
+<form action="/cmd/create" method="post">
+    <fieldset>
+        <legend>Command</legend>
+        <label for="name">Name</label>
+        <input name="name" id="name" type="text" value="name"/>
+        <label for="restCall">Shortcut</label>
+        <input name="restCall" id="restCall" type="text" value="rc"/>
+        <label for="desc">Description</label>
+        <input name="desc" id="desc" type="text" value="desc"/>
+        <input type="submit" value="Create">
+    </fieldset>
+</form>
+
+<div id="output"></div>
+
+<table id="pager">
+    <tr>
+        <th>Name</th>
+        <th>RESTcall</th>
+        <th>Description</th>
+        <th>Creator</th>
+        <th>User</th>
+        <th>Created</th>
+        <th>Updated</th>
+        <th>Delete</th>
+    </tr>
+
+</table>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>RESTcall</th>
+        <th>Description</th>
+        <th>Creator</th>
+        <th>User</th>
+        <th>Created</th>
+        <th>Updated</th>
+        <th>Delete</th>
+    </tr>
+    {{.repeated section @ }}
+    <tr>
+        <td>
+            {{.section Name}}
+            <a href="javascript:edit('{{ @ }}');">{{ @ }}</a>
+
+            <form action="/cmd/update" method="post" style="display: none;" id="edit-form-{{ @ }}">
+                <fieldset>
+                    <legend>Command</legend>
+                    <label for="edit-name">Name</label>
+                    <input name="edit-name" id="edit-name" type="text" value="{{ Name }}" readonly/>
+                    <label for="edit-restCall">Shortcut</label>
+                    <input name="edit-restCall" id="edit-restCall" type="text" value="{{ RESTcall }}"/>
+                    <label for="edit-desc">Description</label>
+                    <input name="edit-desc" id="edit-desc" type="text" value="{{ Desc }}"/>
+                    <input type="submit" onclick="hide('{{ @ }}')" value="Update">
+                </fieldset>
+            </form>
+            {{.or}}no name available{{.end}}
+        </td>
+        <td>{{.section RESTcall}}{{@|html}}{{.or}}no RESTcall available{{.end}}</td>
+        <td>{{.section Desc}}{{@|html}}{{.or}}no description availabile{{.end}}</td>
+        <td>{{Creator}}</td>
+        <td>{{User}}</td>
+        <td>{{Created}}</td>
+        <td>{{Updated}}</td>
+        <td><a href="/cmd/delete?name={{ Name }}">X</a></td>
+    </tr>
+    {{.end}}
+</table>
