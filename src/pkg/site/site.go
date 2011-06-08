@@ -33,7 +33,7 @@ func handleMain(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Content-Type", "text/html")
-	reloadMainPresenterTemplate() // auto-reload / refresh in dev mode
+//	reloadMainPresenterTemplate() // auto-reload / refresh in dev mode
 	if err := mainPresenter.Execute(w, nil); err != nil {
 	}
 }
@@ -60,12 +60,15 @@ func reloadMainPresenterTemplate() {
 const indexHandler = "/"
 const propertiesHandler = "/site.json"
 const plainTxtEnc = "text/plain; charset=utf-8"
-const mainPresenterSite = "static/client/site/main.html"
 
+const mainPresenterSite = "static/client/site/main.html"
 var mainPresenter *template.Template
 
 func init() {
 	reloadMainPresenterTemplate()
+//	http.HandleFunc("/", http.FileServer("static/client/site/main.html", "/"))
 	http.HandleFunc(indexHandler, handleMain)
+//    http.Handle("/", http.FileServer("static/client/site/main.html", "/"))
+//    http.Handle("/", http.FileServer("static/", "/"))
 	http.HandleFunc(propertiesHandler, handleProperties)
 }

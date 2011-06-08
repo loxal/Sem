@@ -17,9 +17,9 @@
 
     var applyValues = function() {
         $.ajax({url: '/cmd/list.json',
-                    success: function(response) {
-                        fillPager(response.cmds);
-                    }});
+            success: function(response) {
+                fillPager(response.cmds);
+            }});
     };
     applyValues();
 
@@ -40,6 +40,7 @@
 
             var cellNameLink = document.createElement('span');
             cellNameLink.innerHTML = '<a href="javascript:edit(\'' + cmdsJson[i].Name + '\');">' + cmdsJson[i].Name + '</a>';
+            // TODO buildForm() or are FORMs osbolete within the Ajax environment?
             var cellRESTcallTxt = document.createTextNode(cmdsJson[i].RESTcall);
             var cellDescTxt = document.createTextNode(cmdsJson[i].Desc);
             var cellCreatorTxt = document.createTextNode(cmdsJson[i].Creator);

@@ -118,7 +118,7 @@ func cmdListingJson(w http.ResponseWriter, r *http.Request) {
 	cmds := cmdListing(w, r)
 
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	fmt.Fprintln(w, `{"cmds": [`)
+	fmt.Fprint(w, `{"cmds": [`)
 	lenCmds := len(cmds)
 	for i := range cmds {
 		cmdJSONed, _ := json.Marshal(cmds[i])
@@ -127,18 +127,12 @@ func cmdListingJson(w http.ResponseWriter, r *http.Request) {
 			fmt.Fprintln(w, ",")
 		}
 	}
-	fmt.Fprintln(w, "]}")
+	fmt.Fprint(w, "]}")
 }
 
 // Returns the RESTful associated with a certain command
 //func exec(cmd string) (restCall string) {
 func exec(w http.ResponseWriter, r *http.Request) {
-
-	//	io.WriteString(os.Stdout, url.Raw + "\n")
-	//	os.Stdout.WriteString(url.Raw + "\n")
-
-	//	restCall = m[cmd]
-	return
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {
@@ -206,7 +200,6 @@ func Double(i int) int {
 }
 
 const mainPresenterSite = "static/client/commander/main.html"
-
 var mainPresenter *template.Template
 
 func reloadMainPresenterTemplate() {
@@ -215,11 +208,10 @@ func reloadMainPresenterTemplate() {
 	if err := mainPresenter.ParseFile(mainPresenterSite); err != nil {
 		panic("can't parse: " + err.String())
 	}
-fmt.Println("BLB")
 }
 
 func init() {
-	reloadMainPresenterTemplate() // auto-reload / refresh in dev mode
+//	reloadMainPresenterTemplate() // auto-reload / refresh in dev mode
 	http.HandleFunc(cmdDeleteHandler, cmdDeletion)
 	http.HandleFunc(cmdUpdateHandler, cmdUpdation)
 	http.HandleFunc(cmdCreateHandler, cmdCreation)
