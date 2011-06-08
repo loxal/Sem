@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"http"
 	"io"
-	"io/ioutil"
+//	"io/ioutil"
 	"os"
 	"template"
 )
@@ -38,16 +38,17 @@ func handleMain(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func handleProperties(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "GET" {
-		panic("TESTING 'panic'")
-		serve404(w)
-		return
-	}
-	content, _ := ioutil.ReadFile("static/client/site/properties.json")
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	fmt.Fprintln(w, string(content))
-}
+//func handleProperties(w http.ResponseWriter, r *http.Request) {
+//	if r.Method != "GET" {
+//		panic("TESTING 'panic'")
+//		serve404(w)
+//		return
+//	}
+////	content, _ := ioutil.ReadFile("tmp/properties.json")
+//	content, _ := ioutil.ReadFile("static/client/site/properties.json") // DOESN'T WORK because the location is static
+//	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+//	fmt.Fprintln(w, string(content))
+//}
 
 func reloadMainPresenterTemplate() {
 	mainPresenter = template.New(nil)
@@ -58,7 +59,7 @@ func reloadMainPresenterTemplate() {
 }
 
 const indexHandler = "/"
-const propertiesHandler = "/site.json"
+//const propertiesHandler = "/site.json"
 const plainTxtEnc = "text/plain; charset=utf-8"
 
 //const mainPresenterSite = "static/client/site/main.html"
@@ -67,9 +68,6 @@ var mainPresenter *template.Template
 
 func init() {
 	reloadMainPresenterTemplate()
-//	http.HandleFunc("/", http.FileServer("static/client/site/main.html", "/"))
 	http.HandleFunc(indexHandler, handleMain)
-//    http.Handle("/", http.FileServer("static/client/site/main.html", "/"))
-//    http.Handle("/", http.FileServer("static/", "/"))
-	http.HandleFunc(propertiesHandler, handleProperties)
+//	http.HandleFunc(propertiesHandler, handleProperties)
 }

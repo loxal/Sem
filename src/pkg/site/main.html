@@ -45,7 +45,7 @@
         }
     };
     var applySiteProperties = function() {
-        $.ajax({url: '/site.json',
+        $.ajax({url: '/client/site/properties.json',
             success: function(response) {
                 document.getElementById('signature').innerHTML = response.year + ' ' + response.author + '. ' + response.copyright;
                 document.getElementById('header-description').innerHTML = response.titleDesc;
