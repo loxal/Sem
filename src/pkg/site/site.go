@@ -5,11 +5,10 @@
 package site
 
 import (
-    "fmt"
+	"fmt"
 	"http"
 	"io"
 	"io/ioutil"
-	"json"
 	"os"
 	"template"
 )
@@ -29,57 +28,44 @@ func serve404(w http.ResponseWriter) {
 
 func handleMain(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
-	    panic("TESTING 'panic'")
+		panic("TESTING 'panic'")
 		serve404(w)
 		return
 	}
-    type Site struct {
-		Author string "author" // this tag can be omitted and is used for demo reasons only
-		Copyright, Title, TitleDesc, Mail string
-		Year string "year"
+	w.Header().Set("Content-Type", "text/html")
+	reloadMainPresenterTemplate() // auto-reload / refresh in dev mode
+	if err := mainPresenter.Execute(w, nil); err != nil {
 	}
-	content, _ := ioutil.ReadFile("pkg/site/properties.json")
-	var site Site
-	json.Unmarshal([]byte(content), &site)
-    w.Header().Set("Content-Type", "text/html")
-    reloadMainPresenterTemplate(); // auto-reload / refresh in dev mode
-    if err := mainPresenter.Execute(w, &site); err != nil {
-    }
 }
 
 func handleProperties(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
-	    panic("TESTING 'panic'")
+		panic("TESTING 'panic'")
 		serve404(w)
 		return
 	}
-    type Site struct {
-		Author string "author" // this tag can be omitted and is used for demo reasons only
-		Copyright, Title, TitleDesc, Mail string
-		Year string "year"
-	}
-	content, _ := ioutil.ReadFile("pkg/site/properties.json")
-
+	content, _ := ioutil.ReadFile("static/client/site/properties.json")
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	fmt.Fprintln(w, string(content))
 }
 
 func reloadMainPresenterTemplate() {
-    mainPresenter = template.New(nil)
+	mainPresenter = template.New(nil)
 	mainPresenter.SetDelims("{{", "}}")
-    	if err := mainPresenter.ParseFile(mainPresenterSite); err != nil {
-    		panic("can't parse: " + err.String())
+	if err := mainPresenter.ParseFile(mainPresenterSite); err != nil {
+		panic("can't parse: " + err.String())
 	}
 }
 
 const indexHandler = "/"
 const propertiesHandler = "/site.json"
 const plainTxtEnc = "text/plain; charset=utf-8"
-const mainPresenterSite = "pkg/site/main.html"
+const mainPresenterSite = "static/client/site/main.html"
+
 var mainPresenter *template.Template
 
 func init() {
-    reloadMainPresenterTemplate()
+	reloadMainPresenterTemplate()
 	http.HandleFunc(indexHandler, handleMain)
 	http.HandleFunc(propertiesHandler, handleProperties)
 }

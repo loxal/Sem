@@ -14,6 +14,40 @@
     function edit(cmdName) {
         document.getElementById("edit-form-" + cmdName).style.display = "block";
     }
+
+    var applyValues = function() {
+        $.ajax({url: '/cmd/list.json',
+                    success: function(response) {
+                        fillPager(response.cmds);
+                    }});
+    };
+    applyValues();
+
+    function fillPager(cmdsJson) {
+        var pager = document.getElementById('pager');
+
+        for (var i in cmdsJson) {
+            var row = document.createElement('tr');
+            var cellName = document.createElement('td');
+            var cellRESTcall = document.createElement('td');
+            var cellDesc = document.createElement('td');
+
+            var cellNameTxt = document.createTextNode(cmdsJson[i].Name);
+            var cellRESTcallTxt = document.createTextNode(cmdsJson[i].RESTcall);
+            var cellDescTxt = document.createTextNode(cmdsJson[i].Desc);
+
+            cellName.appendChild(cellNameTxt);
+            cellRESTcall.appendChild(cellRESTcallTxt);
+            cellDesc.appendChild(cellDescTxt);
+
+            row.appendChild(cellName);
+            row.appendChild(cellRESTcall);
+            row.appendChild(cellDesc);
+
+            pager.appendChild(row);
+        }
+    }
+
 </script>
 
 <form action="/cmd/create" method="post">
@@ -28,6 +62,22 @@
         <input type="submit" value="Create">
     </fieldset>
 </form>
+
+<div id="output"></div>
+
+<table id="pager">
+    <tr>
+        <th>Name</th>
+        <th>RESTcall</th>
+        <th>Description</th>
+        <th>Creator</th>
+        <th>User</th>
+        <th>Created</th>
+        <th>Updated</th>
+        <th>Delete</th>
+    </tr>
+
+</table>
 
 <table>
     <tr>

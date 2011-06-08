@@ -34,7 +34,7 @@ body {
 #title, #header-title {
     text-decoration: none;
     color: hsla(222, 88%, 33%, .9);
-    text-shadow: 0px 2pt 3pt #555;
+    text-shadow: 0px 2px 3px #555;
 }
 
 #title {
@@ -148,6 +148,7 @@ address, code, pre {
 }
 
 .nav a {
+    padding: .5em;
     display: block;
     text-shadow: 0px 1pt 1pt #555;
 }
@@ -190,10 +191,19 @@ a:visited {
 }
 
 input {
+    width: 22em;
     margin: .3em .3em .3em 2em;
-    border-radius: 1em 1em 1em 1em;
-    -webkit-border-radius: 1em 1em 1em 1em;
-    -moz-border-radius: 1em 1em 1em 1em;
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -o-border-radius: 1em;
+    padding: .5em;
+    border: .1em solid hsla(222, 99%, 55%, .4);
+}
+
+button, input[type="submit"] {
+    margin: 1.5em;
+    width: 22em;
 }
 
 input[readonly] {
@@ -209,29 +219,29 @@ textarea {
     height: 222px;
     margin: .3em .3em .3em 2em;
     padding: 1em;
-    border-radius: 1em 1em 1em 1em;
-    -webkit-border-radius: 1em 1em 1em 1em;
-    -moz-border-radius: 1em 1em 1em 1em;
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -o-border-radius: 1em;
 }
 
 table {
     border-collapse: collapse;
-    border: .1em solid hsla(222, 55%, 88%, .9);
-    border-radius: 1em 1em 1em 1em;
-    -webkit-border-radius: 1em 1em 1em 1em;
-    -moz-border-radius: 1em 1em 1em 1em;
+    border: .1em solid hsla(222, 99%, 55%, .1);
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -o-border-radius: 1em;
 }
 
-tr:hover .odd {
-    background: hsla(222, 99%, 55%, .2);
+tr:nth-child(odd) {
+    background: hsla(222, 66%, 55%, .1);
 }
 
 th {
     padding: .5em;
     background: hsla(222, 99%, 55%, .2);
-    border-radius: 1em 1em 0em 0em;
-    -webkit-border-radius: 1em 1em 0em 0em;
-    -moz-border-radius: 1em 1em 0em 0em;
+    border: .1em solid hsla(222, 99%, 55%, .1);
 }
 
 .odd {
@@ -240,6 +250,7 @@ th {
 
 td {
     padding: .3em;
+    border: .1em solid hsla(222, 99%, 55%, .1);
 }
 
 fieldset {
@@ -299,4 +310,5 @@ p:first-letter {
     column-count: 2;
     -webkit-column-count: 2;
     -moz-column-count: 2;
+    -o-column-count: 2;
 }

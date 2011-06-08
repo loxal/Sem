@@ -16,7 +16,7 @@ import (
 	"json"
 
 	"flag"
-//	"pkg/flag_my" // to parse r.URL.Raw
+	//	"pkg/flag_my" // to parse r.URL.Raw
 
 	"appengine"
 	"appengine/datastore"
@@ -107,6 +107,7 @@ func cmdListing(w http.ResponseWriter, r *http.Request) (cmds []*Cmd) {
 func cmdListingHtml(w http.ResponseWriter, r *http.Request) {
 	cmds := cmdListing(w, r)
 
+    reloadMainPresenterTemplate() // auto-reload / refresh in dev mode
 	w.Header().Set("Content-Type", "text/html")
 	if err := mainPresenter.Execute(w, cmds); err != nil {
 		fmt.Println("%v", err)
@@ -120,7 +121,6 @@ func cmdListingJson(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, `{"cmds": [`)
 	lenCmds := len(cmds)
 	for i := range cmds {
-		//		for i := 0; i < lenCmds; i++ {
 		cmdJSONed, _ := json.Marshal(cmds[i])
 		fmt.Fprint(w, string(cmdJSONed))
 		if lenCmds-1 != i {
@@ -142,7 +142,7 @@ func exec(w http.ResponseWriter, r *http.Request) {
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {
-//	var _ = flag1.PrintDefaults // delete before submitting
+	//	var _ = flag1.PrintDefaults // delete before submitting
 	var _ = flag.PrintDefaults // delete before submitting
 	c := appengine.NewContext(r)
 	var cmds []*Cmd
@@ -173,7 +173,7 @@ func cmdUpdation(w http.ResponseWriter, r *http.Request) {
 		Name:     r.FormValue("edit-name"),
 		RESTcall: r.FormValue("edit-restCall"),
 		Desc:     r.FormValue("edit-desc"),
-		Updated: datastore.SecondsToTime(time.Seconds()),
+		Updated:  datastore.SecondsToTime(time.Seconds()),
 	}
 	if u := user.Current(c); u != nil {
 		cmd.User = u.String()
@@ -205,7 +205,7 @@ func Double(i int) int {
 	return i * 2
 }
 
-const mainPresenterSite = "pkg/commander/main.html"
+const mainPresenterSite = "static/client/commander/main.html"
 
 var mainPresenter *template.Template
 
@@ -215,10 +215,10 @@ func reloadMainPresenterTemplate() {
 	if err := mainPresenter.ParseFile(mainPresenterSite); err != nil {
 		panic("can't parse: " + err.String())
 	}
+fmt.Println("BLB")
 }
 
 func init() {
-
 	reloadMainPresenterTemplate() // auto-reload / refresh in dev mode
 	http.HandleFunc(cmdDeleteHandler, cmdDeletion)
 	http.HandleFunc(cmdUpdateHandler, cmdUpdation)
@@ -226,5 +226,5 @@ func init() {
 	http.HandleFunc(cmdListHandler, cmdListingHtml)
 	http.HandleFunc(cmdListHandler+".json", cmdListingJson)
 	http.HandleFunc("/cmd", cmd)
-			http.HandleFunc("/exec", exec)
+	http.HandleFunc("/exec", exec)
 }
