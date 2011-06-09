@@ -15,13 +15,36 @@
         document.getElementById("edit-form-" + cmdName).style.display = "block";
     }
 
+    function hide(cmdName) {
+        document.getElementById("edit-form-" + cmdName).style.display = "none";
+    }
+
+    function test1(cmdsJson) {
+        fillPager(cmdsJson);
+    }
+
     var applyValues = function() {
         $.ajax({url: '/cmd/list.json',
             success: function(response) {
                 fillPager(response.cmds);
             }});
     };
+
     applyValues();
+
+    function cmdDelete(cmdName) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', '/cmd/delete?name=' + cmdName, true);
+        xhr.send(null);
+    }
+
+    function sendForm(form) {
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+        xhr.open('post', form.action, true);
+        xhr.send(formData);
+        return false; // Prevent page from submitting.
+    }
 
     function fillPager(cmdsJson) {
         var pager = document.getElementById('pager');
@@ -38,17 +61,56 @@
             var cellUpdated = document.createElement('td');
             var cellDelete = document.createElement('td');
 
+
+            function buildForm() {
+                var fieldset = document.createElement('fieldset');
+                var updateForm = document.createElement('form');
+                var inputName = document.createElement('input');
+                inputName.setAttribute('value', cmdsJson[i].Name);
+                inputName.setAttribute('name', 'edit-name');
+                inputName.setAttribute('id', 'edit-name');
+                inputName.setAttribute('readonly');
+                var inputShortcut = document.createElement('input');
+                inputShortcut.setAttribute('value', cmdsJson[i].RESTcall);
+                inputShortcut.setAttribute('name', 'edit-restCall');
+                inputShortcut.setAttribute('id', 'edit-restCall');
+                var inputDesc = document.createElement('input');
+                inputDesc.setAttribute('value', cmdsJson[i].Desc);
+                inputDesc.setAttribute('name', 'edit-desc');
+                inputDesc.setAttribute('id', 'edit-desc');
+                var updateButton = document.createElement('button');
+                var updateButtonValue = document.createTextNode("Update");
+                updateButton.appendChild(updateButtonValue);
+                updateButton.setAttribute('onclick', 'location.reload(); hide("' + cmdsJson[i].Name + '"); return sendForm(this.form);');
+
+                updateForm.setAttribute('style', 'display: none;');
+                updateForm.setAttribute('id', 'edit-form-' + cmdsJson[i].Name);
+                updateForm.setAttribute('action', '/cmd/update');
+                updateForm.setAttribute('method', 'post');
+
+                fieldset.appendChild(inputName);
+                fieldset.appendChild(inputShortcut);
+                fieldset.appendChild(inputDesc);
+                fieldset.appendChild(updateButton);
+                cellName.appendChild(updateForm);
+
+                updateForm.appendChild(fieldset);
+            }
+
+            buildForm();
+
             var cellNameLink = document.createElement('span');
             cellNameLink.innerHTML = '<a href="javascript:edit(\'' + cmdsJson[i].Name + '\');">' + cmdsJson[i].Name + '</a>';
-            // TODO buildForm() or are FORMs osbolete within the Ajax environment?
             var cellRESTcallTxt = document.createTextNode(cmdsJson[i].RESTcall);
             var cellDescTxt = document.createTextNode(cmdsJson[i].Desc);
             var cellCreatorTxt = document.createTextNode(cmdsJson[i].Creator);
             var cellUserTxt = document.createTextNode(cmdsJson[i].User);
             var cellCreatedTxt = document.createTextNode(cmdsJson[i].Created);
             var cellUpdatedTxt = document.createTextNode(cmdsJson[i].Updated);
-            var cellDeleteLink = document.createElement('span');
-            cellDeleteLink.innerHTML = '<a href="/cmd/delete?name=' + cmdsJson[i].Name + '">X</a>';
+            var cellDeleteLink = document.createElement('button');
+//            cellDeleteLink.innerHTML = '<a href="/cmd/delete?name=' + cmdsJson[i].Name + '">X</a>';
+            cellDeleteLink.innerHTML = 'X';
+            cellDeleteLink.setAttribute('onclick', 'cmdDelete("' + cmdsJson[i].Name + '")');
 
             cellName.appendChild(cellNameLink);
             cellRESTcall.appendChild(cellRESTcallTxt);
@@ -100,48 +162,4 @@
         <th>Updated</th>
         <th>Delete</th>
     </tr>
-
-</table>
-
-<table>
-    <tr>
-        <th>Name</th>
-        <th>RESTcall</th>
-        <th>Description</th>
-        <th>Creator</th>
-        <th>User</th>
-        <th>Created</th>
-        <th>Updated</th>
-        <th>Delete</th>
-    </tr>
-    {{.repeated section @ }}
-    <!--Use Google Closure AND XHR2 (http://www.html5rocks.com/en/tutorials/file/xhr2/) to re-implement this as Ajax-->
-    <tr>
-        <td>
-            {{.section Name}}
-            <a href="javascript:edit('{{ @ }}');">{{ @ }}</a>
-
-            <form action="/cmd/update" method="post" style="display: none;" id="edit-form-{{ @ }}">
-                <fieldset>
-                    <legend>Command</legend>
-                    <label for="edit-name">Name</label>
-                    <input name="edit-name" id="edit-name" type="text" value="{{ Name }}" readonly/>
-                    <label for="edit-restCall">Shortcut</label>
-                    <input name="edit-restCall" id="edit-restCall" type="text" value="{{ RESTcall }}"/>
-                    <label for="edit-desc">Description</label>
-                    <input name="edit-desc" id="edit-desc" type="text" value="{{ Desc }}"/>
-                    <input type="submit" onclick="hide('{{ @ }}')" value="Update">
-                </fieldset>
-            </form>
-            {{.or}}no name available{{.end}}
-        </td>
-        <td>{{.section RESTcall}}{{@|html}}{{.or}}no RESTcall available{{.end}}</td>
-        <td>{{.section Desc}}{{@|html}}{{.or}}no description availabile{{.end}}</td>
-        <td>{{Creator}}</td>
-        <td>{{User}}</td>
-        <td>{{Created}}</td>
-        <td>{{Updated}}</td>
-        <td><a href="/cmd/delete?name={{ Name }}">X</a></td>
-    </tr>
-    {{.end}}
 </table>

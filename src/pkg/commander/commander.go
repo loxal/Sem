@@ -68,7 +68,7 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	http.Redirect(w, r, cmdListHandler, http.StatusFound)
+	http.Redirect(w, r, indexHandler, http.StatusFound)
 }
 
 // Constraint Check
@@ -158,7 +158,7 @@ func cmdDelete(cmdName string, c appengine.Context) (ok bool) {
 func cmdDeletion(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	cmdDelete(r.FormValue("name"), c)
-	http.Redirect(w, r, cmdListHandler, http.StatusFound)
+	http.Redirect(w, r, indexHandler, http.StatusFound)
 }
 
 func cmdUpdation(w http.ResponseWriter, r *http.Request) {
@@ -175,8 +175,6 @@ func cmdUpdation(w http.ResponseWriter, r *http.Request) {
 	if ok, err := cmdUpdate(cmd, c); err != nil {
 		fmt.Fprintln(w, err, ok)
 	}
-
-	http.Redirect(w, r, cmdListHandler, http.StatusFound)
 }
 
 func cmdUpdate(cmd *Cmd, c appengine.Context) (ok bool, err os.Error) {
@@ -190,6 +188,7 @@ func cmdUpdate(cmd *Cmd, c appengine.Context) (ok bool, err os.Error) {
 	return false, os.NewError("exists")
 }
 
+const indexHandler = "/"
 const cmdUpdateHandler = "/cmd/update"
 const cmdDeleteHandler = "/cmd/delete"
 const cmdCreateHandler = "/cmd/create"

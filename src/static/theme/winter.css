@@ -161,8 +161,12 @@ address, code, pre {
     text-shadow: 0px 1pt 1pt #555;
 }
 
+ul.nav {
+    width: 200%;
+    z-index: -4;
+}
+
 ul.nav li {
-    width: 12em;
     list-style-type: none;
 }
 
