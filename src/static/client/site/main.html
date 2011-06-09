@@ -32,7 +32,7 @@
 
 <script>
     var navTo = function() {
-        var handlerMap = {'/': '/cmd/list', '/imprint': '/static/client/site/imprint.html', '/start': '/cmd/list'};
+        var handlerMap = {'/': '/cmd/list', '/imprint': '/static/client/site/imprint.html', '/start': '/cmd/list', '/main.html': '/cmd/list'};
         if (!handlerMap[window.location.pathname]) {
             $(document).ready(function() {
                 $('#main').html('<div class="info warn">Page Not Found</div>');

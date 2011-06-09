@@ -20,9 +20,20 @@ handlers:
 - url: /resource/(.*)
   static_files: static/resource/\1
   upload: static/resource/.*
-#- url: /start
-#  static_files: static/client/site/main.html
-#  upload: /static/client/site/main.html
-- url: .*
+- url: /cmd/.*
   script: _go_app
-#  login: required
+- url: .*
+  static_files: static/client/site/main.html
+  upload: /static/client/.*
+
+skip_files:
+- ^(.*/)?app\.yaml
+- ^(.*/)?app\.yml
+- ^(.*/)?index\.yaml
+- ^(.*/)?index\.yml
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*/RCS/.*
+- ^(.*/)?\..*
+- ^(.*/)?.*/Metro/.*$
