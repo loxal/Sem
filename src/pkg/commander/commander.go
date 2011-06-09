@@ -212,7 +212,6 @@ func reloadMainPresenterTemplate() {
 }
 
 func init() {
-//	reloadMainPresenterTemplate() // auto-reload / refresh in dev mode
 	http.HandleFunc(cmdDeleteHandler, cmdDeletion)
 	http.HandleFunc(cmdUpdateHandler, cmdUpdation)
 	http.HandleFunc(cmdCreateHandler, cmdCreation)
