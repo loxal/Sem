@@ -20,9 +20,9 @@ handlers:
 - url: /resource/(.*)
   static_files: static/resource/\1
   upload: static/resource/.*
-- url: /index
-  static_files: static/client/site/main.html
-  upload: /
-- url: /.*
+#- url: /start
+#  static_files: static/client/site/main.html
+#  upload: /static/client/site/main.html
+- url: .*
   script: _go_app
 #  login: required
