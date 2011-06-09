@@ -20,10 +20,6 @@
     }
 
     var applyValues = function() {
-//        $.ajax({url: '/cmd/list.json',
-//            success: function(response) {
-//                fillPager(response.cmds);
-//            }});
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '/cmd/list.json', false);
         xhr.onload = function(e) {
@@ -32,7 +28,9 @@
         xhr.send();
     };
 
+
     applyValues();
+
 
     function cmdDelete(cmdName) {
         var xhr = new XMLHttpRequest();

@@ -34,14 +34,15 @@
     var navTo = function() {
         var handlerMap = {'/': '/client/commander/main.html', '/imprint': '/static/client/site/imprint.html', '/start': '/cmd/list', '/main.html': '/cmd/list'};
         if (!handlerMap[window.location.pathname]) {
-            $(document).ready(function() {
-                $('#main').html('<div class="info warn">Page Not Found</div>');
-            });
+            document.getElementById('main').innerHTML = '<div class="info warn">Page Not Found</div>';
         } else {
-            $.ajax({url: handlerMap[window.location.pathname],
-                success: function(response) {
-                    $('#main').html(response);
-                }});
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', handlerMap[window.location.pathname], false);
+            xhr.onload = function(e) {
+                $('#main').html(this.responseText);
+//                document.getElementById('main').innerHTML = test1(this.responseText);
+            };
+            xhr.send();
         }
     };
     var applySiteProperties = function() {
@@ -52,17 +53,10 @@
             document.getElementById('header-description').innerHTML = JSON.parse(this.responseText).titleDesc;
         };
         xhr.send();
-
-//        $.ajax({url: '/client/site/properties.json',
-//            success: function(response) {
-//                document.getElementById('signature').innerHTML = response.year + ' ' + response.copyright;
-//                document.getElementById('header-description').innerHTML = response.titleDesc;
-//            }});
     };
-    navTo();
 </script>
 
-<body onload="applySiteProperties();">
+<body onload="applySiteProperties(); navTo();">
 <div id="header">
     <div id="header-title">
         <img id="logo" src="/static/theme/logo.png" alt="Logo" title="Site Logo"/>
