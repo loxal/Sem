@@ -11,7 +11,6 @@ import (
 	"io"
 	"os"
 	"strings"
-	"template"
 	"time"
 	"json"
 
@@ -94,24 +93,12 @@ func cmdListing(w http.ResponseWriter, r *http.Request) (cmds []*Cmd) {
 		serve404(w)
 		return
 	}
-
 	c := appengine.NewContext(r)
 	if _, err := datastore.NewQuery("Cmd").GetAll(c, &cmds); err != nil {
 		serveError(c, w, err)
 		return
 	}
-
 	return cmds
-}
-
-func cmdListingHtml(w http.ResponseWriter, r *http.Request) {
-	cmds := cmdListing(w, r)
-
-    reloadMainPresenterTemplate() // auto-reload / refresh in dev mode
-	w.Header().Set("Content-Type", "text/html")
-	if err := mainPresenter.Execute(w, cmds); err != nil {
-		fmt.Println("%v", err)
-	}
 }
 
 func cmdListingJson(w http.ResponseWriter, r *http.Request) {
@@ -192,30 +179,17 @@ const indexHandler = "/"
 const cmdUpdateHandler = "/cmd/update"
 const cmdDeleteHandler = "/cmd/delete"
 const cmdCreateHandler = "/cmd/create"
-const cmdListHandler = "/cmd/list"
+const cmdListHandler = "/cmd/list.json"
 
 func Double(i int) int {
 	return i * 2
-}
-
-//const mainPresenterSite = "static/client/commander/main.html"
-const mainPresenterSite = "pkg/commander/main.html"
-var mainPresenter *template.Template
-
-func reloadMainPresenterTemplate() {
-	mainPresenter = template.New(nil)
-	mainPresenter.SetDelims("{{", "}}")
-	if err := mainPresenter.ParseFile(mainPresenterSite); err != nil {
-		panic("can't parse: " + err.String())
-	}
 }
 
 func init() {
 	http.HandleFunc(cmdDeleteHandler, cmdDeletion)
 	http.HandleFunc(cmdUpdateHandler, cmdUpdation)
 	http.HandleFunc(cmdCreateHandler, cmdCreation)
-	http.HandleFunc(cmdListHandler, cmdListingHtml)
-	http.HandleFunc(cmdListHandler+".json", cmdListingJson)
+	http.HandleFunc(cmdListHandler, cmdListingJson)
 	http.HandleFunc("/cmd", cmd)
 	http.HandleFunc("/exec", exec)
 }

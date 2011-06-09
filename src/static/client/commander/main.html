@@ -35,6 +35,9 @@
     function cmdDelete(cmdName) {
         var xhr = new XMLHttpRequest();
         xhr.open('get', '/cmd/delete?name=' + cmdName, true);
+        xhr.onload = function(e) {
+            location.reload();
+        }
         xhr.send(null);
     }
 
@@ -110,7 +113,7 @@
             var cellDeleteLink = document.createElement('button');
 //            cellDeleteLink.innerHTML = '<a href="/cmd/delete?name=' + cmdsJson[i].Name + '">X</a>';
             cellDeleteLink.innerHTML = 'X';
-            cellDeleteLink.setAttribute('onclick', 'cmdDelete("' + cmdsJson[i].Name + '")');
+            cellDeleteLink.setAttribute('onclick', 'cmdDelete("' + cmdsJson[i].Name + '");');
 
             cellName.appendChild(cellNameLink);
             cellRESTcall.appendChild(cellRESTcallTxt);
