@@ -19,15 +19,17 @@
         document.getElementById("edit-form-" + cmdName).style.display = "none";
     }
 
-    function test1(cmdsJson) {
-        fillPager(cmdsJson);
-    }
-
     var applyValues = function() {
-        $.ajax({url: '/cmd/list.json',
-            success: function(response) {
-                fillPager(response.cmds);
-            }});
+//        $.ajax({url: '/cmd/list.json',
+//            success: function(response) {
+//                fillPager(response.cmds);
+//            }});
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/cmd/list.json', false);
+        xhr.onload = function(e) {
+            fillPager(JSON.parse(this.responseText).cmds);
+        };
+        xhr.send();
     };
 
     applyValues();

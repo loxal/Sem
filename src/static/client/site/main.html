@@ -45,16 +45,24 @@
         }
     };
     var applySiteProperties = function() {
-        $.ajax({url: '/client/site/properties.json',
-            success: function(response) {
-                document.getElementById('signature').innerHTML = response.year + ' ' + response.copyright;
-                document.getElementById('header-description').innerHTML = response.titleDesc;
-            }});
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/client/site/properties.json', false);
+        xhr.onload = function(e) {
+            document.getElementById('signature').innerHTML = JSON.parse(this.responseText).year + ' ' + JSON.parse(this.responseText).copyright;
+            document.getElementById('header-description').innerHTML = JSON.parse(this.responseText).titleDesc;
+        };
+        xhr.send();
+
+//        $.ajax({url: '/client/site/properties.json',
+//            success: function(response) {
+//                document.getElementById('signature').innerHTML = response.year + ' ' + response.copyright;
+//                document.getElementById('header-description').innerHTML = response.titleDesc;
+//            }});
     };
-    applySiteProperties();
     navTo();
 </script>
 
+<body onload="applySiteProperties();">
 <div id="header">
     <div id="header-title">
         <img id="logo" src="/static/theme/logo.png" alt="Logo" title="Site Logo"/>
@@ -89,4 +97,4 @@
         </span>
     </p>
 </div>
-
+</body>
