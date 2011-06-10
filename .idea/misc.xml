@@ -5,9 +5,9 @@
   </component>
   <component name="CppTools.Loader" reportImplicitCastToBool="false" reportNameReferencedOnce="false" version="3" compilerSelect="AUTO" />
   <component name="DependencyValidationManager">
-    <scope name="GWT" pattern="file:src/main//*||file:pom.xml" />
     <scope name="Go" pattern="file:src/pkg//*||file:src/app.yaml" />
     <scope name="static" pattern="file:src/static//*||file:src/app.yaml" />
+    <scope name="Metro" pattern="file:src/static/client/Metro/app/Metro//*" />
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="EntryPointsManager">
@@ -15,11 +15,6 @@
   </component>
   <component name="FacetAutodetectingManager">
     <autodetection-disabled>
-      <facet-type id="gwt">
-        <modules>
-          <module name="client" />
-        </modules>
-      </facet-type>
       <facet-type id="Scala">
         <modules>
           <module name="Lox">
@@ -111,7 +106,7 @@
   <component name="ProjectResources">
     <default-html-doctype>http://www.w3.org/1999/xhtml</default-html-doctype>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true">
     <output url="file://$PROJECT_DIR$/target" />
   </component>
   <component name="ResourceManagerContainer">

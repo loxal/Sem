@@ -1,0 +1,94 @@
+<!--
+  ~ Copyright 2011 Alexander Orlov <alexander.orlov@loxal.net>. All rights reserved.
+  ~ Use of this source code is governed by a BSD-style
+  ~ license that can be found in the LICENSE file.
+  -->
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="keywords" content="Sem, Alexander Orlov, beauty, simplicity, flexibility, zen, REST">
+<meta name="description" content="Sem Entity Manager">
+<meta name="author" content="Loxal - Alexander Orlov <alexander.orlov@loxal.net>">
+<link rel="stylesheet" href="/static/theme/winter.css" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<title>Sem | Loxal</title>
+
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-7363751-1']);
+    _gaq.push(['_setDomainName', '.loxal.net']);
+    _gaq.push(['_setAllowHash', 'false']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<script>
+    var navTo = function() {
+        var handlerMap = {'/': '/client/commander/main.html', '/imprint': '/static/client/site/imprint.html', '/start': '/cmd/list', '/main.html': '/cmd/list'};
+        if (!handlerMap[window.location.pathname]) {
+            document.getElementById('main').innerHTML = '<div class="info warn">Page Not Found</div>';
+        } else {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', handlerMap[window.location.pathname], false);
+            xhr.onload = function(e) {
+                $('#main').html(this.responseText);
+//                document.getElementById('main').innerHTML = test1(this.responseText);
+            };
+            xhr.send();
+        }
+    };
+    var applySiteProperties = function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/client/site/properties.json', false);
+        xhr.onload = function(e) {
+            document.getElementById('signature').innerHTML = JSON.parse(this.responseText).year + ' ' + JSON.parse(this.responseText).copyright;
+            document.getElementById('header-description').innerHTML = JSON.parse(this.responseText).titleDesc;
+        };
+        xhr.send();
+    };
+</script>
+
+<body onload="applySiteProperties(); navTo();">
+<div id="header">
+    <div id="header-title">
+        <img id="logo" src="/static/theme/logo.png" alt="Logo" title="Site Logo"/>
+        <a href="/" id="title" title="Home">Sem</a>
+
+        <div id="header-description"></div>
+    </div>
+    <div id="meta-ctrl"></div>
+</div>
+
+<div id="sidebar">
+    <div id="index">
+        <h1>Navigation</h1>
+        <ul class="nav">
+            <li><a href="/" title="Map key combinations (shortcuts) to web requests">RESTful Demo</a></li>
+            <li><a href="/imprint" title="Imprint / Contact / About">Imprint</a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="main"></div>
+
+<div id="footer">
+    <p>
+        <span>
+            Powered by <a href="http://github.com/loxal" title="Sem @ Google App Engine">
+            Sem@<abbr title="Google App Engine">GAE</abbr> (Go) <abbr
+                title="Ajax/HTML5 backend client">BC</abbr></a>
+        </span>
+        <span style="float: right;">
+            <a href="/imprint" title="with contact formular">Imprint</a> | &copy; <span id="signature"></span>
+        </span>
+    </p>
+</div>
+</body>

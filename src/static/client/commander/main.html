@@ -1,0 +1,165 @@
+<!--
+  ~ Copyright 2011 Alexander Orlov <alexander.orlov@loxal.net>. All rights reserved.
+  ~ Use of this source code is governed by a BSD-style
+  ~ license that can be found in the LICENSE file.
+  -->
+
+<style>
+    label, input {
+        display: block;
+    }
+</style>
+
+<script>
+    function edit(cmdName) {
+        document.getElementById("edit-form-" + cmdName).style.display = "block";
+    }
+
+    function hide(cmdName) {
+        document.getElementById("edit-form-" + cmdName).style.display = "none";
+    }
+
+    var applyValues = function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/cmd/list.json', false);
+        xhr.onload = function(e) {
+            fillPager(JSON.parse(this.responseText).cmds);
+        };
+        xhr.send();
+    };
+
+
+    applyValues();
+
+
+    function cmdDelete(cmdName) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', '/cmd/delete?name=' + cmdName, true);
+        xhr.onload = function(e) {
+            location.reload();
+        };
+        xhr.send(null);
+    }
+
+    function sendForm(form) {
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+        xhr.open('post', form.action, true);
+        xhr.send(formData);
+        return false; // Prevent page from submitting.
+    }
+
+    function fillPager(cmdsJson) {
+        var pager = document.getElementById('pager');
+        for (var i in cmdsJson) {
+            var row = document.createElement('tr');
+
+            var cellName = document.createElement('td');
+            var cellRESTcall = document.createElement('td');
+            var cellDesc = document.createElement('td');
+            var cellCreator = document.createElement('td');
+            var cellUser = document.createElement('td');
+            var cellCreated = document.createElement('td');
+            var cellUpdated = document.createElement('td');
+            var cellDelete = document.createElement('td');
+
+
+            function buildForm() {
+                var fieldset = document.createElement('fieldset');
+                var updateForm = document.createElement('form');
+                var inputName = document.createElement('input');
+                inputName.setAttribute('value', cmdsJson[i].Name);
+                inputName.setAttribute('name', 'edit-name');
+                inputName.setAttribute('id', 'edit-name');
+                inputName.setAttribute('readonly', true);
+                var inputShortcut = document.createElement('input');
+                inputShortcut.setAttribute('value', cmdsJson[i].RESTcall);
+                inputShortcut.setAttribute('name', 'edit-restCall');
+                inputShortcut.setAttribute('id', 'edit-restCall');
+                var inputDesc = document.createElement('input');
+                inputDesc.setAttribute('value', cmdsJson[i].Desc);
+                inputDesc.setAttribute('name', 'edit-desc');
+                inputDesc.setAttribute('id', 'edit-desc');
+                var updateButton = document.createElement('button');
+                var updateButtonValue = document.createTextNode("Update");
+                updateButton.appendChild(updateButtonValue);
+                updateButton.setAttribute('onclick', 'location.reload(); hide("' + cmdsJson[i].Name + '"); return sendForm(this.form);');
+
+                updateForm.setAttribute('style', 'display: none;');
+                updateForm.setAttribute('id', 'edit-form-' + cmdsJson[i].Name);
+                updateForm.setAttribute('action', '/cmd/update');
+                updateForm.setAttribute('method', 'post');
+
+                fieldset.appendChild(inputName);
+                fieldset.appendChild(inputShortcut);
+                fieldset.appendChild(inputDesc);
+                fieldset.appendChild(updateButton);
+                cellName.appendChild(updateForm);
+
+                updateForm.appendChild(fieldset);
+            }
+
+            buildForm();
+
+            var cellNameLink = document.createElement('span');
+            cellNameLink.innerHTML = '<a href="javascript:edit(\'' + cmdsJson[i].Name + '\');">' + cmdsJson[i].Name + '</a>';
+            var cellRESTcallTxt = document.createTextNode(cmdsJson[i].RESTcall);
+            var cellDescTxt = document.createTextNode(cmdsJson[i].Desc);
+            var cellCreatorTxt = document.createTextNode(cmdsJson[i].Creator);
+            var cellUserTxt = document.createTextNode(cmdsJson[i].User);
+            var cellCreatedTxt = document.createTextNode(cmdsJson[i].Created);
+            var cellUpdatedTxt = document.createTextNode(cmdsJson[i].Updated);
+            var cellDeleteLink = document.createElement('button');
+            cellDeleteLink.innerHTML = 'X';
+            cellDeleteLink.setAttribute('onclick', 'cmdDelete("' + cmdsJson[i].Name + '");');
+
+            cellName.appendChild(cellNameLink);
+            cellRESTcall.appendChild(cellRESTcallTxt);
+            cellDesc.appendChild(cellDescTxt);
+            cellCreator.appendChild(cellCreatorTxt);
+            cellUser.appendChild(cellUserTxt);
+            cellCreated.appendChild(cellCreatedTxt);
+            cellUpdated.appendChild(cellUpdatedTxt);
+            cellDelete.appendChild(cellDeleteLink);
+
+            row.appendChild(cellName);
+            row.appendChild(cellRESTcall);
+            row.appendChild(cellDesc);
+            row.appendChild(cellCreator);
+            row.appendChild(cellUser);
+            row.appendChild(cellCreated);
+            row.appendChild(cellUpdated);
+            row.appendChild(cellDelete);
+
+            pager.appendChild(row);
+        }
+    }
+</script>
+
+<form action="/cmd/create" method="post">
+    <fieldset>
+        <legend>Command</legend>
+        <label for="name">Name</label>
+        <input name="name" id="name" type="text" value="name"/>
+        <label for="restCall">Shortcut</label>
+        <input name="restCall" id="restCall" type="text" value="rc"/>
+        <label for="desc">Description</label>
+        <input name="desc" id="desc" type="text" value="desc"/>
+        <input type="submit" value="Create">
+    </fieldset>
+</form>
+
+<div id="output"></div>
+
+<table id="pager">
+    <tr>
+        <th>Name</th>
+        <th>RESTcall</th>
+        <th>Description</th>
+        <th>Creator</th>
+        <th>User</th>
+        <th>Created</th>
+        <th>Updated</th>
+        <th>Delete</th>
+    </tr>
+</table>

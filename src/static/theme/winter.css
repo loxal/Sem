@@ -10,32 +10,37 @@ body {
     background: #eef;
     background: -moz-repeating-linear-gradient(top left -45deg, hsla(222, 99%, 88%, .4), hsla(222, 99%, 88%, .1) 5px, hsla(222, 99%, 88%, .4) 5px, hsla(222, 99%, 88%, .1) 11px);
     background: -webkit-repeating-linear-gradient(top left -45deg, hsla(222, 99%, 88%, .4), hsla(222, 99%, 88%, .1) 5px, hsla(222, 99%, 88%, .4) 5px, hsla(222, 99%, 88%, .1) 11px);
-    background: -opera-repeating-linear-gradient(top left -45deg, hsla(222, 99%, 88%, .4), hsla(222, 99%, 88%, .1) 5px, hsla(222, 99%, 88%, .4) 5px, hsla(222, 99%, 88%, .1) 11px);
+    background: -o-repeating-linear-gradient(top left -45deg, hsla(222, 99%, 88%, .4), hsla(222, 99%, 88%, .1) 5px, hsla(222, 99%, 88%, .4) 5px, hsla(222, 99%, 88%, .1) 11px);
+    background: -ms-repeating-linear-gradient(top left -45deg, hsla(222, 99%, 88%, .4), hsla(222, 99%, 88%, .1) 5px, hsla(222, 99%, 88%, .4) 5px, hsla(222, 99%, 88%, .1) 11px);
 }
 
 #header {
     background: hsla(222, 99%, 88%, .4);
     background: -moz-linear-gradient(top, hsla(222, 99%, 88%, .9), hsla(222, 99%, 88%, .2));
     background: -webkit-linear-gradient(top, hsla(222, 99%, 88%, .9), hsla(222, 99%, 88%, .2));
-    background: -opera-linear-gradient(top, hsla(222, 99%, 88%, .9), hsla(222, 99%, 88%, .2));
+    background: -o-linear-gradient(top, hsla(222, 99%, 88%, .9), hsla(222, 99%, 88%, .2));
+    background: -ms-linear-gradient(top, hsla(222, 99%, 88%, .9), hsla(222, 99%, 88%, .2));
     border-radius: 1em 1em 0 1em;
     -webkit-border-radius: 1em 1em 0 1em;
     -moz-border-radius: 1em 1em 0 1em;
+    -o-border-radius: 1em 1em 0 1em;
+    -ms-border-radius: 1em 1em 0 1em;
     box-shadow: 1em 2em 1em #ccc;
     -webkit-box-shadow: 1em 2em 1em #ccc;
     -moz-box-shadow: 1em 2em 1em #ccc;
+    -ms-box-shadow: 1em 2em 1em #ccc;
     text-indent: 1em;
+    margin-right: 2em; /* Opera */
 }
 
 #header-description {
     font-size: 1.2em;
-    text-align: center;
 }
 
 #title, #header-title {
     text-decoration: none;
     color: hsla(222, 88%, 33%, .9);
-    text-shadow: 0px 2pt 3pt #555;
+    text-shadow: 0px 2px 3px #555;
 }
 
 #title {
@@ -47,28 +52,24 @@ body {
     border-radius: 0 0 1em 0;
     -webkit-border-radius: 0 0 1em 0;
     -moz-border-radius: 0 0 1em 0;
+    -ms-border-radius: 0 0 1em 0;
+    margin-right: 2em; /* Opera */
     box-shadow: 1em 2em 1em #ccc;
     -webkit-box-shadow: 1em 2em 1em #ccc;
     -moz-box-shadow: 1em 2em 1em #ccc;
+    -ms-box-shadow: 1em 2em 1em #ccc;
 }
 
-#info_error {
-    color: #911;
-    margin: 1em;
-    border-radius: 1em 1em 1em 1em;
-    -webkit-border-radius: 1em 1em 1em 1em;
-    -moz-border-radius: 1em 1em 1em 1em;
-}
-
-.info-success {
+.success {
     color: hsla(99, 99%, 33%, .9);
 }
 
-.info-warning {
+.warn {
     color: hsla(0, 99%, 33%, .9);
 }
 
 .info {
+    text-align: center;
     position: fixed;
     top: 11em;
     left: auto;
@@ -77,9 +78,10 @@ body {
     margin: 1em;
     padding: 1em;
     border: 1px solid hsla(222, 99%, 55%, .9);
-    border-radius: 1em 1em 1em 1em;
-    -webkit-border-radius: 1em 1em 1em 1em;
-    -moz-border-radius: 1em 1em 1em 1em;
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -o-border-radius: 1em;
 }
 
 #dialog {
@@ -153,21 +155,28 @@ address, code, pre {
 }
 
 .nav a {
+    padding: .5em;
     display: block;
     text-shadow: 0px 1pt 1pt #555;
 }
 
-ul.nav li {
+ul.nav {
+    margin-left: -2.5em;
     width: 12em;
+    display: inline;
+}
+
+ul.nav li {
     list-style-type: none;
 }
 
 ul.nav li, #authentication {
     background: hsla(222, 66%, 66%, .2);
     border: .1em solid hsla(222, 99%, 55%, .1);
-    border-radius: 0 1em 1em 0;
-    -webkit-border-radius: 0 1em 1em 0;
-    -moz-border-radius: 0 1em 1em 0;
+    border-radius: 1em 0 0 1em;
+    -webkit-border-radius: 1em 0 0 1em;
+    -moz-border-radius: 1em 0 0 1em;
+    -o-border-radius: 1em 0 0 1em;
     padding: .3em;
 }
 
@@ -194,10 +203,19 @@ a:visited {
 }
 
 input {
+    width: 22em;
     margin: .3em .3em .3em 2em;
-    border-radius: 1em 1em 1em 1em;
-    -webkit-border-radius: 1em 1em 1em 1em;
-    -moz-border-radius: 1em 1em 1em 1em;
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -o-border-radius: 1em;
+    padding: .5em;
+    border: .1em solid hsla(222, 99%, 55%, .4);
+}
+
+button, input[type="submit"] {
+    margin: 1.5em;
+    width: 22em;
 }
 
 input[readonly] {
@@ -213,29 +231,29 @@ textarea {
     height: 222px;
     margin: .3em .3em .3em 2em;
     padding: 1em;
-    border-radius: 1em 1em 1em 1em;
-    -webkit-border-radius: 1em 1em 1em 1em;
-    -moz-border-radius: 1em 1em 1em 1em;
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -o-border-radius: 1em;
 }
 
 table {
     border-collapse: collapse;
-    border: .1em solid hsla(222, 55%, 88%, .9);
-    border-radius: 1em 1em 1em 1em;
-    -webkit-border-radius: 1em 1em 1em 1em;
-    -moz-border-radius: 1em 1em 1em 1em;
+    border: .1em solid hsla(222, 99%, 55%, .1);
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -o-border-radius: 1em;
 }
 
-tr:hover .odd {
-    background: hsla(222, 99%, 55%, .2);
+tr:nth-child(odd) {
+    background: hsla(222, 66%, 55%, .1);
 }
 
 th {
     padding: .5em;
     background: hsla(222, 99%, 55%, .2);
-    border-radius: 1em 1em 0em 0em;
-    -webkit-border-radius: 1em 1em 0em 0em;
-    -moz-border-radius: 1em 1em 0em 0em;
+    border: .1em solid hsla(222, 99%, 55%, .1);
 }
 
 .odd {
@@ -244,6 +262,7 @@ th {
 
 td {
     padding: .3em;
+    border: .1em solid hsla(222, 99%, 55%, .1);
 }
 
 fieldset {
@@ -303,4 +322,5 @@ p:first-letter {
     column-count: 2;
     -webkit-column-count: 2;
     -moz-column-count: 2;
+    -o-column-count: 2;
 }
