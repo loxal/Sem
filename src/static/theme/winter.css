@@ -28,9 +28,9 @@ body {
     box-shadow: 1em 2em 1em #ccc;
     -webkit-box-shadow: 1em 2em 1em #ccc;
     -moz-box-shadow: 1em 2em 1em #ccc;
-    -o-box-shadow: 1em 2em 1em #ccc;
     -ms-box-shadow: 1em 2em 1em #ccc;
     text-indent: 1em;
+    margin-right: 2em; /* Opera */
 }
 
 #header-description {
@@ -52,12 +52,11 @@ body {
     border-radius: 0 0 1em 0;
     -webkit-border-radius: 0 0 1em 0;
     -moz-border-radius: 0 0 1em 0;
-    -o-border-radius: 0 0 1em 0;
     -ms-border-radius: 0 0 1em 0;
+    margin-right: 2em; /* Opera */
     box-shadow: 1em 2em 1em #ccc;
     -webkit-box-shadow: 1em 2em 1em #ccc;
     -moz-box-shadow: 1em 2em 1em #ccc;
-    -o-box-shadow: 1em 2em 1em #ccc;
     -ms-box-shadow: 1em 2em 1em #ccc;
 }
 
@@ -162,8 +161,9 @@ address, code, pre {
 }
 
 ul.nav {
-    width: 200%;
-    z-index: -4;
+    margin-left: -2.5em;
+    width: 12em;
+    display: inline;
 }
 
 ul.nav li {
