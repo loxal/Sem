@@ -37,7 +37,7 @@
         xhr.open('get', '/cmd/delete?name=' + cmdName, true);
         xhr.onload = function(e) {
             location.reload();
-        }
+        };
         xhr.send(null);
     }
 
@@ -51,7 +51,6 @@
 
     function fillPager(cmdsJson) {
         var pager = document.getElementById('pager');
-
         for (var i in cmdsJson) {
             var row = document.createElement('tr');
 
@@ -72,7 +71,7 @@
                 inputName.setAttribute('value', cmdsJson[i].Name);
                 inputName.setAttribute('name', 'edit-name');
                 inputName.setAttribute('id', 'edit-name');
-                inputName.setAttribute('readonly');
+                inputName.setAttribute('readonly', true);
                 var inputShortcut = document.createElement('input');
                 inputShortcut.setAttribute('value', cmdsJson[i].RESTcall);
                 inputShortcut.setAttribute('name', 'edit-restCall');
@@ -111,7 +110,6 @@
             var cellCreatedTxt = document.createTextNode(cmdsJson[i].Created);
             var cellUpdatedTxt = document.createTextNode(cmdsJson[i].Updated);
             var cellDeleteLink = document.createElement('button');
-//            cellDeleteLink.innerHTML = '<a href="/cmd/delete?name=' + cmdsJson[i].Name + '">X</a>';
             cellDeleteLink.innerHTML = 'X';
             cellDeleteLink.setAttribute('onclick', 'cmdDelete("' + cmdsJson[i].Name + '");');
 
@@ -136,7 +134,6 @@
             pager.appendChild(row);
         }
     }
-
 </script>
 
 <form action="/cmd/create" method="post">
@@ -154,7 +151,7 @@
 
 <div id="output"></div>
 
-<table id="pager">
+<table id="pager" onclick="applyValues();">
     <tr>
         <th>Name</th>
         <th>RESTcall</th>
