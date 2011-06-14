@@ -41,10 +41,6 @@ func serve404(w http.ResponseWriter) {
 }
 
 func cmdCreation(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "POST" {
-		serve404(w)
-		return
-	}
 	c := appengine.NewContext(r)
 	if err := r.ParseForm(); err != nil {
 		serveError(c, w, err)
@@ -88,10 +84,6 @@ func cmdHasInvalidCharacters(name string) (ok bool) {
 }
 
 func cmdListing(w http.ResponseWriter, r *http.Request) (cmds []*Cmd) {
-	if r.Method != "GET" {
-		serve404(w)
-		return
-	}
 	c := appengine.NewContext(r)
 	if _, err := datastore.NewQuery("Cmd").GetAll(c, &cmds); err != nil {
 		serveError(c, w, err)
@@ -179,10 +171,6 @@ const cmdUpdateHandler = "/cmd/update"
 const cmdDeleteHandler = "/cmd/delete"
 const cmdCreateHandler = "/cmd/create"
 const cmdListHandler = "/cmd/list.json"
-
-func Double(i int) int {
-	return i * 2
-}
 
 func init() {
 
