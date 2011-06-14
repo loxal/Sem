@@ -15,7 +15,6 @@ import (
 	"json"
 
 	"flag"
-	//	"pkg/flag_my" // to parse r.URL.Raw
 
 	"appengine"
 	"appengine/datastore"
