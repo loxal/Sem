@@ -19,7 +19,7 @@
         document.getElementById("edit-form-" + cmdName).style.display = "none";
     }
 
-    window.onload = function() {
+    var applyValues = function() {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '/cmd/list.json', false);
         xhr.onload = function(e) {
@@ -155,3 +155,6 @@
         <th>Delete</th>
     </tr>
 </table>
+<script>
+    applyValues();
+</script>
