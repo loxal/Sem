@@ -19,7 +19,7 @@
         document.getElementById("edit-form-" + cmdName).style.display = "none";
     }
 
-    var applyValues = function() {
+    window.onload = function() {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '/cmd/list.json', false);
         xhr.onload = function(e) {
@@ -42,7 +42,6 @@
         var xhr = new XMLHttpRequest();
         xhr.open('post', form.action, true);
         xhr.send(formData);
-//        return false; // Prevent page from submitting.
     }
 
     function fillPager(cmdsJson) {
@@ -131,7 +130,6 @@
     }
 </script>
 
-
 <form action="/cmd/create" method="post">
     <fieldset>
         <legend>Command</legend>
@@ -157,7 +155,3 @@
         <th>Delete</th>
     </tr>
 </table>
-
-<script>
-    applyValues();
-</script>
