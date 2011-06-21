@@ -28,17 +28,13 @@
         xhr.send();
     };
 
-
-    applyValues();
-
-
     function cmdDelete(cmdName) {
         var xhr = new XMLHttpRequest();
         xhr.open('get', '/cmd/delete?name=' + cmdName, true);
         xhr.onload = function(e) {
             location.reload();
         };
-        xhr.send(null);
+        xhr.send();
     }
 
     function sendForm(form) {
@@ -46,7 +42,7 @@
         var xhr = new XMLHttpRequest();
         xhr.open('post', form.action, true);
         xhr.send(formData);
-        return false; // Prevent page from submitting.
+//        return false; // Prevent page from submitting.
     }
 
     function fillPager(cmdsJson) {
@@ -135,6 +131,7 @@
     }
 </script>
 
+
 <form action="/cmd/create" method="post">
     <fieldset>
         <legend>Command</legend>
@@ -160,3 +157,7 @@
         <th>Delete</th>
     </tr>
 </table>
+
+<script>
+    applyValues();
+</script>

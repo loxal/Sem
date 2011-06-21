@@ -47,6 +47,8 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+//Test:
+
 	if !cmdExists(c, r.FormValue("name")) && !cmdHasInvalidCharacters(r.FormValue("name")) {
 		cmd := &Cmd{
 			Name:     r.FormValue("name"),

@@ -40,20 +40,11 @@
             var xhr = new XMLHttpRequest();
             xhr.open('GET', handlerMap[window.location.pathname], false);
             xhr.onload = function(e) {
-                $('#main').html(this.responseText);
-//                document.getElementById('main').innerHTML = test1(this.responseText);
+                $('#main').html(this.responseText); // TODO replace by non-jQuery method & remove the jQuery lib;
             };
             xhr.send();
         }
     };
-
-    //    this.repsonseText is a HTML fragment that contains <scrip> and <style> parts. Therefore
-    //document.getElementById('main').innerHTML = this.responseText
-    //doesn't work.
-    //
-    //So how can I assign a HTML fragment with <style> and <script> to a div ID with Google Closure?
-    //
-    //-Alex
 
     var applySiteProperties = function() {
         var xhr = new XMLHttpRequest();
