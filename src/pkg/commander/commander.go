@@ -61,7 +61,7 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	http.Redirect(w, r, indexHandler, http.StatusFound)
+//	http.Redirect(w, r, indexHandler, http.StatusFound)
 }
 
 // Constraint Check
