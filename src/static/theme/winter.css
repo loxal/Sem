@@ -203,7 +203,6 @@ a:visited {
 }
 
 input {
-    width: 22em;
     margin: .3em .3em .3em 2em;
     border-radius: 1em;
     -webkit-border-radius: 1em;
@@ -215,7 +214,6 @@ input {
 
 button, input[type="submit"] {
     margin: 1.5em;
-    width: 22em;
 }
 
 input[readonly] {
@@ -244,6 +242,7 @@ table {
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
     -o-border-radius: 1em;
+    width: 99%;
 }
 
 tr:nth-child(odd) {
@@ -254,10 +253,6 @@ th {
     padding: .5em;
     background: hsla(222, 99%, 55%, .2);
     border: .1em solid hsla(222, 99%, 55%, .1);
-}
-
-.odd {
-    background: hsla(222, 99%, 55%, .1);
 }
 
 td {
@@ -272,6 +267,7 @@ fieldset {
     border-radius: 0 1em 0 1em;
     -webkit-border-radius: 0 1em 0 1em;
     -moz-border-radius: 0 1em 0 1em;
+    -o-border-radius: 0 1em 0 1em;
 }
 
 legend {

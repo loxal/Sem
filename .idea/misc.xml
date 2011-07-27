@@ -7,7 +7,7 @@
   <component name="DependencyValidationManager">
     <scope name="Go" pattern="file:src/pkg//*||file:src/app.yaml" />
     <scope name="static" pattern="file:src/static//*||file:src/app.yaml" />
-    <scope name="Metro" pattern="file:src/static/client/Metro/app/Metro//*" />
+    <scope name="Android" pattern="file[Lom]:*/" />
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="EntryPointsManager">
@@ -15,6 +15,11 @@
   </component>
   <component name="FacetAutodetectingManager">
     <autodetection-disabled>
+      <facet-type id="android">
+        <modules>
+          <module name="Lom" />
+        </modules>
+      </facet-type>
       <facet-type id="Scala">
         <modules>
           <module name="Lox">
@@ -59,6 +64,7 @@
       <list>
         <option value="$PROJECT_DIR$/src/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../Lom/Android/pom.xml" />
       </list>
     </option>
   </component>
@@ -106,7 +112,7 @@
   <component name="ProjectResources">
     <default-html-doctype>http://www.w3.org/1999/xhtml</default-html-doctype>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="Android 2.3 Platform" project-jdk-type="Android SDK">
     <output url="file://$PROJECT_DIR$/target" />
   </component>
   <component name="ResourceManagerContainer">

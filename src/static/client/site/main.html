@@ -9,6 +9,7 @@
 <meta name="keywords" content="Sem, Alexander Orlov, beauty, simplicity, flexibility, zen, REST">
 <meta name="description" content="Sem Entity Manager">
 <meta name="author" content="Loxal - Alexander Orlov <alexander.orlov@loxal.net>">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
 <link rel="stylesheet" href="/static/theme/winter.css" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 <title>Sem | Loxal</title>
@@ -32,19 +33,19 @@
 
 <script>
     var navTo = function() {
-        var handlerMap = {'/': '/client/commander/main.html', '/imprint': '/static/client/site/imprint.html', '/start': '/cmd/list', '/main.html': '/cmd/list'};
+        var handlerMap = {'/': '/client/commander/main.html', '/imprint': '/static/client/site/imprint.html'};
         if (!handlerMap[window.location.pathname]) {
             document.getElementById('main').innerHTML = '<div class="info warn">Page Not Found</div>';
         } else {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', handlerMap[window.location.pathname], false);
             xhr.onload = function(e) {
-                $('#main').html(this.responseText);
-//                document.getElementById('main').innerHTML = test1(this.responseText);
+                $('#main').html(this.responseText); // TODO replace by non-jQuery method & remove the jQuery lib;
             };
             xhr.send();
         }
     };
+
     var applySiteProperties = function() {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '/client/site/properties.json', false);
