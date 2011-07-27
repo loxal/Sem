@@ -15,6 +15,11 @@
   </component>
   <component name="FacetAutodetectingManager">
     <autodetection-disabled>
+      <facet-type id="android">
+        <modules>
+          <module name="Lom" />
+        </modules>
+      </facet-type>
       <facet-type id="Scala">
         <modules>
           <module name="Lox">
