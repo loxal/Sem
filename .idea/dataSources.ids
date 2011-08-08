@@ -1427,10 +1427,10 @@
       <primary-key name="PRIMARY" columns="id" />
       <index name="FK_SLOT_RESOURCE_ID" unique="false" columns="RESOURCE_ID" />
     </table>
-    <table name="USERS2" schema="" catalog="verp" type="TABLE">
+    <table name="USERS" schema="" catalog="verp" type="TABLE">
       <column name="ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
-      <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
-      <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="USER_NAME" sqlType="VARCHAR" length="80" precision="0" nullable="false" jdbcType="12" />
+      <column name="VERSION_RF_SPECIFIC" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
       <primary-key name="PRIMARY" columns="id" />
     </table>
   </data-source>
