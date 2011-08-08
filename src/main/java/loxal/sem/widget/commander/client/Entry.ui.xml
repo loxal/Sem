@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2011 Alexander Orlov <alexander.orlov@loxal.net>. All rights reserved.
+  ~ Use of this source code is governed by a BSD-style
+  ~ license that can be found in the LICENSE file.
+  -->
+
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:this="urn:import:loxal.sem.widget.commander.client"
+        >
+
+    <g:LayoutPanel>
+        <g:layer>
+            <!--<g:center>-->
+            <!--<g:VerticalPanel>-->
+            <this:Commander ui:field="commander"/>
+            <!--</g:VerticalPanel>-->
+        </g:layer>
+        <!--</g:center>-->
+    </g:LayoutPanel>
+</ui:UiBinder>
