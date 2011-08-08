@@ -1,0 +1,41 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="GWT -noserver" type="GWT.ConfigurationType" factoryName="GWT Configuration">
+    <module name="Verp" />
+    <option name="VM_PARAMETERS" value="-Djava.util.logging.config.file=/Users/alex/my/project/Verp/src/logging.properties" />
+    <option name="SHELL_PARAMETERS" value="-logLevel INFO -noserver" />
+    <option name="RUN_PAGE" value="/slot/index.html" />
+    <option name="OPEN_IN_BROWSER" value="false" />
+    <option name="UPDATE_RESOURCES_ON_FRAME_DEACTIVATION" value="true" />
+    <RunnerSettings RunnerId="Debug">
+      <option name="DEBUG_PORT" value="52654" />
+      <option name="TRANSPORT" value="0" />
+      <option name="LOCAL" value="true" />
+    </RunnerSettings>
+    <RunnerSettings RunnerId="JavaRebel">
+      <option name="bootstrapPath" />
+      <option name="jrebelArgs" value="" />
+      <option name="loggingEnabled" value="false" />
+      <option name="useBootstrapDefaults" value="true" />
+    </RunnerSettings>
+    <RunnerSettings RunnerId="JavaRebel Debug">
+      <option name="bootstrapPath" />
+      <option name="debugPort" value="64786" />
+      <option name="jrebelArgs" value="" />
+      <option name="loggingEnabled" value="false" />
+      <option name="transport" value="0" />
+      <option name="useBootstrapDefaults" value="true" />
+      <option name="DEBUG_PORT" value="64786" />
+      <option name="TRANSPORT" value="0" />
+      <option name="LOCAL" value="true" />
+    </RunnerSettings>
+    <RunnerSettings RunnerId="Run" />
+    <ConfigurationWrapper RunnerId="Debug" />
+    <ConfigurationWrapper RunnerId="JavaRebel Debug" />
+    <ConfigurationWrapper RunnerId="Run" />
+    <method>
+      <option name="BuildArtifacts" enabled="false">
+        <artifact name="verp:war remote" />
+      </option>
+    </method>
+  </configuration>
+</component>

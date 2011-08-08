@@ -1,0 +1,85 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="remote Jetty" type="JettyConfiguration" factoryName="Remote" APPLICATION_SERVER_NAME="Jetty 6.1.26 (remote)">
+    <option name="HOST" value="200.200.5.171:8080" />
+    <option name="PORT" value="1099" />
+    <option name="LOCAL" value="false" />
+    <option name="OPEN_IN_BROWSER_URL" value="http://dpinettest:8080/Verp" />
+    <option name="UPDATING_POLICY" value="redeploy-artifacts" />
+    <deployment>
+      <artifact name="app:war">
+        <settings DEPLOYMENT_METHOD="contexts">
+          <option name="contextRoot" value="/Verp" />
+          <option name="defaultContextRoot" value="false" />
+        </settings>
+      </artifact>
+    </deployment>
+    <server-settings>
+      <data>
+        <option name="targets">
+          <list>
+            <MultiTargetRemoteStagingTarget>
+              <option name="name" value="STAGING" />
+              <option name="stagingRemotePath" value="examples" />
+              <option name="transportStagingTarget">
+                <TransportTarget>
+                  <option name="id" value="520e3521-66a7-4a7b-806b-068333d4c045" />
+                </TransportTarget>
+              </option>
+            </MultiTargetRemoteStagingTarget>
+            <MultiTargetRemoteStagingTarget>
+              <option name="name" value="WEBAPPS" />
+              <option name="stagingRemotePath" value="webapps" />
+              <option name="transportStagingTarget">
+                <TransportTarget>
+                  <option name="id" value="18c70bdb-1732-4a62-844e-f545bc17a7cb" />
+                </TransportTarget>
+              </option>
+            </MultiTargetRemoteStagingTarget>
+            <MultiTargetRemoteStagingTarget>
+              <option name="name" value="CONTEXT" />
+              <option name="stagingRemotePath" value="contexts" />
+              <option name="transportStagingTarget">
+                <TransportTarget>
+                  <option name="id" value="bf8e888b-b9e9-4e7f-a9cc-d236e36d1505" />
+                </TransportTarget>
+              </option>
+            </MultiTargetRemoteStagingTarget>
+          </list>
+        </option>
+        <option name="transportHostId" value="4762d57d-1ddb-4e33-9f9c-ec6f40d5499d" />
+      </data>
+    </server-settings>
+    <predefined_log_file id="Jetty" enabled="true" />
+    <extension name="coverage" />
+    <RunnerSettings RunnerId="Debug">
+      <option name="DEBUG_PORT" value="51494" />
+      <option name="TRANSPORT" value="0" />
+      <option name="LOCAL" value="false" />
+    </RunnerSettings>
+    <RunnerSettings RunnerId="JavaRebel">
+      <option name="bootstrapPath" />
+      <option name="jrebelArgs" value="" />
+      <option name="loggingEnabled" value="false" />
+      <option name="useBootstrapDefaults" value="true" />
+    </RunnerSettings>
+    <RunnerSettings RunnerId="JavaRebel Debug">
+      <option name="bootstrapPath" />
+      <option name="debugPort" value="51495" />
+      <option name="jrebelArgs" value="" />
+      <option name="loggingEnabled" value="false" />
+      <option name="transport" value="0" />
+      <option name="useBootstrapDefaults" value="true" />
+      <option name="DEBUG_PORT" value="51495" />
+      <option name="TRANSPORT" value="0" />
+      <option name="LOCAL" value="false" />
+    </RunnerSettings>
+    <RunnerSettings RunnerId="Run" />
+    <ConfigurationWrapper RunnerId="Debug" />
+    <ConfigurationWrapper RunnerId="JavaRebel" />
+    <ConfigurationWrapper RunnerId="JavaRebel Debug" />
+    <ConfigurationWrapper RunnerId="Run" />
+    <method>
+      <option name="BuildArtifacts" enabled="true" />
+    </method>
+  </configuration>
+</component>
