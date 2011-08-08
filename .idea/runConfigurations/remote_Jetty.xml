@@ -4,9 +4,9 @@
     <option name="PORT" value="1099" />
     <option name="LOCAL" value="false" />
     <option name="OPEN_IN_BROWSER_URL" value="http://dpinettest:8080/Verp" />
-    <option name="UPDATING_POLICY" value="redeploy-artifacts" />
+    <option name="UPDATING_POLICY" value="hot-swap-classes" />
     <deployment>
-      <artifact name="app:war">
+      <artifact name="Verp:war exploded remote">
         <settings DEPLOYMENT_METHOD="contexts">
           <option name="contextRoot" value="/Verp" />
           <option name="defaultContextRoot" value="false" />
@@ -18,20 +18,20 @@
         <option name="targets">
           <list>
             <MultiTargetRemoteStagingTarget>
-              <option name="name" value="STAGING" />
-              <option name="stagingRemotePath" value="examples" />
-              <option name="transportStagingTarget">
-                <TransportTarget>
-                  <option name="id" value="520e3521-66a7-4a7b-806b-068333d4c045" />
-                </TransportTarget>
-              </option>
-            </MultiTargetRemoteStagingTarget>
-            <MultiTargetRemoteStagingTarget>
               <option name="name" value="WEBAPPS" />
               <option name="stagingRemotePath" value="webapps" />
               <option name="transportStagingTarget">
                 <TransportTarget>
                   <option name="id" value="18c70bdb-1732-4a62-844e-f545bc17a7cb" />
+                </TransportTarget>
+              </option>
+            </MultiTargetRemoteStagingTarget>
+            <MultiTargetRemoteStagingTarget>
+              <option name="name" value="STAGING" />
+              <option name="stagingRemotePath" value="examples" />
+              <option name="transportStagingTarget">
+                <TransportTarget>
+                  <option name="id" value="520e3521-66a7-4a7b-806b-068333d4c045" />
                 </TransportTarget>
               </option>
             </MultiTargetRemoteStagingTarget>
@@ -79,7 +79,9 @@
     <ConfigurationWrapper RunnerId="JavaRebel Debug" />
     <ConfigurationWrapper RunnerId="Run" />
     <method>
-      <option name="BuildArtifacts" enabled="true" />
+      <option name="BuildArtifacts" enabled="true">
+        <artifact name="Verp:war exploded remote" />
+      </option>
     </method>
   </configuration>
 </component>

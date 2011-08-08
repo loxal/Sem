@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="war" name="client:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
+    <output-path>$PROJECT_DIR$/../../Sem/target</output-path>
     <root id="archive" name="Sem.war">
       <element id="artifact" artifact-name="client:war exploded" />
     </root>

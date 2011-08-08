@@ -30,6 +30,7 @@
           </module>
           <module name="client" />
           <module name="verp" />
+          <module name="Verp" />
         </modules>
       </facet-type>
       <facet-type id="jpa">
@@ -66,6 +67,7 @@
           </module>
           <module name="client" />
           <module name="verp" />
+          <module name="Verp" />
         </modules>
       </facet-type>
     </autodetection-disabled>

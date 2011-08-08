@@ -34,7 +34,7 @@
     <ConfigurationWrapper RunnerId="Run" />
     <method>
       <option name="BuildArtifacts" enabled="false">
-        <artifact name="verp:war remote" />
+        <artifact name="Verp:war exploded remote" />
       </option>
     </method>
   </configuration>

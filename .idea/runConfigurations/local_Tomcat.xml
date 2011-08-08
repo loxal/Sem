@@ -7,7 +7,7 @@
     <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
     <option name="UPDATING_POLICY" value="redeploy-artifacts" />
     <deployment>
-      <artifact name="verp:war remote">
+      <artifact name="Verp:war exploded remote">
         <settings>
           <option name="CONTEXT_PATH" value="/Verp" />
         </settings>
@@ -62,7 +62,7 @@
     </ConfigurationWrapper>
     <method>
       <option name="BuildArtifacts" enabled="true">
-        <artifact name="verp:war remote" />
+        <artifact name="Verp:war exploded remote" />
       </option>
       <option name="Maven.BeforeRunTask" enabled="false" file="$PROJECT_DIR$/pom.xml" goal="package" />
     </method>

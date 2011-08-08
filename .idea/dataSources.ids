@@ -187,10 +187,8 @@
       <column name="VERSION" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="SESSION_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_782" columns="id" />
-      <foreign-key name="FK_BOOKING_SESSION_ID" columns="SESSION_ID" ref-table="SESSION" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <foreign-key name="FK_BOOKING_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY124" unique="true" columns="ID" />
+      <primary-key name="INTEG_201" columns="id" />
+      <index name="RDB$PRIMARY2" unique="true" columns="ID" />
     </table>
     <table name="BUNDLES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -654,9 +652,8 @@
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_785" columns="id" />
-      <foreign-key name="FK_RESOURCE_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY125" unique="true" columns="ID" />
+      <primary-key name="INTEG_1505" columns="id" />
+      <index name="RDB$PRIMARY269" unique="true" columns="ID" />
     </table>
     <table name="RIGHTS" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -688,9 +685,8 @@
       <column name="TYPE" sqlType="VARCHAR" length="9" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_791" columns="id" />
-      <foreign-key name="FK_SESSION_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCE" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY126" unique="true" columns="ID" />
+      <primary-key name="INTEG_2735" columns="id" />
+      <index name="RDB$PRIMARY486" unique="true" columns="ID" />
     </table>
     <table name="SITES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -718,9 +714,8 @@
       <column name="SCHEDULE" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
       <column name="VERSION" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_798" columns="id" />
-      <foreign-key name="FK_SLOT_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCE" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY127" unique="true" columns="ID" />
+      <primary-key name="INTEG_2742" columns="id" />
+      <index name="RDB$PRIMARY487" unique="true" columns="ID" />
     </table>
     <table name="SPHINX_DELTA" schema="" catalog="" type="TABLE">
       <column name="TABLE_NAME" sqlType="CHAR" length="31" precision="0" nullable="false" jdbcType="1" />
@@ -896,13 +891,6 @@
       <index name="USERS_IDX1" unique="false" columns="ID" />
       <index name="UK_USERS_NICKNAME" unique="true" columns="UPPERCASE_NICKNAME" />
       <index name="UK_USERS_USER_NAME" unique="true" columns="UPPERCASE_USER_NAME" />
-    </table>
-    <table name="USERS2" schema="" catalog="" type="TABLE">
-      <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <column name="USER_NAME" sqlType="VARCHAR" length="80" precision="0" nullable="false" jdbcType="12" />
-      <column name="VERSION" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
-      <primary-key name="INTEG_638" columns="id" />
-      <index name="RDB$PRIMARY95" unique="true" columns="ID" />
     </table>
     <table name="USER_CONTEXTS" schema="" catalog="" type="TABLE">
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -1193,6 +1181,16 @@
       <column name="CONTENT" sqlType="BLOB SUB_TYPE 0" length="0" precision="0" nullable="true" jdbcType="-4" />
       <column name="STATE" sqlType="CHAR" length="0" precision="0" nullable="true" jdbcType="1" />
     </table>
+    <table name="VW_DOMAINS" schema="" catalog="" type="VIEW">
+      <column name="DOM_NAME" sqlType="CHAR" length="0" precision="0" nullable="true" jdbcType="1" />
+      <column name="DOM_TYPE" sqlType="VARCHAR" length="0" precision="0" nullable="true" jdbcType="12" />
+      <column name="DOM_NULL" sqlType="CHAR" length="0" precision="0" nullable="true" jdbcType="1" />
+      <column name="DOM_CHARSET" sqlType="CHAR" length="0" precision="0" nullable="true" jdbcType="1" />
+      <column name="DOM_COLLATION" sqlType="CHAR" length="0" precision="0" nullable="true" jdbcType="1" />
+      <column name="DOM_DEFAULT" sqlType="BLOB SUB_TYPE 1" length="0" precision="0" nullable="true" jdbcType="-1" />
+      <column name="DOM_CHECK" sqlType="BLOB SUB_TYPE 1" length="0" precision="0" nullable="true" jdbcType="-1" />
+      <column name="DOM_DESCRIPTION" sqlType="BLOB SUB_TYPE 1" length="0" precision="0" nullable="true" jdbcType="-1" />
+    </table>
     <table name="VW_GROUPS" schema="" catalog="" type="VIEW">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="PARENT_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
@@ -1454,19 +1452,19 @@
       <column name="VERSION" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="SESSION_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_3720" columns="id" />
+      <primary-key name="INTEG_3897" columns="id" />
       <foreign-key name="FK_BOOKING_SESSION_ID" columns="SESSION_ID" ref-table="SESSION" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <foreign-key name="FK_BOOKING_USER_ID" columns="USER_ID" ref-table="USERS2" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY1107" unique="true" columns="ID" />
+      <foreign-key name="FK_BOOKING_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
+      <index name="RDB$PRIMARY1146" unique="true" columns="ID" />
     </table>
     <table name="RESOURCE" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_3723" columns="id" />
-      <foreign-key name="FK_RESOURCE_USER_ID" columns="USER_ID" ref-table="USERS2" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY1108" unique="true" columns="ID" />
+      <primary-key name="INTEG_3900" columns="id" />
+      <foreign-key name="FK_RESOURCE_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
+      <index name="RDB$PRIMARY1147" unique="true" columns="ID" />
     </table>
     <table name="SESSION" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -1477,9 +1475,9 @@
       <column name="TYPE" sqlType="VARCHAR" length="9" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_3729" columns="id" />
+      <primary-key name="INTEG_3906" columns="id" />
       <foreign-key name="FK_SESSION_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCE" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY1109" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY1148" unique="true" columns="ID" />
     </table>
     <table name="SLOT" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -1490,16 +1488,23 @@
       <column name="SCHEDULE" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
       <column name="VERSION" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_3447" columns="id" />
+      <primary-key name="INTEG_3913" columns="id" />
       <foreign-key name="FK_SLOT_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCE" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY1026" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY1149" unique="true" columns="ID" />
+    </table>
+    <table name="USERS" schema="" catalog="" type="TABLE">
+      <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="USER_NAME" sqlType="VARCHAR" length="80" precision="0" nullable="false" jdbcType="12" />
+      <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <primary-key name="INTEG_3916" columns="id" />
+      <index name="RDB$PRIMARY1150" unique="true" columns="ID" />
     </table>
     <table name="USERS2" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
       <column name="VERSION" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
-      <primary-key name="INTEG_3732" columns="id" />
-      <index name="RDB$PRIMARY1110" unique="true" columns="ID" />
+      <primary-key name="INTEG_3870" columns="id" />
+      <index name="RDB$PRIMARY1140" unique="true" columns="ID" />
     </table>
   </data-source>
 </component>
