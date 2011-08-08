@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../Lom/Android/Lom.iml" filepath="$PROJECT_DIR$/../Lom/Android/Lom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Verp/Verp.iml" filepath="$PROJECT_DIR$/../../Verp/Verp.iml" />
       <module fileurl="file://$PROJECT_DIR$/client.iml" filepath="$PROJECT_DIR$/client.iml" />
     </modules>
   </component>
