@@ -1,9 +1,10 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="remote Jetty" type="JettyConfiguration" factoryName="Remote" APPLICATION_SERVER_NAME="Jetty 6.1.26 (remote)">
+  <configuration default="false" name="remote Jetty" type="JettyConfiguration" factoryName="Remote" APPLICATION_SERVER_NAME="Jetty 6.1.26">
     <option name="HOST" value="200.200.5.171:8080" />
     <option name="PORT" value="1099" />
     <option name="LOCAL" value="false" />
     <option name="OPEN_IN_BROWSER_URL" value="http://dpinettest:8080/Verp" />
+    <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
     <option name="UPDATING_POLICY" value="hot-swap-classes" />
     <deployment>
       <artifact name="Verp:war exploded remote">
@@ -18,20 +19,20 @@
         <option name="targets">
           <list>
             <MultiTargetRemoteStagingTarget>
-              <option name="name" value="WEBAPPS" />
-              <option name="stagingRemotePath" value="webapps" />
-              <option name="transportStagingTarget">
-                <TransportTarget>
-                  <option name="id" value="18c70bdb-1732-4a62-844e-f545bc17a7cb" />
-                </TransportTarget>
-              </option>
-            </MultiTargetRemoteStagingTarget>
-            <MultiTargetRemoteStagingTarget>
               <option name="name" value="STAGING" />
               <option name="stagingRemotePath" value="examples" />
               <option name="transportStagingTarget">
                 <TransportTarget>
                   <option name="id" value="520e3521-66a7-4a7b-806b-068333d4c045" />
+                </TransportTarget>
+              </option>
+            </MultiTargetRemoteStagingTarget>
+            <MultiTargetRemoteStagingTarget>
+              <option name="name" value="WEBAPPS" />
+              <option name="stagingRemotePath" value="webapps" />
+              <option name="transportStagingTarget">
+                <TransportTarget>
+                  <option name="id" value="18c70bdb-1732-4a62-844e-f545bc17a7cb" />
                 </TransportTarget>
               </option>
             </MultiTargetRemoteStagingTarget>
@@ -46,7 +47,7 @@
             </MultiTargetRemoteStagingTarget>
           </list>
         </option>
-        <option name="transportHostId" value="4762d57d-1ddb-4e33-9f9c-ec6f40d5499d" />
+        <option name="transportHostId" value="1bd4419e-9afd-4d1b-b069-44d36d53f2f7" />
       </data>
     </server-settings>
     <predefined_log_file id="Jetty" enabled="true" />
