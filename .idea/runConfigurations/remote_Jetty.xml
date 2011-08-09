@@ -19,20 +19,20 @@
         <option name="targets">
           <list>
             <MultiTargetRemoteStagingTarget>
-              <option name="name" value="STAGING" />
-              <option name="stagingRemotePath" value="examples" />
-              <option name="transportStagingTarget">
-                <TransportTarget>
-                  <option name="id" value="520e3521-66a7-4a7b-806b-068333d4c045" />
-                </TransportTarget>
-              </option>
-            </MultiTargetRemoteStagingTarget>
-            <MultiTargetRemoteStagingTarget>
               <option name="name" value="WEBAPPS" />
               <option name="stagingRemotePath" value="webapps" />
               <option name="transportStagingTarget">
                 <TransportTarget>
                   <option name="id" value="18c70bdb-1732-4a62-844e-f545bc17a7cb" />
+                </TransportTarget>
+              </option>
+            </MultiTargetRemoteStagingTarget>
+            <MultiTargetRemoteStagingTarget>
+              <option name="name" value="STAGING" />
+              <option name="stagingRemotePath" value="examples" />
+              <option name="transportStagingTarget">
+                <TransportTarget>
+                  <option name="id" value="520e3521-66a7-4a7b-806b-068333d4c045" />
                 </TransportTarget>
               </option>
             </MultiTargetRemoteStagingTarget>
