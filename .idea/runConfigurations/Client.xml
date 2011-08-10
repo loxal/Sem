@@ -1,0 +1,33 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Client" type="GWT.ConfigurationType" factoryName="GWT Configuration">
+    <module name="client" />
+    <option name="RUN_PAGE" value="contact/index.html" />
+    <option name="GWT_MODULE" value="loxal.sem.service.contact.Contact" />
+    <option name="OPEN_IN_BROWSER" value="false" />
+    <option name="UPDATE_RESOURCES_ON_FRAME_DEACTIVATION" value="true" />
+    <RunnerSettings RunnerId="Debug">
+      <option name="DEBUG_PORT" value="61140" />
+      <option name="TRANSPORT" value="0" />
+      <option name="LOCAL" value="true" />
+    </RunnerSettings>
+    <RunnerSettings RunnerId="JavaRebel">
+      <option name="bootstrapPath" />
+      <option name="jrebelArgs" value="" />
+      <option name="loggingEnabled" value="false" />
+      <option name="useBootstrapDefaults" value="true" />
+    </RunnerSettings>
+    <RunnerSettings RunnerId="JavaRebel Debug">
+      <option name="bootstrapPath" />
+      <option name="debugPort" value="61046" />
+      <option name="jrebelArgs" value="" />
+      <option name="loggingEnabled" value="false" />
+      <option name="transport" value="0" />
+      <option name="useBootstrapDefaults" value="true" />
+      <option name="DEBUG_PORT" value="61046" />
+      <option name="TRANSPORT" value="0" />
+      <option name="LOCAL" value="true" />
+    </RunnerSettings>
+    <ConfigurationWrapper RunnerId="Debug" />
+    <method />
+  </configuration>
+</component>

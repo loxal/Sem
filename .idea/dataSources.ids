@@ -1378,19 +1378,19 @@
       <primary-key name="PRIMARY" columns="id" />
     </table>
   </data-source>
-  <data-source source="LOCAL" name="Verp@MySQL.sky" product="MySQL" version="5.0.77" jdbc-version="4.0" driver-version="mysql-connector-java-5.1.16 ( Revision: ${bzr.revision-id} )" uuid="b58a6626-4c98-4a9e-85b9-c4bb1cbbc950">
+  <data-source source="LOCAL" name="Sem@MySQL.sky" product="MySQL" version="5.0.77" jdbc-version="4.0" driver-version="mysql-connector-java-5.1.17 ( Revision: ${bzr.revision-id} )" uuid="b58a6626-4c98-4a9e-85b9-c4bb1cbbc950">
     <extra-name-characters>#@</extra-name-characters>
     <identifier-quote-string>`</identifier-quote-string>
     <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-    <jdbc-url>jdbc:mysql://sky.loxal.net/verp</jdbc-url>
-    <user-name>verp</user-name>
+    <jdbc-url>jdbc:mysql://sky.loxal.net/sem</jdbc-url>
+    <user-name>sem</user-name>
     <user-password>dfeddfc4dfc5df9fdfc6dfc3dfd2dfc3</user-password>
     <libraries>
       <library>
-        <url>jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.16/mysql-connector-java-5.1.16.jar!/</url>
+        <url>jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.17/mysql-connector-java-5.1.17.jar!/</url>
       </library>
     </libraries>
-    <table name="BOOKING" schema="" catalog="verp" type="TABLE">
+    <table name="BOOKING" schema="" catalog="sem" type="TABLE">
       <column name="ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
       <column name="BOOKEDTIME" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93" />
       <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
@@ -1400,7 +1400,7 @@
       <index name="FK_BOOKING_USER_ID" unique="false" columns="USER_ID" />
       <index name="FK_BOOKING_SESSION_ID" unique="false" columns="SESSION_ID" />
     </table>
-    <table name="RESOURCE" schema="" catalog="verp" type="TABLE">
+    <table name="RESOURCE" schema="" catalog="sem" type="TABLE">
       <column name="ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
@@ -1408,11 +1408,11 @@
       <primary-key name="PRIMARY" columns="id" />
       <index name="FK_RESOURCE_USER_ID" unique="false" columns="USER_ID" />
     </table>
-    <table name="SESSION" schema="" catalog="verp" type="TABLE">
+    <table name="SESSION" schema="" catalog="sem" type="TABLE">
       <column name="ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
-      <column name="ENDTIME" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="EVENTDATE" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="STARTTIME" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="BEGIN_TIMESTAMP" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="END_TIMESTAMP" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="EVENT_TIMESTAMP" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
       <column name="TITLE" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="TYPE" sqlType="VARCHAR" length="9" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
@@ -1420,22 +1420,22 @@
       <primary-key name="PRIMARY" columns="id" />
       <index name="FK_SESSION_RESOURCE_ID" unique="false" columns="RESOURCE_ID" />
     </table>
-    <table name="SLOT" schema="" catalog="verp" type="TABLE">
+    <table name="SLOT" schema="" catalog="sem" type="TABLE">
       <column name="ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
-      <column name="BEGINTIME" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="DAYOFWEEK" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="ENDTIME" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="BEGIN_TIMESTAMP" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="DAY_TIMESTAMP" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="END_TIMESTAMP" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
       <column name="EXCLUDE" sqlType="BIT" length="0" precision="0" nullable="true" jdbcType="-7" default="0" />
-      <column name="SCHEDULE" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
+      <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
       <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
       <primary-key name="PRIMARY" columns="id" />
       <index name="FK_SLOT_RESOURCE_ID" unique="false" columns="RESOURCE_ID" />
     </table>
-    <table name="USERS" schema="" catalog="verp" type="TABLE">
+    <table name="USER" schema="" catalog="sem" type="TABLE">
       <column name="ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
-      <column name="USER_NAME" sqlType="VARCHAR" length="80" precision="0" nullable="false" jdbcType="12" />
-      <column name="VERSION_RF_SPECIFIC" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="NAME" sqlType="VARCHAR" length="80" precision="0" nullable="false" jdbcType="12" />
+      <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
       <primary-key name="PRIMARY" columns="id" />
     </table>
   </data-source>
@@ -1510,6 +1510,292 @@
       <column name="VERSION" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <primary-key name="INTEG_3870" columns="id" />
       <index name="RDB$PRIMARY1140" unique="true" columns="ID" />
+    </table>
+  </data-source>
+  <data-source source="LOCAL" name="GAE" product="Google SQL Service/MySQL" version="5.1.58" jdbc-version="4.0" driver-version="0.0" uuid="9b4edd7d-a798-4ae7-b55c-122f5203e16f">
+    <extra-name-characters>#@</extra-name-characters>
+    <identifier-quote-string>`</identifier-quote-string>
+    <jdbc-driver>com.google.cloud.sql.Driver</jdbc-driver>
+    <jdbc-url>jdbc:google:rdbms:loxalnet:sem</jdbc-url>
+    <user-name>root</user-name>
+    <libraries>
+      <library>
+        <url>file://$PROJECT_DIR$/../../Verp/lib/google_sql.jar</url>
+      </library>
+    </libraries>
+    <table name="columns_priv" schema="" catalog="mysql" type="TABLE">
+      <column name="Host" sqlType="CHAR" length="60" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Db" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="User" sqlType="CHAR" length="16" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Table_name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Column_name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Timestamp" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" default="CURRENT_TIMESTAMP" />
+      <column name="Column_priv" sqlType="SET" length="31" precision="0" nullable="false" jdbcType="1" default="''" />
+      <primary-key name="PRIMARY" columns="host,db,user,table_name,column_name" />
+    </table>
+    <table name="db" schema="" catalog="mysql" type="TABLE">
+      <column name="Host" sqlType="CHAR" length="60" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Db" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="User" sqlType="CHAR" length="16" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Select_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Insert_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Update_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Delete_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Create_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Drop_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Grant_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="References_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Index_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Alter_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Create_tmp_table_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Lock_tables_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Create_view_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Show_view_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Create_routine_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Alter_routine_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Execute_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Event_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Trigger_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <primary-key name="PRIMARY" columns="host,db,user" />
+      <index name="User" unique="false" columns="User" />
+    </table>
+    <table name="event" schema="" catalog="mysql" type="TABLE">
+      <column name="db" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="body" sqlType="LONGBLOB" length="2147483647" precision="0" nullable="false" jdbcType="-4" />
+      <column name="definer" sqlType="CHAR" length="77" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="execute_at" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93" />
+      <column name="interval_value" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="interval_field" sqlType="ENUM" length="18" precision="0" nullable="true" jdbcType="1" />
+      <column name="created" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" default="CURRENT_TIMESTAMP" />
+      <column name="modified" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" default="'0000-00-00 00:00:00'" />
+      <column name="last_executed" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93" />
+      <column name="starts" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93" />
+      <column name="ends" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93" />
+      <column name="status" sqlType="ENUM" length="18" precision="0" nullable="false" jdbcType="1" default="'ENABLED'" />
+      <column name="on_completion" sqlType="ENUM" length="8" precision="0" nullable="false" jdbcType="1" default="'DROP'" />
+      <column name="sql_mode" sqlType="SET UNSIGNED" length="478" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="comment" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="originator" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="time_zone" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="'SYSTEM'" />
+      <column name="character_set_client" sqlType="CHAR" length="32" precision="0" nullable="true" jdbcType="1" />
+      <column name="collation_connection" sqlType="CHAR" length="32" precision="0" nullable="true" jdbcType="1" />
+      <column name="db_collation" sqlType="CHAR" length="32" precision="0" nullable="true" jdbcType="1" />
+      <column name="body_utf8" sqlType="LONGBLOB" length="2147483647" precision="0" nullable="true" jdbcType="-4" />
+      <primary-key name="PRIMARY" columns="db,name" />
+    </table>
+    <table name="func" schema="" catalog="mysql" type="TABLE">
+      <column name="name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="ret" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" default="0" />
+      <column name="dl" sqlType="CHAR" length="128" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="type" sqlType="ENUM" length="9" precision="0" nullable="false" jdbcType="1" />
+      <primary-key name="PRIMARY" columns="name" />
+    </table>
+    <table name="help_category" schema="" catalog="mysql" type="TABLE">
+      <column name="help_category_id" sqlType="SMALLINT UNSIGNED" length="5" precision="0" nullable="false" jdbcType="5" />
+      <column name="name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" />
+      <column name="parent_category_id" sqlType="SMALLINT UNSIGNED" length="5" precision="0" nullable="true" jdbcType="5" />
+      <column name="url" sqlType="CHAR" length="128" precision="0" nullable="false" jdbcType="1" />
+      <primary-key name="PRIMARY" columns="help_category_id" />
+      <index name="name" unique="true" columns="name" />
+    </table>
+    <table name="help_keyword" schema="" catalog="mysql" type="TABLE">
+      <column name="help_keyword_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" />
+      <primary-key name="PRIMARY" columns="help_keyword_id" />
+      <index name="name" unique="true" columns="name" />
+    </table>
+    <table name="help_relation" schema="" catalog="mysql" type="TABLE">
+      <column name="help_topic_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="help_keyword_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" />
+      <primary-key name="PRIMARY" columns="help_keyword_id,help_topic_id" />
+    </table>
+    <table name="help_topic" schema="" catalog="mysql" type="TABLE">
+      <column name="help_topic_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" />
+      <column name="help_category_id" sqlType="SMALLINT UNSIGNED" length="5" precision="0" nullable="false" jdbcType="5" />
+      <column name="description" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" />
+      <column name="example" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" />
+      <column name="url" sqlType="CHAR" length="128" precision="0" nullable="false" jdbcType="1" />
+      <primary-key name="PRIMARY" columns="help_topic_id" />
+      <index name="name" unique="true" columns="name" />
+    </table>
+    <table name="host" schema="" catalog="mysql" type="TABLE">
+      <column name="Host" sqlType="CHAR" length="60" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Db" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Select_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Insert_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Update_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Delete_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Create_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Drop_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Grant_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="References_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Index_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Alter_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Create_tmp_table_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Lock_tables_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Create_view_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Show_view_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Create_routine_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Alter_routine_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Execute_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Trigger_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <primary-key name="PRIMARY" columns="host,db" />
+    </table>
+    <table name="ndb_binlog_index" schema="" catalog="mysql" type="TABLE">
+      <column name="Position" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" />
+      <column name="File" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
+      <column name="epoch" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" />
+      <column name="inserts" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" />
+      <column name="updates" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" />
+      <column name="deletes" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" />
+      <column name="schemaops" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" />
+      <primary-key name="PRIMARY" columns="epoch" />
+    </table>
+    <table name="plugin" schema="" catalog="mysql" type="TABLE">
+      <column name="name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="dl" sqlType="CHAR" length="128" precision="0" nullable="false" jdbcType="1" default="''" />
+      <primary-key name="PRIMARY" columns="name" />
+    </table>
+    <table name="proc" schema="" catalog="mysql" type="TABLE">
+      <column name="db" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="type" sqlType="ENUM" length="9" precision="0" nullable="false" jdbcType="1" />
+      <column name="specific_name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="language" sqlType="ENUM" length="3" precision="0" nullable="false" jdbcType="1" default="'SQL'" />
+      <column name="sql_data_access" sqlType="ENUM" length="17" precision="0" nullable="false" jdbcType="1" default="'CONTAINS_SQL'" />
+      <column name="is_deterministic" sqlType="ENUM" length="3" precision="0" nullable="false" jdbcType="1" default="'NO'" />
+      <column name="security_type" sqlType="ENUM" length="7" precision="0" nullable="false" jdbcType="1" default="'DEFINER'" />
+      <column name="param_list" sqlType="BLOB" length="65535" precision="0" nullable="false" jdbcType="-4" />
+      <column name="returns" sqlType="LONGBLOB" length="2147483647" precision="0" nullable="false" jdbcType="-4" />
+      <column name="body" sqlType="LONGBLOB" length="2147483647" precision="0" nullable="false" jdbcType="-4" />
+      <column name="definer" sqlType="CHAR" length="77" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="created" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" default="CURRENT_TIMESTAMP" />
+      <column name="modified" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" default="'0000-00-00 00:00:00'" />
+      <column name="sql_mode" sqlType="SET UNSIGNED" length="478" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="comment" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="character_set_client" sqlType="CHAR" length="32" precision="0" nullable="true" jdbcType="1" />
+      <column name="collation_connection" sqlType="CHAR" length="32" precision="0" nullable="true" jdbcType="1" />
+      <column name="db_collation" sqlType="CHAR" length="32" precision="0" nullable="true" jdbcType="1" />
+      <column name="body_utf8" sqlType="LONGBLOB" length="2147483647" precision="0" nullable="true" jdbcType="-4" />
+      <primary-key name="PRIMARY" columns="db,name,type" />
+    </table>
+    <table name="procs_priv" schema="" catalog="mysql" type="TABLE">
+      <column name="Host" sqlType="CHAR" length="60" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Db" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="User" sqlType="CHAR" length="16" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Routine_name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Routine_type" sqlType="ENUM" length="9" precision="0" nullable="false" jdbcType="1" />
+      <column name="Grantor" sqlType="CHAR" length="77" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Proc_priv" sqlType="SET" length="27" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Timestamp" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" default="CURRENT_TIMESTAMP" />
+      <primary-key name="PRIMARY" columns="host,db,user,routine_name,routine_type" />
+      <index name="Grantor" unique="false" columns="Grantor" />
+    </table>
+    <table name="servers" schema="" catalog="mysql" type="TABLE">
+      <column name="Server_name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Host" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Db" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Username" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Password" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Port" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" default="0" />
+      <column name="Socket" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Wrapper" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Owner" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <primary-key name="PRIMARY" columns="server_name" />
+    </table>
+    <table name="tables_priv" schema="" catalog="mysql" type="TABLE">
+      <column name="Host" sqlType="CHAR" length="60" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Db" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="User" sqlType="CHAR" length="16" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Table_name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Grantor" sqlType="CHAR" length="77" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Timestamp" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" default="CURRENT_TIMESTAMP" />
+      <column name="Table_priv" sqlType="SET" length="98" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Column_priv" sqlType="SET" length="31" precision="0" nullable="false" jdbcType="1" default="''" />
+      <primary-key name="PRIMARY" columns="host,db,user,table_name" />
+      <index name="Grantor" unique="false" columns="Grantor" />
+    </table>
+    <table name="time_zone" schema="" catalog="mysql" type="TABLE">
+      <column name="Time_zone_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="Use_leap_seconds" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <primary-key name="PRIMARY" columns="time_zone_id" />
+    </table>
+    <table name="time_zone_leap_second" schema="" catalog="mysql" type="TABLE">
+      <column name="Transition_time" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" />
+      <column name="Correction" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <primary-key name="PRIMARY" columns="transition_time" />
+    </table>
+    <table name="time_zone_name" schema="" catalog="mysql" type="TABLE">
+      <column name="Name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" />
+      <column name="Time_zone_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" />
+      <primary-key name="PRIMARY" columns="name" />
+    </table>
+    <table name="time_zone_transition" schema="" catalog="mysql" type="TABLE">
+      <column name="Time_zone_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="Transition_time" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" />
+      <column name="Transition_type_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" />
+      <primary-key name="PRIMARY" columns="time_zone_id,transition_time" />
+    </table>
+    <table name="time_zone_transition_type" schema="" catalog="mysql" type="TABLE">
+      <column name="Time_zone_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="Transition_type_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="Offset" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" default="0" />
+      <column name="Is_DST" sqlType="TINYINT UNSIGNED" length="3" precision="0" nullable="false" jdbcType="-6" default="0" />
+      <column name="Abbreviation" sqlType="CHAR" length="8" precision="0" nullable="false" jdbcType="1" default="''" />
+      <primary-key name="PRIMARY" columns="time_zone_id,transition_type_id" />
+    </table>
+    <table name="user" schema="" catalog="mysql" type="TABLE">
+      <column name="Host" sqlType="CHAR" length="60" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="User" sqlType="CHAR" length="16" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Password" sqlType="CHAR" length="41" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="Select_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Insert_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Update_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Delete_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Create_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Drop_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Reload_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Shutdown_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Process_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="File_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Grant_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="References_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Index_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Alter_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Show_db_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Super_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Create_tmp_table_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Lock_tables_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Execute_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Repl_slave_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Repl_client_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Create_view_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Show_view_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Create_routine_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Alter_routine_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Create_user_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Event_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="Trigger_priv" sqlType="ENUM" length="1" precision="0" nullable="false" jdbcType="1" default="'N'" />
+      <column name="ssl_type" sqlType="ENUM" length="9" precision="0" nullable="false" jdbcType="1" default="''" />
+      <column name="ssl_cipher" sqlType="BLOB" length="65535" precision="0" nullable="false" jdbcType="-4" />
+      <column name="x509_issuer" sqlType="BLOB" length="65535" precision="0" nullable="false" jdbcType="-4" />
+      <column name="x509_subject" sqlType="BLOB" length="65535" precision="0" nullable="false" jdbcType="-4" />
+      <column name="max_questions" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" default="0" />
+      <column name="max_updates" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" default="0" />
+      <column name="max_connections" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" default="0" />
+      <column name="max_user_connections" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" default="0" />
+      <primary-key name="PRIMARY" columns="host,user" />
+    </table>
+    <table name="enrollment" schema="" catalog="sem" type="TABLE">
+      <column name="studentID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="courseID" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12" />
+    </table>
+    <table name="students" schema="" catalog="sem" type="TABLE">
+      <column name="studentID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="studentName" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="studentPhone" sqlType="CHAR" length="12" precision="0" nullable="true" jdbcType="1" />
     </table>
   </data-source>
 </component>
