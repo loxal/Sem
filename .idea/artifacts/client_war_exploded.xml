@@ -5,10 +5,10 @@
       <element id="javaee-facet-resources" facet="client/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="client" />
+          <element id="module-output" name="Sem" />
         </element>
       </element>
-      <element id="gwt-compiler-output" facet="client/gwt/GWT" />
+      <element id="gwt-compiler-output" facet="Sem/gwt/GWT" />
     </root>
   </artifact>
 </component>
