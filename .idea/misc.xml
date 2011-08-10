@@ -12,6 +12,7 @@
     <scope name="Sem" pattern="file[Sem]:*//*" />
     <scope name="Verp" pattern="file[Verp]:*//*" />
     <scope name="Lom" pattern="file[Lom]:*//*" />
+    <scope name="Vel" pattern="file[Vel]:*//*" />
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="EntryPointsManager">
@@ -33,6 +34,12 @@
             </files>
           </module>
           <module name="client" />
+          <module name="Lev">
+            <files>
+              <file url="file://$PROJECT_DIR$/../../Lev/src/main/java/loxal/lev/commander/Commander.gwt.xml" />
+              <file url="file://$PROJECT_DIR$/../../Lev/src/main/java/loxal/lev/planer/Planer.gwt.xml" />
+            </files>
+          </module>
           <module name="verp" />
           <module name="Verp" />
         </modules>
@@ -42,6 +49,16 @@
           <module name="app">
             <files>
               <file url="file://$PROJECT_DIR$/../../Verp/src/main/resources/META-INF/persistence.xml" />
+            </files>
+          </module>
+          <module name="Lev">
+            <files>
+              <file url="file://$PROJECT_DIR$/../../Lev/src/main/resources/META-INF/persistence.xml" />
+            </files>
+          </module>
+          <module name="Vel">
+            <files>
+              <file url="file://$PROJECT_DIR$/../../Vel/src/main/resources/META-INF/persistence.xml" />
             </files>
           </module>
           <module name="verp">
@@ -70,6 +87,11 @@
             </files>
           </module>
           <module name="client" />
+          <module name="Lev">
+            <files>
+              <file url="file://$PROJECT_DIR$/../../Lev/src/main/webapp/WEB-INF/web.xml" />
+            </files>
+          </module>
           <module name="verp" />
           <module name="Verp" />
         </modules>

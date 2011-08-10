@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../../Lev/Lev.iml" filepath="$PROJECT_DIR$/../../Lev/Lev.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Lom/Android/Lom.iml" filepath="$PROJECT_DIR$/../Lom/Android/Lom.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sem.iml" filepath="$PROJECT_DIR$/Sem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Vel/Vel.iml" filepath="$PROJECT_DIR$/../../Vel/Vel.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../Verp/Verp.iml" filepath="$PROJECT_DIR$/../../Verp/Verp.iml" />
     </modules>
   </component>
