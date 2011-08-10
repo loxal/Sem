@@ -1324,7 +1324,7 @@
     <user-password>dfeddfc4dfc5df9fdfc6dfc3dfd2dfc3</user-password>
     <libraries>
       <library>
-        <url>jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.15/mysql-connector-java-5.1.15.jar!/</url>
+        <url>jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.17/mysql-connector-java-5.1.17.jar!/</url>
       </library>
     </libraries>
     <table name="RESOURCE" schema="" catalog="verp" type="TABLE">
@@ -1378,7 +1378,7 @@
       <primary-key name="PRIMARY" columns="id" />
     </table>
   </data-source>
-  <data-source source="LOCAL" name="sem@sky" product="MySQL" version="5.0.77" jdbc-version="4.0" driver-version="mysql-connector-java-5.1.17 ( Revision: ${bzr.revision-id} )" uuid="b58a6626-4c98-4a9e-85b9-c4bb1cbbc950">
+  <data-source source="LOCAL" name="sky:sem" product="MySQL" version="5.0.77" jdbc-version="4.0" driver-version="mysql-connector-java-5.1.17 ( Revision: ${bzr.revision-id} )" uuid="b58a6626-4c98-4a9e-85b9-c4bb1cbbc950">
     <extra-name-characters>#@</extra-name-characters>
     <identifier-quote-string>`</identifier-quote-string>
     <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
@@ -1798,7 +1798,7 @@
       <column name="studentPhone" sqlType="CHAR" length="12" precision="0" nullable="true" jdbcType="1" />
     </table>
   </data-source>
-  <data-source source="LOCAL" name="sem@GAE" product="Google SQL Service/MySQL" version="5.1.58" jdbc-version="4.0" driver-version="0.0" uuid="464c676c-5f23-4783-83e3-1b9c45874099">
+  <data-source source="LOCAL" name="GAE:sem" product="Google SQL Service/MySQL" version="5.1.58" jdbc-version="4.0" driver-version="0.0" uuid="464c676c-5f23-4783-83e3-1b9c45874099">
     <extra-name-characters>#@</extra-name-characters>
     <identifier-quote-string>`</identifier-quote-string>
     <jdbc-driver>com.google.cloud.sql.Driver</jdbc-driver>
