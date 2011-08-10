@@ -1,6 +1,7 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Lev" type="GWT.ConfigurationType" factoryName="GWT Configuration">
-    <module name="Lev" />
+  <configuration default="false" name="Vel" type="GWT.ConfigurationType" factoryName="GWT Configuration">
+    <module name="Vel" />
+    <option name="VM_PARAMETERS" value="-Xmx128m" />
     <option name="RUN_PAGE" value="commander/index.html" />
     <option name="OPEN_IN_BROWSER" value="false" />
     <option name="UPDATE_RESOURCES_ON_FRAME_DEACTIVATION" value="true" />
