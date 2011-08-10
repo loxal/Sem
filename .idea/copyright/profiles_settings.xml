@@ -1,6 +1,8 @@
 <component name="CopyrightManager">
   <settings default="Loxal - BSD">
     <module2copyright>
+      <element module="Lev" copyright="Loxal - BSD" />
+      <element module="dp" copyright="dp" />
       <element module="Project Files" copyright="Loxal - BSD" />
     </module2copyright>
   </settings>
