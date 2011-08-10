@@ -9,6 +9,7 @@
     <scope name="static" pattern="file:src/static//*||file:src/app.yaml" />
     <scope name="Android" pattern="file[Lom]:*/" />
     <scope name="Lev" pattern="file[Lev]:*//*" />
+    <scope name="dp" pattern="file[Verp]:*//*" />
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="EntryPointsManager">

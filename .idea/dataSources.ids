@@ -1378,7 +1378,7 @@
       <primary-key name="PRIMARY" columns="id" />
     </table>
   </data-source>
-  <data-source source="LOCAL" name="Sem@MySQL.sky" product="MySQL" version="5.0.77" jdbc-version="4.0" driver-version="mysql-connector-java-5.1.17 ( Revision: ${bzr.revision-id} )" uuid="b58a6626-4c98-4a9e-85b9-c4bb1cbbc950">
+  <data-source source="LOCAL" name="sem@sky" product="MySQL" version="5.0.77" jdbc-version="4.0" driver-version="mysql-connector-java-5.1.17 ( Revision: ${bzr.revision-id} )" uuid="b58a6626-4c98-4a9e-85b9-c4bb1cbbc950">
     <extra-name-characters>#@</extra-name-characters>
     <identifier-quote-string>`</identifier-quote-string>
     <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
@@ -1520,7 +1520,7 @@
     <user-name>root</user-name>
     <libraries>
       <library>
-        <url>file://$PROJECT_DIR$/../../Verp/lib/google_sql.jar</url>
+        <url>file://$PROJECT_DIR$/../../Lev/lib/google_sql.jar</url>
       </library>
     </libraries>
     <table name="columns_priv" schema="" catalog="mysql" type="TABLE">
@@ -1788,6 +1788,27 @@
       <column name="max_user_connections" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" default="0" />
       <primary-key name="PRIMARY" columns="host,user" />
     </table>
+    <table name="enrollment" schema="" catalog="sem" type="TABLE">
+      <column name="studentID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="courseID" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12" />
+    </table>
+    <table name="students" schema="" catalog="sem" type="TABLE">
+      <column name="studentID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="studentName" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="studentPhone" sqlType="CHAR" length="12" precision="0" nullable="true" jdbcType="1" />
+    </table>
+  </data-source>
+  <data-source source="LOCAL" name="sem@GAE" product="Google SQL Service/MySQL" version="5.1.58" jdbc-version="4.0" driver-version="0.0" uuid="464c676c-5f23-4783-83e3-1b9c45874099">
+    <extra-name-characters>#@</extra-name-characters>
+    <identifier-quote-string>`</identifier-quote-string>
+    <jdbc-driver>com.google.cloud.sql.Driver</jdbc-driver>
+    <jdbc-url>jdbc:google:rdbms://loxalnet:sem/sem</jdbc-url>
+    <user-name>root</user-name>
+    <libraries>
+      <library>
+        <url>file://$PROJECT_DIR$/../../Lev/lib/google_sql.jar</url>
+      </library>
+    </libraries>
     <table name="enrollment" schema="" catalog="sem" type="TABLE">
       <column name="studentID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="courseID" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12" />
