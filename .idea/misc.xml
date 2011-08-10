@@ -7,9 +7,11 @@
   <component name="DependencyValidationManager">
     <scope name="Go" pattern="file:src/pkg//*||file:src/app.yaml" />
     <scope name="static" pattern="file:src/static//*||file:src/app.yaml" />
-    <scope name="Android" pattern="file[Lom]:*/" />
     <scope name="Lev" pattern="file[Lev]:*//*" />
     <scope name="dp" pattern="file[Verp]:*//*" />
+    <scope name="Sem" pattern="file[Sem]:*//*" />
+    <scope name="Verp" pattern="file[Verp]:*//*" />
+    <scope name="Lom" pattern="file[Lom]:*//*" />
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="EntryPointsManager">

@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="GWT" type="GWT.ConfigurationType" factoryName="GWT Configuration">
+  <configuration default="false" name="Verp" type="GWT.ConfigurationType" factoryName="GWT Configuration">
     <module name="Verp" />
     <option name="VM_PARAMETERS" value="-Xmx256M -Djava.util.logging.config.file=/Users/alex/my/project/Verp/src/logging.properties" />
     <option name="SHELL_PARAMETERS" value="-logLevel INFO" />
