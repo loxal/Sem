@@ -1408,11 +1408,16 @@
       <primary-key name="PRIMARY" columns="id" />
       <index name="FK_RESOURCE_USER_ID" unique="false" columns="USER_ID" />
     </table>
+    <table name="SEQUENCE" schema="" catalog="sem" type="TABLE">
+      <column name="SEQ_NAME" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" />
+      <column name="SEQ_COUNT" sqlType="DECIMAL" length="38" precision="0" nullable="true" jdbcType="3" />
+      <primary-key name="PRIMARY" columns="seq_name" />
+    </table>
     <table name="SESSION" schema="" catalog="sem" type="TABLE">
       <column name="ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
-      <column name="BEGIN_TIMESTAMP" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="END_TIMESTAMP" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="EVENT_TIMESTAMP" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="BEGINTIME" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="ENDTIME" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="EVENTDATE" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
       <column name="TITLE" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="TYPE" sqlType="VARCHAR" length="9" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
@@ -1422,9 +1427,9 @@
     </table>
     <table name="SLOT" schema="" catalog="sem" type="TABLE">
       <column name="ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
-      <column name="BEGIN_TIMESTAMP" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="DAY_TIMESTAMP" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="END_TIMESTAMP" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="BEGINTIME" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="DAYOFWEEK" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="ENDTIME" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
       <column name="EXCLUDE" sqlType="BIT" length="0" precision="0" nullable="true" jdbcType="-7" default="0" />
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
       <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
@@ -1434,7 +1439,7 @@
     </table>
     <table name="USER" schema="" catalog="sem" type="TABLE">
       <column name="ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
-      <column name="NAME" sqlType="VARCHAR" length="80" precision="0" nullable="false" jdbcType="12" />
+      <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
       <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
       <primary-key name="PRIMARY" columns="id" />
     </table>

@@ -1,0 +1,24 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Lev:war exploded">
+    <output-path>$PROJECT_DIR$/../../Lev/target/Lev</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Lev/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Lev" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.google.appengine:appengine-api-1.0-sdk:1.5.2" />
+          <element id="library" level="project" name="Maven: com.google.appengine:appengine-java-sdk:1.5.2" />
+          <element id="library" level="project" name="Maven: javax.validation:validation-api:1.0.0.GA" />
+          <element id="library" level="project" name="Maven: com.google.gwt:gwt-servlet:2.3.0" />
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:eclipselink:2.3.0" />
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:javax.persistence:2.0.3" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.17" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../Lev/lib/gwt-servlet-deps.jar" />
+        </element>
+      </element>
+      <element id="gwt-compiler-output" facet="Lev/gwt/GWT" />
+    </root>
+  </artifact>
+</component>
