@@ -1,0 +1,18 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Lev" type="GWT.ConfigurationType" factoryName="GWT Configuration">
+    <module name="Lev" />
+    <option name="VM_PARAMETERS" value="-Xmx128m" />
+    <option name="RUN_PAGE" value="planer/index.html" />
+    <option name="GWT_MODULE" value="loxal.lev.planer.Planer" />
+    <option name="SERVER_ID" value="app-engine:AppEngine Dev" />
+    <option name="OPEN_IN_BROWSER" value="false" />
+    <option name="UPDATE_RESOURCES_ON_FRAME_DEACTIVATION" value="true" />
+    <RunnerSettings RunnerId="Debug">
+      <option name="DEBUG_PORT" value="55042" />
+      <option name="TRANSPORT" value="0" />
+      <option name="LOCAL" value="true" />
+    </RunnerSettings>
+    <ConfigurationWrapper RunnerId="Debug" />
+    <method />
+  </configuration>
+</component>
