@@ -29,13 +29,13 @@ type Cmd struct {
 
 func serveError(c appengine.Context, w http.ResponseWriter, err os.Error) {
 	w.WriteHeader(http.StatusInternalServerError)
-	w.Header().Set("Content-Type", "text/plain")
+	w.Header().Set("Content-Type", contentTypeText)
 	io.WriteString(w, "Internal Server Error")
 }
 
 func serve404(w http.ResponseWriter) {
 	w.WriteHeader(http.StatusNotFound)
-	w.Header().Set("Content-Type", "text/plain")
+	w.Header().Set("Content-Type", contentTypeText)
 	io.WriteString(w, "Not Found")
 }
 
@@ -61,7 +61,7 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-//	http.Redirect(w, r, indexHandler, http.StatusFound)
+	http.Redirect(w, r, indexHandler, http.StatusFound)
 }
 
 // Constraint Check
@@ -94,7 +94,7 @@ func cmdListing(w http.ResponseWriter, r *http.Request) (cmds []*Cmd) {
 func cmdListingJson(w http.ResponseWriter, r *http.Request) {
 	cmds := cmdListing(w, r)
 
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	w.Header().Set("Content-Type", contentTypeJSON)
 	fmt.Fprint(w, `{"cmds": [`)
 	lenCmds := len(cmds)
 	for i := range cmds {
@@ -110,6 +110,16 @@ func cmdListingJson(w http.ResponseWriter, r *http.Request) {
 // Returns the RESTful associated with a certain command
 //func exec(cmd string) (restCall string) {
 func exec(w http.ResponseWriter, r *http.Request) {
+    f := test(w)
+    fmt.Fprint(w, "%d\n", f(1))
+    fmt.Fprint(w, "%d\n", f(20))
+    fmt.Fprint(w, "%d\n", f(300))
+
+    p := &Point{x: 2, y: 3}
+    p.Abs()
+    fmt.Fprint(w, "%d\n", p.x)
+    fmt.Fprint(w, "%d\n", p.y)
+    fmt.Fprint(w, "%d\n", p.Abs())
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {
@@ -170,13 +180,14 @@ const cmdUpdateHandler = "/cmd/update"
 const cmdDeleteHandler = "/cmd/delete"
 const cmdCreateHandler = "/cmd/create"
 const cmdListHandler = "/cmd/list.json"
+const contentTypeJSON = "application/json; charset=utf-8"
+const contentTypeText = "text/plain"
 
 func init() {
-
 	http.HandleFunc(cmdDeleteHandler, cmdDeletion)
 	http.HandleFunc(cmdUpdateHandler, cmdUpdation)
 	http.HandleFunc(cmdCreateHandler, cmdCreation)
 	http.HandleFunc(cmdListHandler, cmdListingJson)
 	http.HandleFunc("/cmd", cmd)
-	http.HandleFunc("/exec", exec)
+	http.HandleFunc("/cmd/exec", exec)
 }
