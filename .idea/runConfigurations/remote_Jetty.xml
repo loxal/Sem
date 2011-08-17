@@ -4,7 +4,6 @@
     <option name="PORT" value="1099" />
     <option name="LOCAL" value="false" />
     <option name="OPEN_IN_BROWSER_URL" value="http://dpinettest:8080/Verp" />
-    <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
     <option name="UPDATING_POLICY" value="hot-swap-classes" />
     <deployment>
       <artifact name="Verp:war exploded remote">
@@ -47,7 +46,6 @@
             </MultiTargetRemoteStagingTarget>
           </list>
         </option>
-        <option name="transportHostId" value="4762d57d-1ddb-4e33-9f9c-ec6f40d5499d" />
       </data>
     </server-settings>
     <predefined_log_file id="Jetty" enabled="true" />
