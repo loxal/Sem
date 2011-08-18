@@ -47,7 +47,7 @@
             </MultiTargetRemoteStagingTarget>
           </list>
         </option>
-        <option name="transportHostId" value="4762d57d-1ddb-4e33-9f9c-ec6f40d5499d" />
+        <option name="transportHostId" value="27ba8c37-059c-441a-ab9b-43b5120e968f" />
       </data>
     </server-settings>
     <predefined_log_file id="Jetty" enabled="true" />
