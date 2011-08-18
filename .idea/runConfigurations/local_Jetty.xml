@@ -6,7 +6,7 @@
     <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
     <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
     <deployment>
-      <artifact name="Verp:war exploded remote">
+      <artifact name="Verp:war remote exploded">
         <settings DEPLOYMENT_METHOD="contexts">
           <option name="contextRoot" value="/Verp" />
           <option name="defaultContextRoot" value="false" />
@@ -189,7 +189,7 @@
     </ConfigurationWrapper>
     <method>
       <option name="BuildArtifacts" enabled="true">
-        <artifact name="Verp:war exploded remote" />
+        <artifact name="Verp:war remote exploded" />
       </option>
     </method>
   </configuration>

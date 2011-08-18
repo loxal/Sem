@@ -2,7 +2,7 @@
   <artifact type="war" name="Verp:war remote">
     <output-path>$PROJECT_DIR$/../../Verp/target</output-path>
     <root id="archive" name="Verp.war">
-      <element id="artifact" artifact-name="Verp:war exploded remote" />
+      <element id="artifact" artifact-name="Verp:war remote exploded" />
     </root>
   </artifact>
 </component>

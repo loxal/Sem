@@ -7,7 +7,7 @@
     <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
     <option name="UPDATING_POLICY" value="hot-swap-classes" />
     <deployment>
-      <artifact name="Verp:war exploded remote">
+      <artifact name="Verp:war remote exploded">
         <settings DEPLOYMENT_METHOD="contexts">
           <option name="contextRoot" value="/Verp" />
           <option name="defaultContextRoot" value="false" />
@@ -47,7 +47,7 @@
             </MultiTargetRemoteStagingTarget>
           </list>
         </option>
-        <option name="transportHostId" value="27ba8c37-059c-441a-ab9b-43b5120e968f" />
+        <option name="transportHostId" value="4762d57d-1ddb-4e33-9f9c-ec6f40d5499d" />
       </data>
     </server-settings>
     <predefined_log_file id="Jetty" enabled="true" />
@@ -81,7 +81,7 @@
     <ConfigurationWrapper RunnerId="Run" />
     <method>
       <option name="BuildArtifacts" enabled="true">
-        <artifact name="Verp:war exploded remote" />
+        <artifact name="Verp:war remote exploded" />
       </option>
     </method>
   </configuration>

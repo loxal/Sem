@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="Verp:war exploded remote">
+  <artifact type="exploded-war" name="Verp:war remote exploded">
     <output-path>$PROJECT_DIR$/../../Verp/target/Verp</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
