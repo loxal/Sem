@@ -1818,10 +1818,6 @@
         <url>file://$PROJECT_DIR$/../../Lev/lib/google_sql.jar</url>
       </library>
     </libraries>
-    <table name="enrollment" schema="" catalog="sem" type="TABLE">
-      <column name="studentID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
-      <column name="courseID" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12" />
-    </table>
     <table name="students" schema="" catalog="sem" type="TABLE">
       <column name="studentID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="studentName" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
