@@ -14,6 +14,7 @@
     <mapping directory="$PROJECT_DIR$/../../Lev" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../../Lom" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../../Metro" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../../Vel" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../../Verp" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
   </component>
