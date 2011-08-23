@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Maven: com.google.gwt:gwt-servlet:deps:2.4.0-rc1">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../Vel/lib/gwt-servlet-deps.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

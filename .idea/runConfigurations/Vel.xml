@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Vel" type="GWT.ConfigurationType" factoryName="GWT Configuration">
     <module name="Vel" />
-    <option name="VM_PARAMETERS" value="-Xmx128m " />
+    <option name="VM_PARAMETERS" value="-Xmx256m " />
     <option name="SHELL_PARAMETERS" value="-port 8000 -codeServerPort 9000" />
     <option name="RUN_PAGE" value="commander/index.html" />
     <option name="OPEN_IN_BROWSER" value="false" />
