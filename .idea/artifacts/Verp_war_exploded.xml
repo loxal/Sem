@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="Verp:war exploded">
-    <output-path>$PROJECT_DIR$/../../Verp/target/Verp</output-path>
+    <output-path>$PROJECT_DIR$/../Verp/target/Verp</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="Verp/web/Web" />
       <element id="directory" name="WEB-INF">

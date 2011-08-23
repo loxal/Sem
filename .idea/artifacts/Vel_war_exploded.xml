@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="Vel:war exploded">
-    <output-path>$PROJECT_DIR$/../../Vel/target/Vel</output-path>
+    <output-path>$PROJECT_DIR$/../Vel/target/Vel</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="Vel/web/Web" />
       <element id="directory" name="WEB-INF">
