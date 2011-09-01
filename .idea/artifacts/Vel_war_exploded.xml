@@ -3,6 +3,11 @@
     <output-path>$PROJECT_DIR$/../Vel/target/Vel</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="Vel/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Vel" />
+        </element>
+      </element>
       <element id="gwt-compiler-output" facet="Vel/gwt/GWT" />
     </root>
   </artifact>

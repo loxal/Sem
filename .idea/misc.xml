@@ -20,59 +20,16 @@
   </component>
   <component name="FacetAutodetectingManager">
     <autodetection-disabled>
-      <facet-type id="android">
-        <modules>
-          <module name="Lom" />
-        </modules>
-      </facet-type>
-      <facet-type id="google-app-engine">
-        <modules>
-          <module name="Lox">
-            <files>
-              <file url="file://$PROJECT_DIR$/../Lox/src/main/webapp/WEB-INF/appengine-web.xml" />
-            </files>
-          </module>
-        </modules>
-      </facet-type>
       <facet-type id="gwt">
         <modules>
-          <module name="app">
-            <files>
-              <file url="file://$PROJECT_DIR$/../../Verp/src/main/java/dp/verp/planer/Planer.gwt.xml" />
-              <file url="file://$PROJECT_DIR$/../../Verp/src/main/java/dp/verp/sem/Sem.gwt.xml" />
-            </files>
-          </module>
-          <module name="client" />
           <module name="Lev" />
-          <module name="Lox">
-            <files>
-              <file url="file://$PROJECT_DIR$/../Lox/src/main/java/loxal/lox/service/contact/Contact.gwt.xml" />
-              <file url="file://$PROJECT_DIR$/../Lox/src/main/java/loxal/lox/service/meta/Meta.gwt.xml" />
-            </files>
-          </module>
           <module name="Vel" />
-          <module name="verp" />
           <module name="Verp" />
         </modules>
       </facet-type>
       <facet-type id="jpa">
         <modules>
           <module name="app">
-            <files>
-              <file url="file://$PROJECT_DIR$/../../Verp/src/main/resources/META-INF/persistence.xml" />
-            </files>
-          </module>
-          <module name="Lev">
-            <files>
-              <file url="file://$PROJECT_DIR$/../../Lev/src/main/resources/META-INF/persistence.xml" />
-            </files>
-          </module>
-          <module name="Vel">
-            <files>
-              <file url="file://$PROJECT_DIR$/../../Vel/src/main/resources/META-INF/persistence.xml" />
-            </files>
-          </module>
-          <module name="verp">
             <files>
               <file url="file://$PROJECT_DIR$/../../Verp/src/main/resources/META-INF/persistence.xml" />
             </files>
@@ -92,20 +49,8 @@
       </facet-type>
       <facet-type id="web">
         <modules>
-          <module name="app">
-            <files>
-              <file url="file://$PROJECT_DIR$/../../Verp/src/main/webapp/WEB-INF/web.xml" />
-            </files>
-          </module>
-          <module name="client" />
           <module name="Lev" />
-          <module name="Lox">
-            <files>
-              <file url="file://$PROJECT_DIR$/../Lox/src/main/webapp/WEB-INF/web.xml" />
-            </files>
-          </module>
           <module name="Vel" />
-          <module name="verp" />
           <module name="Verp" />
         </modules>
       </facet-type>
