@@ -17,9 +17,12 @@ handlers:
 - url: /client/(.*)
   static_files: static/client/\1
   upload: static/client/.*
-- url: /resource/(.*)
+- url: /resource/(.*) # should be replaced by /my/(.*)
   static_files: static/resource/\1
   upload: static/resource/.*
+- url: /my/(.*)
+  static_files: static/resource/my/\1
+  upload: static/resource/my/.*
 - url: /cmd/.*
   script: _go_app
 - url: .*
