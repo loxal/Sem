@@ -1,18 +1,37 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Lev" type="GWT.ConfigurationType" factoryName="GWT Configuration">
-    <module name="Lev" />
-    <option name="VM_PARAMETERS" value="-Xmx128m" />
-    <option name="RUN_PAGE" value="planer/index.html" />
-    <option name="GWT_MODULE" value="loxal.lev.planer.Planer" />
-    <option name="SERVER_ID" value="app-engine:AppEngine Dev" />
+  <configuration default="false" name="Lev" type="GoogleAppEngineDevServer" factoryName="Local" APPLICATION_SERVER_NAME="AppEngine Dev">
     <option name="OPEN_IN_BROWSER" value="false" />
-    <option name="UPDATE_RESOURCES_ON_FRAME_DEACTIVATION" value="true" />
+    <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080" />
+    <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+    <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+    <server-settings>
+      <option name="artifact" value="Lev:war exploded" />
+    </server-settings>
+    <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
     <RunnerSettings RunnerId="Debug">
-      <option name="DEBUG_PORT" value="55042" />
+      <option name="DEBUG_PORT" value="55286" />
       <option name="TRANSPORT" value="0" />
       <option name="LOCAL" value="true" />
     </RunnerSettings>
-    <ConfigurationWrapper RunnerId="Debug" />
-    <method />
+    <ConfigurationWrapper VM_VAR="" RunnerId="Debug">
+      <option name="USE_ENV_VARIABLES" value="true" />
+      <STARTUP>
+        <option name="USE_DEFAULT" value="true" />
+        <option name="SCRIPT" value="" />
+        <option name="VM_PARAMETERS" value="" />
+        <option name="PROGRAM_PARAMETERS" value="" />
+      </STARTUP>
+      <SHUTDOWN>
+        <option name="USE_DEFAULT" value="true" />
+        <option name="SCRIPT" value="" />
+        <option name="VM_PARAMETERS" value="" />
+        <option name="PROGRAM_PARAMETERS" value="" />
+      </SHUTDOWN>
+    </ConfigurationWrapper>
+    <method>
+      <option name="BuildArtifacts" enabled="true">
+        <artifact name="Lev:war exploded" />
+      </option>
+    </method>
   </configuration>
 </component>
