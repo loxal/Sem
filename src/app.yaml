@@ -3,6 +3,10 @@ version: b
 runtime: go
 api_version: 2
 
+builtins:
+- remote_api: on
+- datastore_admin: on
+
 handlers:
 # should precede ".*" (main URL handler)
 - url: /static
