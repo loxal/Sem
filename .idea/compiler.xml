@@ -6,7 +6,7 @@
     <option name="cmdLineParams" value="-target 1.6" />
   </component>
   <component name="CompilerAPISettings">
-    <option name="MAXIMUM_HEAP_SIZE" value="64" />
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-target 1.6" />
   </component>
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="compAPI" />
@@ -26,14 +26,17 @@
       <entry name="?*.tld" />
       <entry name="?*.ftl" />
     </wildcardResourcePatterns>
-    <annotationProcessing enabled="false" useClasspath="true" />
+    <annotationProcessing enabled="true" useClasspath="true">
+      <processorPath value="$PROJECT_DIR$/../../sdk/gwt/requestfactory-apt.jar" />
+      <processModule name="Verp" generatedDirName=".apt_generated" />
+    </annotationProcessing>
   </component>
   <component name="EclipseCompilerSettings">
     <option name="GENERATE_NO_WARNINGS" value="true" />
     <option name="DEPRECATION" value="false" />
   </component>
   <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_STRING" value="-target 1.5" />
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-target 1.6" />
   </component>
 </project>
 

@@ -22,8 +22,6 @@
     <autodetection-disabled>
       <facet-type id="gwt">
         <modules>
-          <module name="Lev" />
-          <module name="Vel" />
           <module name="Verp" />
         </modules>
       </facet-type>
@@ -129,7 +127,7 @@
           <configuration>
             <setting name="compilerMaxHeapSize" value="64" />
             <setting name="gwtScriptOutputStyle" value="PRETTY" />
-            <setting name="gwtSdkUrl" value="file://$MAVEN_REPOSITORY$/com/google/gwt/gwt-dev/2.2.0/" />
+            <setting name="gwtSdkUrl" value="file://$PROJECT_DIR$/../../sdk/gwt" />
           </configuration>
         </default-facet-configuration>
       </entry>

@@ -3,7 +3,11 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../Verp/lib/gwt-servlet-deps.jar!/" />
     </CLASSES>
-    <JAVADOC />
-    <SOURCES />
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/gwt/gwt-servlet/2.3.0/gwt-servlet-2.3.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/gwt/gwt-servlet/2.3.0/gwt-servlet-2.3.0-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>
