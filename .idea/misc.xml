@@ -25,15 +25,6 @@
           <module name="Verp" />
         </modules>
       </facet-type>
-      <facet-type id="jpa">
-        <modules>
-          <module name="app">
-            <files>
-              <file url="file://$PROJECT_DIR$/../../Verp/src/main/resources/META-INF/persistence.xml" />
-            </files>
-          </module>
-        </modules>
-      </facet-type>
       <facet-type id="Scala">
         <modules>
           <module name="Lox">
@@ -47,8 +38,6 @@
       </facet-type>
       <facet-type id="web">
         <modules>
-          <module name="Lev" />
-          <module name="Vel" />
           <module name="Verp" />
         </modules>
       </facet-type>
@@ -125,7 +114,7 @@
       <entry facet-type="gwt">
         <default-facet-configuration>
           <configuration>
-            <setting name="compilerMaxHeapSize" value="64" />
+            <setting name="compilerMaxHeapSize" value="128" />
             <setting name="gwtScriptOutputStyle" value="PRETTY" />
             <setting name="gwtSdkUrl" value="file://$PROJECT_DIR$/../../sdk/gwt" />
           </configuration>
