@@ -16,6 +16,3 @@ _obj
 _test
 _testmain.go
 *.out
-
-/target
-/src/static/resource
