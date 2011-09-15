@@ -27,11 +27,24 @@ handlers:
 - url: /my/(.*)
   static_files: static/resource/my/\1
   upload: static/resource/my/.*
+- url: /module/(.*)
+  static_files: static/module/\1
+  upload: static/module/.*
 - url: /cmd/.*
   script: _go_app
 - url: .*
   static_files: static/client/site/main.html
   upload: /static/client/.*
+
+#- url: /static/module/CV/cache.mf
+#  static_files: static/module/CV/cache.mf
+#  upload: static/module/CV/cache.mf
+#  mime_type: text/cache-manifest
+
+#- url: /mystaticdir/(.*\.appcache)
+#  static_files: mystaticdir/\1
+#  mime_type: text/cache-manifest
+#  upload: mystaticdir/(.*\.appcache)
 
 skip_files:
 - ^(.*/)?app\.yaml
