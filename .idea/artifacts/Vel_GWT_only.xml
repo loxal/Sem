@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Vel:GWT-only">
+    <output-path>$PROJECT_DIR$/../Vel/target/artifacts/GWT-only</output-path>
+    <root id="root">
+      <element id="gwt-compiler-output" facet="Vel/gwt/GWT" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Vel/src/app.yaml" />
+    </root>
+  </artifact>
+</component>

@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="Vel:GWT">
-    <output-path>$PROJECT_DIR$/target/artifacts/Vel_GWT</output-path>
+  <artifact type="exploded-war" name="Vel:GWTforSem">
+    <output-path>$PROJECT_DIR$/src/static/module</output-path>
     <root id="root">
       <element id="gwt-compiler-output" facet="Vel/gwt/GWT" />
     </root>
