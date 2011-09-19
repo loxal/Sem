@@ -1,0 +1,40 @@
+<!--
+  ~ Copyright 2011 digital publishing AG. All rights reserved.
+  -->
+
+<Module>
+    <ModulePrefs title="Support My Blog"
+                 description="Adds a Google Checkout Support Button to your page. Use the support button to enable your readers to support your blog with contributions"
+                 width="234" scrolling="false" author="Google" author_email="checkout-api-support@google.com"
+                 thumbnail="http://code.google.com/apis/checkout/gadget/supportimage.gif">
+        <Require feature="dynamic-height"/>
+        <Require feature="opensocial-0.8"/>
+        <Optional feature="skins"/>
+    </ModulePrefs>
+    <UserPref name="merchantId" display_name="Google Checkout Merchant ID" datatype="string" required="true"/>
+    <UserPref name="itemName" display_name="Blog Name" default_value="My Blog" datatype="string" required="true"/>
+    <UserPref name="itemDesc" display_name="Support Description" default_value="Thanks for your support"
+              datatype="string" required="true"/>
+    <UserPref name="thankYouMessage" display_name="Thank You Message" datatype="string"
+              default_value="Thank You For Your Support" required="false"/>
+    <UserPref name="itemMinPrice" display_name="Minimum Contribution Amount" default_value="1.00" datatype="string"
+              required="true"/>
+    <UserPref name="itemSuggestedPrice" display_name="Suggested Amount" default_value="5.00" datatype="string"
+              required="false"/>
+    <UserPref name="currency" display_name="Currency" datatype="enum" default_value="USD" required="false">
+        <EnumValue value="USD" display_value="United States Dollar"/>
+        <EnumValue value="GBP" display_value="British Pound Sterling"/>
+    </UserPref>
+    <UserPref name="background" display_name="Background Color" datatype="enum" default_value="white" required="false">
+        <EnumValue value="white" display_value="White"/>
+        <EnumValue value="trans" display_value="Colored"/>
+    </UserPref>
+    <UserPref name="acceptTerms"
+              display_name="I understand that my public business information will be displayed on the Google Checkout page"
+              datatype="bool" required="true"/>
+    <Content type="html">
+        <![CDATA[
+<form action="" id="BB_BuyButtonForm" method="post" name="BB_BuyButtonForm" target="_top" onSubmit="return validateAmount(this)" style="padding: 5px; margin: 0;"> </form> <script type="text/javascript"> var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-21438200-3']); _gaq.push(['_setDomainName', 'none']); _gaq.push(['_setAllowLinker', true]); _gaq.push(['_trackPageview', '/view/tipjar']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })(); </script> <style type="text/css"> body { background-color:transparent; } .tosMessage { text-align:center } </style> <script type="text/javascript"> // Validates the support amount function validateAmount(form){ if (!form.item_price_1.value.match( /^[0-9]+(\.([0-9]+))?$/)) { alert('You must enter a valid contribution.'); form.item_price_1.focus(); return false; } else { minDonation = form.item_min_price_1.value.replace(/[^\-\.0-9]+/g,''); maxDonation = form.item_max_price_1.value.replace(/[^\-\.0-9]+/g,''); if ((minDonation != "") && (parseFloat(form.item_price_1.value) < parseFloat(minDonation))) { alert('We do not accept contributions below ' + currencyChar + parseFloat(form.item_min_price_1.value)); form.item_price_1.focus(); return false; }else{ if ((maxDonation != "") && (parseFloat(form.item_price_1.value) > parseFloat(maxDonation))) { alert('Google Checkout does not accept contributions above ' + currencyChar + parseFloat(form.item_max_price_1.value)); form.item_price_1.focus(); return false; }else{ _gaq.push(['_addItem', '', 'CONT', 'Contribution', 'contribution', parseFloat(form.item_price_1.value), '1']); _gaq.push(['_trackEvent', 'checkout', 'clicked']); return true; } } } } // Ading .trim() to String for IE if(typeof String.prototype.trim !== 'function') { String.prototype.trim = function() { return this.replace(/^\s+|\s+$/, ''); } } // Returns the HTML for a Support button with a input field for the donation function choiceOnly(price){ var html = "<table cellpadding='0' cellspacing='0' width='1%' style='font:" + gadgets.skins.getProperty('FONT_FACE') + ";color:" + gadgets.skins.getProperty('CONTENT_TEXT_COLOR') + "'>"; if (prefs.getString("itemDesc")){ html+= "<tr'><td nowrap='nowrap' style='padding-bottom:3px;'>" + prefs.getString("itemDesc") +"</td></tr>"; } html += "<tr'><td nowrap='nowrap' style='padding-bottom:3px;'>"; html += currencyChar + " <input id='item_price_1' name='item_price_1' onfocus='"; html += 'this.style.color="black"; this.value="";'; html += "' type='text' style='color: gray; width: 88px;' value='" + price + "'/> "; html += "</td></tr><tr><td>"; html += "<input alt='Support' src='https://checkout.google.com/buttons/support.gif?merchant_id=" + prefs.getString("merchantId"); html += "&amp;w=130&amp;h=50&amp;style=" + prefs.getString("background") + "&amp;variant=text&amp;loc=en_US' type='image' style='height: 50px;margin-left:-10px'/>"; html += "</td></tr></table>"; return html; } // Get the userprefs object var prefs = new gadgets.Prefs(); if (prefs.getBool("acceptTerms") == true) { // Set the form post URL document.getElementById("BB_BuyButtonForm").action = "https://checkout.google.com/api/checkout/v2/checkoutForm/Merchant/" + prefs.getString("merchantId") + "?integration=supportgadget-blogger"; // Set the currency character var currencyChar = '$'; if(prefs.getString("currency") == "GBP") { currencyChar = '£'; } else if(prefs.getString("currency") == "EUR") { currencyChar = '€'; } var html = "<input name='item_name_1' type='hidden' value='" + prefs.getString("itemName") + "'/>"; html += "<input name='item_description_1' type='hidden' value='" + prefs.getString("itemDesc") + "'/>"; html += "<input name='item_quantity_1' type='hidden' value='1'/>"; html += "<input name='item_currency_1' type='hidden' value='" + prefs.getString("currency") + "'/>"; html += "<input name='item_is_modifiable_1' type='hidden' value='true'/>"; html += "<input type='hidden' name='shopping-cart.items.item-1.digital-content.display-disposition' value='OPTIMISTIC'/>" html += "<input type='hidden' name='shopping-cart.items.item-1.digital-content.description' value='" + prefs.getString("thankYouMessage") + "'/>" if (prefs.getString("itemMinPrice")) { html += "<input name='item_min_price_1' type='hidden' value='" + prefs.getString("itemMinPrice") + "'/>"; } else { html += "<input name='item_min_price_1' type='hidden' value='0.01'/>"; } html += "<input name='item_max_price_1' type='hidden' value='50.0'/>"; html += "<input name='_charset_' type='hidden' value='utf-8'/>"; if (prefs.getString("itemSuggestedPrice")) { var price = prefs.getString("itemSuggestedPrice"); price = price.replace(/[^\-\.0-9]+/g,'') } else { price = '0.00'; } html += choiceOnly(price); document.getElementById("BB_BuyButtonForm").innerHTML = html; } else { var html = "<div class='tosMessage' align='center'><p style='font:" + gadgets.skins.getProperty('FONT_FACE') + ";color:" + gadgets.skins.getProperty('CONTENT_TEXT_COLOR') + "'>Please check the box in the gadget settings indicating you understand that your public business information will be displayed for contributions</p></div>"; document.getElementById("BB_BuyButtonForm").innerHTML = html; } gadgets.window.adjustHeight(); </script>
+]]>
+    </Content>
+</Module>
