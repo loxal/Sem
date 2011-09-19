@@ -22,6 +22,7 @@
     <autodetection-disabled>
       <facet-type id="gwt">
         <modules>
+          <module name="Lev" />
           <module name="Vel" />
           <module name="Verp" />
         </modules>
@@ -39,6 +40,7 @@
       </facet-type>
       <facet-type id="web">
         <modules>
+          <module name="Lev" />
           <module name="Vel" />
           <module name="Verp" />
         </modules>
