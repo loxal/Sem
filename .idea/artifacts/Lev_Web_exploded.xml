@@ -15,7 +15,6 @@
           <element id="library" level="project" name="Maven: org.eclipse.persistence:javax.persistence:2.0.3" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.17" />
         </element>
-        <element id="jpa-descriptors" facet="Lev/jpa/JPA" />
       </element>
       <element id="gwt-compiler-output" facet="Lev/gwt/GWT" />
       <element id="javaee-facet-resources" facet="Lev/web/Web" />

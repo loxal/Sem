@@ -20,6 +20,13 @@
   </component>
   <component name="FacetAutodetectingManager">
     <autodetection-disabled>
+      <facet-type id="gwt">
+        <modules>
+          <module name="Lev" />
+          <module name="Vel" />
+          <module name="Verp" />
+        </modules>
+      </facet-type>
       <facet-type id="Scala">
         <modules>
           <module name="Lox">
@@ -29,6 +36,13 @@
               <file url="file://$PROJECT_DIR$/test/loxal/lox/service/meta/server/TaskSvcImplTest.scala" />
             </files>
           </module>
+        </modules>
+      </facet-type>
+      <facet-type id="web">
+        <modules>
+          <module name="Lev" />
+          <module name="Vel" />
+          <module name="Verp" />
         </modules>
       </facet-type>
     </autodetection-disabled>

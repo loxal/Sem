@@ -3,9 +3,9 @@
     <extra-name-characters>$</extra-name-characters>
     <identifier-quote-string>"</identifier-quote-string>
     <jdbc-driver>org.firebirdsql.jdbc.FBDriver</jdbc-driver>
-    <jdbc-url>jdbc:firebirdsql:database:dpLMS20</jdbc-url>
+    <jdbc-url>jdbc:firebirdsql:dpinet-database:dpLMS20</jdbc-url>
     <user-name>SYSDBA</user-name>
-    <user-password>dfc7dfcbdfd9dfdedfcfdfd8dfc1dfcfdfd3</user-password>
+    <user-password>df9edf98dfcbdfd8dfc7dfd9dfdedfd8dfc5dfc4dfcd</user-password>
     <table-pattern>.*</table-pattern>
     <libraries>
       <library>
@@ -186,10 +186,8 @@
       <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="SESSION_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_701" columns="id" />
-      <foreign-key name="FK_BOOKINGS_SESSION_ID" columns="SESSION_ID" ref-table="SESSIONS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <foreign-key name="FK_BOOKINGS_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY109" unique="true" columns="ID" />
+      <primary-key name="INTEG_1426" columns="id" />
+      <index name="RDB$PRIMARY199" unique="true" columns="ID" />
     </table>
     <table name="BUNDLES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -286,11 +284,11 @@
       <column name="TC_AC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="TC_RS" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <primary-key name="PK_COURSE_USAGE" columns="usage_owner_id,article_id,product_id" />
-      <foreign-key name="FK_COURSE_USAGE_3" columns="LAST_CHECK_IN_EVENT" ref-table="COURSE_USAGE_EVENTS" ref-schema="" ref-catalog="" ref-columns="ID" />
+      <foreign-key name="FK_COURSE_USAGE_3" columns="LAST_CHECK_IN_EVENT" ref-table="COURSE_USAGE_EVENTS" ref-schema="" ref-catalog="" ref-columns="ID" cascade-update="true" />
       <foreign-key name="FK_COURSE_USAGE_1" columns="USAGE_OWNER_ID,ARTICLE_ID,PRODUCT_ID" ref-table="PRODUCT_USAGE" ref-schema="" ref-catalog="" ref-columns="USAGE_OWNER_ID,ARTICLE_ID,PRODUCT_ID" cascade-update="true" cascade-remove="true" />
       <foreign-key name="FK_COURSE_USAGE_EVENTS_1" columns="ID" ref-table="PRODUCT_USAGE_EVENTS" ref-schema="" ref-catalog="" ref-columns="ID" cascade-update="true" cascade-remove="true" />
-      <foreign-key name="FK_COURSE_USAGE_2" columns="LAST_STATE_EVENT" ref-table="PRODUCT_USAGE_EVENTS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <foreign-key name="FK_COURSE_USAGE_4" columns="LAST_CHECK_OUT_EVENT" ref-table="PRODUCT_USAGE_EVENTS" ref-schema="" ref-catalog="" ref-columns="ID" />
+      <foreign-key name="FK_COURSE_USAGE_2" columns="LAST_STATE_EVENT" ref-table="PRODUCT_USAGE_EVENTS" ref-schema="" ref-catalog="" ref-columns="ID" cascade-update="true" />
+      <foreign-key name="FK_COURSE_USAGE_4" columns="LAST_CHECK_OUT_EVENT" ref-table="PRODUCT_USAGE_EVENTS" ref-schema="" ref-catalog="" ref-columns="ID" cascade-update="true" />
     </table>
     <table name="COURSE_USAGE_EVENTS" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -386,7 +384,7 @@
       <column name="EVENT_TIMESTAMP" sqlType="TIMESTAMP" length="19" precision="0" nullable="true" jdbcType="93" default="'NOW'" />
       <column name="NOTES" sqlType="BLOB SUB_TYPE 1" length="0" precision="0" nullable="true" jdbcType="-1" />
       <primary-key name="PK_EVENTS" columns="id" />
-      <foreign-key name="EVENT_IS_OF_TYPE" columns="EVENT_TYPE_ID" ref-table="EVENT_TYPES" ref-schema="" ref-catalog="" ref-columns="ID" />
+      <foreign-key name="EVENT_IS_OF_TYPE" columns="EVENT_TYPE_ID" ref-table="EVENT_TYPES" ref-schema="" ref-catalog="" ref-columns="ID" cascade-update="true" />
       <foreign-key name="EVENT_SENT_BY_USER" columns="SENDER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
       <index name="EVENTS_IDX1" unique="false" columns="ID" />
       <index name="EVENTS_IDX_TIMESTAMP" unique="false" columns="EVENT_TIMESTAMP" />
@@ -641,17 +639,17 @@
       <column name="TRAINER_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="APPOINTMENT_DATE" sqlType="TIMESTAMP" length="19" precision="0" nullable="true" jdbcType="93" />
       <primary-key name="PK_PT_USAGE_EVENTS" columns="id" />
-      <foreign-key name="FK_PT_USAGE_EVENTS_1" columns="ID" ref-table="PRODUCT_USAGE_EVENTS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <foreign-key name="FK_PT_USAGE_EVENTS_2" columns="TRAINER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
+      <foreign-key name="FK_PT_USAGE_EVENTS_1" columns="ID" ref-table="PRODUCT_USAGE_EVENTS" ref-schema="" ref-catalog="" ref-columns="ID" cascade-update="true" />
+      <foreign-key name="FK_PT_USAGE_EVENTS_2" columns="TRAINER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" cascade-update="true" />
     </table>
     <table name="RESOURCES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_704" columns="id" />
+      <primary-key name="INTEG_1429" columns="id" />
       <foreign-key name="FK_RESOURCES_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY110" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY200" unique="true" columns="ID" />
     </table>
     <table name="RIGHTS" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -683,8 +681,9 @@
       <column name="TYPE" sqlType="VARCHAR" length="9" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_594" columns="id" />
-      <index name="RDB$PRIMARY81" unique="true" columns="ID" />
+      <primary-key name="INTEG_1435" columns="id" />
+      <foreign-key name="FK_SESSIONS_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCES" ref-schema="" ref-catalog="" ref-columns="ID" />
+      <index name="RDB$PRIMARY201" unique="true" columns="ID" />
     </table>
     <table name="SITES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -712,8 +711,9 @@
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
       <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_601" columns="id" />
-      <index name="RDB$PRIMARY82" unique="true" columns="ID" />
+      <primary-key name="INTEG_1442" columns="id" />
+      <foreign-key name="FK_SLOTS_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCES" ref-schema="" ref-catalog="" ref-columns="ID" />
+      <index name="RDB$PRIMARY202" unique="true" columns="ID" />
     </table>
     <table name="SPHINX_DELTA" schema="" catalog="" type="TABLE">
       <column name="TABLE_NAME" sqlType="CHAR" length="31" precision="0" nullable="false" jdbcType="1" />
@@ -914,7 +914,7 @@
       <foreign-key name="FK_USER_REGISTERED_KEYS_1" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" cascade-update="true" cascade-remove="true" />
     </table>
     <table name="USER_SESSIONS" schema="" catalog="" type="TABLE">
-      <column name="ID" sqlType="CHAR" length="16" precision="0" nullable="false" jdbcType="1" />
+      <column name="ID" sqlType="CHAR" length="36" precision="0" nullable="false" jdbcType="1" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="DATE_STARTED" sqlType="TIMESTAMP" length="19" precision="0" nullable="true" jdbcType="93" />
       <primary-key name="PK_USER_SESSIONS" columns="id" />
@@ -956,6 +956,10 @@
       <column name="PUBLISHED" sqlType="VARCHAR" length="1" precision="0" nullable="false" jdbcType="12" />
       <column name="BOOKING_DISABLED" sqlType="VARCHAR" length="1" precision="0" nullable="false" jdbcType="12" />
       <column name="BOOKING_FREE" sqlType="VARCHAR" length="1" precision="0" nullable="false" jdbcType="12" />
+      <column name="CLOSED" sqlType="VARCHAR" length="1" precision="0" nullable="true" jdbcType="12" />
+      <column name="SESSION_LENGTH" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="RECORDING_COUNT" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="RECORDING_PRIORITY" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="KIND" sqlType="VARCHAR" length="1" precision="0" nullable="false" jdbcType="12" />
       <column name="MAX_USER" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5" />
@@ -976,6 +980,7 @@
       <foreign-key name="FK_VC_APPOINTMENTS_3" columns="TRAINER_USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
       <foreign-key name="FK_VC_APPOINTMENTS_4" columns="CONTACT_USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
       <foreign-key name="FK_VC_APPOINTMENTS_2" columns="SESSION_TEMPLATE_ID" ref-table="VC_SESSION_TEMPLATES" ref-schema="" ref-catalog="" ref-columns="ID" cascade-update="true" />
+      <index name="VC_APPOINTMENTS_IDX1" unique="false" columns="APPOINTMENT_DATETIME" />
     </table>
     <table name="VC_APPOINTMENTS2" schema="" catalog="" type="VIEW">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
@@ -1148,8 +1153,8 @@
       <column name="LATENCY_AVERAGE" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="LATENCY_MAX" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <primary-key name="PK_VC_USAGE_EVENTS" columns="id" />
-      <foreign-key name="FK_VC_USAGE_EVENTS_1" columns="ID" ref-table="PRODUCT_USAGE_EVENTS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <foreign-key name="FK_VC_USAGE_EVENTS_2" columns="APPOINTMENT_ID" ref-table="VC_APPOINTMENTS" ref-schema="" ref-catalog="" ref-columns="ID" />
+      <foreign-key name="FK_VC_USAGE_EVENTS_1" columns="ID" ref-table="PRODUCT_USAGE_EVENTS" ref-schema="" ref-catalog="" ref-columns="ID" cascade-update="true" />
+      <foreign-key name="FK_VC_USAGE_EVENTS_2" columns="APPOINTMENT_ID" ref-table="VC_APPOINTMENTS" ref-schema="" ref-catalog="" ref-columns="ID" cascade-update="true" />
     </table>
     <table name="VW_ADDRESSES" schema="" catalog="" type="VIEW">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
@@ -1162,6 +1167,39 @@
       <column name="OTHER" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="POSTAL_CODE" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
       <column name="COUNTRY_CODE" sqlType="VARCHAR" length="2" precision="0" nullable="true" jdbcType="12" />
+    </table>
+    <table name="VW_COURSE_USAGE_EVENTS" schema="" catalog="" type="VIEW">
+      <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="EVENT_TYPE_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="SENDER_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="EVENT_TIMESTAMP" sqlType="TIMESTAMP" length="19" precision="0" nullable="true" jdbcType="93" />
+      <column name="USAGE_OWNER_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="ARTICLE_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="PRODUCT_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="COMPUTER_NAME" sqlType="VARCHAR" length="40" precision="0" nullable="true" jdbcType="12" />
+      <column name="CONTENT" sqlType="BLOB SUB_TYPE 0" length="0" precision="0" nullable="true" jdbcType="-4" />
+      <column name="ELAPSED" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="C_RC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="C_AC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="C_RS" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="P_RC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="P_AC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="P_RS" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="GC_RC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="GC_AC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="GC_RS" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="VC_RC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="VC_AC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="VC_RS" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="CC_RC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="CC_AC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="CC_RS" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="LC_RC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="LC_AC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="LC_RS" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="TC_RC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="TC_AC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="TC_RS" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
     </table>
     <table name="VW_DOMAINS" schema="" catalog="" type="VIEW">
       <column name="DOM_NAME" sqlType="CHAR" length="0" precision="0" nullable="true" jdbcType="1" />
@@ -1261,6 +1299,31 @@
       <column name="RECOMMENDATION" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
       <column name="RETAIL" sqlType="VARCHAR" length="1" precision="0" nullable="true" jdbcType="12" />
       <column name="TIME_ZONE" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
+    </table>
+    <table name="VW_VC_USAGE_EVENTS" schema="" catalog="" type="VIEW">
+      <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="EVENT_TYPE_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="SENDER_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="EVENT_TIMESTAMP" sqlType="TIMESTAMP" length="19" precision="0" nullable="true" jdbcType="93" />
+      <column name="USAGE_OWNER_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="ARTICLE_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="PRODUCT_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="ELAPSED" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="RESULT" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="COMMUNICATION_SKILLS" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="PARTICIPATION" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="APPOINTMENT_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="LOGIN_DATE" sqlType="TIMESTAMP" length="19" precision="0" nullable="true" jdbcType="93" />
+      <column name="RELOGIN_COUNT" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="PUBLISHED_COUNT" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="CHATLINE_COUNT" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="CHATCHAR_COUNT" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="SURVEY_COUNT" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="CORRECT_COUNT" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="WEBCAM_USED" sqlType="VARCHAR" length="1" precision="0" nullable="true" jdbcType="12" />
+      <column name="MIC_USED" sqlType="VARCHAR" length="1" precision="0" nullable="true" jdbcType="12" />
+      <column name="LATENCY_AVERAGE" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="LATENCY_MAX" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
     </table>
     <table name="VW_WEB_CONTACT_ITEMS" schema="" catalog="" type="VIEW">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
