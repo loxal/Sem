@@ -5,7 +5,7 @@
     <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
     <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
     <server-settings>
-      <option name="artifact" value="Lev:Web exploded" />
+      <option name="artifact" value="Lev:war exploded" />
     </server-settings>
     <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
     <RunnerSettings RunnerId="Debug">
@@ -30,7 +30,7 @@
     </ConfigurationWrapper>
     <method>
       <option name="BuildArtifacts" enabled="true">
-        <artifact name="Lev:Web exploded" />
+        <artifact name="Lev:war exploded" />
       </option>
     </method>
   </configuration>

@@ -8,9 +8,9 @@
     <scope name="Go" pattern="file:src/pkg//*||file:src/app.yaml" />
     <scope name="static" pattern="file:src/static//*||file:src/app.yaml" />
     <scope name="Lev" pattern="file[Lev]:*//*" />
-    <scope name="dp" pattern="file[Verp]:*//*" />
+    <scope name="dp" pattern="file[Verp]:*/" />
     <scope name="Sem" pattern="file[Sem]:*//*" />
-    <scope name="Verp" pattern="file[Verp]:*//*" />
+    <scope name="Verp" pattern="file[Verp]:*/" />
     <scope name="Lom" pattern="file[Lom]:*//*" />
     <scope name="Vel" pattern="file[Vel]:*//*" />
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
