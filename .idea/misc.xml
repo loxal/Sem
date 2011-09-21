@@ -9,9 +9,11 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="gwt" url="file://$PROJECT_DIR$/../Lev" />
+    <file type="gwt" url="file://$PROJECT_DIR$/../Lox" />
     <file type="gwt" url="file://$PROJECT_DIR$/../Vel" />
     <file type="gwt" url="file://$PROJECT_DIR$/../Verp" />
     <file type="web" url="file://$PROJECT_DIR$/../Lev" />
+    <file type="web" url="file://$PROJECT_DIR$/../Lox" />
     <file type="web" url="file://$PROJECT_DIR$/../Vel" />
     <file type="web" url="file://$PROJECT_DIR$/../Verp" />
   </component>
@@ -48,6 +50,7 @@
         <option value="$PROJECT_DIR$/../Vel/pom.xml" />
         <option value="$PROJECT_DIR$/../Verp/pom.xml" />
         <option value="$PROJECT_DIR$/../Lom/Android/pom.xml" />
+        <option value="$PROJECT_DIR$/../Lox/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

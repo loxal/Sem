@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Lox" pattern="file[Lox]:*/" />
+</component>

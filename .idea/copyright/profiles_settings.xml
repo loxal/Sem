@@ -8,6 +8,7 @@
       <element module="Lom" copyright="Loxal - BSD" />
       <element module="All" copyright="Loxal - BSD" />
       <element module="Metro" copyright="Loxal - BSD" />
+      <element module="Lox" copyright="Loxal - Apache License V2" />
     </module2copyright>
   </settings>
 </component>
