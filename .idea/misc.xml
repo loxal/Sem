@@ -11,9 +11,6 @@
     <file type="gwt" url="file://$PROJECT_DIR$/../Lev" />
     <file type="gwt" url="file://$PROJECT_DIR$/../Vel" />
     <file type="gwt" url="file://$PROJECT_DIR$/../Verp" />
-    <file type="Scala" url="file://$PROJECT_DIR$/src/loxal/lox/service/linguistics/DomainLangExtractor.scala" />
-    <file type="Scala" url="file://$PROJECT_DIR$/test/loxal/lox/meta/server/AuthInfoSvcImplTest.scala" />
-    <file type="Scala" url="file://$PROJECT_DIR$/test/loxal/lox/service/meta/server/TaskSvcImplTest.scala" />
     <file type="web" url="file://$PROJECT_DIR$/../Lev" />
     <file type="web" url="file://$PROJECT_DIR$/../Vel" />
     <file type="web" url="file://$PROJECT_DIR$/../Verp" />
@@ -89,8 +86,8 @@
       <entry facet-type="gwt">
         <default-facet-configuration>
           <configuration>
-            <setting name="compilerMaxHeapSize" value="128" />
-            <setting name="gwtScriptOutputStyle" value="PRETTY" />
+            <setting name="compilerMaxHeapSize" value="256" />
+            <setting name="gwtScriptOutputStyle" value="OBF" />
             <setting name="gwtSdkUrl" value="file://$PROJECT_DIR$/../../sdk/gwt" />
           </configuration>
         </default-facet-configuration>
