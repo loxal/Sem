@@ -4,48 +4,19 @@
     <option name="BUILD_JARS_ON_MAKE" value="false" />
   </component>
   <component name="CppTools.Loader" reportImplicitCastToBool="false" reportNameReferencedOnce="false" version="3" compilerSelect="AUTO" />
-  <component name="DependencyValidationManager">
-    <scope name="Go" pattern="file:src/pkg//*||file:src/app.yaml" />
-    <scope name="static" pattern="file:src/static//*||file:src/app.yaml" />
-    <scope name="Lev" pattern="file[Lev]:*//*" />
-    <scope name="dp" pattern="file[Verp]:*/" />
-    <scope name="Sem" pattern="file[Sem]:*//*" />
-    <scope name="Verp" pattern="file[Verp]:*/" />
-    <scope name="Lom" pattern="file[Lom]:*//*" />
-    <scope name="Vel" pattern="file[Vel]:*//*" />
-    <option name="SKIP_IMPORT_STATEMENTS" value="false" />
-  </component>
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
-  <component name="FacetAutodetectingManager">
-    <autodetection-disabled>
-      <facet-type id="gwt">
-        <modules>
-          <module name="Lev" />
-          <module name="Vel" />
-          <module name="Verp" />
-        </modules>
-      </facet-type>
-      <facet-type id="Scala">
-        <modules>
-          <module name="Lox">
-            <files>
-              <file url="file://$PROJECT_DIR$/src/loxal/lox/service/linguistics/DomainLangExtractor.scala" />
-              <file url="file://$PROJECT_DIR$/test/loxal/lox/meta/server/AuthInfoSvcImplTest.scala" />
-              <file url="file://$PROJECT_DIR$/test/loxal/lox/service/meta/server/TaskSvcImplTest.scala" />
-            </files>
-          </module>
-        </modules>
-      </facet-type>
-      <facet-type id="web">
-        <modules>
-          <module name="Lev" />
-          <module name="Vel" />
-          <module name="Verp" />
-        </modules>
-      </facet-type>
-    </autodetection-disabled>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="gwt" url="file://$PROJECT_DIR$/../Lev" />
+    <file type="gwt" url="file://$PROJECT_DIR$/../Vel" />
+    <file type="gwt" url="file://$PROJECT_DIR$/../Verp" />
+    <file type="Scala" url="file://$PROJECT_DIR$/src/loxal/lox/service/linguistics/DomainLangExtractor.scala" />
+    <file type="Scala" url="file://$PROJECT_DIR$/test/loxal/lox/meta/server/AuthInfoSvcImplTest.scala" />
+    <file type="Scala" url="file://$PROJECT_DIR$/test/loxal/lox/service/meta/server/TaskSvcImplTest.scala" />
+    <file type="web" url="file://$PROJECT_DIR$/../Lev" />
+    <file type="web" url="file://$PROJECT_DIR$/../Vel" />
+    <file type="web" url="file://$PROJECT_DIR$/../Verp" />
   </component>
   <component name="HudsonMonitorComponent">
     <option name="timeOutTextField" value="30" />
@@ -130,7 +101,7 @@
     <option name="state" value="project://default" />
   </component>
   <component name="ProjectResources">
-    <default-html-doctype>$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/html5/xhtml5.xsd</default-html-doctype>
+    <default-html-doctype>$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/html5-schema/html5.rnc</default-html-doctype>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/target" />
