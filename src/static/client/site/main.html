@@ -39,7 +39,7 @@
             document.getElementById('main').innerHTML = '<div class="info warn">Page Not Found</div>';
         } else {
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', handlerMap[location.hash], false);
+            xhr.open('get', handlerMap[location.hash], false);
             xhr.onload = function(e) {
                 { // TODO replace by non-jQuery method & remove the jQuery lib;
                     $('#main').html(this.responseText);
@@ -51,7 +51,7 @@
 
     var applySiteProperties = function() {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/client/site/properties.json', false);
+        xhr.open('get', '/client/site/properties.json', false);
         xhr.onload = function(e) {
             document.getElementById('signature').innerHTML = JSON.parse(this.responseText).year + ' ' + JSON.parse(this.responseText).copyright;
             document.getElementById('header-description').innerHTML = JSON.parse(this.responseText).titleDesc;
@@ -89,10 +89,11 @@
         <span>
             Powered by <a href="http://github.com/loxal" title="Sem @ Google App Engine">
             Sem@<abbr title="Google App Engine">GAE</abbr> (Go) <abbr
-                title="Ajax/HTML5 backend client">BC</abbr></a>
+                title="Dart/HTML5 backend client">BC</abbr></a>
         </span>
         <span style="float: right;">
-            <a href="/imprint" title="with contact form">Imprint</a> | &copy; <span id="signature"></span>
+            <a href="javascript:navTo('#imprint');" title="with contact form">Imprint</a> | &copy; <span
+                id="signature"></span>
         </span>
     </p>
 </div>
