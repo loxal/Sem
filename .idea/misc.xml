@@ -53,11 +53,6 @@
         <option value="$PROJECT_DIR$/../Lox/pom.xml" />
       </list>
     </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/../Lom/Android/pom.xml" />
-      </set>
-    </option>
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="org.jetbrains.annotations.Nullable" />

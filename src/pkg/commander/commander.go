@@ -206,6 +206,24 @@ func testHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "BUFF %v ||||| %v ", string(dump), err)
 }
 
+func authenticate(w http.ResponseWriter, r *http.Request) {
+    c := appengine.NewContext(r)
+    u := user.Current(c)
+    if u == nil {
+        url, err := user.LoginURL(c, r.URL.String())
+        if err != nil {
+            http.Error(w, err.String(), http.StatusInternalServerError)
+            return
+        }
+        w.Header().Set("Location", url)
+        w.WriteHeader(http.StatusFound)
+        return
+    }
+    fmt.Fprintf(w, "Hello, %v!", u)
+    url, _ := user.LogoutURL(c, "/")
+        fmt.Fprintf(w, `Welcome, %s! (<a href="%s">sign out</a>)`, u, url)
+}
+
 const indexHandler = "/"
 const payHandler = "/cmd/pay/PayPalHTMLform.json"
 const cmdUpdateHandler = "/cmd/update"
@@ -216,6 +234,7 @@ const contentTypeJSON = "application/json; charset=utf-8"
 const contentTypeText = "text/plain"
 
 func init() {
+	http.HandleFunc("/cmd/auth", authenticate)
 	http.HandleFunc(payHandler, payButton)
 	http.HandleFunc(cmdDeleteHandler, cmdDeletion)
 	http.HandleFunc(cmdUpdateHandler, cmdUpdation)
