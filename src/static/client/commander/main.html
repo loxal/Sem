@@ -46,11 +46,14 @@
         xhr.send();
     }
 
-    function sendForm(form) {
-        var formData = new FormData(form);
+    function updateCmd() {
         var xhr = new XMLHttpRequest();
-        xhr.open('post', form.action, true);
-        xhr.send(formData);
+        xhr.open('get', '/cmd/update?edit-name=' + document.getElementById("edit-name").value + '&edit-restCall=' +
+                document.getElementById("edit-restCall").value + '&edit-desc=' + document.getElementById("edit-desc").value, true);
+        xhr.onload = function(e) {
+            applyValues();
+        };
+        xhr.send();
     }
 
     function fillPager(cmdsJson) {
@@ -68,8 +71,7 @@
             var cellDelete = document.createElement('td');
 
             function buildUpdationForm() {
-                var updateForm = document.createElement('form');
-                var fieldset = document.createElement('fieldset');
+                var updateDiv = document.createElement('updateDiv');
                 var inputName = document.createElement('input');
                 inputName.setAttribute('value', cmdsJson[i].Name);
                 inputName.setAttribute('name', 'edit-name');
@@ -86,20 +88,16 @@
                 var updateButton = document.createElement('button');
                 var updateButtonValue = document.createTextNode("Update");
                 updateButton.appendChild(updateButtonValue);
-                updateButton.setAttribute('onclick', 'location.reload(); hide("' + cmdsJson[i].Name + '"); return sendForm(this.form);');
+                updateButton.setAttribute('onclick', 'hide("' + cmdsJson[i].Name + '"); updateCmd();');
 
-                updateForm.setAttribute('style', 'display: none;');
-                updateForm.setAttribute('id', 'edit-form-' + cmdsJson[i].Name);
-                updateForm.setAttribute('action', '/cmd/update');
-                updateForm.setAttribute('method', 'post');
+                updateDiv.setAttribute('style', 'display: none;');
+                updateDiv.setAttribute('id', 'edit-form-' + cmdsJson[i].Name);
 
-                fieldset.appendChild(inputName);
-                fieldset.appendChild(inputShortcut);
-                fieldset.appendChild(inputDesc);
-                fieldset.appendChild(updateButton);
-                cellName.appendChild(updateForm);
-
-                updateForm.appendChild(fieldset);
+                updateDiv.appendChild(inputName);
+                updateDiv.appendChild(inputShortcut);
+                updateDiv.appendChild(inputDesc);
+                updateDiv.appendChild(updateButton);
+                cellName.appendChild(updateDiv);
             }
 
             buildUpdationForm();
