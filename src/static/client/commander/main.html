@@ -20,6 +20,8 @@
     }
 
     var applyValues = function() {
+        removePagerItems();
+
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '/cmd/list.json', false);
         xhr.onload = function(e) {
@@ -28,11 +30,18 @@
         xhr.send();
     };
 
+    function removePagerItems() {
+        var pagerItems = document.getElementById("pagerItems");
+        while (pagerItems.childElementCount) {
+            pagerItems.removeChild(pagerItems.lastChild);
+        }
+    }
+
     function cmdDelete(cmdName) {
         var xhr = new XMLHttpRequest();
         xhr.open('get', '/cmd/delete?name=' + cmdName, true);
         xhr.onload = function(e) {
-            location.reload();
+            applyValues();
         };
         xhr.send();
     }
@@ -45,7 +54,7 @@
     }
 
     function fillPager(cmdsJson) {
-        var pager = document.getElementById('pager');
+        var pager = document.getElementById('pagerItems');
         for (var i in cmdsJson) {
             var row = document.createElement('tr');
 
@@ -155,6 +164,7 @@
         <th>Updated</th>
         <th>Delete</th>
     </tr>
+    <tbody id="pagerItems"></tbody>
 </table>
 <script>
     applyValues();
