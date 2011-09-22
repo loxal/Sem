@@ -46,10 +46,20 @@
         xhr.send();
     }
 
-    function updateCmd() {
+    function updateCmd(cmdName) {
         var xhr = new XMLHttpRequest();
-        xhr.open('get', '/cmd/update?edit-name=' + document.getElementById("edit-name").value + '&edit-restCall=' +
-                document.getElementById("edit-restCall").value + '&edit-desc=' + document.getElementById("edit-desc").value, true);
+        xhr.open('post', '/cmd/update?edit-name=' + document.getElementById("edit-name-" + cmdName).value + '&edit-restCall=' +
+                document.getElementById("edit-restCall-" + cmdName).value + '&edit-desc=' + document.getElementById("edit-desc-" + cmdName).value, true);
+        xhr.onload = function(e) {
+            applyValues();
+        };
+        xhr.send();
+    }
+
+    function createCmd() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('post', '/cmd/create?name=' + document.getElementById("name").value + '&restCall=' +
+                document.getElementById("restCall").value + '&desc=' + document.getElementById("desc").value, true);
         xhr.onload = function(e) {
             applyValues();
         };
@@ -71,32 +81,33 @@
             var cellDelete = document.createElement('td');
 
             function buildUpdationForm() {
-                var updateDiv = document.createElement('updateDiv');
+                var updateDiv = document.createElement('div');
                 var inputName = document.createElement('input');
                 inputName.setAttribute('value', cmdsJson[i].Name);
                 inputName.setAttribute('name', 'edit-name');
-                inputName.setAttribute('id', 'edit-name');
+                inputName.setAttribute('id', 'edit-name-' + cmdsJson[i].Name);
                 inputName.setAttribute('readonly', true);
                 var inputShortcut = document.createElement('input');
                 inputShortcut.setAttribute('value', cmdsJson[i].RESTcall);
                 inputShortcut.setAttribute('name', 'edit-restCall');
-                inputShortcut.setAttribute('id', 'edit-restCall');
+                inputShortcut.setAttribute('id', 'edit-restCall-' + cmdsJson[i].Name);
                 var inputDesc = document.createElement('input');
                 inputDesc.setAttribute('value', cmdsJson[i].Desc);
                 inputDesc.setAttribute('name', 'edit-desc');
-                inputDesc.setAttribute('id', 'edit-desc');
+                inputDesc.setAttribute('id', 'edit-desc-' + cmdsJson[i].Name);
                 var updateButton = document.createElement('button');
                 var updateButtonValue = document.createTextNode("Update");
                 updateButton.appendChild(updateButtonValue);
-                updateButton.setAttribute('onclick', 'hide("' + cmdsJson[i].Name + '"); updateCmd();');
-
-                updateDiv.setAttribute('style', 'display: none;');
-                updateDiv.setAttribute('id', 'edit-form-' + cmdsJson[i].Name);
+                updateButton.setAttribute('onclick', 'updateCmd("' + cmdsJson[i].Name + '"); hide("' + cmdsJson[i].Name + '");');
 
                 updateDiv.appendChild(inputName);
                 updateDiv.appendChild(inputShortcut);
                 updateDiv.appendChild(inputDesc);
                 updateDiv.appendChild(updateButton);
+
+                updateDiv.setAttribute('style', 'display: none;');
+                updateDiv.setAttribute('id', 'edit-form-' + cmdsJson[i].Name);
+
                 cellName.appendChild(updateDiv);
             }
 
@@ -137,19 +148,16 @@
     }
 </script>
 
-<!--TODO remove form, replace by a <form>-less meachanism (XHR-only?)-->
-<form action="/cmd/create" method="post">
-    <fieldset style="width: 1%;">
-        <legend>Command</legend>
-        <label for="name">Name</label>
-        <input name="name" id="name" type="text" value="name"/>
-        <label for="restCall">Shortcut</label>
-        <input name="restCall" id="restCall" type="text" value="rc"/>
-        <label for="desc">Description</label>
-        <input name="desc" id="desc" type="text" value="desc"/>
-        <input type="submit" value="Create">
-    </fieldset>
-</form>
+<fieldset style="width: 1%;">
+    <legend>Command</legend>
+    <label for="name">Name</label>
+    <input name="name" id="name" type="text" value="name"/>
+    <label for="restCall">Shortcut</label>
+    <input name="restCall" id="restCall" type="text" value="rc"/>
+    <label for="desc">Description</label>
+    <input name="desc" id="desc" type="text" value="desc"/>
+    <input type="submit" value="Create" onclick="createCmd();">
+</fieldset>
 
 <table id="pager">
     <tr style="width: 9px;">
