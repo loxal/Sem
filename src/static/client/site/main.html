@@ -32,13 +32,10 @@
 </script>
 
 <script>
-    //    TODO use "#imprint" instead of "/imprint"
     var navTo = function(hash) {
         location.hash = hash;
-        console.log(location.hash);
-        console.log(location.pathname);
         var handlerMap = {'':'/client/commander/main.html', '#imprint':'/static/client/site/imprint.html'};
-        if (!handlerMap[location.hash]) {
+        if (!handlerMap[location.hash] || location.pathname != '/') {
             document.getElementById('main').innerHTML = '<div class="info warn">Page Not Found</div>';
         } else {
             var xhr = new XMLHttpRequest();
@@ -61,8 +58,6 @@
         };
         xhr.send();
     };
-
-    navTo(location.hash);
 </script>
 
 <body onload="applySiteProperties(); navTo(location.hash);">
