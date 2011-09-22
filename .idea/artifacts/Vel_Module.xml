@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Vel Module">
+    <output-path>$PROJECT_DIR$/../Vel/target/artifacts/Vel_Module</output-path>
+    <root id="root">
+      <element id="gwt-compiler-output" facet="Vel/gwt/GWT" />
+      <element id="directory" name="gadget">
+        <element id="dir-copy" path="$PROJECT_DIR$/../Vel/src/gadget" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/../Vel/src/app.yaml" />
+    </root>
+  </artifact>
+</component>
