@@ -58,7 +58,7 @@
 
     function createCmd() {
         var xhr = new XMLHttpRequest();
-        xhr.open('post', '/cmd/create?name=' + document.getElementById("name").value + '&restCall=' +
+        xhr.open('get', '/cmd/create?name=' + document.getElementById("name").value + '&restCall=' +
                 document.getElementById("restCall").value + '&desc=' + document.getElementById("desc").value, true);
         xhr.onload = function(e) {
             applyValues();
@@ -148,14 +148,14 @@
     }
 </script>
 
-<fieldset style="width: 1%;">
+<fieldset>
     <legend>Command</legend>
     <label for="name">Name</label>
-    <input name="name" id="name" type="text" value="name"/>
+    <input name="name" id="name" type="text" value="g"/>
     <label for="restCall">Shortcut</label>
-    <input name="restCall" id="restCall" type="text" value="rc"/>
+    <input name="restCall" id="restCall" type="text" value="http://www.google.com/search?q="/>
     <label for="desc">Description</label>
-    <input name="desc" id="desc" type="text" value="desc"/>
+    <input name="desc" id="desc" type="text" value="Command Description"/>
     <input type="submit" value="Create" onclick="createCmd();">
 </fieldset>
 

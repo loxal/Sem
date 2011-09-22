@@ -216,6 +216,10 @@ button, input[type="submit"] {
     margin: 1.5em;
 }
 
+input[type="text"] {
+    width: 22em;
+}
+
 input[readonly] {
     background: #999;
 }
@@ -261,6 +265,7 @@ td {
 }
 
 fieldset {
+    width: 9%;
     padding: 1em;
     margin: 1em;
     border: 1px solid #ddd;
