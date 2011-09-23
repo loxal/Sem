@@ -40,6 +40,15 @@ func serve404(w http.ResponseWriter) {
 	io.WriteString(w, "Not Found")
 }
 
+func getUser(c appengine.Context) string {
+    u := user.Current(c)
+    if u == nil {
+        return "anonymous"
+    }
+
+    return u.String()
+}
+
 func cmdCreation(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	if err := r.ParseForm(); err != nil {
@@ -48,10 +57,13 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if !cmdExists(c, r.FormValue("name")) && !cmdHasInvalidCharacters(r.FormValue("name")) {
+	    currentUser := getUser(c);
 		cmd := &Cmd{
 			Name:     r.FormValue("name"),
 			RESTcall: r.FormValue("restCall"),
 			Desc:     r.FormValue("desc"),
+			Creator:  currentUser,
+			User:     currentUser,
 			Created:  datastore.SecondsToTime(time.Seconds()),
 		}
 		if u := user.Current(c); u != nil {
@@ -155,11 +167,10 @@ func cmdUpdation(w http.ResponseWriter, r *http.Request) {
 		Name:     r.FormValue("edit-name"),
 		RESTcall: r.FormValue("edit-restCall"),
 		Desc:     r.FormValue("edit-desc"),
+		User:  getUser(c),
 		Updated:  datastore.SecondsToTime(time.Seconds()),
 	}
-	if u := user.Current(c); u != nil {
-		cmd.User = u.String()
-	}
+
 	if ok, err := cmdUpdate(cmd, c); err != nil {
 		fmt.Fprintln(w, err, ok)
 	}
@@ -168,12 +179,15 @@ func cmdUpdation(w http.ResponseWriter, r *http.Request) {
 func cmdUpdate(cmd *Cmd, c appengine.Context) (ok bool, err os.Error) {
 	q := datastore.NewQuery("Cmd").KeysOnly().Filter("Name =", cmd.Name)
 	keys, _ := q.GetAll(c, nil)
+
+	var cmdInDS Cmd
+	datastore.Get(c, keys[0], &cmdInDS)
+    cmd.Creator = cmdInDS.Creator
+
 	if _, err := datastore.Put(c, keys[0], cmd); err != nil {
 		return false, err
 	}
 	return true, nil
-
-	return false, os.NewError("exists")
 }
 
 func payButton(w http.ResponseWriter, r *http.Request) {
@@ -209,16 +223,24 @@ func testHandler(w http.ResponseWriter, r *http.Request) {
 func authenticate(w http.ResponseWriter, r *http.Request) {
     c := appengine.NewContext(r)
     u := user.Current(c)
+//    fmt.Fprintf(w, "%v BLUB ", u.Email)
+//    fmt.Fprintf(w, "%v BLUB ", u)
+//    fmt.Fprintf(w, "%v BLUB ", u.AuthDomain)
+//    fmt.Fprintf(w, "%v BLUB ", u.Id)
+//    fmt.Fprintf(w, "%v BLUB ", u.FederatedIdentity)
+//    fmt.Fprintf(w, "%v BLUB ", u.FederatedProvider)
     if u == nil {
         url, err := user.LoginURL(c, r.URL.String())
         if err != nil {
             http.Error(w, err.String(), http.StatusInternalServerError)
             return
         }
+//        fmt.Fprintf(w, url)
         w.Header().Set("Location", url)
         w.WriteHeader(http.StatusFound)
         return
     }
+
     fmt.Fprintf(w, "Hello, %v!", u)
     url, _ := user.LogoutURL(c, "/")
         fmt.Fprintf(w, `Welcome, %s! (<a href="%s">sign out</a>)`, u, url)

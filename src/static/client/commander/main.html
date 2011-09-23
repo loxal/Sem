@@ -39,7 +39,7 @@
 
     function cmdDelete(cmdName) {
         var xhr = new XMLHttpRequest();
-        xhr.open('get', '/cmd/delete?name=' + cmdName, true);
+        xhr.open('post', '/cmd/delete?name=' + cmdName, true);
         xhr.onload = function(e) {
             applyValues();
         };
@@ -58,7 +58,7 @@
 
     function createCmd() {
         var xhr = new XMLHttpRequest();
-        xhr.open('get', '/cmd/create?name=' + document.getElementById("name").value + '&restCall=' +
+        xhr.open('post', '/cmd/create?name=' + document.getElementById("name").value + '&restCall=' +
                 document.getElementById("restCall").value + '&desc=' + document.getElementById("desc").value, true);
         xhr.onload = function(e) {
             applyValues();
