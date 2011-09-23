@@ -6,10 +6,25 @@
 
 <!DOCTYPE html>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
 <meta name="keywords" content="Sem, Alexander Orlov, Beauty, Simplicity, Flexibility, Zen, RESTful">
 <meta name="description" content="Sem Entity Manager">
 <meta name="author" content="Loxal - Alexander Orlov <alexander.orlov@loxal.net>">
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<div id="CFInstall" style="border: 9px #111 dashed;">
+    This site is using web application technology standards like HTML5
+    which <strong>Internet Explorer does not support</strong>.
+    To use these technologies within Internet Explorer please accept
+    the pop-up window above to get Google Chrome Frame installed!
+</div>
+<script>
+    CFInstall.check({
+        node:"CFInstall",
+        mode:"popup"
+    });
+</script>
+<![endif]-->
 <link rel="stylesheet" href="/static/theme/winter.css" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <title>Sem | Loxal</title>
@@ -68,7 +83,16 @@
 
         <div id="header-description"></div>
     </div>
-    <div id="meta-ctrl"></div>
+    <div id="meta-ctrl">
+        {% NOT AUTHENTICATED %}
+        <a class="linkBox" href="{{ req_url|create_url_auth|escape }}"
+           title="Google account required">Login</a>
+        {% else %}
+        <a class="linkBox" href="{{ req_url|create_url_auth|escape }}"
+           title="Authentication powered by Google">Logout:</a>
+        {{ USER }}
+        {% endifequal %}
+    </div>
 </div>
 
 <div id="sidebar">
