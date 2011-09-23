@@ -121,12 +121,6 @@ func exec(w http.ResponseWriter, r *http.Request) {
     fmt.Fprint(w, "%d\n", f(1))
     fmt.Fprint(w, "%d\n", f(20))
     fmt.Fprint(w, "%d\n", f(300))
-
-    p := &Point{x: 2, y: 3}
-    p.Abs()
-    fmt.Fprint(w, "%d\n", p.x)
-    fmt.Fprint(w, "%d\n", p.y)
-    fmt.Fprint(w, "%d\n", p.Abs())
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {
@@ -215,30 +209,25 @@ func testHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "BUFF %v ||||| %v ", string(dump), err)
 }
 
-func authenticate(w http.ResponseWriter, r *http.Request) {
+func authentication(r *http.Request) (usr *user.User, url string, isAdmin bool) {
     c := appengine.NewContext(r)
-    u := user.Current(c)
-//    fmt.Fprintf(w, "%v BLUB ", u.Email)
-//    fmt.Fprintf(w, "%v BLUB ", u)
-//    fmt.Fprintf(w, "%v BLUB ", u.AuthDomain)
-//    fmt.Fprintf(w, "%v BLUB ", u.Id)
-//    fmt.Fprintf(w, "%v BLUB ", u.FederatedIdentity)
-//    fmt.Fprintf(w, "%v BLUB ", u.FederatedProvider)
-    if u == nil {
-        url, err := user.LoginURL(c, r.URL.String())
-        if err != nil {
-            http.Error(w, err.String(), http.StatusInternalServerError)
-            return
-        }
-//        fmt.Fprintf(w, url)
-        w.Header().Set("Location", url)
-        w.WriteHeader(http.StatusFound)
-        return
+    usr = user.Current(c)
+
+    if usr == nil {
+        url, _ = user.LoginURL(c, r.URL.String())
+    } else {
+        isAdmin = user.IsAdmin(c)
+        url, _ = user.LogoutURL(c, r.URL.String())
     }
 
-    fmt.Fprintf(w, "Hello, %v!", u)
-    url, _ := user.LogoutURL(c, "/")
-        fmt.Fprintf(w, `Welcome, %s! (<a href="%s">sign out</a>)`, u, url)
+    return usr, url, isAdmin
+}
+
+func authenticate(w http.ResponseWriter, r *http.Request) {
+    user, url, isAdmin := authentication(r)
+
+    w.Header().Set("Content-Type", contentTypeJSON)
+    fmt.Fprintf(w, `{"cmds": ["user": "%s", "isAdmin": "%t", "url": "%s"]}`, user, isAdmin, url)
 }
 
 const indexHandler = "/"
@@ -248,10 +237,10 @@ const cmdDeleteHandler = "/cmd/delete"
 const cmdCreateHandler = "/cmd/create"
 const cmdListHandler = "/cmd/list.json"
 const contentTypeJSON = "application/json; charset=utf-8"
-const contentTypeText = "text/plain"
+const contentTypeText = "text/plain; charset=utf-8"
 
 func init() {
-	http.HandleFunc("/cmd/auth", authenticate)
+	http.HandleFunc("/cmd/auth.json", authenticate)
 	http.HandleFunc(payHandler, payButton)
 	http.HandleFunc(cmdDeleteHandler, cmdDeletion)
 	http.HandleFunc(cmdUpdateHandler, cmdUpdation)

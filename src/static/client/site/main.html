@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/static/theme/winter.css" type="text/css">
 <!--[if IE]>
 <meta http-equiv="X-UA-Compatible" content="chrome=1">
-<div id="CFInstall" style="border: 9px #111 dashed;">
+<div id="CFInstall" style="border: 1em #111 dotted;">
     This site is using web application technology standards like HTML5
     which <strong>Internet Explorer does not support</strong>.
     To use these technologies within Internet Explorer please accept
@@ -85,12 +85,22 @@
         <div id="header-description"></div>
     </div>
     <div id="meta-ctrl">
+        <script>
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', '/cmd/auth.json', false);
+            xhr.onload = function(e) {
+                console.log(this.responseText);
+//                document.getElementById('signature').innerHTML = JSON.parse(this.responseText).year + ' ' + JSON.parse(this.responseText).copyright;
+//                document.getElementById('header-description').innerHTML = JSON.parse(this.responseText).titleDesc;
+            };
+            xhr.send();
+        </script>
         <!--{% NOT AUTHENTICATED %}-->
-        <!--<a href="{{ req_url|create_url_auth|escape }}"-->
-        <!--title="Google account required">Login</a>-->
+        <a href="{{ req_url|create_url_auth|escape }}"
+           title="Google account required">Login</a>
         <!--{% else %}-->
-        <!--<a href="{{ req_url|create_url_auth|escape }}"-->
-        <!--title="Authentication powered by Google">Logout:</a>-->
+        <a href="{{ req_url|create_url_auth|escape }}"
+           title="Authentication powered by Google">Logout:</a>
         <!--{{ USER }}-->
         <!--{% endifequal %}-->
     </div>
@@ -100,7 +110,7 @@
     <div id="index">
         <h1>Navigation</h1>
         <ul class="nav">
-            <li><a href="javascript:navTo('');" title="Map key combinations (shortcuts) to web requests">RESTful
+            <li><a href="javascript:navTo('');" title="Shortcuts to web requests mapper">RESTful
                 Demo</a></li>
             <li><a href="javascript:navTo('#imprint');" title="Imprint / Contact / About">Imprint</a></li>
         </ul>
@@ -112,7 +122,7 @@
 <div id="footer">
     <p>
         <span>
-            Powered by <a href="http://github.com/loxal" title="Sem @ Google App Engine">
+            Powered by <a href="http://dev.loxal.net" title="Sem @ Google App Engine">
             Sem@<abbr title="Google App Engine">GAE</abbr> (Go) <abbr
                 title="Dart/HTML5 backend client">BC</abbr></a>
         </span>
