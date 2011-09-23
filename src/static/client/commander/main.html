@@ -111,6 +111,10 @@
                 cellName.appendChild(updateDiv);
             }
 
+            function displayTimestamp(unixTime) {
+                return new Date(unixTime / 1000).toString();
+            }
+
             buildUpdationForm();
 
             var cellNameLink = document.createElement('span');
@@ -119,8 +123,8 @@
             var cellDescTxt = document.createTextNode(cmdsJson[i].Desc);
             var cellCreatorTxt = document.createTextNode(cmdsJson[i].Creator);
             var cellUserTxt = document.createTextNode(cmdsJson[i].User);
-            var cellCreatedTxt = document.createTextNode(cmdsJson[i].Created);
-            var cellUpdatedTxt = document.createTextNode(cmdsJson[i].Updated);
+            var cellCreatedTxt = document.createTextNode(displayTimestamp(cmdsJson[i].Created));
+            var cellUpdatedTxt = document.createTextNode(displayTimestamp(cmdsJson[i].Updated));
             var cellDeleteLink = document.createElement('button');
             cellDeleteLink.innerHTML = 'X';
             cellDeleteLink.setAttribute('onclick', 'cmdDelete("' + cmdsJson[i].Name + '");');
