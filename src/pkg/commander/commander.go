@@ -46,15 +46,11 @@ func getUser(c appengine.Context) string {
         return "anonymous"
     }
 
-    return u.String()
+    return u.Email
 }
 
 func cmdCreation(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
-	if err := r.ParseForm(); err != nil {
-		serveError(c, w, err)
-		return
-	}
 
 	if !cmdExists(c, r.FormValue("name")) && !cmdHasInvalidCharacters(r.FormValue("name")) {
 	    currentUser := getUser(c);
@@ -66,9 +62,7 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 			User:     currentUser,
 			Created:  datastore.SecondsToTime(time.Seconds()),
 		}
-		if u := user.Current(c); u != nil {
-			cmd.Creator = u.String()
-		}
+
 		if _, err := datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd); err != nil {
 			serveError(c, w, err)
 			return
