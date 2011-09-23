@@ -85,10 +85,10 @@
     </div>
     <div id="meta-ctrl">
         {% NOT AUTHENTICATED %}
-        <a class="linkBox" href="{{ req_url|create_url_auth|escape }}"
+        <a href="{{ req_url|create_url_auth|escape }}"
            title="Google account required">Login</a>
         {% else %}
-        <a class="linkBox" href="{{ req_url|create_url_auth|escape }}"
+        <a href="{{ req_url|create_url_auth|escape }}"
            title="Authentication powered by Google">Logout:</a>
         {{ USER }}
         {% endifequal %}
