@@ -325,3 +325,7 @@ p:first-letter {
     -moz-column-count: 2;
     -o-column-count: 2;
 }
+
+thead {
+    border-radius: 1em;
+}
