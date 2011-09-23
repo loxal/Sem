@@ -177,6 +177,7 @@ func cmdUpdate(cmd *Cmd, c appengine.Context) (ok bool, err os.Error) {
 	var cmdInDS Cmd
 	datastore.Get(c, keys[0], &cmdInDS)
     cmd.Creator = cmdInDS.Creator
+    cmd.Created = cmdInDS.Created
 
 	if _, err := datastore.Put(c, keys[0], cmd); err != nil {
 		return false, err
