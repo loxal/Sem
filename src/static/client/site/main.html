@@ -71,38 +71,40 @@
         };
         xhr.send();
     };
+
+    function auth() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', '/cmd/auth.json', false);
+        xhr.onload = function(e) {
+            var user = JSON.parse(this.responseText);
+            document.getElementById("auth").href = location.protocol + "//" + location.host + user.url;
+            if (user.user == "") {
+                document.getElementById("auth").title = "Google account required";
+            } else {
+                document.getElementById("auth").innerHTML = "Logout:";
+                document.getElementById("auth").title = "Authentication powered by Google";
+                document.getElementById("user").innerHTML = user.user;
+                document.getElementById("user").title = user.isAdmin ? "Admin" : "";
+            }
+        };
+        xhr.send();
+    }
 </script>
 <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 
 
-<body onload="applySiteProperties(); navTo(location.hash);">
+<body onload="applySiteProperties(); auth(); navTo(location.hash);">
 <div id="header">
     <div id="header-title">
         <img id="logo" src="/static/theme/logo.png" alt="Logo" title="Site Logo" width="96" height="96"/>
-        <a href="/" id="title" title="Home">Sem</a>
+        <a href="/#" id="title" title="Home">Sem</a>
 
         <div id="header-description"></div>
     </div>
     <div id="meta-ctrl">
-        <script>
-            var xhr = new XMLHttpRequest();
-            xhr.open('get', '/cmd/auth.json', false);
-            xhr.onload = function(e) {
-                console.log(this.responseText);
-//                document.getElementById('signature').innerHTML = JSON.parse(this.responseText).year + ' ' + JSON.parse(this.responseText).copyright;
-//                document.getElementById('header-description').innerHTML = JSON.parse(this.responseText).titleDesc;
-            };
-            xhr.send();
-        </script>
-        <!--{% NOT AUTHENTICATED %}-->
-        <a href="{{ req_url|create_url_auth|escape }}"
-           title="Google account required">Login</a>
-        <!--{% else %}-->
-        <a href="{{ req_url|create_url_auth|escape }}"
-           title="Authentication powered by Google">Logout:</a>
-        <!--{{ USER }}-->
-        <!--{% endifequal %}-->
+        <a id="auth">Login</a>
+        <span id="user"/>
     </div>
 </div>
 

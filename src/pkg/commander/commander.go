@@ -209,15 +209,16 @@ func testHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "BUFF %v ||||| %v ", string(dump), err)
 }
 
-func authentication(r *http.Request) (usr *user.User, url string, isAdmin bool) {
+func authentication(r *http.Request) (usr, url string, isAdmin bool) {
     c := appengine.NewContext(r)
-    usr = user.Current(c)
+    u := user.Current(c)
 
-    if usr == nil {
-        url, _ = user.LoginURL(c, r.URL.String())
+    if u == nil {
+        url, _ = user.LoginURL(c, indexHandler)
     } else {
+        usr = u.String()
         isAdmin = user.IsAdmin(c)
-        url, _ = user.LogoutURL(c, r.URL.String())
+        url, _ = user.LogoutURL(c, indexHandler)
     }
 
     return usr, url, isAdmin
@@ -230,7 +231,7 @@ func authenticate(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, `{"user": "%s", "isAdmin": "%t", "url": "%s"}`, user, isAdmin, url)
 }
 
-const indexHandler = "/"
+const indexHandler = "/#"
 const payHandler = "/cmd/pay/PayPalHTMLform.json"
 const cmdUpdateHandler = "/cmd/update"
 const cmdDeleteHandler = "/cmd/delete"
