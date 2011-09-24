@@ -125,7 +125,7 @@ func exec(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    http.Redirect(w, r, cmds[0].RESTcall, http.StatusFound)
+    http.Redirect(w, r, cmds[0].RESTcall + "cmd params", http.StatusFound)
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {

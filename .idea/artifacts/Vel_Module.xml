@@ -8,6 +8,12 @@
       </element>
       <element id="file-copy" path="$PROJECT_DIR$/../Vel/src/app.yaml" />
       <element id="file-copy" path="$PROJECT_DIR$/../Vel/src/index.html" />
+      <element id="directory" name="my">
+        <element id="dir-copy" path="$PROJECT_DIR$/../Vel/src/my" />
+      </element>
+      <element id="directory" name="resource">
+        <element id="dir-copy" path="$PROJECT_DIR$/../Vel/src/resource" />
+      </element>
     </root>
   </artifact>
 </component>
