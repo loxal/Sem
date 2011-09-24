@@ -121,7 +121,7 @@ func exec(w http.ResponseWriter, r *http.Request) {
     var cmds []*Cmd
     datastore.NewQuery("Cmd").Filter("Name =", r.URL.RawQuery).GetAll(c, &cmds)
     if cmds == nil {
-        fmt.Fprint(w, "Command not found: ", r.URL.RawQuery)
+        fmt.Fprintln(w, "Command not found: ", r.URL.RawQuery)
         return
     }
 
