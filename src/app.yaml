@@ -1,5 +1,5 @@
 application: sem-loxal
-version: c
+version: a
 runtime: go
 api_version: 2
 

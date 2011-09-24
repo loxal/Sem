@@ -112,7 +112,12 @@
             }
 
             function displayTimestamp(unixTime) {
-                return new Date(unixTime / 1000).toString();
+                if (unixTime == 0) {
+                    return 'n/a'
+                }
+
+                var timeStamp = new Date(unixTime / 1000);
+                return timeStamp.toLocaleDateString() + ' at ' + timeStamp.toLocaleTimeString();
             }
 
             buildUpdationForm();
@@ -121,8 +126,8 @@
             cellNameLink.innerHTML = '<a href="javascript:edit(\'' + cmdsJson[i].Name + '\');">' + cmdsJson[i].Name + '</a>';
             var cellRESTcallTxt = document.createTextNode(cmdsJson[i].RESTcall);
             var cellDescTxt = document.createTextNode(cmdsJson[i].Desc);
-            var cellCreatorTxt = document.createTextNode(cmdsJson[i].Creator);
-            var cellUserTxt = document.createTextNode(cmdsJson[i].User);
+            var cellCreatorTxt = document.createTextNode(cmdsJson[i].Creator == '' ? 'n/a' : cmdsJson[i].Creator);
+            var cellUserTxt = document.createTextNode(cmdsJson[i].User == '' ? 'n/a' : cmdsJson[0].User);
             var cellCreatedTxt = document.createTextNode(displayTimestamp(cmdsJson[i].Created));
             var cellUpdatedTxt = document.createTextNode(displayTimestamp(cmdsJson[i].Updated));
             var cellDeleteLink = document.createElement('button');
@@ -163,9 +168,15 @@
     <button onclick="createCmd();">Create</button>
 </fieldset>
 
+<h2>Setup</h2>
+<p>
+    To use this service you have to set the URL <em>http://sem.loxal.net/cmd/exec?%s</em> as your default "Search
+    Engine".
+</p>
+
 <table id="pager">
     <thead>
-    <tr style="width: 9px;">
+    <tr>
         <th>Name</th>
         <th>RESTcall</th>
         <th>Description</th>

@@ -43,7 +43,7 @@ func serve404(w http.ResponseWriter) {
 func getUser(c appengine.Context) string {
     u := user.Current(c)
     if u == nil {
-        return "anonymous"
+        return ""
     }
 
     return u.Email
@@ -68,7 +68,7 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	http.Redirect(w, r, indexHandler, http.StatusFound)
+//	http.Redirect(w, r, indexHandler, http.StatusFound)
 }
 
 // Constraint Check
@@ -117,10 +117,15 @@ func cmdListingJson(w http.ResponseWriter, r *http.Request) {
 // Returns the RESTful associated with a certain command
 //func exec(cmd string) (restCall string) {
 func exec(w http.ResponseWriter, r *http.Request) {
-    f := test(w)
-    fmt.Fprint(w, "%d\n", f(1))
-    fmt.Fprint(w, "%d\n", f(20))
-    fmt.Fprint(w, "%d\n", f(300))
+    c := appengine.NewContext(r)
+    var cmds []*Cmd
+    datastore.NewQuery("Cmd").Filter("Name =", r.URL.RawQuery).GetAll(c, &cmds)
+    if cmds == nil {
+        fmt.Fprint(w, "Command not found: ", r.URL.RawQuery)
+        return
+    }
+
+    http.Redirect(w, r, cmds[0].RESTcall, http.StatusFound)
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {

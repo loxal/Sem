@@ -66,8 +66,9 @@
         var xhr = new XMLHttpRequest();
         xhr.open('get', '/client/site/properties.json', false);
         xhr.onload = function(e) {
-            document.getElementById('signature').innerHTML = JSON.parse(this.responseText).year + ' ' + JSON.parse(this.responseText).copyright;
-            document.getElementById('header-description').innerHTML = JSON.parse(this.responseText).titleDesc;
+            var siteProperties = JSON.parse(this.responseText);
+            document.getElementById('signature').innerHTML = siteProperties.year + ' ' + siteProperties.copyright;
+            document.getElementById('header-description').innerHTML = siteProperties.titleDesc;
         };
         xhr.send();
     };
