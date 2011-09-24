@@ -216,7 +216,7 @@ func authentication(r *http.Request) (usr, url string, isAdmin bool) {
     if u == nil {
         url, _ = user.LoginURL(c, indexHandler)
     } else {
-        usr = u.String()
+        usr = u.Email
         isAdmin = user.IsAdmin(c)
         url, _ = user.LogoutURL(c, indexHandler)
     }
@@ -231,7 +231,7 @@ func authenticate(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, `{"user": "%s", "isAdmin": "%t", "url": "%s"}`, user, isAdmin, url)
 }
 
-const indexHandler = "/#"
+const indexHandler = "/"
 const payHandler = "/cmd/pay/PayPalHTMLform.json"
 const cmdUpdateHandler = "/cmd/update"
 const cmdDeleteHandler = "/cmd/delete"

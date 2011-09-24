@@ -77,7 +77,7 @@
         xhr.open('get', '/cmd/auth.json', false);
         xhr.onload = function(e) {
             var user = JSON.parse(this.responseText);
-            document.getElementById("auth").href = location.protocol + "//" + location.host + user.url;
+            document.getElementById("auth").href = user.url;
             if (user.user == "") {
                 document.getElementById("auth").title = "Google account required";
             } else {
