@@ -227,7 +227,7 @@ func authenticate(w http.ResponseWriter, r *http.Request) {
     user, url, isAdmin := authentication(r)
 
     w.Header().Set("Content-Type", contentTypeJSON)
-    fmt.Fprintf(w, `{"cmds": ["user": "%s", "isAdmin": "%t", "url": "%s"]}`, user, isAdmin, url)
+    fmt.Fprintf(w, `{"user": "%s", "isAdmin": "%t", "url": "%s"}`, user, isAdmin, url)
 }
 
 const indexHandler = "/"
