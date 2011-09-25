@@ -14,7 +14,7 @@ import (
 	"time"
 	"json"
 
-	"flag"
+    "flag"
 
 	"appengine"
 	"appengine/datastore"
@@ -89,17 +89,16 @@ func cmdHasInvalidCharacters(name string) (ok bool) {
 	return
 }
 
-func cmdListing(w http.ResponseWriter, r *http.Request) (cmds []*Cmd) {
+func cmdListing(r *http.Request) (cmds []*Cmd) {
 	c := appengine.NewContext(r)
-	if _, err := datastore.NewQuery("Cmd").GetAll(c, &cmds); err != nil {
-		serveError(c, w, err)
-		return
-	}
+	datastore.NewQuery("Cmd").Filter("Creator =", "").GetAll(c, &cmds)
+	datastore.NewQuery("Cmd").Filter("Creator =", getUser(c)).GetAll(c, &cmds)
+
 	return cmds
 }
 
 func cmdListingJson(w http.ResponseWriter, r *http.Request) {
-	cmds := cmdListing(w, r)
+	cmds := cmdListing(r)
 
 	w.Header().Set("Content-Type", contentTypeJSON)
 	fmt.Fprint(w, `{"cmds": [`)
@@ -116,25 +115,29 @@ func cmdListingJson(w http.ResponseWriter, r *http.Request) {
 
 // Returns the RESTful associated with a certain command
 //func exec(cmd string) (restCall string) {
-func exec(w http.ResponseWriter, r *http.Request) {
-    c := appengine.NewContext(r)
-    var cmds []*Cmd
-    sep := "+"
+func getCmd(r *http.Request) (restCall, query string) {
+    const sep = "+"
     rawQuery := strings.Split(r.URL.RawQuery, sep, -1)
-    datastore.NewQuery("Cmd").Filter("Name =", rawQuery[0]).GetAll(c, &cmds)
 
-    var restCall, query string
-    if cmds == nil {
-        const defaultRestCall = "http://www.google.com/search?q="
-        restCall = defaultRestCall
-        query = strings.Join(rawQuery[:], sep)
-//        fmt.Fprintln(w, "Command not found: ", rawQuery[0])
-//        return
-    } else {
-        restCall = cmds[0].RESTcall
-        query = strings.Join(rawQuery[1:], sep)
+    cmds := cmdListing(r)
+
+    for i := range cmds {
+        if cmds[i].Name == rawQuery[0] {
+            restCall = cmds[0].RESTcall
+            query = strings.Join(rawQuery[1:], sep)
+            return restCall, query
+        }
     }
 
+    const defaultRestCall = "http://www.google.com/search?q="
+    restCall = defaultRestCall
+    query = strings.Join(rawQuery[:], sep)
+
+    return restCall, query
+}
+
+func exec(w http.ResponseWriter, r *http.Request) {
+    restCall, query := getCmd(r)
     http.Redirect(w, r, restCall + query, http.StatusFound)
 }
 
@@ -199,7 +202,7 @@ func payButton(w http.ResponseWriter, r *http.Request) {
 
 //	TODO retrieve API key from JSON
 
-    testHandler(w, r)
+    paypalHandler(w, r)
 
 	fmt.Fprint(w, `<form action="https%3a//www.sandbox.paypal.com/cgi-bin/webscr" method="post">
         <input type="hidden" name="cmd" value="_s-xclick">
@@ -209,7 +212,7 @@ func payButton(w http.ResponseWriter, r *http.Request) {
         </form>`)
 }
 
-func testHandler(w http.ResponseWriter, r *http.Request) {
+func paypalHandler(w http.ResponseWriter, r *http.Request) {
     c := appengine.NewContext(r)
     client := urlfetch.Client(c)
     resp, err := client.Get("https://api-3t.sandbox.paypal.com/nvp?METHOD=BMCreateButton&VERSION=72.0&USER=wpp_1315925055_biz_api1.loxal.net&PWD=1315925139&SIGNATURE=Adpvw0BhLOlkXhzGP1PLF6D-ECfOA8s9nUx7bc3EPc1-StxRAcTyHgqu&BUTTONCODE=HOSTED&BUTTONTYPE=BUYNOW&BUTTONSUBTYPE=PRODUCTS")
