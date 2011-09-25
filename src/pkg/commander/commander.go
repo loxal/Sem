@@ -122,12 +122,20 @@ func exec(w http.ResponseWriter, r *http.Request) {
     sep := "+"
     rawQuery := strings.Split(r.URL.RawQuery, sep, -1)
     datastore.NewQuery("Cmd").Filter("Name =", rawQuery[0]).GetAll(c, &cmds)
+
+    var restCall, query string
     if cmds == nil {
-        fmt.Fprintln(w, "Command not found: ", rawQuery[0])
-        return
+        const defaultRestCall = "http://www.google.com/search?q="
+        restCall = defaultRestCall
+        query = strings.Join(rawQuery[:], sep)
+//        fmt.Fprintln(w, "Command not found: ", rawQuery[0])
+//        return
+    } else {
+        restCall = cmds[0].RESTcall
+        query = strings.Join(rawQuery[1:], sep)
     }
 
-    http.Redirect(w, r, cmds[0].RESTcall + strings.Join(rawQuery[1:], sep), http.StatusFound)
+    http.Redirect(w, r, restCall + query, http.StatusFound)
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {
