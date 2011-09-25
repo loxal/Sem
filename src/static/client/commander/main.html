@@ -4,12 +4,6 @@
   ~ license that can be found in the LICENSE file.
   -->
 
-<!--<style>-->
-<!--label, input {-->
-<!--display: block;-->
-<!--}-->
-<!--</style>-->
-
 <script>
     function edit(cmdName) {
         document.getElementById("edit-form-" + cmdName).style.display = "block";
@@ -155,6 +149,8 @@
             pager.appendChild(row);
         }
     }
+
+    applyValues();
 </script>
 
 <fieldset>
@@ -168,11 +164,11 @@
     <button onclick="createCmd();">Create</button>
 </fieldset>
 
-<h2>Setup</h2>
-<p>
-    To use this service you have to set the URL <em>http://sem.loxal.net/cmd/exec?%s</em> as your default "Search
-    Engine".
-</p>
+<!--<h2>Setup</h2>-->
+<!--<p>-->
+<!--To use this service you have to set the URL <em>http://sem.loxal.net/cmd/exec?%s</em> as your default "Search-->
+<!--Engine".-->
+<!--</p>-->
 
 <table id="pager">
     <thead>
@@ -189,6 +185,3 @@
     </thead>
     <tbody id="pagerItems"></tbody>
 </table>
-<script>
-    applyValues();
-</script>

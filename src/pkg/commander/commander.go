@@ -119,13 +119,15 @@ func cmdListingJson(w http.ResponseWriter, r *http.Request) {
 func exec(w http.ResponseWriter, r *http.Request) {
     c := appengine.NewContext(r)
     var cmds []*Cmd
-    datastore.NewQuery("Cmd").Filter("Name =", r.URL.RawQuery).GetAll(c, &cmds)
+    sep := "+"
+    rawQuery := strings.Split(r.URL.RawQuery, sep, -1)
+    datastore.NewQuery("Cmd").Filter("Name =", rawQuery[0]).GetAll(c, &cmds)
     if cmds == nil {
-        fmt.Fprintln(w, "Command not found: ", r.URL.RawQuery)
+        fmt.Fprintln(w, "Command not found: ", rawQuery[0])
         return
     }
 
-    http.Redirect(w, r, cmds[0].RESTcall + "cmd params", http.StatusFound)
+    http.Redirect(w, r, cmds[0].RESTcall + strings.Join(rawQuery[1:], sep), http.StatusFound)
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {
