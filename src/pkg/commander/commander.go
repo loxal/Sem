@@ -68,12 +68,14 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-//	http.Redirect(w, r, indexHandler, http.StatusFound)
+//    fmt.Fprintf(w, "Command already exists: %s", r.FormValue("name"))
 }
 
 // Constraint Check
 func cmdExists(c appengine.Context, name string) (ok bool) {
-	if count, err := datastore.NewQuery("Cmd").Filter("Name =", name).Count(c); err == nil && count > 0 {
+    count, _ := datastore.NewQuery("Cmd").Filter("Name =", strings.ToLower(name)).Filter("Creator =", getUser(c)).Count(c)
+
+	if count > 0 {
 		return true
 	}
 	return
@@ -91,7 +93,6 @@ func cmdHasInvalidCharacters(name string) (ok bool) {
 
 func cmdListing(r *http.Request) (cmds []*Cmd) {
 	c := appengine.NewContext(r)
-	datastore.NewQuery("Cmd").Filter("Creator =", "").GetAll(c, &cmds)
 	datastore.NewQuery("Cmd").Filter("Creator =", getUser(c)).GetAll(c, &cmds)
 
 	return cmds
@@ -153,7 +154,7 @@ func cmd(w http.ResponseWriter, r *http.Request) {
 }
 
 func cmdDelete(cmdName string, c appengine.Context) (ok bool) {
-	q := datastore.NewQuery("Cmd").Filter("Name =", cmdName).KeysOnly()
+	q := datastore.NewQuery("Cmd").Filter("Name =", cmdName).Filter("Creator =", getUser(c)).KeysOnly()
 	keys, _ := q.GetAll(c, nil)
 	if err := datastore.Delete(c, keys[0]); err != nil {
 		return
@@ -183,7 +184,7 @@ func cmdUpdation(w http.ResponseWriter, r *http.Request) {
 }
 
 func cmdUpdate(cmd *Cmd, c appengine.Context) (ok bool, err os.Error) {
-	q := datastore.NewQuery("Cmd").KeysOnly().Filter("Name =", cmd.Name)
+	q := datastore.NewQuery("Cmd").Filter("Name =", cmd.Name).Filter("Creator =", getUser(c)).KeysOnly()
 	keys, _ := q.GetAll(c, nil)
 
 	var cmdInDS Cmd
