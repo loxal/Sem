@@ -68,7 +68,10 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-//    fmt.Fprintf(w, "Command already exists: %s", r.FormValue("name"))
+		w.WriteHeader(http.StatusBadRequest)
+//    	w.Header().Set("Content-Type", contentTypeText)
+//    	io.WriteString(w, "Internal Server Error")
+    fmt.Fprintf(w, "Command already exists: %s", r.FormValue("name"))
 }
 
 // Constraint Check
