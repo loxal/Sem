@@ -56,7 +56,6 @@
         xhr.open('post', '/cmd/create?name=' + document.getElementById("name").value + '&restCall=' +
                 document.getElementById("restCall").value + '&desc=' + document.getElementById("desc").value, true);
         xhr.onload = function(e) {
-            console.log(this);
             if (this.status == 400) {
                 alert(this.statusText + ":\nCommand name already exists. Please choose another command name!");
             }

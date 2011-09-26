@@ -18,6 +18,7 @@ import (
 
 	"appengine"
 	"appengine/datastore"
+	"appengine/memcache"
 	"appengine/urlfetch"
 	"appengine/user"
 )
@@ -62,6 +63,24 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 			User:     currentUser,
 			Created:  datastore.SecondsToTime(time.Seconds()),
 		}
+
+		item:= &memcache.Item{
+            Key: cmd.Name,
+            Object: cmd,
+		}
+
+		fmt.Fprintf(w, `%v`, item.RESTcall)
+
+//io.WriteString(w, item)
+
+//io.WriteString(w, "Internal Server Error")
+
+//// Add the item to the memcache, if the key does not already exist
+//if err := memcache.Add(c, item); err == memcache.ErrNotStored {
+////    c.Log("item with key %q already exists", item.Key)
+//} else if err != nil {
+////    c.Log("error adding item: %v", err)
+//}
 
 		if _, err := datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd); err != nil {
 			serveError(c, w, err)
