@@ -4,7 +4,7 @@
     <identifier-quote-string>"</identifier-quote-string>
     <jdbc-driver>org.firebirdsql.jdbc.FBDriver</jdbc-driver>
     <jdbc-url>jdbc:firebirdsql:database:dpLMS20</jdbc-url>
-    <user-name>SYSDBA</user-name>
+    <user-name>SYSDBA_BOOKING</user-name>
     <user-password>dfc7dfcbdfd9dfdedfcfdfd8dfc1dfcfdfd3</user-password>
     <table-pattern>.*</table-pattern>
     <libraries>
@@ -1860,11 +1860,11 @@
       <primary-key name="PK_WEB_CONTACT_ITEM_TYPES" columns="id" />
     </table>
   </data-source>
-  <data-source source="LOCAL" name="Verp@MySQL.golem" product="MySQL" version="5.5.10" jdbc-version="4.0" driver-version="mysql-connector-java-5.1.15 ( Revision: ${bzr.revision-id} )" uuid="c2724374-ad77-42ef-b282-3eed527a405c">
+  <data-source source="LOCAL" name="Verp@MySQL.sky" product="MySQL" version="5.5.10" jdbc-version="4.0" driver-version="mysql-connector-java-5.1.15 ( Revision: ${bzr.revision-id} )" uuid="c2724374-ad77-42ef-b282-3eed527a405c">
     <extra-name-characters>#@</extra-name-characters>
     <identifier-quote-string>`</identifier-quote-string>
     <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-    <jdbc-url>jdbc:mysql://golem/verp</jdbc-url>
+    <jdbc-url>jdbc:mysql://sky.loxal.net/verp</jdbc-url>
     <user-name>verp</user-name>
     <user-password>dfeddfc4dfc5df9fdfc6dfc3dfd2dfc3</user-password>
     <libraries>
