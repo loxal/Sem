@@ -85,7 +85,7 @@
                 inputName.setAttribute('id', 'edit-name-' + cmdsJson[i].Name);
                 inputName.setAttribute('readonly', true);
                 var inputShortcut = document.createElement('input');
-                inputShortcut.setAttribute('value', cmdsJson[i].RESTcall);
+                inputShortcut.setAttribute('value', cmdsJson[i].Call);
                 inputShortcut.setAttribute('name', 'edit-restCall');
                 inputShortcut.setAttribute('id', 'edit-restCall-' + cmdsJson[i].Name);
                 var inputDesc = document.createElement('input');
@@ -121,7 +121,7 @@
 
             var cellNameLink = document.createElement('span');
             cellNameLink.innerHTML = '<a href="javascript:edit(\'' + cmdsJson[i].Name + '\');">' + cmdsJson[i].Name + '</a>';
-            var cellRESTcallTxt = document.createTextNode(cmdsJson[i].RESTcall);
+            var cellRESTcallTxt = document.createTextNode(cmdsJson[i].Call);
             var cellDescTxt = document.createTextNode(cmdsJson[i].Desc);
             var cellCreatorTxt = document.createTextNode(cmdsJson[i].Creator == '' ? 'n/a' : cmdsJson[i].Creator);
             var cellUserTxt = document.createTextNode(cmdsJson[i].User == '' ? 'n/a' : cmdsJson[0].User);
@@ -177,7 +177,7 @@
     <thead>
     <tr>
         <th>Name</th>
-        <th>RESTcall</th>
+        <th>Call</th>
         <th>Description</th>
         <th>Creator</th>
         <th>User</th>

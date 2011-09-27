@@ -24,7 +24,7 @@ import (
 )
 
 type Cmd struct {
-	Name, RESTcall, Desc string
+	Name, Call, Desc string
 	Creator, User        string
 	Created, Updated     datastore.Time
 }
@@ -57,46 +57,39 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 	    currentUser := getUser(c);
 		cmd := &Cmd{
 			Name:     r.FormValue("name"),
-			RESTcall: r.FormValue("restCall"),
+			Call:     r.FormValue("restCall"),
 			Desc:     r.FormValue("desc"),
 			Creator:  currentUser,
 			User:     currentUser,
 			Created:  datastore.SecondsToTime(time.Seconds()),
 		}
 
-//var (
-    // Gob is a Codec that uses the gob package.
-//    Gob = Codec{gobMarshal, gobUnmarshal}
-    // JSON is a Codec that uses the json package.
-//    JSON = Codec{json.Marshal, json.Unmarshal}
-//)
-
-        cmdJSON, _ := json.Marshal(cmd)
-		item:= &memcache.Item{
+        cmdJson, _ := json.Marshal(cmd)
+		cmdItem:=&memcache.Item{
             Key: cmd.Name,
-            Value: []byte(cmdJSON),
-//            Object: cmd,
+            Value: []byte(cmdJson),
 		}
-//		fmt.Fprintf(w, "%s", item)
-        fmt.Sprint(item)
+		fmt.Fprintf(w, "%s<br><br><br>", &cmdItem.Value)
+		fmt.Fprintf(w, "%s<br><br><br>", cmdItem.Value)
+		fmt.Fprintf(w, "%s<br><br><br>", &cmdItem.Key)
+		fmt.Fprintf(w, "%s<br><br>", cmdItem.Key)
 
-//io.WriteString(w, item)
-
-//io.WriteString(w, "Internal Server Error")
-
-//// Add the item to the memcache, if the key does not already exist
-//if err := memcache.Add(c, item); err == memcache.ErrNotStored {
-////    c.Log("item with key %q already exists", item.Key)
-//} else if err != nil {
-////    c.Log("error adding item: %v", err)
-//}
+        // Add the item to the memcache, if the key does not already exist
+        if err := memcache.Add(c, cmdItem); err == memcache.ErrNotStored {
+            c.Debugf("FIRSTTTTTTT item with key %q already exists", cmdItem.Key)
+        } else if err != nil {
+            c.Debugf("SECONDDDDD error adding item: %v", err)
+        }
 
 		if _, err := datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd); err != nil {
 			serveError(c, w, err)
 			return
 		}
+
+		return
 	}
-		w.WriteHeader(http.StatusBadRequest)
+
+    w.WriteHeader(http.StatusBadRequest)
 }
 
 // Constraint Check
@@ -152,7 +145,7 @@ func getCmd(r *http.Request) (restCall, query string) {
 
     for i := range cmds {
         if cmds[i].Name == rawQuery[0] {
-            restCall = cmds[0].RESTcall
+            restCall = cmds[0].Call
             query = strings.Join(rawQuery[1:], sep)
             return restCall, query
         }
@@ -200,7 +193,7 @@ func cmdUpdation(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	cmd := &Cmd{
 		Name:     r.FormValue("edit-name"),
-		RESTcall: r.FormValue("edit-restCall"),
+		Call: r.FormValue("edit-restCall"),
 		Desc:     r.FormValue("edit-desc"),
 		User:  getUser(c),
 		Updated:  datastore.SecondsToTime(time.Seconds()),
