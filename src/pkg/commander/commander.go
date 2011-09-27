@@ -64,12 +64,21 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 			Created:  datastore.SecondsToTime(time.Seconds()),
 		}
 
+//var (
+    // Gob is a Codec that uses the gob package.
+//    Gob = Codec{gobMarshal, gobUnmarshal}
+    // JSON is a Codec that uses the json package.
+//    JSON = Codec{json.Marshal, json.Unmarshal}
+//)
+
+        cmdJSON, _ := json.Marshal(cmd)
 		item:= &memcache.Item{
             Key: cmd.Name,
-            Object: cmd,
+            Value: []byte(cmdJSON),
+//            Object: cmd,
 		}
-
-		fmt.Fprintf(w, `%v`, item.RESTcall)
+//		fmt.Fprintf(w, "%s", item)
+fmt.Sprint(item)
 
 //io.WriteString(w, item)
 
