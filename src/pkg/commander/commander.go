@@ -18,7 +18,6 @@ import (
 
 	"appengine"
 	"appengine/datastore"
-	"appengine/memcache"
 	"appengine/urlfetch"
 	"appengine/user"
 )
@@ -50,7 +49,7 @@ func getUser(c appengine.Context) string {
     return u.Email
 }
 
-func cmdCreation(w http.ResponseWriter, r *http.Request) {
+func createCmd(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 
 	if !cmdExists(c, r.FormValue("name")) && !cmdHasInvalidCharacters(r.FormValue("name")) {
@@ -64,28 +63,12 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 			Created:  datastore.SecondsToTime(time.Seconds()),
 		}
 
-        cmdJson, _ := json.Marshal(cmd)
-		cmdItem:=&memcache.Item{
-            Key: cmd.Name,
-            Value: []byte(cmdJson),
-		}
-		fmt.Fprintf(w, "%s<br><br><br>", &cmdItem.Value)
-		fmt.Fprintf(w, "%s<br><br><br>", cmdItem.Value)
-		fmt.Fprintf(w, "%s<br><br><br>", &cmdItem.Key)
-		fmt.Fprintf(w, "%s<br><br>", cmdItem.Key)
-
-        // Add the item to the memcache, if the key does not already exist
-        if err := memcache.Add(c, cmdItem); err == memcache.ErrNotStored {
-            c.Debugf("FIRSTTTTTTT item with key %q already exists", cmdItem.Key)
-        } else if err != nil {
-            c.Debugf("SECONDDDDD error adding item: %v", err)
-        }
-
 		if _, err := datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd); err != nil {
 			serveError(c, w, err)
 			return
 		}
 
+		addToCache(r, cmd)
 		return
 	}
 
@@ -140,6 +123,7 @@ func cmdListingJson(w http.ResponseWriter, r *http.Request) {
 func getCmd(r *http.Request) (call, query string) {
     const sep = "+"
     rawQuery := strings.Split(r.URL.RawQuery, sep, -1)
+testExecCmdFromCache(r, rawQuery[0])
 
     cmds := cmdListing(r)
 
@@ -285,7 +269,7 @@ func init() {
 	http.HandleFunc(payHandler, payButton)
 	http.HandleFunc(cmdDeleteHandler, cmdDeletion)
 	http.HandleFunc(cmdUpdateHandler, cmdUpdation)
-	http.HandleFunc(cmdCreateHandler, cmdCreation)
+	http.HandleFunc(cmdCreateHandler, createCmd)
 	http.HandleFunc(cmdListHandler, cmdListingJson)
 	http.HandleFunc("/cmd", cmd)
 	http.HandleFunc("/cmd/exec", exec)
