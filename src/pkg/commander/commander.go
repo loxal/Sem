@@ -57,7 +57,7 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 	    currentUser := getUser(c);
 		cmd := &Cmd{
 			Name:     r.FormValue("name"),
-			Call:     r.FormValue("restCall"),
+			Call:     r.FormValue("call"),
 			Desc:     r.FormValue("desc"),
 			Creator:  currentUser,
 			User:     currentUser,
@@ -136,8 +136,8 @@ func cmdListingJson(w http.ResponseWriter, r *http.Request) {
 }
 
 // Returns the RESTful associated with a certain command
-//func exec(cmd string) (restCall string) {
-func getCmd(r *http.Request) (restCall, query string) {
+//func exec(cmd string) (call string) {
+func getCmd(r *http.Request) (call, query string) {
     const sep = "+"
     rawQuery := strings.Split(r.URL.RawQuery, sep, -1)
 
@@ -145,22 +145,22 @@ func getCmd(r *http.Request) (restCall, query string) {
 
     for i := range cmds {
         if cmds[i].Name == rawQuery[0] {
-            restCall = cmds[0].Call
+            call = cmds[0].Call
             query = strings.Join(rawQuery[1:], sep)
-            return restCall, query
+            return call, query
         }
     }
 
     const defaultRestCall = "http://www.google.com/search?q="
-    restCall = defaultRestCall
+    call = defaultRestCall
     query = strings.Join(rawQuery[:], sep)
 
-    return restCall, query
+    return call, query
 }
 
 func exec(w http.ResponseWriter, r *http.Request) {
-    restCall, query := getCmd(r)
-    http.Redirect(w, r, restCall + query, http.StatusFound)
+    call, query := getCmd(r)
+    http.Redirect(w, r, call + query, http.StatusFound)
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {
@@ -193,7 +193,7 @@ func cmdUpdation(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	cmd := &Cmd{
 		Name:     r.FormValue("edit-name"),
-		Call: r.FormValue("edit-restCall"),
+		Call: r.FormValue("edit-call"),
 		Desc:     r.FormValue("edit-desc"),
 		User:  getUser(c),
 		Updated:  datastore.SecondsToTime(time.Seconds()),

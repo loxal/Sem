@@ -42,8 +42,8 @@
 
     function updateCmd(cmdName) {
         var xhr = new XMLHttpRequest();
-        xhr.open('post', '/cmd/update?edit-name=' + document.getElementById("edit-name-" + cmdName).value + '&edit-restCall=' +
-                document.getElementById("edit-restCall-" + cmdName).value + '&edit-desc=' + document.getElementById("edit-desc-" + cmdName).value, true);
+        xhr.open('post', '/cmd/update?edit-name=' + document.getElementById("edit-name-" + cmdName).value + '&edit-call=' +
+                document.getElementById("edit-call-" + cmdName).value + '&edit-desc=' + document.getElementById("edit-desc-" + cmdName).value, true);
         xhr.onload = function(e) {
             applyValues();
         };
@@ -52,8 +52,8 @@
 
     function createCmd() {
         var xhr = new XMLHttpRequest();
-        xhr.open('post', '/cmd/create?name=' + document.getElementById("name").value + '&restCall=' +
-                document.getElementById("restCall").value + '&desc=' + document.getElementById("desc").value, true);
+        xhr.open('post', '/cmd/create?name=' + document.getElementById("name").value + '&call=' +
+                document.getElementById("call").value + '&desc=' + document.getElementById("desc").value, true);
         xhr.onload = function(e) {
             if (this.status == 400) {
                 alert(this.statusText + ":\nCommand name already exists. Please choose another command name!");
@@ -86,8 +86,8 @@
                 inputName.setAttribute('readonly', true);
                 var inputShortcut = document.createElement('input');
                 inputShortcut.setAttribute('value', cmdsJson[i].Call);
-                inputShortcut.setAttribute('name', 'edit-restCall');
-                inputShortcut.setAttribute('id', 'edit-restCall-' + cmdsJson[i].Name);
+                inputShortcut.setAttribute('name', 'edit-call');
+                inputShortcut.setAttribute('id', 'edit-call-' + cmdsJson[i].Name);
                 var inputDesc = document.createElement('input');
                 inputDesc.setAttribute('value', cmdsJson[i].Desc);
                 inputDesc.setAttribute('name', 'edit-desc');
@@ -160,8 +160,8 @@
     <legend>Command</legend>
     <label for="name">Name</label>
     <input name="name" id="name" type="text" value="g"/>
-    <label for="restCall">Shortcut</label>
-    <input name="restCall" id="restCall" type="text" value="http://www.google.com/search?q="/>
+    <label for="call">Shortcut</label>
+    <input name="call" id="call" type="text" value="http://www.google.com/search?q="/>
     <label for="desc">Description</label>
     <input name="desc" id="desc" type="text" value="Command Description"/>
     <button onclick="createCmd();">Create</button>
