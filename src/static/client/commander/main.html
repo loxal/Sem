@@ -15,7 +15,6 @@
 
     var applyValues = function() {
         removePagerItems();
-//        setRandomCommandName();
 
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '/cmd/list.json', false);
@@ -152,15 +151,6 @@
 
             pager.appendChild(row);
         }
-    }
-
-    function generateRandomCommandName() {
-        var entropy = "abcdefghijklmnopqrstuvwxyz";
-        return entropy.charAt(Math.floor(Math.random() * entropy.length));
-    }
-
-    function setRandomCommandName() {
-        document.getElementById("name").value = generateRandomCommandName();
     }
 
     applyValues();

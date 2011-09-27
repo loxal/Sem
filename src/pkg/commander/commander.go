@@ -78,7 +78,7 @@ func cmdCreation(w http.ResponseWriter, r *http.Request) {
 //            Object: cmd,
 		}
 //		fmt.Fprintf(w, "%s", item)
-fmt.Sprint(item)
+        fmt.Sprint(item)
 
 //io.WriteString(w, item)
 
