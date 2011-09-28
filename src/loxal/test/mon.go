@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package mon
+package test
 
 import (
     "flag" // replace by a post release.58.1 version and check whether flag.Init() exists
