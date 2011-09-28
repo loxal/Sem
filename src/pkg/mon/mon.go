@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package commander
+package mon
 
 import (
     "flag" // replace by a post release.58.1 version and check whether flag.Init() exists
@@ -13,9 +13,8 @@ import (
 )
 
 func Test1(w http.ResponseWriter) (func(int) int) {
-    fmt.Fprintf(w, "Hello from Commander!\n<br>")
-    w.Header().Set("Content-Type", contentTypeText)
-    fmt.Fprintf(w, "Hello from Commander! POST-TEXT<br>")
+    fmt.Fprintf(w, "Hello From MON\n<br>")
+    fmt.Fprintf(w, "POST-TEXTYPE-MON")
     var x int
     return func(delta int) int {
         x += delta
@@ -38,3 +37,7 @@ type Point struct { x, y float64 }
 func (p *Point) Abs() float64 {
     return math.Sqrt(p.x*p.x + p.y*p.y)
 }
+
+
+
+

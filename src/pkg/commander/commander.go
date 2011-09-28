@@ -13,6 +13,7 @@ import (
 	"strings"
 	"time"
 	"json"
+	"pkg/mon"
 
     "flag"
 
@@ -143,6 +144,9 @@ func getCmd(r *http.Request) (call, query string) {
 }
 
 func exec(w http.ResponseWriter, r *http.Request) {
+Test1(w)
+mon.Test1(w)
+
     call, query := getCmd(r)
     http.Redirect(w, r, call + query, http.StatusFound)
 }
