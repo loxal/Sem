@@ -25,30 +25,41 @@ func test1(w http.ResponseWriter) (func(int) int) {
 func TestFlag(w http.ResponseWriter){
 //    var test flag.FlagSet
 var myFlag string
+var myFlag1 *string
+var myFlag2 string
 //flagSetPointer.StringVar(&myFlag, "g", "value of String", "usage of string")
 //var myFlag *string = flag.String("g", "value of String", "usage of string")
 //flag.StringVar(&myFlag, "nameOFString", "value of String", "usage of string")
 //flag.Parse()
-flagSetPointer := flag.NewFlagSet("", flag.ContinueOnError)
+flagSetPointer := flag.NewFlagSet("google", flag.ContinueOnError)
 //var myFlag *string = flagSetPointer.String("f", "v", "u")
 //var myFlag = flagSetPointer.String("f", "", "u")
-flagSetPointer.StringVar(&myFlag, "f", "v", "u")
+flagSetPointer.StringVar(&myFlag, "flag", "v", "usage")
+myFlag1 = flagSetPointer.String("flag1", "v", "u")
+flagSetPointer.StringVar(&myFlag2, "mon", "DEFAULT VALUE", "u")
 //args:= []string{"g", "-g", "-g=g", "-g g", "-g u", *myFlag}
-args:= []string{"-f", "FEST"}
-//flagSetPointer.Usage = func() {}
+args:= []string{"-flag", "value", "-flag1", "flag1 Value", "-f", "vom"}
+flagSetPointer.Usage = func() {
+    fmt.Fprintln(w, "[MY USAGE]")
+}
 //otherArgs := flagSetPointer.Args()
+ f:=flagSetPointer.Lookup("flag")
+ fmt.Fprintln(w, f.Usage)
 
-
+  flagSetPointer.PrintDefaults()
   if err := flagSetPointer.Parse(args); err != nil {
-            fmt.Fprintf(w, " error <br> %v", err)
+            fmt.Fprintf(w, " [MY ERROR] <br/> %v", err)
+//            fmt.Fprintf(w, " error <br> %v", &myFlag2.Usage)
 //            return
     }
-fmt.Fprint(w, " test ")
+fmt.Fprint(w, " BAL ")
 
 //    fmt.Fprintf(w, "Arg: %v ", flagSetPointer.NArg());
 //    fmt.Fprintf(w, "Arg: %q ", flagSetPointer.Arg(0));
 //    fmt.Fprintf(w, "Arg: %q ", flagSetPointer.Arg(1));
     fmt.Fprintf(w, "Arg: %q ", myFlag);
+    fmt.Fprintf(w, "Arg: %q ", *myFlag1);
+    fmt.Fprintf(w, "Arg: %q ", myFlag2);
 //    fmt.Fprintf(w, "Arg: %q ", flagSetPointer.Arg(3));
 //    fmt.Fprintf(w, "Arg: %q ", flagSetPointer.Arg(4));
 //    fmt.Fprintf(w, "Arg: %q ", flagSetPointer.Arg(5));
