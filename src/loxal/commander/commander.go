@@ -15,7 +15,8 @@ import (
 	"json"
 	"loxal/test"
 
-    "flag"
+//    "flag"
+    "loxal/flag"
 
 	"appengine"
 	"appengine/datastore"
@@ -144,7 +145,6 @@ func getCmd(r *http.Request) (call, query string) {
 }
 
 func exec(w http.ResponseWriter, r *http.Request) {
-Test1(w)
 test.Test1(w)
 
     call, query := getCmd(r)
