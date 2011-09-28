@@ -13,10 +13,8 @@ import (
 	"strings"
 	"time"
 	"json"
-	"loxal/test"
-
-//    "flag"
     "loxal/flag"
+	"loxal/test"
 
 	"appengine"
 	"appengine/datastore"
@@ -145,14 +143,13 @@ func getCmd(r *http.Request) (call, query string) {
 }
 
 func exec(w http.ResponseWriter, r *http.Request) {
-test.Test1(w)
+test.TestFlag(w)
 
     call, query := getCmd(r)
     http.Redirect(w, r, call + query, http.StatusFound)
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {
-	//	var _ = flag1.PrintDefaults // delete before submitting
 	var _ = flag.PrintDefaults // delete before submitting
 	c := appengine.NewContext(r)
 	var cmds []*Cmd

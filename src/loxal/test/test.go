@@ -12,7 +12,7 @@ import (
 	"math"
 )
 
-func Test1(w http.ResponseWriter) (func(int) int) {
+func test1(w http.ResponseWriter) (func(int) int) {
     fmt.Fprintf(w, "Hello From MON\n<br>")
     fmt.Fprintf(w, "POST-TEXTYPE-MON")
     var x int
@@ -22,14 +22,38 @@ func Test1(w http.ResponseWriter) (func(int) int) {
     }
 }
 
-func testFlag(w http.ResponseWriter){
-//    var ip *int = flag.Int("flagname", 1234, "help message for flagname")
+func TestFlag(w http.ResponseWriter){
 //    var test flag.FlagSet
-    flag.NewFlagSet("bodommm", 0)
-    var flagvar int
-    flag.IntVar(&flagvar, "flagname", 1234, "help message for flagname")
-//    fmt.Fprintln(w, "ip has value ", *ip);
-    fmt.Fprintln(w, "flagvar has valu ", flagvar);
+var myFlag string
+//flagSetPointer.StringVar(&myFlag, "g", "value of String", "usage of string")
+//var myFlag *string = flag.String("g", "value of String", "usage of string")
+//flag.StringVar(&myFlag, "nameOFString", "value of String", "usage of string")
+//flag.Parse()
+flagSetPointer := flag.NewFlagSet("", flag.ContinueOnError)
+//var myFlag *string = flagSetPointer.String("f", "v", "u")
+//var myFlag = flagSetPointer.String("f", "", "u")
+flagSetPointer.StringVar(&myFlag, "f", "v", "u")
+//args:= []string{"g", "-g", "-g=g", "-g g", "-g u", *myFlag}
+args:= []string{"-f", "FEST"}
+//flagSetPointer.Usage = func() {}
+//otherArgs := flagSetPointer.Args()
+
+
+  if err := flagSetPointer.Parse(args); err != nil {
+            fmt.Fprintf(w, " error <br> %v", err)
+//            return
+    }
+fmt.Fprint(w, " test ")
+
+//    fmt.Fprintf(w, "Arg: %v ", flagSetPointer.NArg());
+//    fmt.Fprintf(w, "Arg: %q ", flagSetPointer.Arg(0));
+//    fmt.Fprintf(w, "Arg: %q ", flagSetPointer.Arg(1));
+    fmt.Fprintf(w, "Arg: %q ", myFlag);
+//    fmt.Fprintf(w, "Arg: %q ", flagSetPointer.Arg(3));
+//    fmt.Fprintf(w, "Arg: %q ", flagSetPointer.Arg(4));
+//    fmt.Fprintf(w, "Arg: %q ", flagSetPointer.Arg(5));
+//    fmt.Fprintf(w, "Arg: %q ", flagSetPointer.Arg(6));
+//    fmt.Fprintf(w, "Other: %v ", otherArgs);
 }
 
 type Point struct { x, y float64 }
