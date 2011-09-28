@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><component name="dataSourceStorage">
-  <data-source source="LOCAL" name="dpLMS20" product="Firebird 2.5/WI-V2.5.0.26074 Firebird 2.5/tcp (DATABASE)/P10" version="WI-V2.5.0.26074 Firebird 2.5/WI-V2.5.0.26074 Firebird 2.5/tcp (DATABASE)/P10" jdbc-version="3.0" driver-version="2.1" uuid="7f33f9cb-a4c3-43c4-bb4e-66af1f802520">
+  <data-source source="LOCAL" name="dpLMS20" product="Firebird 2.51WI-V2.5.0.26074 Firebird 2.5/tcp (DATABASE64)/P10" version="WI-V2.5.0.26074 Firebird 2.51WI-V2.5.0.26074 Firebird 2.5/tcp (DATABASE64)/P10" jdbc-version="3.0" driver-version="2.1" uuid="7f33f9cb-a4c3-43c4-bb4e-66af1f802520">
     <extra-name-characters>$</extra-name-characters>
     <identifier-quote-string>"</identifier-quote-string>
     <jdbc-driver>org.firebirdsql.jdbc.FBDriver</jdbc-driver>
-    <jdbc-url>jdbc:firebirdsql:database:dpLMS20</jdbc-url>
-    <user-name>SYSDBA_BOOKING</user-name>
+    <jdbc-url>jdbc:firebirdsql:DNS-DPLMS-DEV:dpLMS20</jdbc-url>
+    <user-name>SYSDBA</user-name>
     <user-password>dfc7dfcbdfd9dfdedfcfdfd8dfc1dfcfdfd3</user-password>
     <table-pattern>.*</table-pattern>
     <libraries>
@@ -186,10 +186,10 @@
       <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="SESSION_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_211" columns="id" />
+      <primary-key name="INTEG_239" columns="id" />
       <foreign-key name="FK_BOOKINGS_SESSION_ID" columns="SESSION_ID" ref-table="SESSIONS" ref-schema="" ref-catalog="" ref-columns="ID" />
       <foreign-key name="FK_BOOKINGS_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY5" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY9" unique="true" columns="ID" />
     </table>
     <table name="BUNDLES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -1123,9 +1123,9 @@
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_221" columns="id" />
+      <primary-key name="INTEG_242" columns="id" />
       <foreign-key name="FK_RESOURCES_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY6" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY10" unique="true" columns="ID" />
     </table>
     <table name="RIGHTS" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -1154,12 +1154,12 @@
       <column name="END_TIMESTAMP" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" />
       <column name="EVENT_TIMESTAMP" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" />
       <column name="TITLE" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <column name="TYPE" sqlType="VARCHAR" length="9" precision="0" nullable="true" jdbcType="12" />
+      <column name="SESSION_TYPE" sqlType="VARCHAR" length="9" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_228" columns="id" />
+      <primary-key name="INTEG_248" columns="id" />
       <foreign-key name="FK_SESSIONS_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCES" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY7" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY11" unique="true" columns="ID" />
     </table>
     <table name="SITES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -1187,9 +1187,9 @@
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
       <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_235" columns="id" />
+      <primary-key name="INTEG_255" columns="id" />
       <foreign-key name="FK_SLOTS_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCES" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY8" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY12" unique="true" columns="ID" />
     </table>
     <table name="SPHINX_DELTA" schema="" catalog="" type="TABLE">
       <column name="TABLE_NAME" sqlType="CHAR" length="31" precision="0" nullable="false" jdbcType="1" />
@@ -1363,6 +1363,7 @@
       <foreign-key name="USER_OWNS_USAGE" columns="USAGE_OWNER_ID" ref-table="USAGE_OWNERS" ref-schema="" ref-catalog="" ref-columns="ID" />
       <index name="USERS_IDX1" unique="false" columns="ID" />
       <index name="UK_USERS_NICKNAME" unique="true" columns="UPPERCASE_NICKNAME" />
+      <index name="UK_USERS_USAGE_OWNER" unique="true" columns="USAGE_OWNER_ID" />
       <index name="UK_USERS_USER_NAME" unique="true" columns="UPPERCASE_USER_NAME" />
     </table>
     <table name="USER_CONTEXTS" schema="" catalog="" type="TABLE">
