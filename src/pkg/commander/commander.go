@@ -68,7 +68,7 @@ func createCmd(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		addToCache(r, cmd)
+		addCacheItem(r, cmd)
 		return
 	}
 
@@ -123,7 +123,7 @@ func cmdListingJson(w http.ResponseWriter, r *http.Request) {
 func getCmd(r *http.Request) (call, query string) {
     const sep = "+"
     rawQuery := strings.Split(r.URL.RawQuery, sep, -1)
-testExecCmdFromCache(r, rawQuery[0])
+    getCacheItem(r, rawQuery[0])
 
     cmds := cmdListing(r)
 

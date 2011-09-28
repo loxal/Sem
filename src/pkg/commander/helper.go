@@ -11,7 +11,7 @@ import (
     "appengine/memcache"
 )
 
-func addToCache(r *http.Request, cmd *Cmd) {
+func addCacheItem(r *http.Request, cmd *Cmd) {
     c := appengine.NewContext(r)
     cmdJson, _ := json.Marshal(cmd)
     cmdItem := &memcache.Item {
@@ -27,7 +27,24 @@ func addToCache(r *http.Request, cmd *Cmd) {
     }
 }
 
-func testExecCmdFromCache(r *http.Request, cmdName string) {
-//c := appengine.NewContext(r)
+func updateCacheItem(r *http.Request) {
+//    c := appengine.NewContext(r)
+//    // Change the Value of the item
+//    item.Value = []byte("Where the buffalo roam")
+//    // Set the item, unconditionally
+//    if err := memcache.Set(c, item); err != nil {
+//        c.Debugf("error setting item: %v", err)
+//    }
+}
 
+func getCacheItem(r *http.Request, cmdName string) {
+    c := appengine.NewContext(r)
+
+    if item, err := memcache.Get(c, cmdName); err == memcache.ErrCacheMiss {
+        c.Debugf("item not in the cache: %q", cmdName)
+    } else if err != nil {
+        c.Debugf("error getting item: %v", err)
+    } else {
+        c.Debugf("cache item found: %q", item.Value)
+    }
 }
