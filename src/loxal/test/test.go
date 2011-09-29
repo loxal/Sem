@@ -27,22 +27,15 @@ func TestFlag(w http.ResponseWriter){
 var myFlag string
 var myFlag1 *string
 var myFlag2 string
-//flagSetPointer.StringVar(&myFlag, "g", "value of String", "usage of string")
-//var myFlag *string = flag.String("g", "value of String", "usage of string")
-//flag.StringVar(&myFlag, "nameOFString", "value of String", "usage of string")
-//flag.Parse()
 flagSetPointer := flag.NewFlagSet("google", flag.ContinueOnError)
-//var myFlag *string = flagSetPointer.String("f", "v", "u")
-//var myFlag = flagSetPointer.String("f", "", "u")
-flagSetPointer.StringVar(&myFlag, "flag", "v", "usage")
-myFlag1 = flagSetPointer.String("flag1", "v", "u")
-flagSetPointer.StringVar(&myFlag2, "mon", "DEFAULT VALUE", "u")
-//args:= []string{"g", "-g", "-g=g", "-g g", "-g u", *myFlag}
+flagSetPointer.StringVar(&myFlag, "flag", "DEFAULT VALUE", "usage")
+myFlag1 = flagSetPointer.String("flag1", "DEFAULT VALUE", "usage")
+flagSetPointer.StringVar(&myFlag2, "flag2", "DEFAULT VALUE 2", "usage")
 args:= []string{"-flag", "value", "-flag1", "flag1 Value", "-f", "vom"}
 flagSetPointer.Usage = func() {
     fmt.Fprintln(w, "[MY USAGE]")
 }
-//otherArgs := flagSetPointer.Args()
+otherArgs := flagSetPointer.Args()
  f:=flagSetPointer.Lookup("flag")
  fmt.Fprintln(w, f.Usage)
 
@@ -57,14 +50,10 @@ fmt.Fprint(w, " BAL ")
 //    fmt.Fprintf(w, "Arg: %v ", flagSetPointer.NArg());
 //    fmt.Fprintf(w, "Arg: %q ", flagSetPointer.Arg(0));
 //    fmt.Fprintf(w, "Arg: %q ", flagSetPointer.Arg(1));
-    fmt.Fprintf(w, "Arg: %q ", myFlag);
-    fmt.Fprintf(w, "Arg: %q ", *myFlag1);
-    fmt.Fprintf(w, "Arg: %q ", myFlag2);
-//    fmt.Fprintf(w, "Arg: %q ", flagSetPointer.Arg(3));
-//    fmt.Fprintf(w, "Arg: %q ", flagSetPointer.Arg(4));
-//    fmt.Fprintf(w, "Arg: %q ", flagSetPointer.Arg(5));
-//    fmt.Fprintf(w, "Arg: %q ", flagSetPointer.Arg(6));
-//    fmt.Fprintf(w, "Other: %v ", otherArgs);
+    fmt.Fprintf(w, "flag: %q ", myFlag);
+    fmt.Fprintf(w, "flag1: %q ", *myFlag1);
+    fmt.Fprintf(w, "flag2: %q ", myFlag2);
+    fmt.Fprintf(w, "Other: %v ", otherArgs);
 }
 
 type Point struct { x, y float64 }
