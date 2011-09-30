@@ -143,7 +143,8 @@ func getCmd(r *http.Request) (call, query string) {
 }
 
 func exec(w http.ResponseWriter, r *http.Request) {
-test.TestFlag(w)
+//test.TestFlag(w)
+fmt.Fprintf(w, test.ParseQuery("task --add='myNewTask bond'"))
 
     call, query := getCmd(r)
     http.Redirect(w, r, call + query, http.StatusFound)

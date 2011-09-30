@@ -9,6 +9,7 @@ import (
            //   then test whether flag.Init("name", 0) works
 	"fmt"
 	"http"
+	"strings"
 	"math"
 )
 
@@ -54,6 +55,21 @@ fmt.Fprint(w, " BAL ")
     fmt.Fprintf(w, "flag1: %q ", *myFlag1);
     fmt.Fprintf(w, "flag2: %q ", myFlag2);
     fmt.Fprintf(w, "Other: %v ", otherArgs);
+}
+
+func ParseQuery(query string) string {
+    const sep = " "
+    queryCmd := strings.Split(query, sep, -1)
+
+    var taskCmd string
+    fs := flag.NewFlagSet("", flag.ContinueOnError)
+    fs.StringVar(&taskCmd, "add", "my Default Task", "ADD A NEW TASK USAGE")
+
+    if err:=fs.Parse(queryCmd[1:]); err != nil {
+        panic("boom!!!")
+    }
+
+     return taskCmd
 }
 
 type Point struct { x, y float64 }
