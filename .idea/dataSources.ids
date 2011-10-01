@@ -186,10 +186,10 @@
       <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="SESSION_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_319" columns="id" />
+      <primary-key name="INTEG_1418" columns="id" />
       <foreign-key name="FK_BOOKINGS_SESSION_ID" columns="SESSION_ID" ref-table="SESSIONS" ref-schema="" ref-catalog="" ref-columns="ID" />
       <foreign-key name="FK_BOOKINGS_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY25" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY248" unique="true" columns="ID" />
     </table>
     <table name="BUNDLES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -1123,9 +1123,9 @@
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_322" columns="id" />
+      <primary-key name="INTEG_1421" columns="id" />
       <foreign-key name="FK_RESOURCES_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY26" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY249" unique="true" columns="ID" />
     </table>
     <table name="RIGHTS" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -1148,18 +1148,24 @@
       <foreign-key name="FK_RIGHT_HAS_ROLE" columns="RIGHT_ID" ref-table="RIGHTS" ref-schema="" ref-catalog="" ref-columns="ID" cascade-update="true" />
       <foreign-key name="FK_ROLE_HAS_RIGHT" columns="ROLE_ID" ref-table="ROLES" ref-schema="" ref-catalog="" ref-columns="ID" cascade-update="true" />
     </table>
+    <table name="SEQUENCE" schema="" catalog="" type="TABLE">
+      <column name="SEQ_NAME" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" />
+      <column name="SEQ_COUNT" sqlType="NUMERIC" length="18" precision="0" nullable="true" jdbcType="2" />
+      <primary-key name="INTEG_437" columns="seq_name" />
+      <index name="RDB$PRIMARY49" unique="true" columns="SEQ_NAME" />
+    </table>
     <table name="SESSIONS" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <column name="BEGIN_TIMESTAMP" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="END_TIMESTAMP" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="EVENT_TIMESTAMP" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="BEGIN_TIME" sqlType="TIME" length="8" precision="0" nullable="false" jdbcType="92" />
+      <column name="END_TIME" sqlType="TIME" length="8" precision="0" nullable="false" jdbcType="92" />
+      <column name="EVENT_DATE" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" />
       <column name="TITLE" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="SESSION_TYPE" sqlType="VARCHAR" length="9" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_328" columns="id" />
+      <primary-key name="INTEG_1427" columns="id" />
       <foreign-key name="FK_SESSIONS_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCES" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY27" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY250" unique="true" columns="ID" />
     </table>
     <table name="SITES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -1180,16 +1186,16 @@
     </table>
     <table name="SLOTS" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <column name="BEGIN_TIMESTAMP" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="DAY_TIMESTAMP" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="END_TIMESTAMP" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="EXCLUDE" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5" />
+      <column name="BEGIN_TIME" sqlType="TIME" length="8" precision="0" nullable="false" jdbcType="92" />
+      <column name="DAYOFWEEK" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="END_TIME" sqlType="TIME" length="8" precision="0" nullable="false" jdbcType="92" />
+      <column name="EXCLUDE_DATE" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91" />
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
       <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_335" columns="id" />
+      <primary-key name="INTEG_1433" columns="id" />
       <foreign-key name="FK_SLOTS_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCES" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY28" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY251" unique="true" columns="ID" />
     </table>
     <table name="SPHINX_DELTA" schema="" catalog="" type="TABLE">
       <column name="TABLE_NAME" sqlType="CHAR" length="31" precision="0" nullable="false" jdbcType="1" />
