@@ -10,6 +10,12 @@
   </component>
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="compAPI" />
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/../Lox" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/../Metro" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/../Lev" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/../Lom" includeSubdirectories="true" />
+    </excludeFromCompile>
     <resourceExtensions>
       <entry name=".+\.(properties|xml|html|dtd|tld)" />
       <entry name=".+\.(gif|png|jpeg|jpg)" />

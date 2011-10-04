@@ -3,10 +3,8 @@
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/../Lox/target/classes" />
     <output-test url="file://$MODULE_DIR$/../Lox/target/test-classes" />
-    <content url="file://$MODULE_DIR$">
-      <excludeFolder url="file://$MODULE_DIR$/src/static/module" />
-      <excludeFolder url="file://$MODULE_DIR$/target" />
-    </content>
+    <exclude-output />
+    <content url="file://$MODULE_DIR$" />
     <orderEntry type="jdk" jdkName="1.6" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
