@@ -2,14 +2,10 @@
   <configuration default="false" name="local Jetty" type="JettyConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="Jetty 6.1.26">
     <option name="OPEN_IN_BROWSER" value="false" />
     <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/Verp/" />
-    <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
-    <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+    <option name="UPDATING_POLICY" value="restart-server" />
     <deployment>
-      <artifact name="Verp:war remote exploded">
-        <settings DEPLOYMENT_METHOD="contexts">
-          <option name="contextRoot" value="/Verp" />
-          <option name="defaultContextRoot" value="false" />
-        </settings>
+      <artifact name="Verp:war exploded">
+        <settings DEPLOYMENT_METHOD="contexts" />
       </artifact>
     </deployment>
     <server-settings>
@@ -187,7 +183,9 @@
       </SHUTDOWN>
     </ConfigurationWrapper>
     <method>
-      <option name="BuildArtifacts" enabled="true" />
+      <option name="BuildArtifacts" enabled="true">
+        <artifact name="Verp:war exploded" />
+      </option>
     </method>
   </configuration>
 </component>
