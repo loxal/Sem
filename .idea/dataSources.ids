@@ -2376,7 +2376,7 @@
     <extra-name-characters>$</extra-name-characters>
     <identifier-quote-string>"</identifier-quote-string>
     <jdbc-driver>org.firebirdsql.jdbc.FBDriver</jdbc-driver>
-    <jdbc-url>jdbc:firebirdsql:DNS-DPLMS-TEST:dpLMS20</jdbc-url>
+    <jdbc-url>jdbc:firebirdsql:DNS-DPLMS-TEST:dpLMS20?charSet=UTF-8</jdbc-url>
     <user-name>SYSDBA</user-name>
     <user-password>df9edf98dfcbdfd8dfc7dfd9dfdedfd8dfc5dfc4dfcd</user-password>
     <table-pattern>.*</table-pattern>
