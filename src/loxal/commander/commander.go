@@ -63,7 +63,7 @@ func createCmd(w http.ResponseWriter, r *http.Request) {
 			Created:  datastore.SecondsToTime(time.Seconds()),
 		}
 
-		if _, err := datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd); err != nil {
+		if _, err := datastore.Put(c, datastore.NewIncompleteKey(c, "Cmd", nil), cmd); err != nil {
 			serveError(c, w, err)
 			return
 		}
@@ -122,7 +122,7 @@ func cmdListingJson(w http.ResponseWriter, r *http.Request) {
 //func exec(cmd string) (call string) {
 func getCmd(r *http.Request) (call, query string) {
     const sep = "+"
-    rawQuery := strings.Split(r.URL.RawQuery, sep, -1)
+    rawQuery := strings.Split(r.URL.RawQuery, sep)
     getCacheItem(r, rawQuery[0])
 
     cmds := cmdListing(r)

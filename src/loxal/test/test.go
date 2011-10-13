@@ -59,7 +59,7 @@ fmt.Fprint(w, " BAL ")
 
 func ParseQuery(query string) string {
     const sep = " "
-    queryCmd := strings.Split(query, sep, -1)
+    queryCmd := strings.Split(query, sep)
 
     var taskCmd string
     fs := flag.NewFlagSet("", flag.ContinueOnError)
