@@ -25,10 +25,10 @@ var webCmdTests = []webCmdTest{
 }
 
 type cmdTest struct {
-    name, restCall, desc string
+	name, restCall, desc string
 }
 
-var cmdTests = []cmdTest {
+var cmdTests = []cmdTest{
 	cmdTest{"c", "https://mail.google.com/mail/?shva=1#compose", "Compose Gmail"},
 	cmdTest{"t", "http://twitter.com", "Twitter"},
 	cmdTest{"sem", "https://github.com/loxal/Sem", "GitHub: Sem Project"},
@@ -38,14 +38,14 @@ var cmdTests = []cmdTest {
 
 func TestCmdCreation(t *testing.T) {
 
-    cmd := &Cmd {
-        Name: "blub",
-        RESTcall: "blab",
-        Desc: "....",
-    }
+	cmd := &Cmd{
+		Name:     "blub",
+		RESTcall: "blab",
+		Desc:     "....",
+	}
 
-    c := appengine.NewContext(&http.Request{Header: make(http.Header)})
-    c.Logf("%#v", c)
-    c.Logf("%#v", cmd)
-    datastore.Put(c, datastore.NewIncompleteKey("Cmd"), cmd)
+	c := appengine.NewContext(&http.Request{Header: make(http.Header)})
+	c.Logf("%#v", c)
+	c.Logf("%#v", cmd)
+	datastore.Put(c, datastore.NewIncompleteKey(c, "Cmd", nil), cmd)
 }
