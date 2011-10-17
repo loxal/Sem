@@ -4,7 +4,7 @@
     <option name="ACTIVITY_CLASS" value="loxal.lom.Wrapper" />
     <option name="MODE" value="specific_activity" />
     <option name="DEPLOY" value="true" />
-    <option name="CHOOSE_DEVICE_MANUALLY" value="false" />
+    <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
     <option name="PREFERRED_AVD" value="HVGA-2.3.3-API10" />
     <option name="COMMAND_LINE" value="-wipe-data -no-boot-anim" />
     <option name="WIPE_USER_DATA" value="false" />
