@@ -1867,132 +1867,65 @@
       <primary-key name="PK_WEB_CONTACT_ITEM_TYPES" columns="id" />
     </table>
   </data-source>
-  <data-source source="LOCAL" name="Verp@MySQL.sky" product="MySQL" version="5.5.10" jdbc-version="4.0" driver-version="mysql-connector-java-5.1.15 ( Revision: ${bzr.revision-id} )" uuid="c2724374-ad77-42ef-b282-3eed527a405c">
+  <data-source source="LOCAL" name="Verp@MySQL.sky" product="MySQL" version="5.0.77" jdbc-version="4.0" driver-version="mysql-connector-java-5.1.17 ( Revision: ${bzr.revision-id} )" uuid="c2724374-ad77-42ef-b282-3eed527a405c">
     <extra-name-characters>#@</extra-name-characters>
     <identifier-quote-string>`</identifier-quote-string>
     <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
     <jdbc-url>jdbc:mysql://sky.loxal.net/verp</jdbc-url>
     <user-name>verp</user-name>
     <user-password>dfeddfc4dfc5df9fdfc6dfc3dfd2dfc3</user-password>
+    <default-dialect>MySQL</default-dialect>
     <libraries>
       <library>
         <url>jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.17/mysql-connector-java-5.1.17.jar!/</url>
       </library>
     </libraries>
-    <table name="RESOURCE" schema="" catalog="verp" type="TABLE">
-      <column name="ID" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true" />
-      <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
-      <column name="USER_ID" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" />
-      <primary-key name="PRIMARY" columns="id" />
-      <foreign-key name="FK_RESOURCE_USER_ID" columns="USER_ID" ref-table="USERS2" ref-schema="" ref-catalog="verp" ref-columns="ID" />
-    </table>
-    <table name="SESSION" schema="" catalog="verp" type="TABLE">
-      <column name="ID" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true" />
-      <column name="ENDTIME" sqlType="TIME" length="8" precision="0" nullable="false" jdbcType="92" />
-      <column name="EVENTDATE" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="STARTTIME" sqlType="TIME" length="8" precision="0" nullable="true" jdbcType="92" />
-      <column name="TITLE" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <column name="TYPE" sqlType="VARCHAR" length="9" precision="0" nullable="true" jdbcType="12" />
-      <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
-      <column name="RESOURCE_ID" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5" />
-      <primary-key name="PRIMARY" columns="id" />
-      <foreign-key name="FK_SESSION_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCE" ref-schema="" ref-catalog="verp" ref-columns="ID" />
-    </table>
-    <table name="SESSION_PT" schema="" catalog="verp" type="TABLE">
-      <column name="TEMPLATE" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
-      <column name="SESSION_ID" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" />
-      <primary-key name="PRIMARY" columns="session_id" />
-      <foreign-key name="FK_SESSION_PT_SESSION_ID" columns="SESSION_ID" ref-table="SESSION" ref-schema="" ref-catalog="verp" ref-columns="ID" />
-    </table>
-    <table name="SESSION_VC" schema="" catalog="verp" type="TABLE">
-      <column name="TEMPLATE" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
-      <column name="SESSION_ID" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" />
-      <primary-key name="PRIMARY" columns="session_id" />
-      <foreign-key name="FK_SESSION_VC_SESSION_ID" columns="SESSION_ID" ref-table="SESSION" ref-schema="" ref-catalog="verp" ref-columns="ID" />
-    </table>
-    <table name="SLOT" schema="" catalog="verp" type="TABLE">
-      <column name="ID" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true" />
-      <column name="DAYOFWEEK" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91" />
-      <column name="ENDTIME" sqlType="TIME" length="8" precision="0" nullable="true" jdbcType="92" />
-      <column name="EXCLUDE" sqlType="BIT" length="0" precision="0" nullable="true" jdbcType="-7" default="0" />
-      <column name="SCHEDULE" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
-      <column name="STARTTIME" sqlType="TIME" length="8" precision="0" nullable="true" jdbcType="92" />
-      <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
-      <column name="RESOURCE_ID" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" />
-      <primary-key name="PRIMARY" columns="id" />
-      <foreign-key name="FK_SLOT_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCE" ref-schema="" ref-catalog="verp" ref-columns="ID" />
-    </table>
-    <table name="USERS2" schema="" catalog="verp" type="TABLE">
-      <column name="ID" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true" />
-      <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
-      <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
-      <primary-key name="PRIMARY" columns="id" />
-    </table>
-  </data-source>
-  <data-source source="LOCAL" name="sky:sem" product="MySQL" version="5.0.77" jdbc-version="4.0" driver-version="mysql-connector-java-5.1.17 ( Revision: ${bzr.revision-id} )" uuid="b58a6626-4c98-4a9e-85b9-c4bb1cbbc950">
-    <extra-name-characters>#@</extra-name-characters>
-    <identifier-quote-string>`</identifier-quote-string>
-    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-    <jdbc-url>jdbc:mysql://sky.loxal.net/sem</jdbc-url>
-    <user-name>sem</user-name>
-    <user-password>dfeddfc4dfc5df9fdfc6dfc3dfd2dfc3</user-password>
-    <libraries>
-      <library>
-        <url>jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.17/mysql-connector-java-5.1.17.jar!/</url>
-      </library>
-    </libraries>
-    <table name="BOOKING" schema="" catalog="sem" type="TABLE">
+    <table name="BOOKINGS" schema="" catalog="verp" type="TABLE">
       <column name="ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
-      <column name="BOOKEDTIME" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93" />
-      <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="BOOKED_TIMESTAMP" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93" />
+      <column name="VERSION_RF_SPECIFIC" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="SESSION_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="USER_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
       <primary-key name="PRIMARY" columns="id" />
-      <index name="FK_BOOKING_USER_ID" unique="false" columns="USER_ID" />
-      <index name="FK_BOOKING_SESSION_ID" unique="false" columns="SESSION_ID" />
+      <index name="FK_BOOKINGS_SESSION_ID" unique="false" columns="SESSION_ID" />
+      <index name="FK_BOOKINGS_USER_ID" unique="false" columns="USER_ID" />
     </table>
-    <table name="RESOURCE" schema="" catalog="sem" type="TABLE">
+    <table name="RESOURCES" schema="" catalog="verp" type="TABLE">
       <column name="ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="VERSION_RF_SPECIFIC" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="USER_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
       <primary-key name="PRIMARY" columns="id" />
-      <index name="FK_RESOURCE_USER_ID" unique="false" columns="USER_ID" />
+      <index name="FK_RESOURCES_USER_ID" unique="false" columns="USER_ID" />
     </table>
-    <table name="SEQUENCE" schema="" catalog="sem" type="TABLE">
-      <column name="SEQ_NAME" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" />
-      <column name="SEQ_COUNT" sqlType="DECIMAL" length="38" precision="0" nullable="true" jdbcType="3" />
-      <primary-key name="PRIMARY" columns="seq_name" />
-    </table>
-    <table name="SESSION" schema="" catalog="sem" type="TABLE">
+    <table name="SESSIONS" schema="" catalog="verp" type="TABLE">
       <column name="ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
-      <column name="BEGINTIME" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="ENDTIME" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="EVENTDATE" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="BEGIN_TIMESTAMP" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="END_TIMESTAMP" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="EVENT_DATE" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" />
       <column name="TITLE" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <column name="TYPE" sqlType="VARCHAR" length="9" precision="0" nullable="true" jdbcType="12" />
-      <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="SESSION_TYPE" sqlType="VARCHAR" length="9" precision="0" nullable="true" jdbcType="12" />
+      <column name="VERSION_RF_SPECIFIC" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
       <primary-key name="PRIMARY" columns="id" />
-      <index name="FK_SESSION_RESOURCE_ID" unique="false" columns="RESOURCE_ID" />
+      <index name="FK_SESSIONS_RESOURCE_ID" unique="false" columns="RESOURCE_ID" />
     </table>
-    <table name="SLOT" schema="" catalog="sem" type="TABLE">
+    <table name="SLOTS" schema="" catalog="verp" type="TABLE">
       <column name="ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
-      <column name="BEGINTIME" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="DAYOFWEEK" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="ENDTIME" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
-      <column name="EXCLUDE" sqlType="BIT" length="0" precision="0" nullable="true" jdbcType="-7" default="0" />
+      <column name="BEGIN_TIMESTAMP" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="DAYOFWEEK" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="END_TIMESTAMP" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" />
+      <column name="EXCLUDE_DATE" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91" />
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
-      <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="VERSION_RF_SPECIFIC" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
       <primary-key name="PRIMARY" columns="id" />
-      <index name="FK_SLOT_RESOURCE_ID" unique="false" columns="RESOURCE_ID" />
+      <index name="FK_SLOTS_RESOURCE_ID" unique="false" columns="RESOURCE_ID" />
     </table>
-    <table name="USER" schema="" catalog="sem" type="TABLE">
+    <table name="USERS" schema="" catalog="verp" type="TABLE">
       <column name="ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
-      <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
-      <column name="VERSION" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="USER_NAME" sqlType="VARCHAR" length="80" precision="0" nullable="false" jdbcType="12" />
+      <column name="VERSION_RF_SPECIFIC" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
       <primary-key name="PRIMARY" columns="id" />
     </table>
   </data-source>

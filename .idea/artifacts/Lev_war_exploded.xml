@@ -13,7 +13,6 @@
           <element id="library" level="project" name="Maven: org.json:json:20090211" />
           <element id="library" level="project" name="Maven: org.eclipse.persistence:eclipselink:2.3.0" />
           <element id="library" level="project" name="Maven: org.eclipse.persistence:javax.persistence:2.0.3" />
-          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.17" />
         </element>
       </element>
       <element id="gwt-compiler-output" facet="Lev/gwt/GWT" />
