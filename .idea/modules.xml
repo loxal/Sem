@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../Lev/Lev.iml" filepath="$PROJECT_DIR$/../Lev/Lev.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../Lom/Android/Lom.iml" filepath="$PROJECT_DIR$/../Lom/Android/Lom.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Lox/Lox.iml" filepath="$PROJECT_DIR$/../Lox/Lox.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Metro/Metro.iml" filepath="$PROJECT_DIR$/../Metro/Metro.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sem.iml" filepath="$PROJECT_DIR$/Sem.iml" />
