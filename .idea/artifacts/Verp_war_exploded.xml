@@ -12,7 +12,7 @@
           <element id="library" level="project" name="Maven: com.google.web.bindery:requestfactory-server:2.4.0" />
           <element id="library" level="project" name="Maven: org.json:json:20090211" />
           <element id="library" level="project" name="Maven: org.eclipse.persistence:eclipselink:2.3.0" />
-          <element id="library" level="project" name="Maven: org.eclipse.persistence:javax.persistence:2.0.3" />
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:javax.persistence:2.0.3.v201010191057" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-validator:4.2.0.Final" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.6.1" />
           <element id="library" level="project" name="Maven: org.firebirdsql.jdbc:jaybird-full:2.1.6" />
