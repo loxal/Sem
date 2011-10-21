@@ -16,6 +16,7 @@
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-validator:4.2.0.Final" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.6.1" />
           <element id="library" level="project" name="Maven: org.firebirdsql.jdbc:jaybird-full:2.1.6" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-simple:1.6.3" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.18" />
         </element>
       </element>
