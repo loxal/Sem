@@ -10,7 +10,7 @@
     <deployment>
       <artifact name="Verp:war exploded">
         <settings>
-          <option name="CONTEXT_PATH" value="/Verp" />
+          <option name="CONTEXT_PATH" value="/verp" />
         </settings>
       </artifact>
     </deployment>
