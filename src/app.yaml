@@ -3,9 +3,9 @@ version: a
 runtime: go
 api_version: 3
 
-builtins:
-- remote_api: on
-- datastore_admin: on
+#builtins:
+#- remote_api: on
+#- datastore_admin: on
 
 handlers:
 # should precede ".*" (main URL handler)
