@@ -95,15 +95,16 @@ func cmdHasInvalidCharacters(name string) (ok bool) {
 	return
 }
 
-func cmdListing(r *http.Request) (cmds []*Cmd) {
+func listCmds(r *http.Request) (cmds []*Cmd) {
 	c := appengine.NewContext(r)
+	c.Debugf("PASSED")
 	datastore.NewQuery("Cmd").Filter("Creator =", getUser(c)).GetAll(c, &cmds)
 
 	return cmds
 }
 
-func cmdListingJson(w http.ResponseWriter, r *http.Request) {
-	cmds := cmdListing(r)
+func listCmdsAsJSON(w http.ResponseWriter, r *http.Request) {
+	cmds := listCmds(r)
 
 	w.Header().Set("Content-Type", contentTypeJSON)
 	fmt.Fprint(w, `{"cmds": [`)
@@ -125,7 +126,7 @@ func getCmd(r *http.Request) (call, query string) {
     rawQuery := strings.Split(r.URL.RawQuery, sep)
     getCacheItem(r, rawQuery[0])
 
-    cmds := cmdListing(r)
+    cmds := listCmds(r)
 
     for i := range cmds {
         if cmds[i].Name == rawQuery[0] {
@@ -272,7 +273,7 @@ func init() {
 	http.HandleFunc(cmdDeleteHandler, cmdDeletion)
 	http.HandleFunc(cmdUpdateHandler, cmdUpdation)
 	http.HandleFunc(cmdCreateHandler, createCmd)
-	http.HandleFunc(cmdListHandler, cmdListingJson)
+	http.HandleFunc(cmdListHandler, listCmdsAsJSON)
 	http.HandleFunc("/cmd", cmd)
 	http.HandleFunc("/cmd/exec", exec)
 }

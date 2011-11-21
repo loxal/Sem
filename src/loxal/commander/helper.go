@@ -25,6 +25,7 @@ func addCacheItem(r *http.Request, cmd *Cmd) {
     } else if err != nil {
         c.Debugf("error adding item: %v", err)
     }
+    c.Debugf("CACHED")
 }
 
 func updateCacheItem(r *http.Request) {
