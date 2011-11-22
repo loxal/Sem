@@ -97,7 +97,6 @@ func cmdHasInvalidCharacters(name string) (ok bool) {
 
 func listCmds(r *http.Request) (cmds []*Cmd) {
 	c := appengine.NewContext(r)
-	c.Debugf("PASSED")
 	datastore.NewQuery("Cmd").Filter("Creator =", getUser(c)).GetAll(c, &cmds)
 
 	return cmds
