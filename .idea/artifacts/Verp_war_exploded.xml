@@ -17,7 +17,6 @@
           <element id="library" level="project" name="Maven: org.firebirdsql.jdbc:jaybird-full:2.1.6" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-simple:1.6.3" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.6.3" />
-          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.18" />
         </element>
       </element>
       <element id="gwt-compiler-output" facet="Verp/gwt/GWT" />
