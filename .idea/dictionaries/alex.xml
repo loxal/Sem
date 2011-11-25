@@ -4,6 +4,7 @@
       <w>appengine</w>
       <w>async</w>
       <w>codehaus</w>
+      <w>correlator</w>
       <w>datepicker</w>
       <w>deployer</w>
       <w>dpinettest</w>
