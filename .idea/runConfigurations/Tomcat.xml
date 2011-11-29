@@ -5,7 +5,6 @@
     <option name="COMMON_VM_ARGUMENTS" value="-ea:dp.verp..." />
     <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
     <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
-    <option name="UPDATING_POLICY" value="redeploy-artifacts" />
     <deployment>
       <artifact name="Verp:war exploded">
         <settings>
