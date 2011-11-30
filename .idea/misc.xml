@@ -53,7 +53,7 @@
     </option>
     <option name="activeProfiles">
       <list>
-        <option value="test" />
+        <option value="dev" />
       </list>
     </option>
   </component>
