@@ -6,7 +6,6 @@
     <option name="RUN_PAGE" value="/planer/index.html" />
     <option name="GWT_MODULE" value="dp.verp.planer.Planer" />
     <option name="OPEN_IN_BROWSER" value="false" />
-    <option name="UPDATE_RESOURCES_ON_FRAME_DEACTIVATION" value="true" />
     <RunnerSettings RunnerId="Debug">
       <option name="DEBUG_PORT" value="61533" />
       <option name="TRANSPORT" value="0" />
