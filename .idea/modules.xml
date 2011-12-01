@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/Sem.iml" filepath="$PROJECT_DIR$/Sem.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Vel/Vel.iml" filepath="$PROJECT_DIR$/../Vel/Vel.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Verp/Verp.iml" filepath="$PROJECT_DIR$/../Verp/Verp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Lox/lox.iml" filepath="$PROJECT_DIR$/../Lox/lox.iml" />
     </modules>
   </component>
 </project>

@@ -7,7 +7,6 @@
     <user-name>SYSDBA</user-name>
     <user-password>dfc7dfcbdfd9dfdedfcfdfd8dfc1dfcfdfd3</user-password>
     <table-pattern>.*</table-pattern>
-    <default-dialect>MySQL</default-dialect>
     <libraries>
       <library>
         <url>jar://$MAVEN_REPOSITORY$/org/firebirdsql/jdbc/jaybird-full/2.1.6/jaybird-full-2.1.6.jar!/</url>
