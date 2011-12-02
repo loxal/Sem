@@ -4,7 +4,6 @@
     <option name="VM_PARAMETERS" value="-Xmx512M -Duser.timezone=GMT -Djava.util.logging.config.file=/Users/alex/my/project/Verp/src/logging.properties" />
     <option name="SHELL_PARAMETERS" value="-logLevel INFO" />
     <option name="RUN_PAGE" value="/planer/index.html" />
-    <option name="GWT_MODULE" value="dp.verp.planer.Planer" />
     <option name="OPEN_IN_BROWSER" value="false" />
     <RunnerSettings RunnerId="Debug">
       <option name="DEBUG_PORT" value="61533" />
