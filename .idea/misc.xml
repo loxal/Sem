@@ -44,9 +44,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/../../Verp/pom.xml" />
-        <option value="$PROJECT_DIR$/../../Lev/pom.xml" />
-        <option value="$PROJECT_DIR$/../../Vel/pom.xml" />
         <option value="$PROJECT_DIR$/../Vel/pom.xml" />
         <option value="$PROJECT_DIR$/../Verp/pom.xml" />
         <option value="$PROJECT_DIR$/../Lox/pom.xml" />
@@ -56,11 +53,6 @@
       <list>
         <option value="dev" />
       </list>
-    </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/../Lox/pom.xml" />
-      </set>
     </option>
   </component>
   <component name="NullableNotNullManager">
