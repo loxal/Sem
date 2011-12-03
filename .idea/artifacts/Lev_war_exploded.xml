@@ -2,7 +2,6 @@
   <artifact type="exploded-war" name="Lev:war exploded">
     <output-path>$PROJECT_DIR$/../Lev/target/Lev</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="Lev/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="Lev" />
