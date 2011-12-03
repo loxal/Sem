@@ -42,8 +42,6 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/pom.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/../Vel/pom.xml" />
         <option value="$PROJECT_DIR$/../Verp/pom.xml" />
         <option value="$PROJECT_DIR$/../Lox/pom.xml" />
