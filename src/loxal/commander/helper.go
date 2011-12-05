@@ -42,7 +42,7 @@ func getCacheItem(r *http.Request, cmdName string) {
     c := appengine.NewContext(r)
 
     if item, err := memcache.Get(c, cmdName); err == memcache.ErrCacheMiss {
-        c.Debugf("item not in the cache: %q", cmdName)
+        c.Debugf("item not in cache: %q", cmdName)
     } else if err != nil {
         c.Debugf("error getting item: %v", err)
     } else {
