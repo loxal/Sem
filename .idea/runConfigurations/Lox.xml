@@ -3,7 +3,7 @@
     <module name="Lox" />
     <option name="VM_PARAMETERS" value="-Xmx512m " />
     <option name="SHELL_PARAMETERS" value="-logLevel INFO" />
-    <option name="RUN_PAGE" value="/loxal.lox.service.meta.Meta/main.html" />
+    <option name="RUN_PAGE" value="/loxal.lox.service.meta.Meta" />
     <option name="SERVER_ID" value="app-engine:AppEngine Dev" />
     <option name="OPEN_IN_BROWSER" value="false" />
     <RunnerSettings RunnerId="Debug">
