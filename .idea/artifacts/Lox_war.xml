@@ -3,11 +3,6 @@
     <output-path>$PROJECT_DIR$/../Lox/target</output-path>
     <root id="archive" name="Lox.war">
       <element id="artifact" artifact-name="Lox:war exploded" />
-      <element id="directory" name="WEB-INF">
-        <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: com.googlecode.objectify:objectify:3.1" />
-        </element>
-      </element>
     </root>
   </artifact>
 </component>

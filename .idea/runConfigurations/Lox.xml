@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Lox" type="GWT.ConfigurationType" factoryName="GWT Configuration">
     <module name="Lox" />
-    <option name="VM_PARAMETERS" value="-Xmx256m " />
+    <option name="VM_PARAMETERS" value="-Xmx512m " />
     <option name="SHELL_PARAMETERS" value="-logLevel INFO" />
     <option name="RUN_PAGE" value="/loxal.lox.service.meta.Meta/main.html" />
     <option name="SERVER_ID" value="app-engine:AppEngine Dev" />
