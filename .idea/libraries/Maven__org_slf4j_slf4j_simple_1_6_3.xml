@@ -3,7 +3,11 @@
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-simple/1.6.3/slf4j-simple-1.6.3.jar!/" />
     </CLASSES>
-    <JAVADOC />
-    <SOURCES />
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-simple/1.6.3/slf4j-simple-1.6.3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-simple/1.6.3/slf4j-simple-1.6.3-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>
