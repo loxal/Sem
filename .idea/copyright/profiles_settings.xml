@@ -1,14 +1,10 @@
 <component name="CopyrightManager">
   <settings default="Loxal - BSD">
     <module2copyright>
-      <element module="dp" copyright="dp" />
-      <element module="Sem" copyright="Loxal - BSD" />
-      <element module="Vel" copyright="Loxal - BSD" />
-      <element module="Lev" copyright="Loxal - Apache License V2" />
-      <element module="Lom" copyright="Loxal - BSD" />
       <element module="All" copyright="Loxal - BSD" />
-      <element module="Metro" copyright="Loxal - BSD" />
-      <element module="Lox" copyright="Loxal - Apache License V2" />
+      <element module="Lox" copyright="Loxal - BSD" />
+      <element module="Vel" copyright="Loxal - BSD" />
+      <element module="dp" copyright="dp" />
     </module2copyright>
     <LanguageOptions name="HTML">
       <option name="fileLocation" value="2" />

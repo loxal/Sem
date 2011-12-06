@@ -1,3 +1,0 @@
-<component name="DependencyValidationManager">
-  <scope name="static" pattern="file:src/static//*||file:src/app.yaml" />
-</component>
