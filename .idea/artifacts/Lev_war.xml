@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="Lev:war">
-    <output-path>$PROJECT_DIR$/../Lev/target</output-path>
-    <root id="archive" name="Lev.war">
-      <element id="artifact" artifact-name="Lev:war exploded" />
-    </root>
-  </artifact>
-</component>
