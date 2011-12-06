@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="Maven: com.googlecode.objectify:objectify:3.1">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../Lox/lib/objectify-3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../opt/objectify/objectify-3.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
