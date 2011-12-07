@@ -9,7 +9,9 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="gwt" url="file://$PROJECT_DIR$/../Lox" />
+    <file type="gwt" url="file://$PROJECT_DIR$/../Verp" />
     <file type="web" url="file://$PROJECT_DIR$/../Lox" />
+    <file type="web" url="file://$PROJECT_DIR$/../Verp" />
   </component>
   <component name="HudsonMonitorComponent">
     <option name="timeOutTextField" value="30" />
