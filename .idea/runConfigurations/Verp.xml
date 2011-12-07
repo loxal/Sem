@@ -32,10 +32,6 @@
     <ConfigurationWrapper RunnerId="JavaRebel" />
     <ConfigurationWrapper RunnerId="JavaRebel Debug" />
     <ConfigurationWrapper RunnerId="Run" />
-    <method>
-      <option name="BuildArtifacts" enabled="false">
-        <artifact name="verp:war GWT-less" />
-      </option>
-    </method>
+    <method />
   </configuration>
 </component>
