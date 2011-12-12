@@ -3,7 +3,7 @@
     <module name="Vel" />
     <option name="VM_PARAMETERS" value="-Xmx256m " />
     <option name="SHELL_PARAMETERS" value="-port 8000 -codeServerPort 9000 -logLevel INFO" />
-    <option name="RUN_PAGE" value="pay/index.html" />
+    <option name="RUN_PAGE" value="CV/index.html" />
     <option name="OPEN_IN_BROWSER" value="false" />
     <option name="UPDATE_RESOURCES_ON_FRAME_DEACTIVATION" value="true" />
     <RunnerSettings RunnerId="Debug">
