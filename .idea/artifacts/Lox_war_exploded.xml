@@ -16,7 +16,7 @@
           <element id="library" level="project" name="Maven: org.eclipse.persistence:javax.persistence:2.0.3.v201010191057" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-validator:4.2.0.Final" />
           <element id="library" level="project" name="Maven: com.google.appengine:appengine-api-1.0-sdk:1.6.0" />
-          <element id="library" level="project" name="Maven: com.googlecode.objectify:objectify:3.1" />
+          <element id="library" level="project" name="Maven: com.google.appengine:appengine-jsr107cache:1.6.0" />
         </element>
       </element>
       <element id="gwt-compiler-output" facet="Lox/gwt/GWT" />
