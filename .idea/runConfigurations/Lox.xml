@@ -12,6 +12,8 @@
       <option name="LOCAL" value="true" />
     </RunnerSettings>
     <ConfigurationWrapper RunnerId="Debug" />
-    <method />
+    <method>
+      <option name="Make" enabled="false" />
+    </method>
   </configuration>
 </component>
