@@ -6,23 +6,19 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="Lox" />
+          <element id="jpa-descriptors" facet="Lox/jpa/JPA" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: javax.validation:validation-api:1.0.0.GA" />
           <element id="library" level="project" name="Maven: com.google.gwt:gwt-servlet:2.4.0" />
-          <element id="library" level="project" name="Maven: com.google.web.bindery:requestfactory-server:2.4.0" />
-          <element id="library" level="project" name="Maven: org.json:json:20090211" />
-          <element id="library" level="project" name="Maven: org.eclipse.persistence:eclipselink:2.4.0-M8" />
-          <element id="library" level="project" name="Maven: org.eclipse.persistence:javax.persistence:2.0.3.v201010191057" />
-          <element id="library" level="project" name="Maven: org.hibernate:hibernate-validator:4.2.0.Final" />
           <element id="library" level="project" name="Maven: com.google.appengine:appengine-api-1.0-sdk:1.6.1" />
-          <element id="library" level="project" name="Maven: com.google.appengine:appengine-jsr107cache:1.6.1" />
-          <element id="library" level="project" name="Maven: com.google.appengine.orm:datanucleus-appengine:2.0.0-RC2" />
-          <element id="library" level="project" name="Maven: org.datanucleus:datanucleus-core:3.0.4" />
-          <element id="library" level="project" name="Maven: org.datanucleus:datanucleus-api-jpa:3.0.4" />
-          <element id="library" level="project" name="Maven: org.apache.geronimo.specs:geronimo-jpa_2.0_spec:1.0" />
-          <element id="library" level="project" name="Maven: javax.jdo:jdo-api:3.0" />
-          <element id="library" level="project" name="Maven: javax.transaction:transaction-api:1.1" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../sdk/gae.java/lib/user/orm/jdo2-api-2.3-eb.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../sdk/gae.java/lib/user/orm/geronimo-jta_1.1_spec-1.1.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../sdk/gae.java/lib/user/orm/geronimo-jpa_3.0_spec-1.1.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../sdk/gae.java/lib/user/orm/datanucleus-jpa-1.1.5.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../sdk/gae.java/lib/user/orm/datanucleus-core-1.1.5.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../sdk/gae.java/lib/user/orm/datanucleus-appengine-1.0.10.final.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../sdk/gae.java/lib/tools/orm/datanucleus-enhancer-1.1.4.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../sdk/gae.java/lib/tools/orm/asm-3.1.jar" />
         </element>
       </element>
       <element id="gwt-compiler-output" facet="Lox/gwt/GWT" />

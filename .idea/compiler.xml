@@ -6,7 +6,7 @@
     <option name="cmdLineParams" value="-target 1.6" />
   </component>
   <component name="CompilerAPISettings">
-    <option name="ADDITIONAL_OPTIONS_STRING" value="-target 1.6" />
+    <option name="MAXIMUM_HEAP_SIZE" value="256" />
   </component>
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="compAPI" />
@@ -28,7 +28,6 @@
     </wildcardResourcePatterns>
     <annotationProcessing enabled="true" useClasspath="true">
       <processorPath value="$PROJECT_DIR$/../../sdk/gwt/requestfactory-apt.jar" />
-      <processModule name="Lox" generatedDirName=".requestfactory-apt_generated" />
       <processModule name="Verp" generatedDirName=".requestfactory-apt_generated" />
     </annotationProcessing>
   </component>
