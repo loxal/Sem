@@ -12,11 +12,17 @@
           <element id="library" level="project" name="Maven: com.google.gwt:gwt-servlet:2.4.0" />
           <element id="library" level="project" name="Maven: com.google.web.bindery:requestfactory-server:2.4.0" />
           <element id="library" level="project" name="Maven: org.json:json:20090211" />
-          <element id="library" level="project" name="Maven: org.eclipse.persistence:eclipselink:2.3.1" />
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:eclipselink:2.4.0-M8" />
           <element id="library" level="project" name="Maven: org.eclipse.persistence:javax.persistence:2.0.3.v201010191057" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-validator:4.2.0.Final" />
-          <element id="library" level="project" name="Maven: com.google.appengine:appengine-api-1.0-sdk:1.6.0" />
-          <element id="library" level="project" name="Maven: com.google.appengine:appengine-jsr107cache:1.6.0" />
+          <element id="library" level="project" name="Maven: com.google.appengine:appengine-api-1.0-sdk:1.6.1" />
+          <element id="library" level="project" name="Maven: com.google.appengine:appengine-jsr107cache:1.6.1" />
+          <element id="library" level="project" name="Maven: com.google.appengine.orm:datanucleus-appengine:2.0.0-RC2" />
+          <element id="library" level="project" name="Maven: org.datanucleus:datanucleus-core:3.0.4" />
+          <element id="library" level="project" name="Maven: org.datanucleus:datanucleus-api-jpa:3.0.4" />
+          <element id="library" level="project" name="Maven: org.apache.geronimo.specs:geronimo-jpa_2.0_spec:1.0" />
+          <element id="library" level="project" name="Maven: javax.jdo:jdo-api:3.0" />
+          <element id="library" level="project" name="Maven: javax.transaction:transaction-api:1.1" />
         </element>
       </element>
       <element id="gwt-compiler-output" facet="Lox/gwt/GWT" />
