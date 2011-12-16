@@ -15,8 +15,7 @@
           <element id="library" level="project" name="Maven: javax.transaction:transaction-api:1.1" />
           <element id="library" level="project" name="Maven: org.apache.geronimo.specs:geronimo-jpa_2.0_spec:1.1" />
           <element id="library" level="project" name="Maven: javax.jdo:jdo-api:3.0" />
-          <element id="file-copy" path="$PROJECT_DIR$/../../sdk/gae.java/lib/user/orm/datanucleus-jpa-1.1.5.jar" />
-          <element id="file-copy" path="$PROJECT_DIR$/../../sdk/gae.java/lib/tools/orm/asm-3.1.jar" />
+          <element id="library" level="project" name="Maven: org.datanucleus:datanucleus-api-jpa:1.1.5" />
         </element>
       </element>
       <element id="gwt-compiler-output" facet="Lox/gwt/GWT" />
