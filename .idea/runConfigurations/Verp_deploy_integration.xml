@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Verp.integration" type="MavenRunConfiguration" factoryName="Maven">
+  <configuration default="false" name="Verp.deploy.integration" type="MavenRunConfiguration" factoryName="Maven">
     <MavenSettings>
       <option name="myGeneralSettings">
         <MavenGeneralSettings>
