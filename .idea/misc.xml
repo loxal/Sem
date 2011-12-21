@@ -42,11 +42,6 @@
         <option value="$PROJECT_DIR$/../Lox/pom.xml" />
       </list>
     </option>
-    <option name="activeProfiles">
-      <list>
-        <option value="dev" />
-      </list>
-    </option>
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="org.jetbrains.annotations.Nullable" />
