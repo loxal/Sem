@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Verp.deploy.integration" type="MavenRunConfiguration" factoryName="Maven">
+  <configuration default="false" name="Verp.deploy.undeploy" type="MavenRunConfiguration" factoryName="Maven">
     <MavenSettings>
       <option name="myGeneralSettings">
         <MavenGeneralSettings>
@@ -31,11 +31,7 @@
         <MavenRunnerParameters>
           <option name="goals">
             <list>
-              <option value="clean" />
-              <option value="compile" />
-              <option value="gwt:compile" />
-              <option value="package" />
-              <option value="cargo:redeploy" />
+              <option value="cargo:undeploy" />
             </list>
           </option>
           <option name="profiles">
