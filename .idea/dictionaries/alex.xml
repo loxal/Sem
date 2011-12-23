@@ -10,6 +10,8 @@
       <w>deployer</w>
       <w>dpinet</w>
       <w>dpinettest</w>
+      <w>dplms</w>
+      <w>emailqueue</w>
       <w>googlecode</w>
       <w>intelli</w>
       <w>keygen</w>
@@ -23,6 +25,7 @@
       <w>scrollbar</w>
       <w>speexx</w>
       <w>sysdba</w>
+      <w>textpool</w>
     </words>
   </dictionary>
 </component>
