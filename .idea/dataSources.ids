@@ -9190,11 +9190,11 @@
       </prototype>
     </procedure>
   </data-source>
-  <data-source source="LOCAL" name="dpLMS20.liveNOT_ACTIVE" product="Firebird 2.56WI-V2.5.0.26074 Firebird 2.5/tcp (DPINET-DATABASE)/P10" version="WI-V2.5.0.26074 Firebird 2.56WI-V2.5.0.26074 Firebird 2.5/tcp (DPINET-DATABASE)/P10" jdbc-version="3.0" driver-version="2.1" uuid="b7a65f5e-f67e-4f6d-8465-8a424731d0ff">
+  <data-source source="LOCAL" name="dpLMS20.trial" product="Firebird 2.56WI-V2.5.0.26074 Firebird 2.5/tcp (DPINET-DATABASE)/P10" version="WI-V2.5.0.26074 Firebird 2.56WI-V2.5.0.26074 Firebird 2.5/tcp (DPINET-DATABASE)/P10" jdbc-version="3.0" driver-version="2.1" uuid="b7a65f5e-f67e-4f6d-8465-8a424731d0ff">
     <extra-name-characters>$</extra-name-characters>
     <identifier-quote-string>"</identifier-quote-string>
     <jdbc-driver>org.firebirdsql.jdbc.FBDriver</jdbc-driver>
-    <jdbc-url>jdbc:firebirdsql:DNS-DPLMS-LIVE:dpLMS20?charSet=UTF-8</jdbc-url>
+    <jdbc-url>jdbc:firebirdsql:DNS-DPLMS-TEST:dpLMS20trial?charSet=UTF-8</jdbc-url>
     <user-name>SYSDBA</user-name>
     <user-password>df9edf98dfcbdfd8dfc7dfd9dfdedfd8dfc5dfc4dfcd</user-password>
     <table-pattern>.*</table-pattern>
@@ -11058,11 +11058,11 @@
       <primary-key name="PK_WEB_CONTACT_ITEM_TYPES" columns="id" />
     </table>
   </data-source>
-  <data-source source="LOCAL" name="dpLMS20.prod" product="Firebird 2.56WI-V2.5.0.26074 Firebird 2.5/tcp (DPINET-DATABASE)/P10" version="WI-V2.5.0.26074 Firebird 2.56WI-V2.5.0.26074 Firebird 2.5/tcp (DPINET-DATABASE)/P10" jdbc-version="3.0" driver-version="2.1" uuid="db4632c2-f34f-4f7e-9fe5-76aa66ad3d49">
+  <data-source source="LOCAL" name="dpLMS20.live" product="Firebird 2.56WI-V2.5.0.26074 Firebird 2.5/tcp (DPINET-DATABASE)/P10" version="WI-V2.5.0.26074 Firebird 2.56WI-V2.5.0.26074 Firebird 2.5/tcp (DPINET-DATABASE)/P10" jdbc-version="3.0" driver-version="2.1" uuid="db4632c2-f34f-4f7e-9fe5-76aa66ad3d49">
     <extra-name-characters>$</extra-name-characters>
     <identifier-quote-string>"</identifier-quote-string>
     <jdbc-driver>org.firebirdsql.jdbc.FBDriver</jdbc-driver>
-    <jdbc-url>jdbc:firebirdsql:DNS-DPLMS-TEST:dpLMS20?charSet=UTF-8</jdbc-url>
+    <jdbc-url>jdbc:firebirdsql:DNS-DPLMS-LIVE:dpLMS20live?charSet=UTF-8</jdbc-url>
     <user-name>SYSDBA</user-name>
     <user-password>df9edf98dfcbdfd8dfc7dfd9dfdedfd8dfc5dfc4dfcd</user-password>
     <table-pattern>.*</table-pattern>

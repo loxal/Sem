@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Lom" pattern="file[Lom]:*/" />
+</component>
