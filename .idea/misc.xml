@@ -40,12 +40,18 @@
         <option value="$PROJECT_DIR$/../Vel/pom.xml" />
         <option value="$PROJECT_DIR$/../Verp/pom.xml" />
         <option value="$PROJECT_DIR$/../Lox/pom.xml" />
+        <option value="$PROJECT_DIR$/../Lom/Android/pom.xml" />
       </list>
     </option>
     <option name="activeProfiles">
       <list>
         <option value="integration" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/../Lom/Android/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="NullableNotNullManager">
