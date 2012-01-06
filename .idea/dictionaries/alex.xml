@@ -21,11 +21,13 @@
       <w>metamodel</w>
       <w>mojo</w>
       <w>mortbay</w>
+      <w>phonegap</w>
       <w>rdbms</w>
       <w>scrollbar</w>
       <w>speexx</w>
       <w>sysdba</w>
       <w>textpool</w>
+      <w>viewport</w>
     </words>
   </dictionary>
 </component>
