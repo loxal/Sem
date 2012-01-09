@@ -211,11 +211,11 @@
       <column name="CANCELEDBY_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="SESSION_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_972" columns="id" />
+      <primary-key name="INTEG_226" columns="id" />
       <foreign-key name="FK_BOOKINGS_SESSION_ID" columns="SESSION_ID" ref-table="SESSIONS" ref-schema="" ref-catalog="" ref-columns="ID" />
       <foreign-key name="BOOKINGS_CANCELEDBY_ID" columns="CANCELEDBY_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
       <foreign-key name="FK_BOOKINGS_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY186" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY16" unique="true" columns="ID" />
     </table>
     <table name="BOOKING_REPORTS" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -399,31 +399,31 @@
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="DESCRIPTION" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="NOTIFICATION_ADDRESS" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <primary-key name="INTEG_999" columns="id" />
-      <index name="RDB$PRIMARY192" unique="true" columns="ID" />
+      <primary-key name="INTEG_253" columns="id" />
+      <index name="RDB$PRIMARY22" unique="true" columns="ID" />
     </table>
     <table name="EMAIL_QUEUE_ATTACHMENTS" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="DATA" sqlType="BLOB SUB_TYPE 0" length="0" precision="0" nullable="true" jdbcType="-4" />
       <column name="EMAIL_QUEUE_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="FILENAME" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <primary-key name="INTEG_995" columns="id" />
-      <index name="RDB$PRIMARY193" unique="true" columns="ID" />
+      <primary-key name="INTEG_249" columns="id" />
+      <index name="RDB$PRIMARY23" unique="true" columns="ID" />
     </table>
     <table name="EMAIL_QUEUE_HEADER" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="ADDRESS" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="EMAIL_QUEUE_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="HEADER_DESTINATION" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <primary-key name="INTEG_997" columns="id" />
-      <index name="RDB$PRIMARY194" unique="true" columns="ID" />
+      <primary-key name="INTEG_251" columns="id" />
+      <index name="RDB$PRIMARY24" unique="true" columns="ID" />
     </table>
     <table name="EMAIL_QUEUE_SENDER_TYPE" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="DESCRIPTION" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="NOTIFICATION_ADDRESS" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <primary-key name="INTEG_999" columns="id" />
-      <index name="RDB$PRIMARY195" unique="true" columns="ID" />
+      <primary-key name="INTEG_253" columns="id" />
+      <index name="RDB$PRIMARY25" unique="true" columns="ID" />
     </table>
     <table name="EVENTS" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -638,6 +638,12 @@
       <column name="MON$AUTO_COMMIT" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5" />
       <column name="MON$AUTO_UNDO" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5" />
       <column name="MON$STAT_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+    </table>
+    <table name="NEW_VIEW" schema="" catalog="" type="VIEW">
+      <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="TEXT" sqlType="BLOB SUB_TYPE 1" length="0" precision="0" nullable="true" jdbcType="-1" />
+      <column name="LANG_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
     </table>
     <table name="PHONE_NUMBERS" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -1175,19 +1181,19 @@
       <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="SESSION_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
-      <primary-key name="INTEG_968" columns="id" />
+      <primary-key name="INTEG_222" columns="id" />
       <foreign-key name="FK_REPORTS_SESSION_ID" columns="SESSION_ID" ref-table="SESSIONS" ref-schema="" ref-catalog="" ref-columns="ID" />
       <foreign-key name="FK_REPORTS_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY185" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY15" unique="true" columns="ID" />
     </table>
     <table name="RESOURCES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_975" columns="id" />
+      <primary-key name="INTEG_229" columns="id" />
       <foreign-key name="FK_RESOURCES_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY187" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY17" unique="true" columns="ID" />
     </table>
     <table name="RIGHTS" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -1225,9 +1231,9 @@
       <column name="SESSION_TYPE" sqlType="VARCHAR" length="9" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_980" columns="id" />
+      <primary-key name="INTEG_234" columns="id" />
       <foreign-key name="FK_SESSIONS_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCES" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY188" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY18" unique="true" columns="ID" />
     </table>
     <table name="SITES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -1254,9 +1260,9 @@
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
       <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_986" columns="id" />
+      <primary-key name="INTEG_240" columns="id" />
       <foreign-key name="FK_SLOTS_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCES" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY189" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY19" unique="true" columns="ID" />
     </table>
     <table name="SPHINX_DELTA" schema="" catalog="" type="TABLE">
       <column name="TABLE_NAME" sqlType="CHAR" length="31" precision="0" nullable="false" jdbcType="1" />
@@ -1362,11 +1368,11 @@
       <column name="LANGUAGE_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="LANGUAGEBYLANGID_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_991" columns="language_id,user_id" />
+      <primary-key name="INTEG_245" columns="language_id,user_id" />
       <foreign-key name="TEXTPOOLRIGHTSLANGUAGEID" columns="LANGUAGE_ID" ref-table="LANGUAGES" ref-schema="" ref-catalog="" ref-columns="ID" />
       <foreign-key name="TXTPLRGHTSLNGGBYLANGIDID" columns="LANGUAGEBYLANGID_ID" ref-table="LANGUAGES" ref-schema="" ref-catalog="" ref-columns="ID" />
       <foreign-key name="TEXTPOOL_RIGHTS_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY191" unique="true" columns="LANGUAGE_ID,USER_ID" />
+      <index name="RDB$PRIMARY21" unique="true" columns="LANGUAGE_ID,USER_ID" />
     </table>
     <table name="TIME_ZONES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -1714,18 +1720,8 @@
       <column name="LANGUAGE" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="MACRO_NAME" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="TRANSLATION" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <column name="TEXT_MACRO_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
-      <column name="TRANSLATION" sqlType="BLOB SUB_TYPE 1" length="0" precision="0" nullable="true" jdbcType="-1" />
-      <column name="LANGUAGE" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
-      <column name="MACRO_NAME" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <primary-key name="INTEG_988" columns="text_macro_id" />
-      <index name="RDB$PRIMARY190" unique="true" columns="TEXT_MACRO_ID" />
-    </table>
-    <table name="VERP_I18N_FACET1" schema="" catalog="" type="VIEW">
-      <column name="TEXT_MACRO_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
-      <column name="TRANSLATION" sqlType="BLOB SUB_TYPE 1" length="0" precision="0" nullable="true" jdbcType="-1" />
-      <column name="LANGUAGE" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
-      <column name="MACRO_NAME" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
+      <primary-key name="INTEG_242" columns="text_macro_id" />
+      <index name="RDB$PRIMARY20" unique="true" columns="TEXT_MACRO_ID" />
     </table>
     <table name="VIDEO_UNITS" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
