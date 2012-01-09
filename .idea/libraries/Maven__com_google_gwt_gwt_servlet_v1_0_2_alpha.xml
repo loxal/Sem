@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Maven: com.google.gwt:gwt-servlet:v1-0.2.alpha">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../sdk/gwt-google-apis/gwt-tasks-v1-0.2-alpha.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
