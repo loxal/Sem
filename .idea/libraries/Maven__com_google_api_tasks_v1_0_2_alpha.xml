@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="Maven: com.google.api:tasks:v1-0.2.alpha">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../sdk/gwt-google-apis/gwt-tasks-v1-0.2-alpha.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Lox/lib/gwt-google-apis/gwt-tasks-v1-0.2-alpha.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
