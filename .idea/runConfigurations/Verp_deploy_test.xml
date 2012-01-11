@@ -32,10 +32,11 @@
           <option name="goals">
             <list>
               <option value="clean" />
+              <option value="gwt:clean" />
               <option value="compile" />
               <option value="gwt:compile" />
               <option value="package" />
-              <option value="cargo:redeploy" />
+              <option value="tomcat:redeploy" />
             </list>
           </option>
           <option name="profiles">
