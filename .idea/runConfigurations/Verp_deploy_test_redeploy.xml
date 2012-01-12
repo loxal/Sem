@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Verp.deploy.test" type="MavenRunConfiguration" factoryName="Maven">
+  <configuration default="false" name="Verp.deploy.test.redeploy" type="MavenRunConfiguration" factoryName="Maven">
     <MavenSettings>
       <option name="myGeneralSettings">
         <MavenGeneralSettings>
@@ -31,10 +31,6 @@
         <MavenRunnerParameters>
           <option name="goals">
             <list>
-              <option value="clean" />
-              <option value="compile" />
-              <option value="gwt:compile" />
-              <option value="package" />
               <option value="cargo:redeploy" />
             </list>
           </option>
