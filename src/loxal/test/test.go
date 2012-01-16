@@ -78,6 +78,12 @@ func (p *Point) Abs() float64 {
     return math.Sqrt(p.x*p.x + p.y*p.y)
 }
 
+func TestFunc(w http.ResponseWriter, r *http.Request) {
+    const contentTypeJSON = "application/json; charset=utf-8"
+    w.Header().Set("Content-Type", contentTypeJSON)
+
+    fmt.Fprintf(w, "{\"postalcodes\":[]}")
+}
 
 
 

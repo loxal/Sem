@@ -263,10 +263,13 @@ const cmdUpdateHandler = "/cmd/update"
 const cmdDeleteHandler = "/cmd/delete"
 const cmdCreateHandler = "/cmd/create"
 const cmdListHandler = "/cmd/list.json"
+const testHandler = "/test/contentType"
+
 const contentTypeJSON = "application/json; charset=utf-8"
 const contentTypeText = "text/plain; charset=utf-8"
 
 func init() {
+	http.HandleFunc(testHandler, test.TestFunc)
 	http.HandleFunc("/cmd/auth.json", authenticate)
 	http.HandleFunc(payHandler, payButton)
 	http.HandleFunc(cmdDeleteHandler, cmdDeletion)
