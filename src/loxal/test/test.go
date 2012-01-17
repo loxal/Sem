@@ -79,16 +79,10 @@ func (p *Point) Abs() float64 {
 }
 
 func TestFunc(w http.ResponseWriter, r *http.Request) {
-    const contentTypeJSON = "application/json;charset=UTF-8"
+    const contentTypeJSON = "application/json;charset=utf-8"
     w.Header().Set("Content-Type", contentTypeJSON)
-    w.Header().Set("Content-Encoding", "deflate")
-    w.Header().Set("Access-Control-Allow-Origin", "*")
-    w.Header().Set("Cache-Control", "no-cache")
-    w.Header().Set("Transfer-Encoding", "chunked")
-    w.Header().Set("Connection", "Keep-Alive")
-    w.Header().Set("Keep-Alive", "timeout=150, max=222")
 
-    fmt.Fprintf(w, "{\"userId\":\"1\"}")
+    fmt.Fprintf(w, "__gwt_jsonp__.P0.onSuccess({\"userId\":\"1\"});")
 }
 
 
