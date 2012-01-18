@@ -211,11 +211,11 @@
       <column name="CANCELEDBY_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="SESSION_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_226" columns="id" />
+      <primary-key name="INTEG_1877" columns="id" />
       <foreign-key name="FK_BOOKINGS_SESSION_ID" columns="SESSION_ID" ref-table="SESSIONS" ref-schema="" ref-catalog="" ref-columns="ID" />
       <foreign-key name="BOOKINGS_CANCELEDBY_ID" columns="CANCELEDBY_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
       <foreign-key name="FK_BOOKINGS_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY16" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY454" unique="true" columns="ID" />
     </table>
     <table name="BOOKING_REPORTS" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -506,6 +506,7 @@
       <column name="CODE" sqlType="VARCHAR" length="5" precision="0" nullable="true" jdbcType="12" />
       <primary-key name="PK_LANGUAGES" columns="id" />
     </table>
+    <table name="LAUNCHER_MODES" schema="" catalog="" type="TABLE" />
     <table name="LEVELS" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="CEFR" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12" />
@@ -1715,7 +1716,7 @@
       <foreign-key name="FK_VC_USAGE_EVENTS_1" columns="ID" ref-table="PRODUCT_USAGE_EVENTS" ref-schema="" ref-catalog="" ref-columns="ID" cascade-update="true" cascade-remove="true" />
       <foreign-key name="FK_VC_USAGE_EVENTS_2" columns="APPOINTMENT_ID" ref-table="VC_APPOINTMENTS" ref-schema="" ref-catalog="" ref-columns="ID" cascade-update="true" />
     </table>
-    <table name="VERP_I18N_FACET" schema="" catalog="" type="TABLE">
+    <table name="VERP_I18N_FACET" schema="" catalog="" type="VIEW">
       <column name="TEXT_MACRO_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="LANGUAGE" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="MACRO_NAME" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
@@ -1748,6 +1749,7 @@
       <column name="POSTAL_CODE" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
       <column name="COUNTRY_CODE" sqlType="VARCHAR" length="2" precision="0" nullable="true" jdbcType="12" />
     </table>
+    <table name="VW_BOOKINGS" schema="" catalog="" type="VIEW" />
     <table name="VW_COURSE_USAGE_EVENTS" schema="" catalog="" type="VIEW">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="EVENT_TYPE_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
@@ -1813,6 +1815,7 @@
       <column name="AREA_CODE" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="LOCAL_NUMBER" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
     </table>
+    <table name="VW_PRODUCT_USAGE" schema="" catalog="" type="VIEW" />
     <table name="VW_PRODUCT_USAGE_EVENTS" schema="" catalog="" type="VIEW">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="EVENT_TYPE_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
@@ -1860,6 +1863,8 @@
       <column name="TRAINER_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="APPOINTMENT_DATE" sqlType="TIMESTAMP" length="19" precision="0" nullable="true" jdbcType="93" />
     </table>
+    <table name="VW_ROLE_RIGHTS" schema="" catalog="" type="VIEW" />
+    <table name="VW_SESSIONS" schema="" catalog="" type="VIEW" />
     <table name="VW_VC_BOOKINGS" schema="" catalog="" type="VIEW">
       <column name="EMAIL" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
@@ -2094,6 +2099,7 @@
       </prototype>
     </procedure>
     <procedure name="CHECK_ACTIVATION" schema="" catalog="" type="1" />
+    <procedure name="CHECK_ARTICLE_RIGHTS" schema="" catalog="" type="1" />
     <procedure name="CHECK_BAG_LANGUAGES" schema="" catalog="" type="1">
       <prototype return="true">
         <parameter name="BAG_ID" sqlType="INTEGER" length="4" precision="4" nullable="true" jdbcType="4" type="1" index="-1" />
@@ -2237,6 +2243,7 @@
         <parameter name="TUTOR_ID" sqlType="INTEGER" length="4" precision="4" nullable="true" jdbcType="4" type="1" index="-1" />
       </prototype>
     </procedure>
+    <procedure name="CHECK_USER_CONTEXT_RIGHTS" schema="" catalog="" type="1" />
     <procedure name="CHECK_USER_NAME_AVAILABLE" schema="" catalog="" type="1">
       <prototype return="true">
         <parameter name="USER_NAME" sqlType="VARCHAR" length="320" precision="320" nullable="false" jdbcType="12" type="1" index="-1" />
@@ -3514,6 +3521,8 @@
         <parameter name="IGNORE_PASSWORD_RESET" sqlType="VARCHAR" length="4" precision="4" nullable="true" jdbcType="12" type="1" index="-1" />
       </prototype>
     </procedure>
+    <procedure name="NOTIFY_ARTICLE_USAGE_CREATED" schema="" catalog="" type="1" />
+    <procedure name="NOTIFY_PRODUCT_USAGE_CREATED" schema="" catalog="" type="1" />
     <procedure name="PRODUCT_LICENSE_STATUS" schema="" catalog="" type="2">
       <prototype return="true">
         <parameter name="LICENSE_STATUS" sqlType="INTEGER" length="4" precision="4" nullable="true" jdbcType="4" type="4" index="-1" />
@@ -3557,7 +3566,7 @@
         <parameter name="COMPUTER_NAME" sqlType="VARCHAR" length="160" precision="160" nullable="true" jdbcType="12" type="1" index="-1" />
       </prototype>
     </procedure>
-    <procedure name="RESET_PASSWORD" schema="" catalog="" type="1">
+    <procedure name="RESET_PASSWORD" schema="" catalog="" type="2">
       <prototype return="true">
         <parameter name="SOURCE_ID" sqlType="INTEGER" length="4" precision="4" nullable="true" jdbcType="4" type="1" index="-1" />
         <parameter name="USER_ID" sqlType="INTEGER" length="4" precision="4" nullable="true" jdbcType="4" type="1" index="-1" />
@@ -4075,6 +4084,7 @@
         <parameter name="CANCEL_DATE" sqlType="TIMESTAMP" length="8" precision="8" nullable="true" jdbcType="93" type="1" index="-1" />
       </prototype>
     </procedure>
+    <procedure name="USER_CONTEXT_RIGHTS" schema="" catalog="" type="2" />
     <procedure name="USER_RIGHTS" schema="" catalog="" type="2">
       <prototype return="true">
         <parameter name="RIGHT_ID" sqlType="INTEGER" length="4" precision="4" nullable="true" jdbcType="4" type="4" index="-1" />
