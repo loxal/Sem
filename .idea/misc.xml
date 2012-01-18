@@ -11,6 +11,7 @@
     <file type="gwt" url="file://$PROJECT_DIR$/../Lox" />
     <file type="gwt" url="file://$PROJECT_DIR$/../Verp" />
     <file type="web" url="file://$PROJECT_DIR$/../Lox" />
+    <file type="web" url="file://$PROJECT_DIR$/../Portal" />
     <file type="web" url="file://$PROJECT_DIR$/../Verp" />
   </component>
   <component name="HudsonMonitorComponent">
@@ -41,6 +42,7 @@
         <option value="$PROJECT_DIR$/../Verp/pom.xml" />
         <option value="$PROJECT_DIR$/../Lox/pom.xml" />
         <option value="$PROJECT_DIR$/../Lom/Android/pom.xml" />
+        <option value="$PROJECT_DIR$/../Portal/pom.xml" />
       </list>
     </option>
     <option name="activeProfiles">
