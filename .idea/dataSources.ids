@@ -5321,19 +5321,7 @@
       <column name="SESSION_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <primary-key name="INTEG_1022" columns="id" />
-      <foreign-key name="FK_BOOKINGS_SESSION_ID" columns="SESSION_ID" ref-table="SESSIONS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <foreign-key name="BOOKINGS_CANCELEDBY_ID" columns="CANCELEDBY_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <foreign-key name="FK_BOOKINGS_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
       <index name="RDB$PRIMARY143" unique="true" columns="ID" />
-    </table>
-    <table name="BOOKING_REPORTS" schema="" catalog="" type="TABLE">
-      <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <column name="GRADE" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
-      <column name="STATUS" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <column name="TEMPLATE" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <column name="TOPIC" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <primary-key name="INTEG_455" columns="id" />
-      <index name="RDB$PRIMARY3" unique="true" columns="ID" />
     </table>
     <table name="BUNDLES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -6284,19 +6272,19 @@
       <column name="VERSION_GWT" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="SESSION_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
-      <primary-key name="INTEG_1018" columns="id" />
+      <primary-key name="INTEG_1141" columns="id" />
       <foreign-key name="FK_REPORTS_SESSION_ID" columns="SESSION_ID" ref-table="SESSIONS" ref-schema="" ref-catalog="" ref-columns="ID" />
       <foreign-key name="FK_REPORTS_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY142" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY171" unique="true" columns="ID" />
     </table>
     <table name="RESOURCES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION_GWT" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_1025" columns="id" />
+      <primary-key name="INTEG_1144" columns="id" />
       <foreign-key name="FK_RESOURCES_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY144" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY172" unique="true" columns="ID" />
     </table>
     <table name="RIGHTS" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -6334,9 +6322,9 @@
       <column name="SESSION_TYPE" sqlType="VARCHAR" length="9" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION_GWT" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_1031" columns="id" />
+      <primary-key name="INTEG_1150" columns="id" />
       <foreign-key name="FK_SESSIONS_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCES" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY145" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY173" unique="true" columns="ID" />
     </table>
     <table name="SITES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -6363,9 +6351,9 @@
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
       <column name="VERSION_GWT" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_1037" columns="id" />
+      <primary-key name="INTEG_1156" columns="id" />
       <foreign-key name="FK_SLOTS_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCES" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY146" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY174" unique="true" columns="ID" />
     </table>
     <table name="SPHINX_DELTA" schema="" catalog="" type="TABLE">
       <column name="TABLE_NAME" sqlType="CHAR" length="31" precision="0" nullable="false" jdbcType="1" />
@@ -6539,7 +6527,7 @@
       <column name="PASSWORD_HASH" sqlType="CHAR" length="16" precision="0" nullable="true" jdbcType="1" />
       <column name="CONTACT_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="USAGE_OWNER_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
-      <column name="VERSION_RF_SPECIFIC" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="VERSION_GWT" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <primary-key name="PK_USERS" columns="id" />
       <foreign-key name="FK_USERS_CONTACT" columns="CONTACT_ID" ref-table="CONTACTS" ref-schema="" ref-catalog="" ref-columns="ID" />
       <foreign-key name="FK_USERS_NATIVE_LANGUAGE" columns="NATIVE_LANGUAGE" ref-table="LANGUAGES" ref-schema="" ref-catalog="" ref-columns="ID" />
