@@ -1177,9 +1177,9 @@
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION_GWT" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_5826" columns="id" />
+      <primary-key name="INTEG_6561" columns="id" />
       <foreign-key name="FK_RESOURCES_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY1439" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY1614" unique="true" columns="ID" />
     </table>
     <table name="RIGHTS" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -3382,6 +3382,8 @@
         <parameter name="PARENT_ID" sqlType="INTEGER" length="4" precision="4" nullable="true" jdbcType="4" type="1" index="-1" />
       </prototype>
     </procedure>
+    <procedure name="LIST_USER_CONTEXTS1" schema="" catalog="" type="2" />
+    <procedure name="LIST_USER_CONTEXTS2" schema="" catalog="" type="2" />
     <procedure name="LIST_USER_CONTEXTS_TOP_LEVEL" schema="" catalog="" type="2">
       <prototype return="true">
         <parameter name="CONTEXT_ID" sqlType="INTEGER" length="4" precision="4" nullable="true" jdbcType="4" type="4" index="-1" />
