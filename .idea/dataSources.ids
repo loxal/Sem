@@ -205,11 +205,11 @@
       <column name="CANCELEDBY_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="SESSION_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_5823" columns="id" />
+      <primary-key name="INTEG_6558" columns="id" />
       <foreign-key name="FK_BOOKINGS_SESSION_ID" columns="SESSION_ID" ref-table="SESSIONS" ref-schema="" ref-catalog="" ref-columns="ID" />
       <foreign-key name="BOOKINGS_CANCELEDBY_ID" columns="CANCELEDBY_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
       <foreign-key name="FK_BOOKINGS_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY1438" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY1613" unique="true" columns="ID" />
     </table>
     <table name="BUNDLES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -1167,10 +1167,10 @@
       <column name="VERSION_GWT" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="SESSION_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="USER_ID" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
-      <primary-key name="INTEG_5819" columns="id" />
+      <primary-key name="INTEG_6554" columns="id" />
       <foreign-key name="FK_REPORTS_SESSION_ID" columns="SESSION_ID" ref-table="SESSIONS" ref-schema="" ref-catalog="" ref-columns="ID" />
       <foreign-key name="FK_REPORTS_USER_ID" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY1437" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY1612" unique="true" columns="ID" />
     </table>
     <table name="RESOURCES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -1217,9 +1217,9 @@
       <column name="SESSION_TYPE" sqlType="VARCHAR" length="9" precision="0" nullable="true" jdbcType="12" />
       <column name="VERSION_GWT" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_5832" columns="id" />
+      <primary-key name="INTEG_6567" columns="id" />
       <foreign-key name="FK_SESSIONS_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCES" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY1440" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY1615" unique="true" columns="ID" />
     </table>
     <table name="SITES" schema="" catalog="" type="TABLE">
       <column name="ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -1246,9 +1246,9 @@
       <column name="NAME" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
       <column name="VERSION_GWT" sqlType="INTEGER" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="RESOURCE_ID" sqlType="INTEGER" length="10" precision="0" nullable="false" jdbcType="4" />
-      <primary-key name="INTEG_5838" columns="id" />
+      <primary-key name="INTEG_6573" columns="id" />
       <foreign-key name="FK_SLOTS_RESOURCE_ID" columns="RESOURCE_ID" ref-table="RESOURCES" ref-schema="" ref-catalog="" ref-columns="ID" />
-      <index name="RDB$PRIMARY1441" unique="true" columns="ID" />
+      <index name="RDB$PRIMARY1616" unique="true" columns="ID" />
     </table>
     <table name="SPHINX_DELTA" schema="" catalog="" type="TABLE">
       <column name="TABLE_NAME" sqlType="CHAR" length="31" precision="0" nullable="false" jdbcType="1" />
@@ -3382,8 +3382,20 @@
         <parameter name="PARENT_ID" sqlType="INTEGER" length="4" precision="4" nullable="true" jdbcType="4" type="1" index="-1" />
       </prototype>
     </procedure>
-    <procedure name="LIST_USER_CONTEXTS1" schema="" catalog="" type="2" />
-    <procedure name="LIST_USER_CONTEXTS2" schema="" catalog="" type="2" />
+    <procedure name="LIST_USER_CONTEXTS1" schema="" catalog="" type="2">
+      <prototype return="true">
+        <parameter name="CONTEXT_ID" sqlType="INTEGER" length="4" precision="4" nullable="true" jdbcType="4" type="4" index="-1" />
+        <parameter name="PARENT_ID" sqlType="INTEGER" length="4" precision="4" nullable="true" jdbcType="4" type="4" index="-1" />
+        <parameter name="USER_ID" sqlType="INTEGER" length="4" precision="4" nullable="true" jdbcType="4" type="1" index="-1" />
+      </prototype>
+    </procedure>
+    <procedure name="LIST_USER_CONTEXTS2" schema="" catalog="" type="2">
+      <prototype return="true">
+        <parameter name="CONTEXT_ID" sqlType="INTEGER" length="4" precision="4" nullable="true" jdbcType="4" type="4" index="-1" />
+        <parameter name="PARENT_ID" sqlType="INTEGER" length="4" precision="4" nullable="true" jdbcType="4" type="4" index="-1" />
+        <parameter name="USER_ID" sqlType="INTEGER" length="4" precision="4" nullable="true" jdbcType="4" type="1" index="-1" />
+      </prototype>
+    </procedure>
     <procedure name="LIST_USER_CONTEXTS_TOP_LEVEL" schema="" catalog="" type="2">
       <prototype return="true">
         <parameter name="CONTEXT_ID" sqlType="INTEGER" length="4" precision="4" nullable="true" jdbcType="4" type="4" index="-1" />
