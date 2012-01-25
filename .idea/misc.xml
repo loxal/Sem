@@ -9,9 +9,11 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="gwt" url="file://$PROJECT_DIR$/../Lox" />
+    <file type="gwt" url="file://$PROJECT_DIR$/../Vel" />
     <file type="gwt" url="file://$PROJECT_DIR$/../Verp" />
     <file type="web" url="file://$PROJECT_DIR$/../Lox" />
     <file type="web" url="file://$PROJECT_DIR$/../Portal" />
+    <file type="web" url="file://$PROJECT_DIR$/../Vel" />
     <file type="web" url="file://$PROJECT_DIR$/../Verp" />
   </component>
   <component name="HudsonMonitorComponent">

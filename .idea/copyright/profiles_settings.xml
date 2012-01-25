@@ -2,6 +2,7 @@
   <settings default="Loxal - BSD">
     <module2copyright>
       <element module="dp" copyright="dp" />
+      <element module="Portal" copyright="dp" />
       <element module="All" copyright="Loxal - Apache License V2" />
       <element module="Lox" copyright="Loxal - BSD" />
       <element module="Vel" copyright="Loxal - BSD" />

@@ -82,7 +82,22 @@ func TestFunc(w http.ResponseWriter, r *http.Request) {
     const contentTypeJSON = "application/json;charset=utf-8"
     w.Header().Set("Content-Type", contentTypeJSON)
 
-    fmt.Fprintf(w, "__gwt_jsonp__.P0.onSuccess({\"userId\":\"1\"});")
+    methodCall := r.FormValue("methodCall")
+    jsonContent := r.FormValue("jsonContent")
+
+    if methodCall == "" {
+        if jsonContent == "" {
+            fmt.Fprintf(w, "__gwt_jsonp__.P0.onSuccess({\"userId\":\"1\"});")
+        }else {
+            fmt.Fprintf(w, "__gwt_jsonp__.P0.onSuccess("+jsonContent+");")
+        }
+    } else {
+        if jsonContent == "" {
+            fmt.Fprintf(w, methodCall + "({\"userId\":\"1\"});")
+        } else {
+            fmt.Fprintf(w, methodCall + "("+jsonContent+");")
+        }
+    }
 }
 
 
