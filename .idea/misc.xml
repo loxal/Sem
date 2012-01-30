@@ -47,11 +47,6 @@
         <option value="$PROJECT_DIR$/../Portal/pom.xml" />
       </list>
     </option>
-    <option name="activeProfiles">
-      <list>
-        <option value="test" />
-      </list>
-    </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/../Lom/Android/pom.xml" />

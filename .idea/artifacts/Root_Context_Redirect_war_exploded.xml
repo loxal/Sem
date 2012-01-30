@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Root Context Redirect:war exploded">
+    <output-path>$PROJECT_DIR$/target/artifacts/Root_Context_Redirect_war_exploded</output-path>
+    <root id="root">
+      <element id="file-copy" path="$PROJECT_DIR$/../Portal/cfg/index.jsp" />
+    </root>
+  </artifact>
+</component>
