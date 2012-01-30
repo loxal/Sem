@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="Portal:war exploded">
-    <output-path>$PROJECT_DIR$/../Portal/target/Portal</output-path>
+    <output-path>$PROJECT_DIR$/../Portal/target/portal-1.0.0.0-RELEASE</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="Portal/web/Web" />
       <element id="directory" name="WEB-INF">

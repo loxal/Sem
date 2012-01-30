@@ -49,7 +49,7 @@
     </option>
     <option name="activeProfiles">
       <list>
-        <option value="integration" />
+        <option value="test" />
       </list>
     </option>
     <option name="ignoredFiles">

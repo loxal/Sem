@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Portal.run" type="MavenRunConfiguration" factoryName="Maven">
+  <configuration default="false" name="Portal.test.redeploy" type="MavenRunConfiguration" factoryName="Maven">
     <MavenSettings>
       <option name="myGeneralSettings">
         <MavenGeneralSettings>
@@ -31,12 +31,15 @@
         <MavenRunnerParameters>
           <option name="goals">
             <list>
-              <option value="org.codehaus.mojo:tomcat-maven-plugin:1.1:run" />
+              <option value="clean" />
+              <option value="compile" />
+              <option value="package" />
+              <option value="cargo:redeploy" />
             </list>
           </option>
           <option name="profiles">
             <set>
-              <option value="dev" />
+              <option value="test" />
             </set>
           </option>
           <option name="workingDirPath" value="$PROJECT_DIR$/../Portal" />
