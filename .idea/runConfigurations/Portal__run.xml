@@ -31,7 +31,7 @@
         <MavenRunnerParameters>
           <option name="goals">
             <list>
-              <option value="cargo:run" />
+              <option value="tomcat:run" />
             </list>
           </option>
           <option name="profiles">

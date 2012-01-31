@@ -1,23 +1,26 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Portal &amp; Verp" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7">
+  <configuration default="false" name="Tomcat Plain" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7">
     <option name="OPEN_IN_BROWSER" value="false" />
     <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8000/Verp/?restartApplication" />
     <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+    <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
     <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
+    <option name="UPDATING_POLICY" value="update-resources" />
     <deployment>
       <artifact name="Portal:war exploded">
+        <settings>
+          <option name="CONTEXT_PATH" value="/portal-1.0.0.0-RELEASE" />
+        </settings>
+      </artifact>
+      <artifact name="Root Context Redirect:war exploded">
         <settings>
           <option name="CONTEXT_PATH" value="/" />
         </settings>
       </artifact>
-      <artifact name="Verp:war exploded">
-        <settings>
-          <option name="CONTEXT_PATH" value="/Verp" />
-        </settings>
-      </artifact>
     </deployment>
     <server-settings>
-      <option name="BASE_DIRECTORY_NAME" value="Tomcat_(1)_Sem" />
+      <option name="BASE_DIRECTORY_NAME" value="Verp_(1)_Sem" />
+      <option name="PRESERVE_SESSIONS" value="true" />
     </server-settings>
     <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
     <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -69,8 +72,7 @@
     </ConfigurationWrapper>
     <method>
       <option name="BuildArtifacts" enabled="true">
-        <artifact name="Portal:war exploded" />
-        <artifact name="Verp:war exploded" />
+        <artifact name="Root Context Redirect:war exploded" />
       </option>
       <option name="Make" enabled="false" />
       <option name="Maven.BeforeRunTask" enabled="false" file="$PROJECT_DIR$/pom.xml" goal="package" />
