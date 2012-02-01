@@ -27,9 +27,8 @@
       <entry name="?*.tld" />
       <entry name="?*.ftl" />
     </wildcardResourcePatterns>
-    <annotationProcessing enabled="true" useClasspath="false">
+    <annotationProcessing enabled="true" useClasspath="true">
       <processorPath value="$PROJECT_DIR$/../../sdk/gwt/requestfactory-apt.jar" />
-      <processor name="com.google.web.bindery.requestfactory.apt.RfValidator" options="verbose=false" />
       <processModule name="Verp" generatedDirName="target/.requestfactory-apt_generated" />
     </annotationProcessing>
   </component>
