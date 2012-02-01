@@ -119,7 +119,6 @@
       <option name="BuildArtifacts" enabled="true">
         <artifact name="Portal:war exploded" />
       </option>
-      <option name="Make" enabled="false" />
       <option name="Maven.BeforeRunTask" enabled="false" file="$PROJECT_DIR$/pom.xml" goal="package" />
     </method>
   </configuration>
