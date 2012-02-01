@@ -7,7 +7,7 @@
   </component>
   <component name="CompilerAPISettings">
     <option name="DEBUGGING_INFO" value="false" />
-    <option name="MAXIMUM_HEAP_SIZE" value="256" />
+    <option name="MAXIMUM_HEAP_SIZE" value="512" />
   </component>
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="compAPI" />
@@ -27,8 +27,9 @@
       <entry name="?*.tld" />
       <entry name="?*.ftl" />
     </wildcardResourcePatterns>
-    <annotationProcessing enabled="true" useClasspath="true">
+    <annotationProcessing enabled="true" useClasspath="false">
       <processorPath value="$PROJECT_DIR$/../../sdk/gwt/requestfactory-apt.jar" />
+      <processor name="com.google.web.bindery.requestfactory.apt.RfValidator" options="verbose=false" />
       <processModule name="Verp" generatedDirName="target/.requestfactory-apt_generated" />
     </annotationProcessing>
   </component>
