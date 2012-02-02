@@ -54,14 +54,14 @@
     </RunnerSettings>
     <RunnerSettings RunnerId="JavaRebel">
       <option name="bootstrapPath" />
-      <option name="jrebelArgs" />
+      <option name="jrebelArgs" value="" />
       <option name="loggingEnabled" value="false" />
       <option name="useBootstrapDefaults" value="true" />
     </RunnerSettings>
     <RunnerSettings RunnerId="JavaRebel Debug">
       <option name="bootstrapPath" />
       <option name="debugPort" value="" />
-      <option name="jrebelArgs" />
+      <option name="jrebelArgs" value="" />
       <option name="loggingEnabled" value="false" />
       <option name="transport" value="0" />
       <option name="useBootstrapDefaults" value="true" />
