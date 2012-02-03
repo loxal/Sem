@@ -71,9 +71,7 @@
       </SHUTDOWN>
     </ConfigurationWrapper>
     <method>
-      <option name="BuildArtifacts" enabled="true">
-        <artifact name="Root Context Redirect:war exploded" />
-      </option>
+      <option name="BuildArtifacts" enabled="true" />
       <option name="Make" enabled="false" />
       <option name="Maven.BeforeRunTask" enabled="false" file="$PROJECT_DIR$/pom.xml" goal="package" />
     </method>
