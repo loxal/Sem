@@ -74,13 +74,13 @@
       <option name="USE_ENV_VARIABLES" value="true" />
       <STARTUP>
         <option name="USE_DEFAULT" value="true" />
-        <option name="SCRIPT" value="%IDEA_RUN:TOMCAT_HOME%/bin/catalina.sh" />
+        <option name="SCRIPT" value="$PROJECT_DIR$/../../opt/apache-tomcat-7.0.22/bin/catalina.sh" />
         <option name="VM_PARAMETERS" value="" />
         <option name="PROGRAM_PARAMETERS" value="run" />
       </STARTUP>
       <SHUTDOWN>
         <option name="USE_DEFAULT" value="true" />
-        <option name="SCRIPT" value="%IDEA_RUN:TOMCAT_HOME%/bin/catalina.sh" />
+        <option name="SCRIPT" value="$PROJECT_DIR$/../../opt/apache-tomcat-7.0.22/bin/catalina.sh" />
         <option name="VM_PARAMETERS" value="" />
         <option name="PROGRAM_PARAMETERS" value="stop" />
       </SHUTDOWN>
@@ -89,13 +89,13 @@
       <option name="USE_ENV_VARIABLES" value="true" />
       <STARTUP>
         <option name="USE_DEFAULT" value="true" />
-        <option name="SCRIPT" value="%IDEA_RUN:TOMCAT_HOME%/bin/catalina.sh" />
+        <option name="SCRIPT" value="$PROJECT_DIR$/../../opt/apache-tomcat-7.0.22/bin/catalina.sh" />
         <option name="VM_PARAMETERS" value="" />
         <option name="PROGRAM_PARAMETERS" value="run" />
       </STARTUP>
       <SHUTDOWN>
         <option name="USE_DEFAULT" value="true" />
-        <option name="SCRIPT" value="%IDEA_RUN:TOMCAT_HOME%/bin/catalina.sh" />
+        <option name="SCRIPT" value="$PROJECT_DIR$/../../opt/apache-tomcat-7.0.22/bin/catalina.sh" />
         <option name="VM_PARAMETERS" value="" />
         <option name="PROGRAM_PARAMETERS" value="stop" />
       </SHUTDOWN>
