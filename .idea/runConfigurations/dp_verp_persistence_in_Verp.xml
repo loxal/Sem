@@ -1,19 +1,19 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="InitFirebird.test" type="JUnit" factoryName="JUnit">
+  <configuration default="false" name="dp.verp.persistence in Verp" type="JUnit" factoryName="JUnit">
     <extension name="coverage" enabled="false" merge="false" runner="idea">
       <pattern>
-        <option name="PATTERN" value="dp.verp.persistence.controller.*" />
+        <option name="PATTERN" value="dp.verp.persistence.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
     <module name="Verp" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
     <option name="ALTERNATIVE_JRE_PATH" value="" />
-    <option name="PACKAGE_NAME" value="dp.verp.persistence.controller" />
-    <option name="MAIN_CLASS_NAME" value="dp.verp.persistence.controller.InitDatabaseFirebird" />
+    <option name="PACKAGE_NAME" value="dp.verp.persistence" />
+    <option name="MAIN_CLASS_NAME" value="" />
     <option name="METHOD_NAME" value="" />
-    <option name="TEST_OBJECT" value="class" />
-    <option name="VM_PARAMETERS" value="-Dtarget=test" />
+    <option name="TEST_OBJECT" value="package" />
+    <option name="VM_PARAMETERS" value="-Dtarget=dev" />
     <option name="PARAMETERS" value="" />
     <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
     <option name="ENV_VARIABLES" />
@@ -30,14 +30,14 @@
     </RunnerSettings>
     <RunnerSettings RunnerId="JavaRebel">
       <option name="bootstrapPath" />
-      <option name="jrebelArgs" />
+      <option name="jrebelArgs" value="" />
       <option name="loggingEnabled" value="false" />
       <option name="useBootstrapDefaults" value="true" />
     </RunnerSettings>
     <RunnerSettings RunnerId="JavaRebel Debug">
       <option name="bootstrapPath" />
       <option name="debugPort" value="" />
-      <option name="jrebelArgs" />
+      <option name="jrebelArgs" value="" />
       <option name="loggingEnabled" value="false" />
       <option name="transport" value="0" />
       <option name="useBootstrapDefaults" value="true" />
