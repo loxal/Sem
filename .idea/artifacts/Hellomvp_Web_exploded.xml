@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Hellomvp:Web exploded">
+    <output-path>$PROJECT_DIR$/target/artifacts/Hellomvp_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Hellomvp/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Hellomvp" />
+        </element>
+      </element>
+      <element id="gwt-compiler-output" facet="Hellomvp/gwt/GWT" />
+    </root>
+  </artifact>
+</component>
