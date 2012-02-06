@@ -32,6 +32,7 @@
           <option name="goals">
             <list>
               <option value="clean" />
+              <option value="gwt:clean" />
               <option value="compile" />
               <option value="gwt:compile" />
               <option value="package" />
