@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact name="Verp:GWT">
-    <output-path>$PROJECT_DIR$/../Verp/target/classes/Verp/WEB-INF/classes</output-path>
-    <root id="root">
-      <element id="gwt-compiler-output" facet="Verp/gwt/GWT" />
-    </root>
-  </artifact>
-</component>

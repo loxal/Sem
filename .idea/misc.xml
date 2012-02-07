@@ -40,16 +40,14 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/../Vel/pom.xml" />
         <option value="$PROJECT_DIR$/../Verp/pom.xml" />
-        <option value="$PROJECT_DIR$/../Lox/pom.xml" />
-        <option value="$PROJECT_DIR$/../Lom/Android/pom.xml" />
         <option value="$PROJECT_DIR$/../Portal/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/../Lom/Android/pom.xml" />
+        <option value="$PROJECT_DIR$/../Lox/pom.xml" />
         <option value="$PROJECT_DIR$/../Vel/pom.xml" />
       </set>
     </option>
