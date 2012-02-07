@@ -29,7 +29,6 @@
     </wildcardResourcePatterns>
     <annotationProcessing enabled="true" useClasspath="true">
       <processorPath value="$PROJECT_DIR$/../../sdk/gwt/requestfactory-apt.jar" />
-      <processModule name="Verp" generatedDirName="target/.requestfactory-apt_generated" />
     </annotationProcessing>
   </component>
   <component name="EclipseCompilerSettings">

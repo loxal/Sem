@@ -7,15 +7,6 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
-  <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="gwt" url="file://$PROJECT_DIR$/../Lox" />
-    <file type="gwt" url="file://$PROJECT_DIR$/../Vel" />
-    <file type="gwt" url="file://$PROJECT_DIR$/../Verp" />
-    <file type="web" url="file://$PROJECT_DIR$/../Lox" />
-    <file type="web" url="file://$PROJECT_DIR$/../Portal" />
-    <file type="web" url="file://$PROJECT_DIR$/../Vel" />
-    <file type="web" url="file://$PROJECT_DIR$/../Verp" />
-  </component>
   <component name="HudsonMonitorComponent">
     <option name="timeOutTextField" value="30" />
   </component>
@@ -38,17 +29,12 @@
     <option name="OPEN_IN_BROWSER" value="true" />
   </component>
   <component name="MavenProjectsManager">
-    <option name="originalFiles">
-      <list>
-        <option value="$PROJECT_DIR$/../Verp/pom.xml" />
-        <option value="$PROJECT_DIR$/../Portal/pom.xml" />
-      </list>
-    </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/../Lom/Android/pom.xml" />
         <option value="$PROJECT_DIR$/../Lox/pom.xml" />
         <option value="$PROJECT_DIR$/../Vel/pom.xml" />
+        <option value="$PROJECT_DIR$/../Verp/pom.xml" />
       </set>
     </option>
   </component>
@@ -97,7 +83,7 @@
     <default-html-doctype>$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/html5-schema/html5.rnc</default-html-doctype>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/../Verp/target" />
+    <output url="file://$PROJECT_DIR$/target" />
   </component>
   <component name="ResourceManagerContainer">
     <option name="myResourceBundles">
