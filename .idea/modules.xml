@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/../Lox/Lox.iml" filepath="$PROJECT_DIR$/../Lox/Lox.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Portal/Portal.iml" filepath="$PROJECT_DIR$/../Portal/Portal.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sem.iml" filepath="$PROJECT_DIR$/Sem.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../Vel/Vel.iml" filepath="$PROJECT_DIR$/../Vel/Vel.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Verp/Verp.iml" filepath="$PROJECT_DIR$/../Verp/Verp.iml" />
     </modules>
   </component>

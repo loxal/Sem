@@ -50,6 +50,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/../Lom/Android/pom.xml" />
+        <option value="$PROJECT_DIR$/../Vel/pom.xml" />
       </set>
     </option>
   </component>
