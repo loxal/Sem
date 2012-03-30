@@ -5,8 +5,8 @@
 package commander
 
 import (
-    "http"
-    "json"
+    "net/http"
+    "encoding/json"
     "appengine"
     "appengine/memcache"
 )

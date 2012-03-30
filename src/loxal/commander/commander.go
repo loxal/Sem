@@ -7,13 +7,13 @@ package commander
 
 import (
 	"fmt"
-	"http"
+	"net/http"
+	"net/http/httputil"
 	"io"
-	"os"
+	"flag"
 	"strings"
 	"time"
-	"json"
-    "loxal/flag"
+	"encoding/json"
 	"loxal/test"
 
 	"appengine"
@@ -23,15 +23,16 @@ import (
 )
 
 type Cmd struct {
-	Name, Call, Desc string
-	Creator, User        string
-	Created, Updated     datastore.Time
+	Name, Call, Desc    string
+	Creator, User       string
+	Created, Updated    time.Time
 }
 
-func serveError(c appengine.Context, w http.ResponseWriter, err os.Error) {
+func serveError(c appengine.Context, w http.ResponseWriter, err error) {
 	w.WriteHeader(http.StatusInternalServerError)
 	w.Header().Set("Content-Type", contentTypeText)
 	io.WriteString(w, "Internal Server Error")
+	c.Errorf("%s", err)
 }
 
 func serve404(w http.ResponseWriter) {
@@ -60,7 +61,8 @@ func createCmd(w http.ResponseWriter, r *http.Request) {
 			Desc:     r.FormValue("desc"),
 			Creator:  currentUser,
 			User:     currentUser,
-			Created:  datastore.SecondsToTime(time.Seconds()),
+			Created:  time.Now(),
+			Updated:  time.Now(),
 		}
 
 		if _, err := datastore.Put(c, datastore.NewIncompleteKey(c, "Cmd", nil), cmd); err != nil {
@@ -182,7 +184,7 @@ func cmdUpdation(w http.ResponseWriter, r *http.Request) {
 		Call: r.FormValue("edit-call"),
 		Desc:     r.FormValue("edit-desc"),
 		User:  getUser(c),
-		Updated:  datastore.SecondsToTime(time.Seconds()),
+		Updated:  time.Now(),
 	}
 
 	if ok, err := cmdUpdate(cmd, c); err != nil {
@@ -190,7 +192,7 @@ func cmdUpdation(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func cmdUpdate(cmd *Cmd, c appengine.Context) (ok bool, err os.Error) {
+func cmdUpdate(cmd *Cmd, c appengine.Context) (ok bool, err error) {
 	q := datastore.NewQuery("Cmd").Filter("Name =", cmd.Name).Filter("Creator =", getUser(c)).KeysOnly()
 	keys, _ := q.GetAll(c, nil)
 
@@ -225,12 +227,12 @@ func paypalHandler(w http.ResponseWriter, r *http.Request) {
     client := urlfetch.Client(c)
     resp, err := client.Get("https://api-3t.sandbox.paypal.com/nvp?METHOD=BMCreateButton&VERSION=72.0&USER=wpp_1315925055_biz_api1.loxal.net&PWD=1315925139&SIGNATURE=Adpvw0BhLOlkXhzGP1PLF6D-ECfOA8s9nUx7bc3EPc1-StxRAcTyHgqu&BUTTONCODE=HOSTED&BUTTONTYPE=BUYNOW&BUTTONSUBTYPE=PRODUCTS")
     if err != nil {
-        http.Error(w, err.String(), http.StatusInternalServerError)
+        http.Error(w, err.Error(), http.StatusInternalServerError)
         return
     }
 
 
-    dump, err := http.DumpResponse(resp, true)
+    dump, err := httputil.DumpResponse(resp, true)
     w.Header().Set("Content-Type", contentTypeText)
     fmt.Fprintf(w, "BUFF %v ||||| %v ", string(dump), err)
 }

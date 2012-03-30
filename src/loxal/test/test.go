@@ -8,7 +8,7 @@ import (
     "flag" // replace by a post release.58.1 version and check whether flag.Init() exists
            //   then test whether flag.Init("name", 0) works
 	"fmt"
-	"http"
+	"net/http"
 	"strings"
 	"math"
 )
