@@ -29,6 +29,9 @@
       </option>
       <option name="myRunnerParameters">
         <MavenRunnerParameters>
+          <option name="profiles">
+            <set />
+          </option>
           <option name="goals">
             <list>
               <option value="clean" />
@@ -39,10 +42,10 @@
               <option value="cargo:redeploy" />
             </list>
           </option>
-          <option name="profiles">
-            <set>
-              <option value="test" />
-            </set>
+          <option name="profilesMap">
+            <map>
+              <entry key="test" value="true" />
+            </map>
           </option>
           <option name="workingDirPath" value="$PROJECT_DIR$/../Verp" />
         </MavenRunnerParameters>

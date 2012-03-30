@@ -29,15 +29,18 @@
       </option>
       <option name="myRunnerParameters">
         <MavenRunnerParameters>
+          <option name="profiles">
+            <set />
+          </option>
           <option name="goals">
             <list>
               <option value="tomcat:run" />
             </list>
           </option>
-          <option name="profiles">
-            <set>
-              <option value="dev" />
-            </set>
+          <option name="profilesMap">
+            <map>
+              <entry key="dev" value="true" />
+            </map>
           </option>
           <option name="workingDirPath" value="$PROJECT_DIR$/../Portal" />
         </MavenRunnerParameters>
