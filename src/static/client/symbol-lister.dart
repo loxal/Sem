@@ -4,11 +4,15 @@
  * license that can be found in the LICENSE file.
  */
 
+#library('sunflower');
+
+#import('dart:html');
+
 main() {
-  var colors = ['red', 'orange', 'green'];
+  var colors = ['radfdedd', 'oradnge', 'grdeen'];
 
 //  for (var i = 0; i < colors.length; i++) {
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < 3; i++) {
     print(i);
   }
 }
