@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2012 Alexander Orlov <alexander.orlov@loxal.net>. All rights reserved.
+  ~ Use of this source code is governed by a BSD-style
+  ~ license that can be found in the LICENSE file.
+  -->
+
+<messagebundle>
+    <msg name="gadget_title">Sem</msg>
+    <msg name="gadget_description">Demo / Showcase</msg>
+    <msg name="gadget_thumbnail">http://module.loxal.net/resource/logo.png</msg>
+    <msg name="gadget_screenshot">http://module.loxal.net/resource/logo.png</msg>
+</messagebundle>

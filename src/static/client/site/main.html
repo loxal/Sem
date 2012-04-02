@@ -26,8 +26,8 @@
 </script>
 <![endif]-->
 <title>Sem | Loxal</title>
-<link rel="stylesheet/less" type="text/css" href="styles.less">
 <script src="../obf/less.js" type="text/javascript"></script>
+<link rel="stylesheet/less" type="text/css" href="styles.less">
 
 <script>
     var _gaq = _gaq || [];
@@ -49,8 +49,11 @@
 <script>
     var navTo = function (hash) {
         location.hash = hash;
-        var handlerMap = {'':'/client/commander/main.html', '#imprint':'/static/client/site/imprint.html',
-            '#symbol-lister':'/client/symbol-lister.html'};
+        var handlerMap = {
+            '':'/client/commander/main.html',
+            '#imprint':'/static/client/site/imprint.html',
+            '#symbol-lister':'/static/client/symbol-lister.html'
+        };
         if (!handlerMap[location.hash] || location.pathname != '/') {
             document.getElementById('main').innerHTML = '<div class="info warn">Page Not Found</div>';
         } else {
