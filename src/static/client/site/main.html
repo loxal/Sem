@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  ~ Copyright 2011 Alexander Orlov <alexander.orlov@loxal.net>. All rights reserved.
+  ~ Copyright 2012 Alexander Orlov <alexander.orlov@loxal.net>. All rights reserved.
   ~ Use of this source code is governed by a BSD-style
   ~ license that can be found in the LICENSE file.
   -->
@@ -34,7 +34,7 @@
     _gaq.push(['_setAllowHash', 'false']);
     _gaq.push(['_trackPageview']);
 
-    (function() {
+    (function () {
         var ga = document.createElement('script');
         ga.type = 'text/javascript';
         ga.async = true;
@@ -45,7 +45,7 @@
 </script>
 
 <script>
-    var navTo = function(hash) {
+    var navTo = function (hash) {
         location.hash = hash;
         var handlerMap = {'':'/client/commander/main.html', '#imprint':'/static/client/site/imprint.html'};
         if (!handlerMap[location.hash] || location.pathname != '/') {
@@ -53,7 +53,7 @@
         } else {
             var xhr = new XMLHttpRequest();
             xhr.open('get', handlerMap[location.hash], false);
-            xhr.onload = function(e) {
+            xhr.onload = function (e) {
                 { // TODO replace by non-jQuery method & remove the jQuery lib;
                     $('#main').html(this.responseText);
                 }
@@ -62,10 +62,10 @@
         }
     };
 
-    var applySiteProperties = function() {
+    var applySiteProperties = function () {
         var xhr = new XMLHttpRequest();
         xhr.open('get', '/client/site/properties.json', false);
-        xhr.onload = function(e) {
+        xhr.onload = function (e) {
             var siteProperties = JSON.parse(this.responseText);
             document.getElementById('signature').innerHTML = siteProperties.year + ' ' + siteProperties.copyright;
             document.getElementById('header-description').innerHTML = siteProperties.titleDesc;
@@ -76,7 +76,7 @@
     function auth() {
         var xhr = new XMLHttpRequest();
         xhr.open('get', '/cmd/auth.json', false);
-        xhr.onload = function(e) {
+        xhr.onload = function (e) {
             var user = JSON.parse(this.responseText);
             document.getElementById("auth").href = user.url;
             if (user.user == "") {
