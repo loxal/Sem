@@ -1,6 +1,7 @@
 <component name="CopyrightManager">
   <settings default="Loxal - BSD">
     <module2copyright>
+      <element module="EmptyCopyright" copyright="EmptyCopyright" />
       <element module="All" copyright="Loxal - BSD" />
     </module2copyright>
     <LanguageOptions name="HTML">

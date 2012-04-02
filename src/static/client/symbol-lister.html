@@ -5,75 +5,44 @@
   ~ license that can be found in the LICENSE file.
   -->
 
-{#
-# Copyright 2010 Alexander Orlov
-<alexander.orlov@loxal.net>
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#}
-
-{% extends properties.tpl_main_service %}
-{% load i18n %}
-{% block title %}{% blocktrans %}Symbol Lister{% endblocktrans %}{% endblock %}
-
-{% block content %}
-
 <div class="post">
-    <h1>{% blocktrans %}Symbol Lister{% endblocktrans %}</h1>
+    <h1>Symbol Lister</h1>
 
     <p>
-        {% blocktrans %}This tool provides an overview over HTML entities that include dingbats and other useful
+        This tool provides an overview over HTML entities that include dingbats and other useful
         symbols. The
         main advantage is that you do not need to carry about any external graphics. You can simply copy&amp;paste the
         corresponding symbol or its HTML entity code to your website or document. And do not forget: These are genuine
-        characters, not images!{% endblocktrans %}
+        characters, not images!
     </p>
 
     <div class="entry">
-
-        <!-- assert the output of dingbats-lister.js to a certain element id [n/l/n]-->
         <div id='symbol-table'></div>
         <fieldset id='symbol-entity-box'>
-            <legend>{% blocktrans %}Symbol Display{% endblocktrans %}</legend>
-            <!-- set a link to a entity range spec/doc n/l-1-->
-            <!--<input type='text' id='symbol-entity' value='&#9764;' style='font-size: 9em; width: 1em; padding: 0.1em; margin: 0.1em; float: right; -moz-border-radius: 0.1em; border-radius: 0.1em;'/>-->
+            <legend>Symbol Display</legend>
             <span style='font-size: 1em; width: 1em; padding: 0.1em; margin: 0 0.1em 0 0.1em; float: right; -moz-border-radius: 0.1em; border-radius: 0.1em; border: 1px solid hsl(33, 55%, 55%);'>&#x2724;</span>
             <span style='font-size: 2em; width: 1em; padding: 0.1em; margin: 0 0.1em 0 0.1em; float: right; -moz-border-radius: 0.1em; border-radius: 0.1em; border: 1px solid hsl(33, 55%, 55%);'>&#x2658;</span>
             <span style='font-size: 3em; width: 1em; padding: 0.1em; margin: 0 0.1em 0 0.1em; float: right; -moz-border-radius: 0.1em; border-radius: 0.1em; border: 1px solid hsl(33, 55%, 55%);'>&#x2620;</span>
             <span style='font-size: 6em; width: 1em; padding: 0.1em; margin: 0 0.1em 0 0.1em; float: right; -moz-border-radius: 0.1em; border-radius: 0.1em; border: 1px solid hsl(33, 55%, 55%);'>&#x2624;</span>
-            <label for='symbolId'>{% blocktrans %}Symbol ID:{% endblocktrans %}</label>
+            <label for='symbolId'>Symbol ID:</label>
             <input type='text' id='symbolId' value='x274a'/><br/>
 
-            <p>{% blocktrans %}E.g. "10046" in <em>decimal</em> notation or "<strong>x</strong>27bd" in
+            <p>E.g. "10046" in <em>decimal</em> notation or "<strong>x</strong>27bd" in
                 <em>hexadecimal</em>
-                notation{% endblocktrans %}</p>
-            <input type='button' id='symbol-display' value='{% blocktrans %} Display Symbol{% endblocktrans %}'
+                notation</p>
+            <input type='button' id='symbol-display' value=' Display Symbol'
                    onclick="displaySymbol()"/>
         </fieldset>
-        <!--  form is not necessary! -->
         <fieldset>
-            <legend>{% blocktrans %}Symbol Table Configurator{% endblocktrans %}</legend>
-            <label for='symbol-from'>{% blocktrans %}From:{% endblocktrans %}</label>
+            <legend>Symbol Table Configurator</legend>
+            <label for='symbol-from'>From:</label>
             <input type='text' id='symbol-from' value='9985'/><br/>
-            <label for='symbol-to'>{% blocktrans %}To:{% endblocktrans %}</label>
+            <label for='symbol-to'>To:</label>
             <input type='text' id='symbol-to' value='10175'/><br/>
-            <input type='button' id='submit' value='{% blocktrans %} List Symbols Within Range{% endblocktrans %}'
+            <input type='button' id='submit' value=' List Symbols Within Range'
                    onclick='location.reload()'/>
             <hr/>
-            <script src='/static/service/symbol-lister.js' type='text/javascript'></script>
+            <script src='/client/symbol-lister.js' type='text/javascript'></script>
         </fieldset>
-        <!-- comments field to give visitors the options to post interesting symbol ranges l/l/l/2-->
     </div>
 </div>
-<!-- /post -->
-{% endblock %}
