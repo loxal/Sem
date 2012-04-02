@@ -8,7 +8,6 @@ package commander
 import (
 	"fmt"
 	"net/http"
-	"net/http/httputil"
 	"io"
 	"flag"
 	"strings"
@@ -18,7 +17,6 @@ import (
 
 	"appengine"
 	"appengine/datastore"
-	"appengine/urlfetch"
 	"appengine/user"
 )
 
