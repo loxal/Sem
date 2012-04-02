@@ -207,36 +207,6 @@ func cmdUpdate(cmd *Cmd, c appengine.Context) (ok bool, err error) {
 	return true, nil
 }
 
-func payButton(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", contentTypeJSON)
-
-//	TODO retrieve API key from JSON
-
-    paypalHandler(w, r)
-
-	fmt.Fprint(w, `<form action="https%3a//www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="hosted_button_id" value="AUAC6PLTY7AWA">
-        <input type="image" src="https%3a//www.sandbox.paypal.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal - The safer%2c easier way to pay online!">
-        <img alt="" border="0" src="https%3a//www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-        </form>`)
-}
-
-func paypalHandler(w http.ResponseWriter, r *http.Request) {
-    c := appengine.NewContext(r)
-    client := urlfetch.Client(c)
-    resp, err := client.Get("https://api-3t.sandbox.paypal.com/nvp?METHOD=BMCreateButton&VERSION=72.0&USER=wpp_1315925055_biz_api1.loxal.net&PWD=1315925139&SIGNATURE=Adpvw0BhLOlkXhzGP1PLF6D-ECfOA8s9nUx7bc3EPc1-StxRAcTyHgqu&BUTTONCODE=HOSTED&BUTTONTYPE=BUYNOW&BUTTONSUBTYPE=PRODUCTS")
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-        return
-    }
-
-
-    dump, err := httputil.DumpResponse(resp, true)
-    w.Header().Set("Content-Type", contentTypeText)
-    fmt.Fprintf(w, "BUFF %v ||||| %v ", string(dump), err)
-}
-
 func authentication(r *http.Request) (usr, url string, isAdmin bool) {
     c := appengine.NewContext(r)
     u := user.Current(c)
@@ -260,7 +230,6 @@ func authenticate(w http.ResponseWriter, r *http.Request) {
 }
 
 const indexHandler = "/"
-const payHandler = "/cmd/pay/PayPalHTMLform.json"
 const cmdUpdateHandler = "/cmd/update"
 const cmdDeleteHandler = "/cmd/delete"
 const cmdCreateHandler = "/cmd/create"
@@ -273,7 +242,6 @@ const contentTypeText = "text/plain; charset=utf-8"
 func init() {
 	http.HandleFunc(reflectHandler, test.ReflectFunc)
 	http.HandleFunc("/cmd/auth.json", authenticate)
-	http.HandleFunc(payHandler, payButton)
 	http.HandleFunc(cmdDeleteHandler, cmdDeletion)
 	http.HandleFunc(cmdUpdateHandler, cmdUpdation)
 	http.HandleFunc(cmdCreateHandler, createCmd)
