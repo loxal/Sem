@@ -10,38 +10,7 @@ function SymbolTable(symbolFrom, symbolTo) {
 
     var HEX_NUM_BASE = 16;
 
-    document.writeln('<table>');
 
-    document.writeln('<thead>');
-    document.write('<tr>');
-    document.write('<th>#</th>');
-    document.write('<th>Symbol</th>');
-    document.write('<th>Decimal Notation</th>');
-    document.write('<th>Hexadecimal Notation</th>');
-    document.writeln('</tr>');
-    document.writeln('</thead>');
-
-    document.writeln('<tfoot>');
-    document.write('<tr>');
-    document.write('<td colspan="2"><strong>Total Symbols:</strong> ' + eval(symbolTo - symbolFrom + 1) + '</td>');
-    document.write('<td><strong>Decimal Range:</strong> ' + symbolFrom + ' - ' + symbolTo + '</td>');
-    document.write('<td><strong>Hexadecimal Range:</strong> ' + symbolFrom.toString(HEX_NUM_BASE) + ' - ' + symbolTo.toString(HEX_NUM_BASE) + '</td>');
-    document.writeln('</tr>');
-    document.writeln('</tfoot>');
-
-    document.writeln('<tbody>');
-    symbolNum = 1;
-    for (symbolId = symbolFrom; symbolId <= symbolTo; symbolId++) {
-        document.write('<tr>');
-        document.write('<td>' + symbolNum++ + '</td>');
-        document.write('<td>&#' + symbolId + ';</td>');
-        document.write('<td>&amp;#' + symbolId + ';</td>');
-        document.write('<td>&amp;#x' + symbolId.toString(HEX_NUM_BASE) + ';</td>');
-        document.writeln('</tr>');
-    }
-    document.writeln('</tbody>');
-
-    document.writeln('</table>');
 }
 
 //default values have symbolTo be set

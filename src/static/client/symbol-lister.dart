@@ -31,6 +31,6 @@ main() {
 
 //    var t = document.query('#symbol-from');
     Element tt = document.query('#symbol-from');
-    tt.value = 'blub';
+//    tt.value = 'blub';
 //    t.value = 'fest';
 }

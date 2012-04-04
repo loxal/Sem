@@ -46,7 +46,7 @@
             <!--navigator.webkitStartDart();-->
             <!--}-->
             <!--</script>-->
-            <script src="/client/symbol-lister.js"></script>
+            <!--<script src="/client/symbol-lister.js"></script>-->
             <script type="application/dart">
                 main() {
                 print("PRE!");
@@ -59,5 +59,59 @@
                 }
             </script>
         </fieldset>
+
+        <table>
+            <thead>
+            <tr>
+            <tr>
+                <th>#</th>
+                <th>Symbol</th>
+                <th>Decimal Notation</th>
+                <th>Hexadecimal Notation</th>
+            </tr>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <td colspan="2"><strong>Total Symbols:</strong> <span>symbolTo - symbolFrom+1</span></td>
+                <td><strong>Decimal Range:</strong> <span>symbolFrom -- symbolTo</span></td>
+                <td><strong>Hexadecimal Range:</strong> symbolFrom.toString(HEX_NUM_BASE) + ' - ' +
+                    symbolTo.toString(HEX_NUM_BASE)
+                </td>
+            </tr>
+            </tfoot>
+            <tbody>
+            <script type="application/dart">
+                #import('dart:html');
+                main() {
+                var element = new Element.tag('div');
+                var t = new Element.html('<strong>TEST</strong>');
+
+                }
+            </script>
+
+            // TODO use Element.html("HTML..."); here?
+            symbolNum = 1;
+            for (symbolId = symbolFrom; symbolId <= symbolTo; symbolId++) {
+            document.write('
+            <tr>');
+                document.write('
+                <td>' + symbolNum++ + '</td>
+                ');
+                document.write('
+                <td>&#' + symbolId + ';</td>
+                ');
+                document.write('
+                <td>&amp;#' + symbolId + ';</td>
+                ');
+                document.write('
+                <td>&amp;#x' + symbolId.toString(HEX_NUM_BASE) + ';</td>
+                ');
+                document.writeln('
+            </tr>
+            ');
+            }
+            </tbody>
+        </table>
     </div>
 </div>
