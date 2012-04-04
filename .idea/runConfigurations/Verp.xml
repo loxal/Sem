@@ -1,0 +1,37 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Verp" type="GWT.ConfigurationType" factoryName="GWT Configuration">
+    <module name="Verp" />
+    <option name="VM_PARAMETERS" value="-server -Xms128m -Xmx512m -XX:MaxPermSize=128m -Xss2m -Duser.timezone=GMT -Djava.util.logging.config.file=/Users/alex/my/project/Verp/src/logging.properties" />
+    <option name="SHELL_PARAMETERS" value="-logLevel INFO" />
+    <option name="RUN_PAGE" value="/dp.verp.student.Student&amp;bookingQuota=42" />
+    <option name="OPEN_IN_BROWSER" value="false" />
+    <RunnerSettings RunnerId="Debug">
+      <option name="DEBUG_PORT" value="61533" />
+      <option name="TRANSPORT" value="0" />
+      <option name="LOCAL" value="true" />
+    </RunnerSettings>
+    <RunnerSettings RunnerId="JavaRebel">
+      <option name="bootstrapPath" />
+      <option name="jrebelArgs" value="" />
+      <option name="loggingEnabled" value="false" />
+      <option name="useBootstrapDefaults" value="true" />
+    </RunnerSettings>
+    <RunnerSettings RunnerId="JavaRebel Debug">
+      <option name="bootstrapPath" />
+      <option name="debugPort" value="64123" />
+      <option name="jrebelArgs" value="" />
+      <option name="loggingEnabled" value="false" />
+      <option name="transport" value="0" />
+      <option name="useBootstrapDefaults" value="true" />
+      <option name="DEBUG_PORT" value="64123" />
+      <option name="TRANSPORT" value="0" />
+      <option name="LOCAL" value="true" />
+    </RunnerSettings>
+    <RunnerSettings RunnerId="Run" />
+    <ConfigurationWrapper RunnerId="Debug" />
+    <ConfigurationWrapper RunnerId="JavaRebel" />
+    <ConfigurationWrapper RunnerId="JavaRebel Debug" />
+    <ConfigurationWrapper RunnerId="Run" />
+    <method />
+  </configuration>
+</component>
