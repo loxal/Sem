@@ -29,11 +29,8 @@ main() {
 
     print (fest(23));
 
-    var t = document.query('#symbol-from');
-    print(t);
-
-     var name = 'Bob';
-     if (name) {
-       print("You have a name!"); // Prints in JavaScript, not in Dart
-     }
+//    var t = document.query('#symbol-from');
+    Element tt = document.query('#symbol-from');
+    tt.value = 'blub';
+//    t.value = 'fest';
 }
