@@ -4,33 +4,27 @@
  * license that can be found in the LICENSE file.
  */
 
-#library('test');
-
+#library('symbolLister');
 #import('dart:html');
 
 main() {
-  for (int idx = 9985; idx < 10175; idx++) {
-//    print(new String.fromCharCodes([idx]));
+    final int symbolFrom = Math.parseInt(document.query('#symbolFrom').value);
+    final int symbolTo = Math.parseInt(document.query('#symbolTo').value);
+
+  final Element list = document.query('#list');
+  int num = 0;
+  for (int idx = symbolFrom; idx < symbolTo; idx++) {
+     final symbol = new Element.html('<tr><td>' + num++ + '</td><td>' + new String.fromCharCodes([idx])+ '</td><td>' +
+      idx
+     + '</td></tr>');
+
+    list.nodes.add(symbol);
+
+
+    Element totalSymbols = document.query('#totalSymbols');
+    totalSymbols.innerHTML = (symbolTo - symbolFrom).toString();
+
+    Element decimalRange = document.query('#decimalRange');
+    decimalRange.innerHTML = symbolFrom.toString() + ' - ' + symbolTo.toString();
   }
-
-    var msg = 'blub';
-  var loudify = (msg, testt1) => '!!! ${msg.toUpperCase()} ${testt1} !!!';
-  print (loudify("mdddob", 'test!!!!!??'));
-
-   var callbacks = [];
-    for (var i = 0; i < 2; i++) {
-      callbacks.add(() => print(i));
-    }
-    callbacks.forEach((c) => c());
-
-    fest(c) => print (c);
-
-    print((e) => print('33'));
-
-    print (fest(23));
-
-//    var t = document.query('#symbol-from');
-    Element tt = document.query('#symbol-from');
-//    tt.value = 'blub';
-//    t.value = 'fest';
 }

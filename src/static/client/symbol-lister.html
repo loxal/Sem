@@ -30,88 +30,34 @@
             <p>E.g. "10046" in <em>decimal</em> notation or "<strong>x</strong>27bd" in
                 <em>hexadecimal</em>
                 notation</p>
-            <input type="button" id="symbol-display" value=" Display Symbol"
-                   onclick="displaySymbol()"/>
+            <input type="button" id="symbol-display" value=" Display Symbol" onclick="displaySymbol()"/>
         </fieldset>
         <fieldset>
             <legend>Symbol Table Configurator</legend>
-            <label for="symbol-from">From:</label>
-            <input type="text" id="symbol-from" value="9985"/><br/>
-            <label for="symbol-to">To:</label>
-            <input type="text" id="symbol-to" value="10175"/><br/>
+            <label for="symbolFrom">From:</label>
+            <input type="text" id="symbolFrom" value="9985"/><br/>
+            <label for="symbolTo">To:</label>
+            <input type="text" id="symbolTo" value="10175"/><br/>
             <input type="button" id="submit" value=" List Symbols Within Range" onclick="location.reload()"/>
-            <hr/>
-            <!--<script type="text/javascript">-->
-            <!--if (navigator.webkitStartDart) {-->
-            <!--navigator.webkitStartDart();-->
-            <!--}-->
-            <!--</script>-->
-            <!--<script src="/client/symbol-lister.js"></script>-->
-            <script type="application/dart">
-                main() {
-                print("PRE!");
-                }
-            </script>
+
             <script type="application/dart" src="symbol-lister.dart"></script>
-            <script type="application/dart">
-                main() {
-                print("POST!");
-                }
-            </script>
         </fieldset>
 
         <table>
             <thead>
             <tr>
-            <tr>
                 <th>#</th>
                 <th>Symbol</th>
                 <th>Decimal Notation</th>
-                <th>Hexadecimal Notation</th>
-            </tr>
             </tr>
             </thead>
             <tfoot>
             <tr>
-                <td colspan="2"><strong>Total Symbols:</strong> <span>symbolTo - symbolFrom+1</span></td>
-                <td><strong>Decimal Range:</strong> <span>symbolFrom -- symbolTo</span></td>
-                <td><strong>Hexadecimal Range:</strong> symbolFrom.toString(HEX_NUM_BASE) + ' - ' +
-                    symbolTo.toString(HEX_NUM_BASE)
-                </td>
+                <td colspan="2"><strong>Total Symbols:</strong> <span id="totalSymbols">default</span></td>
+                <td><strong>Decimal Range:</strong> <span id="decimalRange"></span></td>
             </tr>
             </tfoot>
-            <tbody>
-            <script type="application/dart">
-                #import('dart:html');
-                main() {
-                var element = new Element.tag('div');
-                var t = new Element.html('<strong>TEST</strong>');
-
-                }
-            </script>
-
-            // TODO use Element.html("HTML..."); here?
-            symbolNum = 1;
-            for (symbolId = symbolFrom; symbolId <= symbolTo; symbolId++) {
-            document.write('
-            <tr>');
-                document.write('
-                <td>' + symbolNum++ + '</td>
-                ');
-                document.write('
-                <td>&#' + symbolId + ';</td>
-                ');
-                document.write('
-                <td>&amp;#' + symbolId + ';</td>
-                ');
-                document.write('
-                <td>&amp;#x' + symbolId.toString(HEX_NUM_BASE) + ';</td>
-                ');
-                document.writeln('
-            </tr>
-            ');
-            }
-            </tbody>
+            <tbody id="list"></tbody>
         </table>
     </div>
 </div>
