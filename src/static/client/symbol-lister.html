@@ -5,17 +5,10 @@
   ~ license that can be found in the LICENSE file.
   -->
 
+<script type="application/dart" src="symbol-lister.dart"></script>
+<div id="main"></div>
+
 <div>
-    <h1>Symbol Lister</h1>
-
-    <p>
-        This tool provides an overview over HTML entities that include dingbats and other useful
-        symbols. The
-        main advantage is that you do not need to carry about any external graphics. You can simply copy&amp;paste the
-        corresponding symbol or its HTML entity code to your website or document. And do not forget: These are genuine
-        characters, not images!
-    </p>
-
     <div>
         <div id="symbol-table"></div>
         <fieldset id="symbol-entity-box">
@@ -28,7 +21,7 @@
                   style="font-size: 3em; width: 1em; padding: .1em; margin: 0 .1em 0 .1em; float: right; border-radius: .2em; border: 1px solid hsl(33, 55%, 55%);">&#x2620;</span>
             <span class="symbol"
                   style="font-size: 6em; width: 1em; padding: .1em; margin: 0 .1em 0 .1em; float: right; border-radius: .2em; border: 1px solid hsl(33, 55%, 55%);">&#x2624;</span>
-            <label for="symbolId">Symbol ID:</label>
+            <label for="symbolId">Symbol Id:</label>
             <input type="text" id="symbolId" value="x274a"/><br/>
 
             <p>E.g. "10046" in <em>decimal</em> notation or "<strong>x</strong>27bd" in
@@ -36,15 +29,6 @@
                 notation</p>
             <button id="symbol-display" class="icon-list">Display Symbol</button>
         </fieldset>
-        <fieldset>
-            <legend>Symbol Table Configurator</legend>
-            <label for="symbolFrom">From:</label>
-            <input type="text" id="symbolFrom" value="9985"/><br/>
-            <label for="symbolTo">To:</label>
-            <input type="text" id="symbolTo" value="10175"/><br/>
-            <button id="refresh" class="icon-refresh icon-large">List Symbols Within Range</button>
-        </fieldset>
-        <script type="application/dart" src="symbol-lister.dart"></script>
 
         <table>
             <thead>
