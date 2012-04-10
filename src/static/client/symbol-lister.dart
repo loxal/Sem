@@ -10,8 +10,6 @@
 #source('fruit.dart');
 
 main() {
-  document.head.nodes.add(getStylesheet());
-
   List<String> fruits = ['APPLES', 'ORANGES', 'bananas'];
   Hello hello = new Hello("Bob", fruits);
   hello.p.on.click.add((e) => print('clicked on paragraph!'));
@@ -44,6 +42,11 @@ refreshSymbolList() {
 }
 
 init() {
+TitleElement title = new Element.tag('title');
+title.innerHTML = 'My Title';
+document.head.nodes.add(title);
+  document.head.nodes.add(getStylesheet());
+
     final ButtonElement display = document.body.query('#symbol-display');
     display.on.click.add((e) => displaySymbol());
 
