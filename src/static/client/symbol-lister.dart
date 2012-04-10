@@ -10,12 +10,14 @@
 #source('fruit.dart');
 
 main() {
-  List fruits = ['apples', 'ORANGES', 'bananas'];
+  document.head.nodes.add(getStylesheet());
+
+  List<String> fruits = ['APPLES', 'ORANGES', 'bananas'];
   Hello hello = new Hello("Bob", fruits);
   hello.p.on.click.add((e) => print('clicked on paragraph!'));
   document.body.elements.add(hello.root);
 
-//    init();
+    init();
 }
 
 refreshSymbolList() {
@@ -30,7 +32,8 @@ refreshSymbolList() {
        idx
       + '</td></tr>');
 
-     list.nodes.add(symbol);
+//     list.nodes.add(symbol);
+     list.elements.add(symbol);
 
      final Element totalSymbols = document.query('#totalSymbols');
      totalSymbols.innerHTML = (symbolTo - symbolFrom).toString();
@@ -41,13 +44,21 @@ refreshSymbolList() {
 }
 
 init() {
-    final ButtonElement click = document.body.query('#symbol-display');
-    click.on.click.add((e) => displaySymbol());
+    final ButtonElement display = document.body.query('#symbol-display');
+    display.on.click.add((e) => displaySymbol());
 
     final ButtonElement refresh = document.body.query('#refresh');
     refresh.on.click.add((e) => refreshSymbolList());
 
     refreshSymbolList();
+}
+
+getStylesheet() {
+LinkElement styleSheet = new Element.tag("link");
+styleSheet.rel = "stylesheet";
+styleSheet.type="text/css";
+styleSheet.href="/static/theme/icon/css/font-awesome.css";
+return styleSheet;
 }
 
 displaySymbol() {

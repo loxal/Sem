@@ -34,7 +34,7 @@
             <p>E.g. "10046" in <em>decimal</em> notation or "<strong>x</strong>27bd" in
                 <em>hexadecimal</em>
                 notation</p>
-            <input type="button" id="symbol-display" value="Display Symbol"/>
+            <button id="symbol-display" class="icon-list">Display Symbol</button>
         </fieldset>
         <fieldset>
             <legend>Symbol Table Configurator</legend>
@@ -42,10 +42,9 @@
             <input type="text" id="symbolFrom" value="9985"/><br/>
             <label for="symbolTo">To:</label>
             <input type="text" id="symbolTo" value="10175"/><br/>
-            <input type="button" id="refresh" value="List Symbols Within Range"/>
-
-            <script type="application/dart" src="symbol-lister.dart"></script>
+            <button id="refresh" class="icon-refresh icon-large">List Symbols Within Range</button>
         </fieldset>
+        <script type="application/dart" src="symbol-lister.dart"></script>
 
         <table>
             <thead>
