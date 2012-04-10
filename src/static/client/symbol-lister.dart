@@ -6,9 +6,16 @@
 
 #library('symbolLister');
 #import('dart:html');
+#source('hello.dart');
+#source('fruit.dart');
 
 main() {
-    init();
+  List fruits = ['apples', 'ORANGES', 'bananas'];
+  Hello hello = new Hello("Bob", fruits);
+  hello.p.on.click.add((e) => print('clicked on paragraph!'));
+  document.body.elements.add(hello.root);
+
+//    init();
 }
 
 refreshSymbolList() {
@@ -25,7 +32,6 @@ refreshSymbolList() {
 
      list.nodes.add(symbol);
 
-
      final Element totalSymbols = document.query('#totalSymbols');
      totalSymbols.innerHTML = (symbolTo - symbolFrom).toString();
 
@@ -35,10 +41,10 @@ refreshSymbolList() {
 }
 
 init() {
-    final Element click = document.query('#symbol-display');
+    final ButtonElement click = document.body.query('#symbol-display');
     click.on.click.add((e) => displaySymbol());
 
-    final Element refresh = document.query('#refresh');
+    final ButtonElement refresh = document.body.query('#refresh');
     refresh.on.click.add((e) => refreshSymbolList());
 
     refreshSymbolList();
