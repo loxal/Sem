@@ -10,8 +10,8 @@
 #source('fruit.dart');
 
 main() {
-  List<String> fruits = ['APPLES', 'ORANGES', 'bananas'];
-  Hello hello = new Hello("Bob", fruits);
+  final List<String> fruits = ['APPLES', 'ORANGES', 'bananas'];
+  final Hello hello = new Hello("Bob", fruits);
   hello.p.on.click.add((e) => print('clicked on paragraph!'));
   document.body.elements.add(hello.root);
 
@@ -45,6 +45,23 @@ init() {
 TitleElement title = new Element.tag('title');
 title.innerHTML = 'My Title';
 document.head.nodes.add(title);
+
+FieldSetElement fieldset = new Element.tag('fieldset');
+LegendElement legend = new Element.tag('legend');
+legend.innerHTML = 'Symbol Table Configurator';
+
+InputElement symbolFrom = new Element.tag('input');
+symbolFrom.type = 'text';
+fieldset.nodes.add(symbolFrom);
+LabelElement symbolFromLabel = new Element.tag('label');
+symbolFromLabel.innerHTML = 'From:';
+fieldset.nodes.add(symbolFromLabel);
+
+
+fieldset.nodes.add(legend);
+
+document.body.nodes.add(fieldset);
+
   document.head.nodes.add(getStylesheet());
 
     final ButtonElement display = document.body.query('#symbol-display');
