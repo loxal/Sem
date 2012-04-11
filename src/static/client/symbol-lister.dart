@@ -12,64 +12,92 @@
 InputElement symbolFrom;
 InputElement symbolTo;
 LabelElement symbolToLabel;
+DivElement app;
 
 preinit() {
-HeadingElement h1 = new Element.tag('h1');
-h1.innerHTML = 'Symbol Lister';
-TitleElement title = new Element.tag('title');
-title.innerHTML = 'My Title';
-document.head.nodes.add(title);
+    final HeadingElement h1 = new Element.tag('h1');
+    h1.innerHTML = 'Symbol Lister';
+    final TitleElement title = new Element.tag('title');
+    title.innerHTML = 'My Title';
+    document.head.nodes.add(title);
 
-FieldSetElement fieldset = new Element.tag('fieldset');
-LegendElement legend = new Element.tag('legend');
-legend.innerHTML = 'Range';
+    FieldSetElement fieldset = new Element.tag('fieldset');
+    LegendElement legend = new Element.tag('legend');
+    legend.innerHTML = 'Range';
 
-LabelElement symbolFromLabel = new Element.tag('label');
-symbolFromLabel.innerHTML = 'From:';
+    LabelElement symbolFromLabel = new Element.tag('label');
+    symbolFromLabel.innerHTML = 'From:';
 
-symbolFrom = new Element.tag('input');
-symbolFrom.type = 'text';
-symbolFrom.value = '9985';
+    symbolFrom = new Element.tag('input');
+    symbolFrom.type = 'text';
+    symbolFrom.value = '9985';
 
-symbolTo = new Element.tag('input');
-symbolTo.type = 'text';
-symbolTo.value = '10175';
+    symbolTo = new Element.tag('input');
+    symbolTo.type = 'text';
+    symbolTo.value = '10175';
 
-symbolToLabel= new Element.tag('label');
-symbolToLabel.innerHTML = 'To:';
+    symbolToLabel= new Element.tag('label');
+    symbolToLabel.innerHTML = 'To:';
 
-final ButtonElement refresh = new Element.tag('button');
-refresh.innerHTML = 'Refresh';
-refresh.classes.add('icon-refresh');
-refresh.on.click.add((e) => refreshSymbolList());
+    final ButtonElement refresh = new Element.tag('button');
+    refresh.innerHTML = 'Refresh';
+    refresh.classes.add('icon-refresh');
+    refresh.on.click.add((e) => refreshSymbolList());
 
-fieldset.nodes.add(symbolFromLabel);
-fieldset.nodes.add(symbolFrom);
-fieldset.nodes.add(symbolToLabel);
-fieldset.nodes.add(symbolTo);
-fieldset.nodes.add(refresh);
+    fieldset.nodes.add(symbolFromLabel);
+    fieldset.nodes.add(symbolFrom);
+    fieldset.nodes.add(symbolToLabel);
+    fieldset.nodes.add(symbolTo);
+    fieldset.nodes.add(refresh);
 
-fieldset.nodes.add(legend);
+    fieldset.nodes.add(legend);
 
-final DivElement main = document.query('#main');
-main.nodes.add(fieldset);
+    app.nodes.add(fieldset);
 
-final ParagraphElement desc= new Element.tag('p');
-desc.innerHTML = '''
-        This tool provides an overview over HTML entities that include dingbats and other useful
-        symbols. The
-        main advantage is that you do not need to carry about any external graphics. You can simply copy&amp;paste the
-        corresponding symbol or its HTML entity code to your website or document. And do not forget: These are genuine
-        characters, not images!
-''';
-main.nodes.add(desc);
-main.nodes.add(h1);
+    final ParagraphElement desc= new Element.tag('p');
+    desc.innerHTML = '''
+            This tool provides an overview over HTML entities that include dingbats and other useful
+            symbols. The
+            main advantage is that you do not need to carry about any external graphics. You can simply copy&amp;paste the
+            corresponding symbol or its HTML entity code to your website or document. And do not forget: These are genuine
+            characters, not images!
+    ''';
+    app.nodes.add(desc);
+    app.nodes.add(h1);
+}
 
+TableSectionElement tbody;
+initContainer() {
+    final TableElement container = new Element.tag('table');
+    final TableCaptionElement tableCaption = new Element.tag('caption');
+    tableCaption.innerHTML = 'Container';
+    container.elements.add(tableCaption);
+    TableSectionElement thead = new Element.tag('thead');
+    TableSectionElement tfoot = new Element.tag('tfoot');
+    tbody = new Element.tag('tbody');
+    TableRowElement header = new Element.tag('tr');
+    TableRowElement footer = new Element.tag('tr');
+    TableElement thNum = new Element.tag('th');
+    thNum.innerHTML = '#';
+    TableElement thSymbol = new Element.tag('th');
+    thSymbol.innerHTML = 'Symbol';
+    TableElement thNotation = new Element.tag('th');
+    thNotation.innerHTML = 'Decimal Notation';
+    header.elements.add(thNum);
+    header.elements.add(thSymbol);
+    header.elements.add(thNotation);
+    thead.elements.add(header);
+    container.elements.add(thead);
+    container.elements.add(tbody);
+    container.elements.add(tfoot);
 
+    app.elements.add(container);
 
 }
 
 main() {
+    app =  document.query('#main');
+    initContainer();
     preinit();
 
   final List<String> fruits = ['APPLES', 'ORANGES', 'bananas'];
@@ -85,15 +113,15 @@ refreshSymbolList() {
      final int symbolFrom = Math.parseInt(symbolFrom.value);
      final int symbolTo = Math.parseInt(symbolTo.value);
 
-   final Element list = document.query('#list');
-   list.nodes.clear();
+//   final Element list = document.query('#list');
+   tbody.nodes.clear();
    int num = 0;
    for (int idx = symbolFrom; idx < symbolTo; idx++) {
       final symbol = new Element.html('<tr><td>' + num++ + '</td><td>' + new String.fromCharCodes([idx])+ '</td><td>' +
        idx
       + '</td></tr>');
 
-     list.elements.add(symbol);
+     tbody.elements.add(symbol);
 
      final Element totalSymbols = document.query('#totalSymbols');
      totalSymbols.innerHTML = (symbolTo - symbolFrom).toString();
