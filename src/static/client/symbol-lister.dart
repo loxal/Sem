@@ -6,6 +6,7 @@
 
 #library('symbolLister');
 #import('dart:html');
+#import('dart:dom', prefix:'dom');
 #source('hello.dart');
 #source('fruit.dart');
 
@@ -108,7 +109,6 @@ refreshSymbolList() {
      final int symbolFrom = Math.parseInt(symbolFrom.value);
      final int symbolTo = Math.parseInt(symbolTo.value);
 
-//   final Element list = document.query('#list');
    tbody.nodes.clear();
    int num = 1;
    for (int idx = symbolFrom; idx < symbolTo; idx++) {
@@ -118,10 +118,8 @@ refreshSymbolList() {
 
      tbody.elements.add(symbol);
 
-//     totalSymbols = document.query('#totalSymbols');
      totalSymbols.innerHTML = (symbolTo - symbolFrom).toString();
 
-//     decimalRange = document.query('#decimalRange');
      decimalRange.innerHTML = symbolFrom.toString() + ' - ' + symbolTo.toString();
    }
 }
@@ -132,18 +130,15 @@ init() {
     final ButtonElement display = document.body.query('#symbol-display');
     display.on.click.add((e) => displaySymbol());
 
-//    final ButtonElement refresh = document.body.query('#refresh');
-//    refresh.on.click.add((e) => refreshSymbolList());
-
     refreshSymbolList();
 }
 
 getStylesheet() {
-LinkElement styleSheet = new Element.tag("link");
-styleSheet.rel = "stylesheet";
-styleSheet.type="text/css";
-styleSheet.href="/static/theme/icon/css/font-awesome.css";
-return styleSheet;
+    final LinkElement styleSheet = new Element.tag("link");
+    styleSheet.rel = "stylesheet";
+    styleSheet.type="text/css";
+    styleSheet.href="/static/theme/icon/css/font-awesome.css";
+    return styleSheet;
 }
 
 displaySymbol() {
@@ -161,9 +156,13 @@ EntityLister() {
 
 main() {
     final EntityLister my = new EntityLister();
-    my.app =  document.query('#main');
+    my.app =  new Element.tag('div');
+    document.body.elements.add(my.app);
     my.preinit();
     my.initContainer();
+
+    Entity e = new Entity();
+    e.notationName = '&copy;';
 
   final List<String> fruits = ['APPLES', 'ORANGES', 'bananas'];
   final Hello hello = new Hello("Bob", fruits);

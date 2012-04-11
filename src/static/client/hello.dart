@@ -1,6 +1,7 @@
 // Generated Dart class from HTML template.
 // DO NOT EDIT.
 
+
 String safeHTML(String html) {
   // TODO(terry): Escaping for XSS vulnerabilities TBD.
   return html;
