@@ -9,7 +9,7 @@
 #source('hello.dart');
 #source('fruit.dart');
 
-//class My {
+class EntityLister {
 
 InputElement symbolFrom;
 InputElement symbolTo;
@@ -36,7 +36,7 @@ preinit() {
 
     symbolTo = new Element.tag('input');
     symbolTo.type = 'text';
-    symbolTo.value = '10175';
+    symbolTo.value = '10000';
 
     symbolToLabel= new Element.tag('label');
     symbolToLabel.innerHTML = 'To:';
@@ -102,20 +102,6 @@ initContainer() {
 
 }
 
-main() {
-    app =  document.query('#main');
-    preinit();
-    initContainer();
-
-  final List<String> fruits = ['APPLES', 'ORANGES', 'bananas'];
-  final Hello hello = new Hello("Bob", fruits);
-  hello.p.on.click.add((e) => print('clicked on paragraph!'));
-  document.body.elements.add(hello.root);
-
-    init();
-    refreshSymbolList();
-}
-
 TableCellElement totalSymbols;
 TableCellElement decimalRange;
 refreshSymbolList() {
@@ -168,4 +154,22 @@ displaySymbol() {
     }
 }
 
-//}
+EntityLister() {
+    print('constructed');
+}
+}
+
+main() {
+    final EntityLister my = new EntityLister();
+    my.app =  document.query('#main');
+    my.preinit();
+    my.initContainer();
+
+  final List<String> fruits = ['APPLES', 'ORANGES', 'bananas'];
+  final Hello hello = new Hello("Bob", fruits);
+  hello.p.on.click.add((e) => print('clicked on paragraph!'));
+  document.body.elements.add(hello.root);
+
+    my.init();
+    my.refreshSymbolList();
+}
