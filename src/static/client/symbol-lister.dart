@@ -9,6 +9,8 @@
 #source('hello.dart');
 #source('fruit.dart');
 
+//class My {
+
 InputElement symbolFrom;
 InputElement symbolTo;
 LabelElement symbolToLabel;
@@ -77,6 +79,10 @@ initContainer() {
     tbody = new Element.tag('tbody');
     TableRowElement header = new Element.tag('tr');
     TableRowElement footer = new Element.tag('tr');
+    totalSymbols = new Element.tag('td');
+    decimalRange = new Element.tag('td');
+    footer.elements.add(totalSymbols);
+    footer.elements.add(decimalRange);
     TableElement thNum = new Element.tag('th');
     thNum.innerHTML = '#';
     TableElement thSymbol = new Element.tag('th');
@@ -87,6 +93,7 @@ initContainer() {
     header.elements.add(thSymbol);
     header.elements.add(thNotation);
     thead.elements.add(header);
+    tfoot.elements.add(footer);
     container.elements.add(thead);
     container.elements.add(tbody);
     container.elements.add(tfoot);
@@ -97,8 +104,8 @@ initContainer() {
 
 main() {
     app =  document.query('#main');
-    initContainer();
     preinit();
+    initContainer();
 
   final List<String> fruits = ['APPLES', 'ORANGES', 'bananas'];
   final Hello hello = new Hello("Bob", fruits);
@@ -109,13 +116,15 @@ main() {
     refreshSymbolList();
 }
 
+TableCellElement totalSymbols;
+TableCellElement decimalRange;
 refreshSymbolList() {
      final int symbolFrom = Math.parseInt(symbolFrom.value);
      final int symbolTo = Math.parseInt(symbolTo.value);
 
 //   final Element list = document.query('#list');
    tbody.nodes.clear();
-   int num = 0;
+   int num = 1;
    for (int idx = symbolFrom; idx < symbolTo; idx++) {
       final symbol = new Element.html('<tr><td>' + num++ + '</td><td>' + new String.fromCharCodes([idx])+ '</td><td>' +
        idx
@@ -123,10 +132,10 @@ refreshSymbolList() {
 
      tbody.elements.add(symbol);
 
-     final Element totalSymbols = document.query('#totalSymbols');
+//     totalSymbols = document.query('#totalSymbols');
      totalSymbols.innerHTML = (symbolTo - symbolFrom).toString();
 
-     final Element decimalRange = document.query('#decimalRange');
+//     decimalRange = document.query('#decimalRange');
      decimalRange.innerHTML = symbolFrom.toString() + ' - ' + symbolTo.toString();
    }
 }
@@ -158,3 +167,5 @@ displaySymbol() {
       e.innerHTML = '&#' + symbolId.value + ';';
     }
 }
+
+//}
