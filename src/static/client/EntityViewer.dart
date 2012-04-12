@@ -2,7 +2,7 @@
 // DO NOT EDIT.
 
 class EntityViewer {
-  Map<String, Object> _scopes;
+  final Map<String, Object> _scopes;
   Element _fragment;
 
   int number;
@@ -54,7 +54,6 @@ class EntityViewer {
   static final String stylesheet = '''
     
 .viewBox {
-  width: 1em;
   padding: .1em;
   margin: 0 .1em 0 .1em;
   float: right;
