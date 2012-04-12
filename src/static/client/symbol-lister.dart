@@ -9,6 +9,7 @@
 #import('dart:dom', prefix:'dom');
 #source('hello.dart');
 #source('fruit.dart');
+#source('EntityViewer.dart');
 
 class EntityLister {
 
@@ -57,15 +58,6 @@ preinit() {
 
     app.nodes.add(fieldset);
 
-    final ParagraphElement desc= new Element.tag('p');
-    desc.innerHTML = '''
-            This tool provides an overview over HTML entities that include dingbats and other useful
-            symbols. The
-            main advantage is that you do not need to carry about any external graphics. You can simply copy&amp;paste the
-            corresponding symbol or its HTML entity code to your website or document. And do not forget: These are genuine
-            characters, not images!
-    ''';
-    app.nodes.add(desc);
     app.nodes.add(h1);
 }
 
@@ -142,7 +134,7 @@ getStylesheet() {
 }
 
 displaySymbol() {
-    final List<Element> a = document.queryAll('.symbol');
+    final List<Element> a = document.queryAll('.viewBox');
     final Element symbolId = document.query('#symbolId');
     for(Element e in a) {
       e.innerHTML = '&#' + symbolId.value + ';';
@@ -161,13 +153,13 @@ main() {
     my.preinit();
     my.initContainer();
 
-    Entity e = new Entity();
-    e.notationName = '&copy;';
-
   final List<String> fruits = ['APPLES', 'ORANGES', 'bananas'];
   final Hello hello = new Hello("Bob", fruits);
   hello.p.on.click.add((e) => print('clicked on paragraph!'));
   document.body.elements.add(hello.root);
+
+  EntityViewer entityViewer = new EntityViewer(93);
+  document.body.elements.add(entityViewer.root);
 
     my.init();
     my.refreshSymbolList();
