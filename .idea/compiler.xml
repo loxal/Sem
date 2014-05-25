@@ -10,7 +10,7 @@
     <option name="MAXIMUM_HEAP_SIZE" value="512" />
   </component>
   <component name="CompilerConfiguration">
-    <option name="DEFAULT_COMPILER" value="compAPI" />
+    <option name="DEFAULT_COMPILER" value="Javac" />
     <resourceExtensions>
       <entry name=".+\.(properties|xml|html|dtd|tld)" />
       <entry name=".+\.(gif|png|jpeg|jpg)" />
@@ -27,8 +27,12 @@
       <entry name="?*.tld" />
       <entry name="?*.ftl" />
     </wildcardResourcePatterns>
-    <annotationProcessing enabled="true" useClasspath="true">
-      <processorPath value="$PROJECT_DIR$/../../sdk/gwt/requestfactory-apt.jar" />
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true">
+          <entry name="$PROJECT_DIR$/../../sdk/gwt/requestfactory-apt.jar" />
+        </processorPath>
+      </profile>
     </annotationProcessing>
   </component>
   <component name="EclipseCompilerSettings">
