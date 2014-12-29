@@ -1,11 +1,10 @@
 application: sem-loxal
-version: b
+version: c
 runtime: go
 api_version: go1
 
 #builtins:
 #- remote_api: on
-#- datastore_admin: on
 
 inbound_services:
 - warmup
