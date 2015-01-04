@@ -20,8 +20,8 @@
 </div>
 <script>
     CFInstall.check({
-        node:"CFInstall",
-        mode:"popup"
+        node: "CFInstall",
+        mode: "popup"
     });
 </script>
 <![endif]-->
@@ -50,9 +50,9 @@
     var navTo = function (hash) {
         location.hash = hash;
         var handlerMap = {
-            '':'/client/commander/main.html',
-            '#imprint':'/static/client/site/imprint.html',
-            '#symbol-lister':'/static/client/symbol-lister.html'
+            '': '/client/commander/main.html',
+            '#imprint': '/static/client/site/imprint.html',
+            '#symbol-lister': '/static/client/symbol-lister.html'
         };
         if (!handlerMap[location.hash] || location.pathname != '/') {
             document.getElementById('main').innerHTML = '<div class="info warn">Page Not Found</div>';
@@ -119,11 +119,11 @@
     <div id="index">
         <h1>Navigation</h1>
         <ul class="nav">
-            <li><a href="javascript:navTo('');" title="Shortcuts to web requests mapper">RESTful
-                Demo</a></li>
+            <li><a href="javascript:navTo('');" title="Shortcuts to web requests mapper">RESTfulDemo</a></li>
             <li>
-                <a href="javascript:navTo('#symbol-lister');" title="Lists symbols and their entity codes.">Symbol
-                    Lister</a>
+                <a href="javascript:navTo('#symbol-lister');" title="Lists symbols and their entity codes.">
+                    Symbol Lister
+                </a>
             </li>
             <li><a href="javascript:navTo('#imprint');" title="Imprint / Contact / About">Imprint</a></li>
         </ul>
