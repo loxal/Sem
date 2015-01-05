@@ -8,6 +8,6 @@
 <messagebundle>
     <msg name="gadget_title">Sem</msg>
     <msg name="gadget_description">Demo / Showcase</msg>
-    <msg name="gadget_thumbnail">http://module.loxal.net/resource/loxal-logo.png</msg>
-    <msg name="gadget_screenshot">http://module.loxal.net/resource/loxal-logo.png</msg>
+    <msg name="gadget_thumbnail">http://me.loxal.net/resource/loxal-logo.png</msg>
+    <msg name="gadget_screenshot">http://me.loxal.net/resource/loxal-logo.png</msg>
 </messagebundle>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright 2012 Alexander Orlov <alexander.orlov@loxal.net>. All rights reserved.
+  ~ Copyright 2015 Alexander Orlov <alexander.orlov@loxal.net>. All rights reserved.
   ~ Use of this source code is governed by a BSD-style
   ~ license that can be found in the LICENSE file.
   -->
@@ -13,6 +13,6 @@
         <Locale messages="ALL_ALL.xml"/>
     </ModulePrefs>
 
-    <Content href="http://sem.loxal.net/?channel=web" type="url"/>
+    <Content href="http://sem.loxal.net" type="url"/>
 </Module>
         
