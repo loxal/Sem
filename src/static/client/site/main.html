@@ -36,8 +36,7 @@
         location.hash = hash;
         var handlerMap = {
             '': '/client/commander/main.html',
-            '#imprint': '/static/client/site/imprint.html',
-            '#symbol-lister': '/static/client/symbol-lister.html'
+            '#imprint': '/static/client/site/imprint.html'
         };
         if (!handlerMap[location.hash] || location.pathname != '/') {
             document.getElementById('main').innerHTML = '<div class="info warn">Page Not Found</div>';
@@ -104,12 +103,7 @@
     <div id="index">
         <h1>Navigation</h1>
         <ul class="nav">
-            <li><a href="javascript:navTo('');" title="Shortcuts to web requests mapper">RESTfulDemo</a></li>
-            <li>
-                <a href="javascript:navTo('#symbol-lister');" title="Lists symbols and their entity codes.">
-                    Symbol Lister
-                </a>
-            </li>
+            <li><a href="javascript:navTo('');" title="Shortcuts to web requests mapper">RESTful Demo</a></li>
             <li><a href="javascript:navTo('#imprint');" title="Imprint / Contact / About">Imprint</a></li>
         </ul>
     </div>
@@ -122,7 +116,7 @@
         <span>
             Powered by <a href="http://dev.loxal.net" title="Sem @ Google App Engine">
             Sem@<abbr title="Google App Engine">GAE</abbr> (Go) <abbr
-                title="Dart/HTML5 backend client">BC</abbr></a>
+                title="backend client">BC</abbr></a>
         </span>
         <span style="float: right;">
             <a href="javascript:navTo('#imprint');" title="with contact form">Imprint</a> | &copy; <span
