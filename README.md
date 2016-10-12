@@ -1,3 +1,5 @@
+# Sem — Sem Entity Manager
+
 **Support this project**
 <!-- BADGES/ -->
 <span class="badge-paypal">
@@ -12,6 +14,10 @@
 <img src="https://img.shields.io/badge/gratipay-donate-yellow.svg" alt="Gratipay Donate" />
 </a></span>
 <!-- /BADGES -->
-# Sem — Sem Entity Manager
 
-* A RESTful API.
+[Support this work with crypto-currencies like BitCoin, Ethereum, Ardor, and Komodo!](http://me.loxal.net/coin-support.html)
+
+## Deploy
+
+    ./release.sh
+
