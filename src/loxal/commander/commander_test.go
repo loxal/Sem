@@ -5,8 +5,8 @@
 package commander
 
 import (
-	"testing"
 	"http"
+	"testing"
 
 	"appengine"
 	"appengine/datastore"

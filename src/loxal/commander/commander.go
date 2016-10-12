@@ -6,14 +6,14 @@
 package commander
 
 import (
-	"fmt"
-	"net/http"
-	"io"
+	"encoding/json"
 	"flag"
+	"fmt"
+	"io"
+	"loxal/test"
+	"net/http"
 	"strings"
 	"time"
-	"encoding/json"
-	"loxal/test"
 
 	"appengine"
 	"appengine/datastore"
@@ -21,9 +21,9 @@ import (
 )
 
 type Cmd struct {
-	Name, Call, Desc    string
-	Creator, User       string
-	Created, Updated    time.Time
+	Name, Call, Desc string
+	Creator, User    string
+	Created, Updated time.Time
 }
 
 func serveError(c appengine.Context, w http.ResponseWriter, err error) {
@@ -40,27 +40,27 @@ func serve404(w http.ResponseWriter) {
 }
 
 func getUser(c appengine.Context) string {
-    u := user.Current(c)
-    if u == nil {
-        return ""
-    }
+	u := user.Current(c)
+	if u == nil {
+		return ""
+	}
 
-    return u.Email
+	return u.Email
 }
 
 func createCmd(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 
 	if !cmdExists(c, r.FormValue("name")) && !cmdHasInvalidCharacters(r.FormValue("name")) {
-	    currentUser := getUser(c);
+		currentUser := getUser(c)
 		cmd := &Cmd{
-			Name:     r.FormValue("name"),
-			Call:     r.FormValue("call"),
-			Desc:     r.FormValue("desc"),
-			Creator:  currentUser,
-			User:     currentUser,
-			Created:  time.Now(),
-			Updated:  time.Now(),
+			Name:    r.FormValue("name"),
+			Call:    r.FormValue("call"),
+			Desc:    r.FormValue("desc"),
+			Creator: currentUser,
+			User:    currentUser,
+			Created: time.Now(),
+			Updated: time.Now(),
 		}
 
 		if _, err := datastore.Put(c, datastore.NewIncompleteKey(c, "Cmd", nil), cmd); err != nil {
@@ -72,12 +72,12 @@ func createCmd(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-    w.WriteHeader(http.StatusBadRequest)
+	w.WriteHeader(http.StatusBadRequest)
 }
 
 // Constraint Check
 func cmdExists(c appengine.Context, name string) (ok bool) {
-    count, _ := datastore.NewQuery("Cmd").Filter("Name =", strings.ToLower(name)).Filter("Creator =", getUser(c)).Count(c)
+	count, _ := datastore.NewQuery("Cmd").Filter("Name =", strings.ToLower(name)).Filter("Creator =", getUser(c)).Count(c)
 
 	if count > 0 {
 		return true
@@ -121,33 +121,33 @@ func listCmdsAsJSON(w http.ResponseWriter, r *http.Request) {
 // Returns the RESTful associated with a certain command
 //func exec(cmd string) (call string) {
 func getCmd(r *http.Request) (call, query string) {
-    const sep = "+"
-    rawQuery := strings.Split(r.URL.RawQuery, sep)
-    getCacheItem(r, rawQuery[0])
+	const sep = "+"
+	rawQuery := strings.Split(r.URL.RawQuery, sep)
+	getCacheItem(r, rawQuery[0])
 
-    cmds := listCmds(r)
+	cmds := listCmds(r)
 
-    for i := range cmds {
-        if cmds[i].Name == rawQuery[0] {
-            call = cmds[0].Call
-            query = strings.Join(rawQuery[1:], sep)
-            return call, query
-        }
-    }
+	for i := range cmds {
+		if cmds[i].Name == rawQuery[0] {
+			call = cmds[0].Call
+			query = strings.Join(rawQuery[1:], sep)
+			return call, query
+		}
+	}
 
-    const defaultRestCall = "http://www.google.com/search?q="
-    call = defaultRestCall
-    query = strings.Join(rawQuery[:], sep)
+	const defaultRestCall = "http://www.google.com/search?q="
+	call = defaultRestCall
+	query = strings.Join(rawQuery[:], sep)
 
-    return call, query
+	return call, query
 }
 
 func exec(w http.ResponseWriter, r *http.Request) {
-//test.TestFlag(w)
-fmt.Fprintf(w, test.ParseQuery("task --add='myNewTask bond'"))
+	//test.TestFlag(w)
+	fmt.Fprintf(w, test.ParseQuery("task --add='myNewTask bond'"))
 
-    call, query := getCmd(r)
-    http.Redirect(w, r, call + query, http.StatusFound)
+	call, query := getCmd(r)
+	http.Redirect(w, r, call+query, http.StatusFound)
 }
 
 func cmd(w http.ResponseWriter, r *http.Request) {
@@ -178,11 +178,11 @@ func cmdDeletion(w http.ResponseWriter, r *http.Request) {
 func cmdUpdation(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	cmd := &Cmd{
-		Name:     r.FormValue("edit-name"),
-		Call: r.FormValue("edit-call"),
-		Desc:     r.FormValue("edit-desc"),
-		User:  getUser(c),
-		Updated:  time.Now(),
+		Name:    r.FormValue("edit-name"),
+		Call:    r.FormValue("edit-call"),
+		Desc:    r.FormValue("edit-desc"),
+		User:    getUser(c),
+		Updated: time.Now(),
 	}
 
 	if ok, err := cmdUpdate(cmd, c); err != nil {
@@ -196,8 +196,8 @@ func cmdUpdate(cmd *Cmd, c appengine.Context) (ok bool, err error) {
 
 	var cmdInDS Cmd
 	datastore.Get(c, keys[0], &cmdInDS)
-    cmd.Creator = cmdInDS.Creator
-    cmd.Created = cmdInDS.Created
+	cmd.Creator = cmdInDS.Creator
+	cmd.Created = cmdInDS.Created
 
 	if _, err := datastore.Put(c, keys[0], cmd); err != nil {
 		return false, err
@@ -206,25 +206,25 @@ func cmdUpdate(cmd *Cmd, c appengine.Context) (ok bool, err error) {
 }
 
 func authentication(r *http.Request) (usr, url string, isAdmin bool) {
-    c := appengine.NewContext(r)
-    u := user.Current(c)
+	c := appengine.NewContext(r)
+	u := user.Current(c)
 
-    if u == nil {
-        url, _ = user.LoginURL(c, indexHandler)
-    } else {
-        usr = u.Email
-        isAdmin = user.IsAdmin(c)
-        url, _ = user.LogoutURL(c, indexHandler)
-    }
+	if u == nil {
+		url, _ = user.LoginURL(c, indexHandler)
+	} else {
+		usr = u.Email
+		isAdmin = user.IsAdmin(c)
+		url, _ = user.LogoutURL(c, indexHandler)
+	}
 
-    return usr, url, isAdmin
+	return usr, url, isAdmin
 }
 
 func authenticate(w http.ResponseWriter, r *http.Request) {
-    user, url, isAdmin := authentication(r)
+	user, url, isAdmin := authentication(r)
 
-    w.Header().Set("Content-Type", contentTypeJSON)
-    fmt.Fprintf(w, `{"user": "%s", "isAdmin": "%t", "url": "%s"}`, user, isAdmin, url)
+	w.Header().Set("Content-Type", contentTypeJSON)
+	fmt.Fprintf(w, `{"user": "%s", "isAdmin": "%t", "url": "%s"}`, user, isAdmin, url)
 }
 
 const indexHandler = "/"
