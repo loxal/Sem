@@ -1,4 +1,10 @@
 <?xml version="1.0" standalone="no"?>
+<!--
+  ~ Copyright 2017 Alexander Orlov <alexander.orlov@loxal.net>. All rights reserved.
+  ~ Use of this source code is governed by a BSD-style
+  ~ license that can be found in the LICENSE file.
+  -->
+
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
